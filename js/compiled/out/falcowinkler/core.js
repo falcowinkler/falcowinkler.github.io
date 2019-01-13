@@ -29,4 +29,4 @@ return falcowinkler.core.mount_root.call(null);
 });
 goog.exportSymbol('falcowinkler.core.init', falcowinkler.core.init);
 
-//# sourceMappingURL=core.js.map?rel=1547392175641
+//# sourceMappingURL=core.js.map?rel=1547394467624

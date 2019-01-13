@@ -6,4 +6,4 @@ re_frame.core.reg_sub.call(null,new cljs.core.Keyword("falcowinkler.subs","name"
 return new cljs.core.Keyword(null,"name","name",1843675177).cljs$core$IFn$_invoke$arity$1(db);
 }));
 
-//# sourceMappingURL=subs.js.map?rel=1547389511227
+//# sourceMappingURL=subs.js.map?rel=1547392803593

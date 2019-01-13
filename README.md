@@ -1,6 +1,7 @@
 # falcowinkler
 
-A [re-frame](https://github.com/Day8/re-frame) application designed to ... well, that part is up to you.
+A [re-frame](https://github.com/Day8/re-frame) application designed to be,
+some day when i want to learn web dev, a pretty web page.
 
 ## Development Mode
 

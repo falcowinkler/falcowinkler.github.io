@@ -7,4 +7,4 @@ re_frame.core.reg_event_db.call(null,new cljs.core.Keyword("falcowinkler.events"
 return falcowinkler.db.default_db;
 }));
 
-//# sourceMappingURL=events.js.map?rel=1547389511219
+//# sourceMappingURL=events.js.map?rel=1547392803586

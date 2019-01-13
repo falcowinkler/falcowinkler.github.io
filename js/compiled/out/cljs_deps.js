@@ -53,7 +53,6 @@ goog.addDependency("../cljs/repl.js", ['cljs.repl'], ['cljs.core', 'cljs.spec.al
 goog.addDependency("../figwheel/client.js", ['figwheel.client'], ['goog.userAgent.product', 'goog.Uri', 'cljs.core', 'goog.object', 'cljs.core.async', 'figwheel.client.file_reloading', 'figwheel.client.utils', 'cljs.repl', 'figwheel.client.heads_up', 'figwheel.client.socket', 'clojure.string', 'cljs.reader']);
 goog.addDependency("../figwheel/connect.js", ['figwheel.connect'], ['cljs.core', 'figwheel.client']);
 goog.addDependency("../devtools/preload.js", ['devtools.preload'], ['cljs.core', 'devtools.core', 'devtools.prefs']);
-goog.addDependency("../falcowinkler/db.js", ['falcowinkler.db'], ['cljs.core']);
 goog.addDependency("../cljsjs/react/development/react.inc.js", ['cljsjs.react'], [], {'foreign-lib': true});
 goog.addDependency("../cljsjs/create-react-class/development/create-react-class.inc.js", ['cljsjs.create_react_class'], ['cljsjs.react'], {'foreign-lib': true});
 goog.addDependency("../reagent/interop.js", ['reagent.interop'], ['cljs.core']);
@@ -80,8 +79,9 @@ goog.addDependency("../re_frame/cofx.js", ['re_frame.cofx'], ['re_frame.intercep
 goog.addDependency("../re_frame/std_interceptors.js", ['re_frame.std_interceptors'], ['re_frame.interceptor', 're_frame.trace', 're_frame.registrar', 'cljs.core', 're_frame.utils', 're_frame.loggers', 're_frame.cofx', 'clojure.data', 're_frame.db']);
 goog.addDependency("../re_frame/subs.js", ['re_frame.subs'], ['re_frame.interop', 're_frame.trace', 're_frame.registrar', 'cljs.core', 're_frame.utils', 're_frame.loggers', 're_frame.db']);
 goog.addDependency("../re_frame/core.js", ['re_frame.core'], ['re_frame.interop', 're_frame.interceptor', 're_frame.events', 're_frame.fx', 're_frame.registrar', 'cljs.core', 're_frame.router', 'clojure.set', 're_frame.std_interceptors', 're_frame.loggers', 're_frame.subs', 're_frame.cofx', 're_frame.db']);
+goog.addDependency("../falcowinkler/subs.js", ['falcowinkler.subs'], ['cljs.core', 're_frame.core']);
+goog.addDependency("../falcowinkler/db.js", ['falcowinkler.db'], ['cljs.core']);
+goog.addDependency("../falcowinkler/views.js", ['falcowinkler.views'], ['cljs.core']);
 goog.addDependency("../falcowinkler/events.js", ['falcowinkler.events'], ['falcowinkler.db', 'cljs.core', 're_frame.core']);
 goog.addDependency("../falcowinkler/config.js", ['falcowinkler.config'], ['cljs.core']);
-goog.addDependency("../falcowinkler/subs.js", ['falcowinkler.subs'], ['cljs.core', 're_frame.core']);
-goog.addDependency("../falcowinkler/views.js", ['falcowinkler.views'], ['cljs.core', 'falcowinkler.subs', 're_frame.core']);
 goog.addDependency("../falcowinkler/core.js", ['falcowinkler.core'], ['falcowinkler.events', 'reagent.core', 'cljs.core', 'falcowinkler.config', 'falcowinkler.views', 're_frame.core']);

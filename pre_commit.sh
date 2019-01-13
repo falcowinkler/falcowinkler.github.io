@@ -1,1 +1,1 @@
-cp resources/public/* .
+cp -r resources/public/* .
