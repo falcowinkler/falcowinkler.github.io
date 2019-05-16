@@ -1,0 +1,108 @@
+#+TITLE: Baustein 1 Meeting 1
+
+
+Baustein 1 Meeting 1: Hello World, Datentypen, Variablen, Verzweigungen und Schleifen
+
+* Hello World
+Beim Lernen von Programmiersprachen ist es eine weit verbreitete Tradition, als Erstes ein Programm zu schreiben, welches einfach nur hello world ausgibt. Diese Tradition wollen wir natürlich nicht brechen, außer dass wir es auf die Hamburger Art machen.
+
+#+BEGIN_SRC python :results output :exports both
+print("Moin world")
+#+END_SRC
+
+Führt man diese Codezeile in Thonny aus, erscheint die ausgabe in einem separaten Fenster namens "Shell". Die shell ist eine rein textuelle Benutzeroberfläche: Der Computer kann hier Ausgaben reinschreiben, und auch der Nutzer kann text eingeben (das lernen wir später kennen).
+
+print ist eine Funktion, das bedeutet das der Print-Aufruf ein bestimmtes Verhalten auslöst. Funktionen werden wir später genauer kennen lernen, und wir werden auch eigene Funktionen schreiben.
+
+Weiterhin ist print eine sogenannte Built-In Funktion, d.h. sie ist ein fester Bestandteil der Programmiersprache Python und ihr könnt jederzeit auf sie zugreifen. Sie gibt das Funktionsargument auf der Konsole ("Shell" in Thonny) aus. Es gibt [[https://docs.python.org/3/library/functions.html][eine Vielzahl von built-in Funktionen]], einige davon werden wir auch noch im Kurs kennenlernen.
+
+* Datentypen
+
+"Moin world" ist mit Gänsefüßchen abgetrennt. Das bedeutet, dass "Moin world" Daten in Form einer Zeichenkette sind. Daten können als Literale (dh. explizit in das python-programm reingeschrieben, wie in diesem Fall) vorliegen. Oder sie können aus Funktionsaufrufen erhalten oder importiert werden (dazu später mehr). Es gibt auch Daten in Form von Zahlen. Die Literale dazu sehen dann so aus:
+
+#+BEGIN_SRC python :results output :exports both
+print(1)   # Das ist eine Ganzzahl, ein sog. Integer
+print(1.2) # Das ist eine Kommazahl, ein sog. Float
+#+END_SRC
+
+Es gibt noch ein paar weitere Datentypen in Python, die wir noch kennenlernen.
+Mit der built-in Funktion type kann man sich jederzeit den typ zu einem Literal ausgeben lassen.
+
+#+BEGIN_SRC python :results output :exports both
+print(type(1))
+print(type(1.2))
+#+END_SRC
+
+(Tipp: In dem obigen code-block habe ich Funktionsaufrufe geschachtelt. Das kann man beliebig oft tun, geschachtelte Ausdrücke werden immer von innen nach aussen ausgewertet.)
+
+* Variablen
+Variablen sind ein weiterer wichtiger Bestandteil von Python - Programmen. Sie sind Platzhalter. Zum Beispiel können sie eine Zeichenkette oder Zahl als Wert enthalten. Werte von Variablen können sich mit der Zeit ändern. Sie werden mit der Schreibweise platzhaltername = wert deklariert. Variablennamen dürfen Buchstaben, Unterstriche und Zahlen enthalten (vobei das erste Zeichen des Variablennamens keine Zahl sein darf).
+
+#+BEGIN_SRC python :results output :exports both
+gruß = "Moin"
+name = "World"
+
+print(gruß)   # Aktueller wert ist 'Moin'
+print(name)
+
+gruß = "Hallo" # Wert des Platzhalters wird hier verändert
+
+print(gruß) # Jetzt wird 'Hallo' ausgegeben
+print(name)
+#+END_SRC
+
+Variablen kann man genau so gut mit numerischen Literalen belegen.
+
+#+BEGIN_SRC python :results output :exports both
+zahl = 42.0
+print(zahl)
+#+END_SRC
+
+Zahlen können auch von Zeichenketten überschrieben werden
+
+#+BEGIN_SRC python :results output :exports both
+zahl = "Dies ist eine Zeichenkette"
+print(zahl)
+#+END_SRC
+
+Pro-Tipp: Zeichenketten können auch mit dem einfachen Apostroph abgegrenzt werden.
+
+#+BEGIN_SRC python :results output :exports both
+print('Wieder was gelernt')
+#+END_SRC
+
+* Basisoperationen
+Zahlen und Zeichenketten im Program zu haben ist ja schön und gut, aber was können wir damit anstellen? Mit Zahlen können wir z.B. rechnen, in der üblichen Schreibweise.
+
+Hier ist es sehr hilfreich mit dem Debugger von Thonny zu arbeiten. Mit "Step into" (zweiter Pfeil neben dem Käfer) könnt ihr euch ganz genau ansehen, wie die einzelnen Befehle ausgewertet werden.
+
+#+BEGIN_SRC python :results output :exports both
+x = 10
+y = 20
+
+print(x + y)
+
+z = x + y
+
+print(z + 2)
+#print(2 * 2)
+#print(5 - 2)
+#print(12 / 4)
+#print(12 // 4)
+
+#print(13 % 5) # Modulo
+#print(4 ** 4)
+#print(0.1 + 0.2)
+
+#print(10 * (20 + 5)) # Ausdrücke können beliebig geklammert werden
+#+END_SRC
+
+aasdfasdf
+
+*  Kommentare
+
+Alles hinter einem '#' wird von python ignoriert, so können wir Kommentare schreiben um Nachrichten an unser Zukunfts-Ich zu senden (uns Sachen zu merken)
+
+#+BEGIN_SRC python :results output :exports both
+print("Moin world") # Dieser Funktionsaufruf gibt Text auf der Konsole aus.
+#+END_SRC

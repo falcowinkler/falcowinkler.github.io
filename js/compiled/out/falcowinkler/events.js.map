@@ -1,1 +1,0 @@
-{"version":3,"file":"\/Users\/falco.winkler\/Desktop\/falcowinkler.github.io\/resources\/public\/js\/compiled\/out\/falcowinkler\/events.js","sources":["events.cljs?rel=1547392803586"],"lineCount":10,"mappings":";AAAA;;;;AAMA,qCAAA,rCAACA,+IAEA,WAAKC,EAAEA;AAAP,AACEC","names":["re-frame.core\/reg-event-db","_","falcowinkler.db\/default-db"]}

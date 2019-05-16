@@ -1,0 +1,5 @@
+Falco Winkler
+
+* courses
+** python beginner course (german)
+*** [[file:part1_1.org][module 1 part 1]]
