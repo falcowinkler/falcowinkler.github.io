@@ -1,0 +1,210 @@
+#+TITLE: Baustein 1 Meeting 4
+
+* Lösungen zu den letzten Aufgaben
+
+(Alle Lösungen sind nur Beispiele, es gibt viele Wege die zur Lösung führen)
+
+** Funktionen
+#+BEGIN_SRC python :results output :exports both
+def combat(health, damage):
+    difference = health - damage
+    if difference < 0:
+        return 0
+    else return difference
+print(combat(health=100, damage=20))
+print(combat(health=10, damage=30))
+#+END_SRC
+Oder einfacher:
+#+BEGIN_SRC python
+def combat(health, damage):
+    return max(health - damage, 0)
+#+END_SRC
+#+BEGIN_SRC python :results output :exports both
+def abbrevName(name):
+    parts = name.split(" ")
+    return parts[0][0].upper() + "." +  parts[1][0].upper()
+#+END_SRC
+#+BEGIN_SRC python :results output :exports both
+def century(year):
+    return ((year-1) // 100) +1
+#+END_SRC
+
+** Number guessing game
+#+BEGIN_SRC python
+user_eingabe = None
+geheime_zahl = 42
+while user_eingabe != geheime_zahl:
+    user_eingabe = int(input("Bitte gebe eine Zahl ein: "))
+    if user_eingabe > geheime_zahl:
+        print("Zu hoch geschätzt!")
+    elif user_eingabe < geheime_zahl:
+        print("Zu niedrig geschätzt!")
+    else:
+        print("Richtig")
+#+END_SRC
+
+* Mengen
+Mengen sind ungeordnete Sammlungen von Objekten. Sie können kein Element mehrfach enthalten:
+
+#+BEGIN_SRC python :results output :exports both
+my_numbers = {1, 2, 3, 4, 5, 5, 6, 6}
+print(my_numbers)
+#+END_SRC
+
+Wie auch bei Listen und Dictionarys gibt es eine Built-in Funktion die bestimmte Objekte in Mengen umwandeln kann. Nochmal zur Übersicht:
+
+~list(...)~
+
+~dict(...)~
+
+~set(...)~
+
+Erzeugen Listen, Wörterbücher und Mengen aus ihren Argumenten (wenn möglich).
+
+
+#+BEGIN_SRC python :results output :exports both
+letter_set = set("A Python Tutorial")
+print(letter_set)
+meine_liste = ["A","B","C","A","B","C"]
+
+leeres_wörterbuch = dict()
+
+liste_ohne_duplikate = list(set(meine_liste))
+#+END_SRC
+
+* Objektorientierte Programmierung
+
+** Klassen und Objekte
+
+Zusammenhänge in der echten Welt sind sehr komplex. Computer hingegen sind eigentlich ziemlich doof: Sie können nur mit exakten Rechenregeln arbeiten und stumpf Befehle ausführen. Um die Welt "berechenbar" zu machen braucht man also immer ein Modell: Ein vereinfachtes Abbild der Wirklichkeit.
+
+Objektorientierung ist eine Möglichkeit, Zusammenhänge zu modellieren. Die Grundidee ist, jede Sache in der echten Welt als Objekt mit einem Zustand und fest definiertem Verhalten darzustellen.
+
+Klassen sind Baupläne für Objekte. Sie beschreiben, welche Funktionalität ein konkretes Objekt hat, und welche Zustände es besitzt. Objekte sind dann konkrete Instanzen von Klassen.
+
+/Genauere Erklärung und Diskussion über OOP im Kurs/
+
+#+BEGIN_SRC python :results output :exports both
+class Dog:
+
+    def __init__(self, name, age):
+        self.age = age
+        self.name = name
+
+    def sit(self):
+        print(self.name + " is now sitting.")
+
+    def roll_over(self):
+        print(self.name + " rolled over!")
+
+    def print_age(self):
+        print(self.name + " is " + str(self.age) + " years old.")
+
+
+cooper = Dog("cooper", 5)
+cooper.roll_over()
+cooper.sit()
+cooper.print_age()
+#+END_SRC
+
+** Vererbung
+
+- Einige Klassen haben Gemeinsamkeiten und Unterschiede
+- Die Gemeinsamkeiten wollen wir nicht doppelt in Code ausdrücken
+- Deshalb erstellen wir eine “Elternklasse” mit den Gemeinsamkeiten und “erben” davon.
+
+#+BEGIN_SRC python :results output :exports both
+class Animal:
+
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+
+    def eat(self):
+        print(self.name + " isst etwas.")
+
+    def move(self):
+        print(self.name + " bewegt sich.")
+
+class Bird(Animal):
+
+    def fly(self):
+        print("Ich kann flieeeegen - " + self.name + ".")
+
+class Dog(Animal):
+
+    def bark(self):
+        print("Woof Woof")
+
+
+class Mops(Dog):
+
+    def bark(self):
+        super().bark()
+        print("fiep")
+
+class Parrot(Bird, Dog):
+
+    def __init__(self, name, age, color):
+        super().__init__(name, age)
+        self.color = color
+
+
+loewe = Animal("Löwe", 5)
+loewe.eat()
+loewe.move()
+print("-------------")
+doggie = Dog("Doggie", 7)
+doggie.bark()
+doggie.eat()
+print("-------------")
+ruffi = Mops("Ruffi", 3)
+ruffi.eat()
+ruffi.bark()
+#+END_SRC
+
+** Übung: Objektorientiertes Bankkonto
+
+Implementiert die Klasse ~Bankkonto~.
+
+- Ein Bankkonto hat eine eindeutige ID und einen Kontostand (anfänglich 0)
+- Man kann einen bestimmten Betrag einzahlen und auszahlen
+- Man kann sich den aktuellen Kontostand ausgeben lassen
+** Übung (fortgeschritten): Piraterie
+https://www.codewars.com/kata/object-oriented-piracy
+
+* Weiterführend: Python lernen
+Der erste Teil des Kurses ist vorbei und ihr möchtet alleine weitermachen? Kein Problem, es gibt mehrere Möglichkeiten zu üben.
+
+** Coding - Katas
+Unter Entwicklern hat sich eine bestimmte Trainingsmethode etabliert: Die sogenannten Katas (der Begriff kommt aus dem Kampfsport). Hierbei schreibt ein Entwickler ein Problem auf, dass es zu lösen gilt. Zusätzlich schreibt der Herausforderer Test-Code der Überprüft, ob das Problem richtig gelöst wurde. Der andere Entwickler muss dann versuchen, das Problem so zu lösen dass der Test erfolgreich verläuft.
+
+Es gibt eine Website, auf der man diese Katas in allen Schwierigkeitsgraden lösen kann: https://www.codewars.com. Meldet euch gerne dort an (wenn ihr wollt, tretet dem Clan "moinworld" bei 😉). Eine unterhaltsame Möglichkeit zum Üben :)
+
+Viele Aufgaben aus diesem Kurs sind von codewars. Hier die komplette Liste, falls ihr dafür die Punkte holen wollt:
+
+https://www.codewars.com/kata/drink-about/python
+
+https://www.codewars.com/kata/thinkful-logic-drills-traffic-light
+
+https://www.codewars.com/kata/sum-of-multiples
+
+http://www.codewars.com/kata/century-from-year/train/python
+
+http://www.codewars.com/kata/grasshopper-terminal-game-combat-function-1/train/python
+
+http://www.codewars.com/kata/abbreviate-a-two-word-name/train/python
+
+Für unser Erfahrungslevel sind Kata der Schwierigkeitsstufe 8 und 7 (sprache Python!) geeignet.
+
+http://www.codewars.com/kata/search/python?q=&r%5B%5D=-8&r%5B%5D=-7&beta=false
+
+** Online - Kurse
+
+Generell eine gute Resource um selbst zu lernen ist der Kurs von codecadamy: https://www.codecademy.com/learn/learn-python Dort gibt es interaktive Erklärungen zum Stoff und auch Übungsaufgaben die ganz genau erklärt und mit Hinweisen bestückt sind. Aber vorsicht: Dieser Kurs lehrt die Python Version zwei. Ist aber wie bereits erwähnt nicht schlimm, da der Unterschied zwischen Python 2 und 3 nicht groß ist. Es gibt auch einen Kurs für Python3, Kostet aber ziemlich viel (Mitgliedschaft für ~ 20€ /Monat), immerhin gibt es eine kostenlose 7 Tage mitgliedschaft.
+
+Darüber hinaus gibt es noch unzählige Kurse, sogar mobile Apps zum Lernen. Die habe ich natürlich nicht alle ausprobiert, aber generell sind solche Kurse zumindest vom Inhalt in guter Qualität. Das beste ist, etwas zu suchen was einem Spass macht und voran bringt.
+
+** Eigene Projekte
+
+Für die Motivation super: Ein eigenes Projekt ausdenken (nicht zu schwierig!) und einfach kraft Suchmaschine und Entwicklerforen wie stackoverflow.com / moinworld slack umsetzen.

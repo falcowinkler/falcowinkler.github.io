@@ -1,5 +1,4 @@
 #+TITLE: Baustein 1 Meeting 1
-#+OPTIONS: num:nil
 Hello World, Datentypen, Variablen, Verzweigungen und Schleifen
 
 

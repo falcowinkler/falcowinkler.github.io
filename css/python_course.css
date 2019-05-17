@@ -1,3 +1,8 @@
 body {
   font-family: 'Helvetica-Light', sans-serif !important;
 }
+
+.section-number-2, .section-number-3, .section-number-4 {
+    color: #696969;
+    font-size: 16px;
+}
