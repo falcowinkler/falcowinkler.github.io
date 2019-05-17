@@ -1,0 +1,187 @@
+#+TITLE: Baustein 1 Meeting 2
+
+Listen und die for-schleife
+
+* Aufwärmübungen
+
+** Ampelschaltung
+Deklariert euch eine Variable farbe mit dem Wert "rot" "grün" oder "gelb". Danach soll eine if - elif struktur folgen, die Folgendes bewirkt: Wenn der Wert der Variable "rot" ist, soll er umgeändert werden in "grün". Wenn er "grün" ist soll er auf "gelb" umgeändert werden, und wenn er "gelb" ist soll er auf "rot" umgeändert werden (d.h die Variable soll überschrieben werden, so wie gestern bei der Gruß Variable). Gebt euch danach den Wert der Variable farbe zur Prüfung auf der Konsole aus. Hinweis Genau wie bei Zahlen kann man Zeichenketten mit == vergleichen.
+
+#+BEGIN_SRC python
+farbe = 'gelb'
+#...
+#+END_SRC
+
+** Getränkeautomat
+
+Ihr sollt ein Programm für folgende Spezifikation schreiben: Ein Automat soll für eine Person mit bestimmten Alter automatisch das richtige Getränk ausgeben.
+
+- Personen unter 14 bekommen Orangensaft
+- Personen unter 18 bekommen Coca Cola
+- Personen unter 21 bekommen Bier
+- Personen die 21 und älter sind bekommen Whiskey
+
+Definiert euch dazu eine Variable alter mit beliebigem Wert, und schreibt danach ein if-elif-else Befehl der das korrekte Getränk auf der Konsole ausgibt.
+Danach sollen die Getränke für alle Altersklassen aufgelistet werden. Schreibt eine while-Schleife die bis 25 zählt und in jedem Durchgang den Code aus Aufgabe 1 ausführt.
+#+BEGIN_SRC python
+alter = 10
+# ...
+#+END_SRC
+* Zeichenketten verändern
+Mit Zeichenketten arbeitet man sehr häufig. Oft sind sie aber nicht in der gewünschten Form, man will Daten aus Ihnen extrahieren, oder sie verkürzen. Dafür stellt Python jede Menge Funktionalität zur Verfügung. Einen Ausschnitt davon werden wir in diesem Kurs kennenlernen.
+#+BEGIN_SRC python :results output :exports both
+test_string = "Ich bin hier, Du Bist hier, Schnabeltier."
+
+print(test_string.upper())
+print(test_string.lower())
+print(test_string.title())
+du_korrigiert = test_string.replace("Du ", "du ").replace("Bist ", "bist ")
+print(du_korrigiert)
+#+END_SRC
+
+Es gibt auch Funktionen, die Informationen über eine Zeichenkette liefern. Wie zum Beispiel die built-in Funktion len(), die die Anzahl an Zeichen in einer Zeichenkette zurückgibt. Mit count() lassen sich Wörter in einer Zeichenkette zählen. Und mit find() kann man die Stelle des Ersten Vorkommens eines Buchstaben finden!
+
+#+BEGIN_SRC python :results output :exports both
+lange_zeichenkette = "The brown fox jumps over the lazy dog. The brown fox jumps over the lazy dog."
+print(len(lange_zeichenkette))
+print(lange_zeichenkette.count("fox"))
+print("abc123".find("c"))
+#+END_SRC
+
+* Listen
+Listen sind eine Sammlung von Elementen in fester Reihenfolge. Jedes Element einer Liste hat dabei einen festen /Index/, also eine Zahl, die beschreibt an welcher Stelle der Liste das Element steht.
+
+In Programmiersprachen ist es üblich, dass eine solche Adressierung bei 0 beginnt.
+
+~meine_liste = ["abc", "Stein", "Wasser", 1, 2]~ ist zum Beispiel eine Liste der Länge 5. Die Zeichenkette "abc" ist das erste Element mit Index 0. "Stein" steht an zweiter Stelle mit Index 1. Weiss man zu einem Element den Entsprechenden Index, so kann man sich dieses Element aus der Liste holen in dem man in eckigen Klammern den Index hinter die Liste schreibt.
+
+Listenelement kann alles Mögliche sein. Zahlen, Zeichenketten, Bool'sche Werte, sogar Listen können in Listen enthalten sein.
+
+#+BEGIN_SRC python :results output :exports both
+meine_liste = ["abc", "Stein", "Wasser", 1, 2]
+print(meine_liste[2]) #Wasser ist an Stelle 3, hat aber den Index 2.
+
+# wie könnte man die Länge der Liste bestimmen?
+#+END_SRC
+
+Natürlich können Listen noch einiges mehr: Löschen, Hinzufügen, und Verändern von Elementen. Dafür gibt es wieder [[https://docs.python.org/3/tutorial/datastructures.html][ziemlich viel Funktionalität]] von der wir einen Teil kennen lernen werden.
+
+#+BEGIN_SRC python :results output :exports both
+elements = ["Feuer", "Wasser", "Erde", "Wind", 1, 2, 3, 4, 5, True]
+# Zugriff:
+element = elements[2]
+print("Element aus der Liste: " + element)
+
+# Verändern
+elements[2] = "Erdnussbutter"
+
+# Einfügen und Anhängen:
+elements.insert(6, "was neues")
+elements.append("!")
+print(elements)
+
+# Löschen:
+# ganze liste: del elements
+# einzelnes Element:
+del elements[6]
+print(elements)
+#+END_SRC
+
+Und hier noch was Nützliches: Mit ~split~ kann man eine Zeichenkette anhand eines Trennzeichens aufteilen, und die "Splitter" in eine Liste stecken.
+
+#+BEGIN_SRC python :results output :exports both
+satz = "The brown fox jumps over the lazy dog"
+print(satz.split(" "))
+#+END_SRC
+
+* Schleifen
+
+
+Es passiert auch häufig dass man eine Sequenz von Dingen der Reihe nach durchgehen muss, um mit jedem Element irgendwas zu machen. Mit der bereits bekannten ~while~ Schleife könnte man das natürlich machen, jedoch gibt es noch eine einfacherere Möglichkeit.
+
+#+BEGIN_SRC python :results output :exports both
+users = ["Anton", "Bertha", "Caesar", "Detlef", "Emil"]
+
+for name in users:
+    # Name wird in jedem Schleifendurchlauf durch ein Listenelement ersetzt
+    print(name + " ist super")
+#+END_SRC
+
+* Übungen
+
+** Strings in Listen verändern
+Deklariert euch eine Liste von Zeichenketten. Wie z.B. die users liste in obigem Code. Dann schreibt euch eine Funktion die jede Zeichenkette in der Liste in Großbuchstaben umwandelt, und drei Ausrufezeichen anhängt.
+
+** for als while
+Versucht die selbe Funktionalität wie mit der for-Schleife oben mit einer while-Schleife zu erreichen.
+
+** range
+
+Die ~range~ Funktion erlaubt es uns durch Zahlenfolgen zu iterieren. Dafür geben wir einen Anfangswert und eine Grenze der Zahlenfolge an. Optional können wir auch angeben wieviele Zahlen wir pro Schleifendurchlauf "springen".
+#+BEGIN_SRC python :results output :exports both
+for i in range(1, 5):
+    print(i)
+#+END_SRC
+
+#+BEGIN_SRC python :results output :exports both
+for i in range(1, 10, 2):
+    print(i)
+#+END_SRC
+
+Versucht, ein Python-Programm zu schreiben, welches die Pyramide
+#+BEGIN_SRC python
+*
+**
+***
+****
+*****
+******
+*******
+... etc.
+#+END_SRC
+
+ausgibt. Das Ganze soll in einer Schleife passieren, damit wir die höhe der Pyramide variieren können.
+
+* Zur Wiederholung
+
+** Echte Pyramide
+Versucht, ein Python-Programm zu schreiben, welches eine "echte" Pyramide ausgibt:
+#+BEGIN_SRC python
+*
+**
+***
+****
+*****
+******
+*******
+******
+*****
+****
+***
+**
+*
+#+END_SRC
+
+** Zahlenmuster
+
+Schreibt ein Programm welches euch das Muster
+#+BEGIN_SRC python
+1
+22
+333
+4444
+55555
+666666
+7777777
+88888888
+999999999
+#+END_SRC
+Auf der Konsole ausgibt. Zur Erinnerung: Mit ~str(zahl_variable)~ könnt ihr eine Zahl in eine Zeichenkette umwandeln. Mit ~zeichenkette_variable * i~ könnt ihr eine Zeichenkette i-mal wiederholen.
+
+** Goldgräber
+Ihr seid Goldgräber im wilden Westen und bekommt eure Sieb-Inhalte per Liste übergeben, z.B. so:
+#+BEGIN_SRC python :results output :exports both
+sieves = ["gold", "stone", "stone", "gold", "stone"]
+#+END_SRC
+
+Schreibt euch eine Schleife die "Gold gefunden" ausgibt, wenn mindestens einmal "gold" in der Liste vorkommt, und "kein Gold gefunden" wenn nur "stone" in der Liste ist.

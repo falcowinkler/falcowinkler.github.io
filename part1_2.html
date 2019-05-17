@@ -1,0 +1,601 @@
+<!doctype html>
+<html lang="en">
+<head>
+<title>Baustein 1 Meeting 2</title>
+<!-- 2019-05-17 Fri 17:43 -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="generator" content="Org-mode">
+<meta name="author" content="Falco Winkler">
+
+<link  href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<style type="text/css">
+/* org mode styles on top of twbs */
+
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    font-size: 18px;
+    margin-bottom: 105px;
+}
+
+footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 101px;
+    background-color: #f5f5f5;
+}
+
+footer > div {
+    padding: 10px;
+}
+
+footer p {
+    margin: 0 0 5px;
+    text-align: center;
+    font-size: 16px;
+}
+
+#table-of-contents {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+blockquote p {
+    font-size: 18px;
+}
+
+pre {
+    font-size: 16px;
+}
+
+.footpara {
+    display: inline-block;
+}
+
+figcaption {
+  font-size: 16px;
+  color: #666;
+  font-style: italic;
+  padding-bottom: 15px;
+}
+
+/* from twbs docs */
+
+.bs-docs-sidebar.affix {
+    position: static;
+}
+@media (min-width: 768px) {
+    .bs-docs-sidebar {
+        padding-left: 20px;
+    }
+}
+
+/* All levels of nav */
+.bs-docs-sidebar .nav > li > a {
+    display: block;
+    padding: 4px 20px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #999;
+}
+.bs-docs-sidebar .nav > li > a:hover,
+.bs-docs-sidebar .nav > li > a:focus {
+    padding-left: 19px;
+    color: #A1283B;
+    text-decoration: none;
+    background-color: transparent;
+    border-left: 1px solid #A1283B;
+}
+.bs-docs-sidebar .nav > .active > a,
+.bs-docs-sidebar .nav > .active:hover > a,
+.bs-docs-sidebar .nav > .active:focus > a {
+    padding-left: 18px;
+    font-weight: bold;
+    color: #A1283B;
+    background-color: transparent;
+    border-left: 2px solid #A1283B;
+}
+
+/* Nav: second level (shown on .active) */
+.bs-docs-sidebar .nav .nav {
+    display: none; /* Hide by default, but at >768px, show it */
+    padding-bottom: 10px;
+}
+.bs-docs-sidebar .nav .nav > li > a {
+    padding-top: 1px;
+    padding-bottom: 1px;
+    padding-left: 30px;
+    font-size: 12px;
+    font-weight: normal;
+}
+.bs-docs-sidebar .nav .nav > li > a:hover,
+.bs-docs-sidebar .nav .nav > li > a:focus {
+    padding-left: 29px;
+}
+.bs-docs-sidebar .nav .nav > .active > a,
+.bs-docs-sidebar .nav .nav > .active:hover > a,
+.bs-docs-sidebar .nav .nav > .active:focus > a {
+    padding-left: 28px;
+    font-weight: 500;
+}
+
+/* Nav: third level (shown on .active) */
+.bs-docs-sidebar .nav .nav .nav {
+    padding-bottom: 10px;
+}
+.bs-docs-sidebar .nav .nav .nav > li > a {
+    padding-top: 1px;
+    padding-bottom: 1px;
+    padding-left: 40px;
+    font-size: 12px;
+    font-weight: normal;
+}
+.bs-docs-sidebar .nav .nav .nav > li > a:hover,
+.bs-docs-sidebar .nav .nav .nav > li > a:focus {
+    padding-left: 39px;
+}
+.bs-docs-sidebar .nav .nav .nav > .active > a,
+.bs-docs-sidebar .nav .nav .nav > .active:hover > a,
+.bs-docs-sidebar .nav .nav .nav > .active:focus > a {
+    padding-left: 38px;
+    font-weight: 500;
+}
+
+/* Show and affix the side nav when space allows it */
+@media (min-width: 992px) {
+    .bs-docs-sidebar .nav > .active > ul {
+        display: block;
+    }
+    /* Widen the fixed sidebar */
+    .bs-docs-sidebar.affix,
+    .bs-docs-sidebar.affix-bottom {
+        width: 213px;
+    }
+    .bs-docs-sidebar.affix {
+        position: fixed; /* Undo the static from mobile first approach */
+        top: 20px;
+    }
+    .bs-docs-sidebar.affix-bottom {
+        position: absolute; /* Undo the static from mobile first approach */
+    }
+    .bs-docs-sidebar.affix .bs-docs-sidenav,.bs-docs-sidebar.affix-bottom .bs-docs-sidenav {
+        margin-top: 0;
+        margin-bottom: 0
+    }
+}
+@media (min-width: 1200px) {
+    /* Widen the fixed sidebar again */
+    .bs-docs-sidebar.affix-bottom,
+    .bs-docs-sidebar.affix {
+        width: 263px;
+    }
+}
+</style>
+<script type="text/javascript">
+$(function() {
+    'use strict';
+
+    $('.bs-docs-sidebar li').first().addClass('active');
+
+    $(document.body).scrollspy({target: '.bs-docs-sidebar'});
+
+    $('.bs-docs-sidebar').affix();
+});
+</script>
+</head>
+<body>
+<div id="content" class="container">
+<div class="row"><div class="col-md-9"><h1 class="title">Baustein 1 Meeting 2</h1>
+<p>
+Listen und die for-schleife
+</p>
+
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1"><span class="section-number-2">1</span> Aufwärmübungen</h2>
+<div class="outline-text-2" id="text-1">
+</div><div id="outline-container-sec-1-1" class="outline-3">
+<h3 id="sec-1-1"><span class="section-number-3">1.1</span> Ampelschaltung</h3>
+<div class="outline-text-3" id="text-1-1">
+<p>
+Deklariert euch eine Variable farbe mit dem Wert "rot" "grün" oder "gelb". Danach soll eine if - elif struktur folgen, die Folgendes bewirkt: Wenn der Wert der Variable "rot" ist, soll er umgeändert werden in "grün". Wenn er "grün" ist soll er auf "gelb" umgeändert werden, und wenn er "gelb" ist soll er auf "rot" umgeändert werden (d.h die Variable soll überschrieben werden, so wie gestern bei der Gruß Variable). Gebt euch danach den Wert der Variable farbe zur Prüfung auf der Konsole aus. Hinweis Genau wie bei Zahlen kann man Zeichenketten mit == vergleichen.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #8b4513;">farbe</span> = <span style="color: #50a14f;">'gelb'</span>
+<span style="color: #a0a1a7; font-weight: bold;">#</span><span style="color: #a0a1a7;">...</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-1-2" class="outline-3">
+<h3 id="sec-1-2"><span class="section-number-3">1.2</span> Getränkeautomat</h3>
+<div class="outline-text-3" id="text-1-2">
+<p>
+Ihr sollt ein Programm für folgende Spezifikation schreiben: Ein Automat soll für eine Person mit bestimmten Alter automatisch das richtige Getränk ausgeben.
+</p>
+
+<ul class="org-ul">
+<li>Personen unter 14 bekommen Orangensaft
+</li>
+<li>Personen unter 18 bekommen Coca Cola
+</li>
+<li>Personen unter 21 bekommen Bier
+</li>
+<li>Personen die 21 und älter sind bekommen Whiskey
+</li>
+</ul>
+
+<p>
+Definiert euch dazu eine Variable alter mit beliebigem Wert, und schreibt danach ein if-elif-else Befehl der das korrekte Getränk auf der Konsole ausgibt.
+Danach sollen die Getränke für alle Altersklassen aufgelistet werden. Schreibt eine while-Schleife die bis 25 zählt und in jedem Durchgang den Code aus Aufgabe 1 ausführt.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #8b4513;">alter</span> = 10
+<span style="color: #a0a1a7; font-weight: bold;"># </span><span style="color: #a0a1a7;">...</span>
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-2" class="outline-2">
+<h2 id="sec-2"><span class="section-number-2">2</span> Zeichenketten verändern</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+Mit Zeichenketten arbeitet man sehr häufig. Oft sind sie aber nicht in der gewünschten Form, man will Daten aus Ihnen extrahieren, oder sie verkürzen. Dafür stellt Python jede Menge Funktionalität zur Verfügung. Einen Ausschnitt davon werden wir in diesem Kurs kennenlernen.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #8b4513;">test_string</span> = <span style="color: #50a14f;">"Ich bin hier, Du Bist hier, Schnabeltier."</span>
+
+<span style="color: #a626a4;">print</span>(test_string.upper())
+<span style="color: #a626a4;">print</span>(test_string.lower())
+<span style="color: #a626a4;">print</span>(test_string.title())
+<span style="color: #8b4513;">du_korrigiert</span> = test_string.replace(<span style="color: #50a14f;">"Du "</span>, <span style="color: #50a14f;">"du "</span>).replace(<span style="color: #50a14f;">"Bist "</span>, <span style="color: #50a14f;">"bist "</span>)
+<span style="color: #a626a4;">print</span>(du_korrigiert)
+</pre>
+</div>
+
+<pre class="example">
+ICH BIN HIER, DU BIST HIER, SCHNABELTIER.
+ich bin hier, du bist hier, schnabeltier.
+Ich Bin Hier, Du Bist Hier, Schnabeltier.
+Ich bin hier, du bist hier, Schnabeltier.
+
+</pre>
+
+<p>
+Es gibt auch Funktionen, die Informationen über eine Zeichenkette liefern. Wie zum Beispiel die built-in Funktion len(), die die Anzahl an Zeichen in einer Zeichenkette zurückgibt. Mit count() lassen sich Wörter in einer Zeichenkette zählen. Und mit find() kann man die Stelle des Ersten Vorkommens eines Buchstaben finden!
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #8b4513;">lange_zeichenkette</span> = <span style="color: #50a14f;">"The brown fox jumps over the lazy dog. The brown fox jumps over the lazy dog."</span>
+<span style="color: #a626a4;">print</span>(<span style="color: #e44649;">len</span>(lange_zeichenkette))
+<span style="color: #a626a4;">print</span>(lange_zeichenkette.count(<span style="color: #50a14f;">"fox"</span>))
+<span style="color: #a626a4;">print</span>(<span style="color: #50a14f;">"abc123"</span>.find(<span style="color: #50a14f;">"c"</span>))
+</pre>
+</div>
+
+<pre class="example">
+77
+2
+2
+
+</pre>
+</div>
+</div>
+
+<div id="outline-container-sec-3" class="outline-2">
+<h2 id="sec-3"><span class="section-number-2">3</span> Listen</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+Listen sind eine Sammlung von Elementen in fester Reihenfolge. Jedes Element einer Liste hat dabei einen festen <i>Index</i>, also eine Zahl, die beschreibt an welcher Stelle der Liste das Element steht.
+</p>
+
+<p>
+In Programmiersprachen ist es üblich, dass eine solche Adressierung bei 0 beginnt.
+</p>
+
+<p>
+<code>meine_liste = ["abc", "Stein", "Wasser", 1, 2]</code> ist zum Beispiel eine Liste der Länge 5. Die Zeichenkette "abc" ist das erste Element mit Index 0. "Stein" steht an zweiter Stelle mit Index 1. Weiss man zu einem Element den Entsprechenden Index, so kann man sich dieses Element aus der Liste holen in dem man in eckigen Klammern den Index hinter die Liste schreibt.
+</p>
+
+<p>
+Listenelement kann alles Mögliche sein. Zahlen, Zeichenketten, Bool'sche Werte, sogar Listen können in Listen enthalten sein.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #8b4513;">meine_liste</span> = [<span style="color: #50a14f;">"abc"</span>, <span style="color: #50a14f;">"Stein"</span>, <span style="color: #50a14f;">"Wasser"</span>, 1, 2]
+<span style="color: #a626a4;">print</span>(meine_liste[2]) <span style="color: #a0a1a7; font-weight: bold;">#</span><span style="color: #a0a1a7;">Wasser ist an Stelle 3, hat aber den Index 2.</span>
+
+<span style="color: #a0a1a7; font-weight: bold;"># </span><span style="color: #a0a1a7;">wie k&#246;nnte man die L&#228;nge der Liste bestimmen?</span>
+</pre>
+</div>
+
+<pre class="example">
+Wasser
+
+</pre>
+
+<p>
+Natürlich können Listen noch einiges mehr: Löschen, Hinzufügen, und Verändern von Elementen. Dafür gibt es wieder <a href="https://docs.python.org/3/tutorial/datastructures.html">ziemlich viel Funktionalität</a> von der wir einen Teil kennen lernen werden.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #8b4513;">elements</span> = [<span style="color: #50a14f;">"Feuer"</span>, <span style="color: #50a14f;">"Wasser"</span>, <span style="color: #50a14f;">"Erde"</span>, <span style="color: #50a14f;">"Wind"</span>, 1, 2, 3, 4, 5, <span style="color: #008b8b;">True</span>]
+<span style="color: #a0a1a7; font-weight: bold;"># </span><span style="color: #a0a1a7;">Zugriff:</span>
+<span style="color: #8b4513;">element</span> = elements[2]
+<span style="color: #a626a4;">print</span>(<span style="color: #50a14f;">"Element aus der Liste: "</span> + element)
+
+<span style="color: #a0a1a7; font-weight: bold;"># </span><span style="color: #a0a1a7;">Ver&#228;ndern</span>
+<span style="color: #8b4513;">elements</span>[2] = <span style="color: #50a14f;">"Erdnussbutter"</span>
+
+<span style="color: #a0a1a7; font-weight: bold;"># </span><span style="color: #a0a1a7;">Einf&#252;gen und Anh&#228;ngen:</span>
+elements.insert(6, <span style="color: #50a14f;">"was neues"</span>)
+elements.append(<span style="color: #50a14f;">"!"</span>)
+<span style="color: #a626a4;">print</span>(elements)
+
+<span style="color: #a0a1a7; font-weight: bold;"># </span><span style="color: #a0a1a7;">L&#246;schen:</span>
+<span style="color: #a0a1a7; font-weight: bold;"># </span><span style="color: #a0a1a7;">ganze liste: del elements</span>
+<span style="color: #a0a1a7; font-weight: bold;"># </span><span style="color: #a0a1a7;">einzelnes Element:</span>
+<span style="color: #a626a4;">del</span> elements[6]
+<span style="color: #a626a4;">print</span>(elements)
+</pre>
+</div>
+
+<pre class="example">
+Element aus der Liste: Erde
+['Feuer', 'Wasser', 'Erdnussbutter', 'Wind', 1, 2, 'was neues', 3, 4, 5, True, '!']
+['Feuer', 'Wasser', 'Erdnussbutter', 'Wind', 1, 2, 3, 4, 5, True, '!']
+
+</pre>
+
+<p>
+Und hier noch was Nützliches: Mit <code>split</code> kann man eine Zeichenkette anhand eines Trennzeichens aufteilen, und die "Splitter" in eine Liste stecken.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #8b4513;">satz</span> = <span style="color: #50a14f;">"The brown fox jumps over the lazy dog"</span>
+<span style="color: #a626a4;">print</span>(satz.split(<span style="color: #50a14f;">" "</span>))
+</pre>
+</div>
+
+<pre class="example">
+['The', 'brown', 'fox', 'jumps', 'over', 'the', 'lazy', 'dog']
+
+</pre>
+</div>
+</div>
+
+<div id="outline-container-sec-4" class="outline-2">
+<h2 id="sec-4"><span class="section-number-2">4</span> Schleifen</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+Es passiert auch häufig dass man eine Sequenz von Dingen der Reihe nach durchgehen muss, um mit jedem Element irgendwas zu machen. Mit der bereits bekannten <code>while</code> Schleife könnte man das natürlich machen, jedoch gibt es noch eine einfacherere Möglichkeit.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #8b4513;">users</span> = [<span style="color: #50a14f;">"Anton"</span>, <span style="color: #50a14f;">"Bertha"</span>, <span style="color: #50a14f;">"Caesar"</span>, <span style="color: #50a14f;">"Detlef"</span>, <span style="color: #50a14f;">"Emil"</span>]
+
+<span style="color: #a626a4;">for</span> name <span style="color: #a626a4;">in</span> users:
+    <span style="color: #a0a1a7; font-weight: bold;"># </span><span style="color: #a0a1a7;">Name wird in jedem Schleifendurchlauf durch ein Listenelement ersetzt</span>
+    <span style="color: #a626a4;">print</span>(name + <span style="color: #50a14f;">" ist super"</span>)
+</pre>
+</div>
+
+<pre class="example">
+Anton ist super
+Bertha ist super
+Caesar ist super
+Detlef ist super
+Emil ist super
+
+</pre>
+</div>
+</div>
+
+<div id="outline-container-sec-5" class="outline-2">
+<h2 id="sec-5"><span class="section-number-2">5</span> Übungen</h2>
+<div class="outline-text-2" id="text-5">
+</div><div id="outline-container-sec-5-1" class="outline-3">
+<h3 id="sec-5-1"><span class="section-number-3">5.1</span> Strings in Listen verändern</h3>
+<div class="outline-text-3" id="text-5-1">
+<p>
+Deklariert euch eine Liste von Zeichenketten. Wie z.B. die users liste in obigem Code. Dann schreibt euch eine Funktion die jede Zeichenkette in der Liste in Großbuchstaben umwandelt, und drei Ausrufezeichen anhängt.
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-5-2" class="outline-3">
+<h3 id="sec-5-2"><span class="section-number-3">5.2</span> for als while</h3>
+<div class="outline-text-3" id="text-5-2">
+<p>
+Versucht die selbe Funktionalität wie mit der for-Schleife oben mit einer while-Schleife zu erreichen.
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-5-3" class="outline-3">
+<h3 id="sec-5-3"><span class="section-number-3">5.3</span> range</h3>
+<div class="outline-text-3" id="text-5-3">
+<p>
+Die <code>range</code> Funktion erlaubt es uns durch Zahlenfolgen zu iterieren. Dafür geben wir einen Anfangswert und eine Grenze der Zahlenfolge an. Optional können wir auch angeben wieviele Zahlen wir pro Schleifendurchlauf "springen".
+</p>
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #a626a4;">for</span> i <span style="color: #a626a4;">in</span> <span style="color: #e44649;">range</span>(1, 5):
+    <span style="color: #a626a4;">print</span>(i)
+</pre>
+</div>
+
+<pre class="example">
+1
+2
+3
+4
+
+</pre>
+
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #a626a4;">for</span> i <span style="color: #a626a4;">in</span> <span style="color: #e44649;">range</span>(1, 10, 2):
+    <span style="color: #a626a4;">print</span>(i)
+</pre>
+</div>
+
+<pre class="example">
+1
+3
+5
+7
+9
+
+</pre>
+
+<p>
+Versucht, ein Python-Programm zu schreiben, welches die Pyramide
+</p>
+<div class="org-src-container">
+
+<pre class="src src-python">*
+**
+***
+****
+*****
+******
+*******
+... etc.
+</pre>
+</div>
+
+<p>
+ausgibt. Das Ganze soll in einer Schleife passieren, damit wir die höhe der Pyramide variieren können.
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-6" class="outline-2">
+<h2 id="sec-6"><span class="section-number-2">6</span> Zur Wiederholung</h2>
+<div class="outline-text-2" id="text-6">
+</div><div id="outline-container-sec-6-1" class="outline-3">
+<h3 id="sec-6-1"><span class="section-number-3">6.1</span> Echte Pyramide</h3>
+<div class="outline-text-3" id="text-6-1">
+<p>
+Versucht, ein Python-Programm zu schreiben, welches eine "echte" Pyramide ausgibt:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-python">*
+**
+***
+****
+*****
+******
+*******
+******
+*****
+****
+***
+**
+*
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-6-2" class="outline-3">
+<h3 id="sec-6-2"><span class="section-number-3">6.2</span> Zahlenmuster</h3>
+<div class="outline-text-3" id="text-6-2">
+<p>
+Schreibt ein Programm welches euch das Muster
+</p>
+<div class="org-src-container">
+
+<pre class="src src-python">1
+22
+333
+4444
+55555
+666666
+7777777
+88888888
+999999999
+</pre>
+</div>
+<p>
+Auf der Konsole ausgibt. Zur Erinnerung: Mit <code>str(zahl_variable)</code> könnt ihr eine Zahl in eine Zeichenkette umwandeln. Mit <code>zeichenkette_variable * i</code> könnt ihr eine Zeichenkette i-mal wiederholen.
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-6-3" class="outline-3">
+<h3 id="sec-6-3"><span class="section-number-3">6.3</span> Goldgräber</h3>
+<div class="outline-text-3" id="text-6-3">
+<p>
+Ihr seid Goldgräber im wilden Westen und bekommt eure Sieb-Inhalte per Liste übergeben, z.B. so:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #8b4513;">sieves</span> = [<span style="color: #50a14f;">"gold"</span>, <span style="color: #50a14f;">"stone"</span>, <span style="color: #50a14f;">"stone"</span>, <span style="color: #50a14f;">"gold"</span>, <span style="color: #50a14f;">"stone"</span>]
+</pre>
+</div>
+
+<p>
+Schreibt euch eine Schleife die "Gold gefunden" ausgibt, wenn mindestens einmal "gold" in der Liste vorkommt, und "kein Gold gefunden" wenn nur "stone" in der Liste ist.
+</p>
+</div>
+</div>
+</div>
+</div><div class="col-md-3"><nav id="table-of-contents">
+<div id="text-table-of-contents" class="bs-docs-sidebar">
+<ul class="nav">
+<li><a href="#sec-1">1. Aufwärmübungen</a>
+<ul class="nav">
+<li><a href="#sec-1-1">1.1. Ampelschaltung</a></li>
+<li><a href="#sec-1-2">1.2. Getränkeautomat</a></li>
+</ul>
+</li>
+<li><a href="#sec-2">2. Zeichenketten verändern</a></li>
+<li><a href="#sec-3">3. Listen</a></li>
+<li><a href="#sec-4">4. Schleifen</a></li>
+<li><a href="#sec-5">5. Übungen</a>
+<ul class="nav">
+<li><a href="#sec-5-1">5.1. Strings in Listen verändern</a></li>
+<li><a href="#sec-5-2">5.2. for als while</a></li>
+<li><a href="#sec-5-3">5.3. range</a></li>
+</ul>
+</li>
+<li><a href="#sec-6">6. Zur Wiederholung</a>
+<ul class="nav">
+<li><a href="#sec-6-1">6.1. Echte Pyramide</a></li>
+<li><a href="#sec-6-2">6.2. Zahlenmuster</a></li>
+<li><a href="#sec-6-3">6.3. Goldgräber</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</nav>
+</div></div></div>
+<footer id="postamble" class="">
+<div><p class="author">Author: Falco Winkler</p>
+<p class="date">Created: 2019-05-17 Fri 17:43</p>
+<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 26.1 (<a href="http://orgmode.org">Org-mode</a> 9.1.9)</p>
+</div>
+</footer>
+</body>
+</html>
