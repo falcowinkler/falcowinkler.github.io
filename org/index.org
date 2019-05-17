@@ -1,5 +1,9 @@
-Falco Winkler
+#+OPTIONS: num:nil
+falco's website ヾ(＾-＾)ノ
 
 * courses
 ** python beginner course (german)
-*** [[file:part1_1.org][module 1 part 1]]
+*** Baustein 1
+**** [[file:part1_1.org][Datentypen, Variablen, Verzweigungen und Schleifen]]
+**** [[file:part1_2.org][Listen und die for-Schleife]]
+**** [[file:part1_3.org][Funktionen und Wörterbücher]]

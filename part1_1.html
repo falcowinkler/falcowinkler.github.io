@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <title>Baustein 1 Meeting 1</title>
-<!-- 2019-05-17 Fri 08:59 -->
+<!-- 2019-05-17 Fri 19:38 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="generator" content="Org-mode">
@@ -188,18 +188,19 @@ $(function() {
 
     $('.bs-docs-sidebar').affix();
 });
-</script>
+</script><link rel="stylesheet" type="text/css" href="css/python_course.css">
 </head>
 <body>
 <div id="content" class="container">
 <div class="row"><div class="col-md-9"><h1 class="title">Baustein 1 Meeting 1</h1>
 <p>
-Baustein 1 Meeting 1: Hello World, Datentypen, Variablen, Verzweigungen und Schleifen
+Hello World, Datentypen, Variablen, Verzweigungen und Schleifen
 </p>
 
-<div id="outline-container-sec-1" class="outline-2">
-<h2 id="sec-1"><span class="section-number-2">1</span> Hello World</h2>
-<div class="outline-text-2" id="text-1">
+
+<div id="outline-container-sec-" class="outline-2">
+<h2 id="sec-">Hello World</h2>
+<div class="outline-text-2" id="text-">
 <p>
 Beim Lernen von Programmiersprachen ist es eine weit verbreitete Tradition, als Erstes ein Programm zu schreiben, welches einfach nur hello world ausgibt. Diese Tradition wollen wir natürlich nicht brechen, außer dass wir es auf die Hamburger Art machen.
 </p>
@@ -220,7 +221,7 @@ Führt man diese Codezeile in Thonny aus, erscheint die ausgabe in einem separat
 </p>
 
 <p>
-print ist eine Funktion, das bedeutet das der Print-Aufruf ein bestimmtes Verhalten auslöst. Funktionen werden wir später genauer kennen lernen, und wir werden auch eigene Funktionen schreiben.
+<code>print</code> ist eine Funktion, das bedeutet das der Print-Aufruf ein bestimmtes Verhalten auslöst. Funktionen werden wir später genauer kennen lernen, und wir werden auch eigene Funktionen schreiben.
 </p>
 
 <p>
@@ -229,9 +230,9 @@ Weiterhin ist print eine sogenannte Built-In Funktion, d.h. sie ist ein fester B
 </div>
 </div>
 
-<div id="outline-container-sec-2" class="outline-2">
-<h2 id="sec-2"><span class="section-number-2">2</span> Datentypen</h2>
-<div class="outline-text-2" id="text-2">
+<div id="outline-container-sec-" class="outline-2">
+<h2 id="sec-">Datentypen</h2>
+<div class="outline-text-2" id="text-">
 <p>
 "Moin world" ist mit Gänsefüßchen abgetrennt. Das bedeutet, dass "Moin world" Daten in Form einer Zeichenkette sind. Daten können als Literale (dh. explizit in das python-programm reingeschrieben, wie in diesem Fall) vorliegen. Oder sie können aus Funktionsaufrufen erhalten oder importiert werden (dazu später mehr). Es gibt auch Daten in Form von Zahlen. Die Literale dazu sehen dann so aus:
 </p>
@@ -273,9 +274,9 @@ Mit der built-in Funktion type kann man sich jederzeit den typ zu einem Literal 
 </div>
 </div>
 
-<div id="outline-container-sec-3" class="outline-2">
-<h2 id="sec-3"><span class="section-number-2">3</span> Variablen</h2>
-<div class="outline-text-2" id="text-3">
+<div id="outline-container-sec-" class="outline-2">
+<h2 id="sec-">Variablen</h2>
+<div class="outline-text-2" id="text-">
 <p>
 Variablen sind ein weiterer wichtiger Bestandteil von Python - Programmen. Sie sind Platzhalter. Zum Beispiel können sie eine Zeichenkette oder Zahl als Wert enthalten. Werte von Variablen können sich mit der Zeit ändern. Sie werden mit der Schreibweise platzhaltername = wert deklariert. Variablennamen dürfen Buchstaben, Unterstriche und Zahlen enthalten (vobei das erste Zeichen des Variablennamens keine Zahl sein darf).
 </p>
@@ -352,9 +353,9 @@ Wieder was gelernt
 </div>
 </div>
 
-<div id="outline-container-sec-4" class="outline-2">
-<h2 id="sec-4"><span class="section-number-2">4</span> Basisoperationen</h2>
-<div class="outline-text-2" id="text-4">
+<div id="outline-container-sec-" class="outline-2">
+<h2 id="sec-">Basisoperationen</h2>
+<div class="outline-text-2" id="text-">
 <p>
 Zahlen und Zeichenketten im Program zu haben ist ja schön und gut, aber was können wir damit anstellen? Mit Zahlen können wir z.B. rechnen, in der üblichen Schreibweise.
 </p>
@@ -415,12 +416,303 @@ Neben der Grundschulmathe gibt es noch ein paar weitere, weniger gebräuchliche 
 <p>
 Warum kommt bei 0.1 + 0.2 so ein krummes Ergebnis raus? Wie stellt der Computer "unendliche" Kommazahlen dar wie z.B. 1/3 = 0.333333.. ?
 </p>
+
+
+<p>
+Eine gute Übung ist hier den obigen Code Zeile für Zeile durchzugehen und die Ausgabe zu verstehen. Spielt auch mal mit den Zahlen herum und schaut, wie sich die Ausgabe verändert!
+</p>
+
+<p>
+Zeichenketten unterstützen übrigens auch die Operationen * und +.
+Mit + lassen sich zwei Zeichenketten zusammenfügen, und * wiederholt eine Zeichenkette.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #8b4513;">name</span> = <span style="color: #50a14f;">"J&#252;rgen"</span>
+<span style="color: #a626a4;">print</span>(<span style="color: #50a14f;">"moin "</span> * 5 + name)
+
+<span style="color: #8b4513;">name</span> = <span style="color: #50a14f;">"J&#252;rgen"</span>
+<span style="color: #a626a4;">print</span>(<span style="color: #50a14f;">"moin "</span> + name)
+</pre>
+</div>
+
+<pre class="example">
+moin moin moin moin moin Jürgen
+moin Jürgen
+
+</pre>
+
+<p>
+Funktioniert das + auch mit Zahlen und Zeichenketten? Probiert das mal aus:
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #8b4513;">zahl</span> = 42
+<span style="color: #8b4513;">zeichenkette</span> = <span style="color: #50a14f;">"72"</span>
+<span style="color: #a626a4;">print</span>(zahl + zeichenkette)
+</pre>
+</div>
 </div>
 </div>
 
-<div id="outline-container-sec-5" class="outline-2">
-<h2 id="sec-5"><span class="section-number-2">5</span> Kommentare</h2>
-<div class="outline-text-2" id="text-5">
+
+<div id="outline-container-sec-" class="outline-2">
+<h2 id="sec-">Flusskontrolle</h2>
+<div class="outline-text-2" id="text-">
+<p>
+Häufig möchte man, dass sich ein Programm verschieden verhält je nachdem ob eine bestimmte Bedingung wahr ist, oder nicht. Eine Wahrheitsaussage wird in Python über einen besonderen Datentypen modelliert, den sogenannten 'Boolean' (benannt nach dem Mathematiker George Boole). Dieser Datentyp kann nur zwei Werte annehmen: True und False.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #a626a4;">print</span>(<span style="color: #e44649;">type</span>(<span style="color: #008b8b;">True</span>))
+</pre>
+</div>
+
+<pre class="example">
+&lt;class 'bool'&gt;
+
+</pre>
+
+<p>
+Eine if-Anweisung nimmt einen Wahrheitswert entgegen, und führt den darauffolgenden eingerückten Code-Block nur aus, wenn dieser Wert True ist. In einer else - Anweisung kann der Codeblock angegeben werden, der alternativ ausgeführt werden soll.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #8b4513;">es_ist_heiss</span> = <span style="color: #008b8b;">True</span>
+
+<span style="color: #a626a4;">if</span> es_ist_heiss:
+    <span style="color: #a626a4;">print</span>(<span style="color: #50a14f;">"Sonne"</span>)
+</pre>
+</div>
+
+<pre class="example">
+Sonne
+
+</pre>
+
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #8b4513;">es_ist_heiss</span> = <span style="color: #008b8b;">True</span>
+
+<span style="color: #a626a4;">if</span> es_ist_heiss:
+    <span style="color: #a626a4;">print</span>(<span style="color: #50a14f;">"Sonne"</span>)
+<span style="color: #a626a4;">else</span>:
+    <span style="color: #a626a4;">print</span>(<span style="color: #50a14f;">"Schnee"</span>)
+</pre>
+</div>
+
+<pre class="example">
+Sonne
+
+</pre>
+
+<p>
+Wahrheitswerte lassen sich auch aus Vorbedingungen berechnen. Zum Beispiel durch einen Zahlenvergleich. Angenommen, ihr möchtet in einem Programm eine Sonne anzeigen, wenn die Temperatur über 20 Grad ist. Ganz einfach:
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #8b4513;">temperatur</span> = 40
+<span style="color: #a626a4;">if</span> temperatur &lt;= 0:
+    <span style="color: #a626a4;">print</span> (<span style="color: #50a14f;">"Schnee"</span>)
+
+<span style="color: #a626a4;">if</span> temperatur &gt; 0 <span style="color: #a626a4;">and</span> temperatur &lt; 20:
+    <span style="color: #a626a4;">print</span>(<span style="color: #50a14f;">"Regen"</span>)
+
+<span style="color: #a626a4;">if</span> temperatur &gt;= 20:
+    <span style="color: #a626a4;">print</span>(<span style="color: #50a14f;">"Sonne"</span>)
+</pre>
+</div>
+
+<pre class="example">
+Sonne
+
+</pre>
+
+<p>
+Es gibt noch weitere Operatoren zum Vergleichen von Zahlen: &lt;, &lt;=, &gt;, &gt;=, != und ==. Kleiner, kleiner gleich, größer, größer gleich ungleich und gleich. (Doppelt-gleich weil das einfache = für Variablenzuweisung belegt ist).
+</p>
+
+<p>
+Mit der elif Anweisung können wir beliebig viele Bedingungen hintereinander prüfen. So lässt sich das Temperatur-Beispiel von eben viel einfacher aufschreiben.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #8b4513;">temperatur</span> = 8
+<span style="color: #a626a4;">if</span> temperatur &lt; 10:
+    <span style="color: #a626a4;">print</span>(<span style="color: #50a14f;">"Temperatur ist kleiner als 10"</span>)
+<span style="color: #a626a4;">elif</span> temperatur &lt; 20:
+    <span style="color: #a626a4;">print</span>(<span style="color: #50a14f;">"Temperatur ist kleiner als 20"</span>)
+<span style="color: #a626a4;">else</span>:
+    <span style="color: #a626a4;">print</span>(<span style="color: #50a14f;">"Temperatur ist gr&#246;&#223;er oder gleich 20"</span>)
+</pre>
+</div>
+
+<pre class="example">
+Temperatur ist kleiner als 10
+
+</pre>
+
+<p>
+Mit or und and können wir Bedingungen auch verknüpfen:
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #a626a4;">if</span> sonne_scheint <span style="color: #a626a4;">and</span> is_sunday:
+    <span style="color: #a626a4;">print</span>(<span style="color: #50a14f;">"It's an awesome day"</span>)
+</pre>
+</div>
+
+<p>
+Solche Ausdrücke werden folgendermaßen ausgewertet:
+</p>
+
+<table class="table table-striped table-bordered table-hover table-condensed">
+
+
+<colgroup>
+<col  class="left">
+
+<col  class="left">
+
+<col  class="left">
+
+<col  class="left">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="text-left">a</th>
+<th scope="col" class="text-left">b</th>
+<th scope="col" class="text-left">a and b</th>
+<th scope="col" class="text-left">a or b</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="text-left">True</td>
+<td class="text-left">True</td>
+<td class="text-left">True</td>
+<td class="text-left">True</td>
+</tr>
+
+<tr>
+<td class="text-left">True</td>
+<td class="text-left">False</td>
+<td class="text-left">False</td>
+<td class="text-left">True</td>
+</tr>
+
+<tr>
+<td class="text-left">False</td>
+<td class="text-left">True</td>
+<td class="text-left">False</td>
+<td class="text-left">True</td>
+</tr>
+
+<tr>
+<td class="text-left">False</td>
+<td class="text-left">False</td>
+<td class="text-left">False</td>
+<td class="text-left">False</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<div id="outline-container-sec-" class="outline-2">
+<h2 id="sec-">Schleifen</h2>
+<div class="outline-text-2" id="text-">
+<p>
+Schleifen sind immer nützlich, wenn ihr Dinge wiederholt tun wollt. Zum Beispiel wäre es ziemlich nervig eine Codezeile für jeden User zu schreiben, dem ihr eine E-Mail schicken wollt. Mit Schleifen ist sowas aber kein Problem. while- Schleifen führen einen Codeblock aus, solange eine Bedingung wahr ist.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #8b4513;">i</span> = 1
+<span style="color: #a626a4;">while</span> i &lt;= 10: <span style="color: #a0a1a7; font-weight: bold;"># </span><span style="color: #a0a1a7;">w&#228;hrend i kleiner ist als 10</span>
+    <span style="color: #8b4513;">i</span> += 1 <span style="color: #a0a1a7; font-weight: bold;"># </span><span style="color: #a0a1a7;">erh&#246;ht i um 1. Kurzschreibweise f&#252;r i = i + 1</span>
+    <span style="color: #a626a4;">print</span>(i)
+</pre>
+</div>
+
+<pre class="example">
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+</pre>
+
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #8b4513;">b</span> = 1
+<span style="color: #a626a4;">while</span> b &lt;= 10:
+    <span style="color: #a626a4;">print</span>(b)
+    <span style="color: #8b4513;">b</span> += 2
+</pre>
+</div>
+
+<pre class="example">
+1
+3
+5
+7
+9
+
+</pre>
+
+<p>
+Der Ablauf einer Schleife wird <a href="https://goo.gl/images/sdRMLZ">in dieser Animation</a> ganz anschaulich dargestellt.
+</p>
+
+<p>
+Schleifen umspannen beliebige Code-Blöcke, zum Beispiel kann eine Schleife wieder eine Schleife oder eine If-Else Anweisung enthalten.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #8b4513;">a</span> = 1
+<span style="color: #a626a4;">while</span> a &lt; 7:
+    <span style="color: #a626a4;">if</span> a % 2 == 0:
+        <span style="color: #a626a4;">print</span>(a, <span style="color: #50a14f;">"ist gerade"</span>)
+    <span style="color: #a626a4;">else</span>:
+        <span style="color: #a626a4;">print</span>(a, <span style="color: #50a14f;">"ist ungerade"</span>)
+    <span style="color: #8b4513;">a</span> += 1
+</pre>
+</div>
+
+<pre class="example">
+1 ist ungerade
+2 ist gerade
+3 ist ungerade
+4 ist gerade
+5 ist ungerade
+6 ist gerade
+
+</pre>
+
+<p>
+Auch diese Schleife gibt es <a href="https://goo.gl/images/bE3Mpq">als Animation.</a>
+Der Thonny Debugger kann auch besonders bei solchen komplizierten Konstrukten hilfreich sein.
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-" class="outline-2">
+<h2 id="sec-">Kommentare</h2>
+<div class="outline-text-2" id="text-">
 <p>
 Alles hinter einem '#' wird von python ignoriert, so können wir Kommentare schreiben um Nachrichten an unser Zukunfts-Ich zu senden (uns Sachen zu merken)
 </p>
@@ -440,18 +732,20 @@ Moin world
 </div><div class="col-md-3"><nav id="table-of-contents">
 <div id="text-table-of-contents" class="bs-docs-sidebar">
 <ul class="nav">
-<li><a href="#sec-1">1. Hello World</a></li>
-<li><a href="#sec-2">2. Datentypen</a></li>
-<li><a href="#sec-3">3. Variablen</a></li>
-<li><a href="#sec-4">4. Basisoperationen</a></li>
-<li><a href="#sec-5">5. Kommentare</a></li>
+<li><a href="#sec-">Hello World</a></li>
+<li><a href="#sec-">Datentypen</a></li>
+<li><a href="#sec-">Variablen</a></li>
+<li><a href="#sec-">Basisoperationen</a></li>
+<li><a href="#sec-">Flusskontrolle</a></li>
+<li><a href="#sec-">Schleifen</a></li>
+<li><a href="#sec-">Kommentare</a></li>
 </ul>
 </div>
 </nav>
 </div></div></div>
 <footer id="postamble" class="">
 <div><p class="author">Author: Falco Winkler</p>
-<p class="date">Created: 2019-05-17 Fri 08:59</p>
+<p class="date">Created: 2019-05-17 Fri 19:38</p>
 <p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 26.1 (<a href="http://orgmode.org">Org-mode</a> 9.1.9)</p>
 </div>
 </footer>

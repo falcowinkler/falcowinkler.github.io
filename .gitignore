@@ -17,3 +17,4 @@ pom.xml.asc
 /resources/public/js/compiled
 /resources/public/css/
 /resources/version.properties
+.DS_Store

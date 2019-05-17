@@ -1,7 +1,7 @@
 #+TITLE: Baustein 1 Meeting 1
+#+OPTIONS: num:nil
+Hello World, Datentypen, Variablen, Verzweigungen und Schleifen
 
-
-Baustein 1 Meeting 1: Hello World, Datentypen, Variablen, Verzweigungen und Schleifen
 
 * Hello World
 Beim Lernen von Programmiersprachen ist es eine weit verbreitete Tradition, als Erstes ein Programm zu schreiben, welches einfach nur hello world ausgibt. Diese Tradition wollen wir natürlich nicht brechen, außer dass wir es auf die Hamburger Art machen.
@@ -12,7 +12,7 @@ print("Moin world")
 
 Führt man diese Codezeile in Thonny aus, erscheint die ausgabe in einem separaten Fenster namens "Shell". Die shell ist eine rein textuelle Benutzeroberfläche: Der Computer kann hier Ausgaben reinschreiben, und auch der Nutzer kann text eingeben (das lernen wir später kennen).
 
-print ist eine Funktion, das bedeutet das der Print-Aufruf ein bestimmtes Verhalten auslöst. Funktionen werden wir später genauer kennen lernen, und wir werden auch eigene Funktionen schreiben.
+~print~ ist eine Funktion, das bedeutet das der Print-Aufruf ein bestimmtes Verhalten auslöst. Funktionen werden wir später genauer kennen lernen, und wir werden auch eigene Funktionen schreiben.
 
 Weiterhin ist print eine sogenannte Built-In Funktion, d.h. sie ist ein fester Bestandteil der Programmiersprache Python und ihr könnt jederzeit auf sie zugreifen. Sie gibt das Funktionsargument auf der Konsole ("Shell" in Thonny) aus. Es gibt [[https://docs.python.org/3/library/functions.html][eine Vielzahl von built-in Funktionen]], einige davon werden wir auch noch im Kurs kennenlernen.
 
@@ -101,6 +101,133 @@ print(10 * (20 + 5)) # Ausdrücke können beliebig geklammert werden
 #+END_SRC
 
 Warum kommt bei 0.1 + 0.2 so ein krummes Ergebnis raus? Wie stellt der Computer "unendliche" Kommazahlen dar wie z.B. 1/3 = 0.333333.. ?
+
+
+Eine gute Übung ist hier den obigen Code Zeile für Zeile durchzugehen und die Ausgabe zu verstehen. Spielt auch mal mit den Zahlen herum und schaut, wie sich die Ausgabe verändert!
+
+Zeichenketten unterstützen übrigens auch die Operationen * und +.
+Mit + lassen sich zwei Zeichenketten zusammenfügen, und * wiederholt eine Zeichenkette.
+
+#+BEGIN_SRC python :results output :exports both
+name = "Jürgen"
+print("moin " * 5 + name)
+
+name = "Jürgen"
+print("moin " + name)
+#+END_SRC
+
+Funktioniert das + auch mit Zahlen und Zeichenketten? Probiert das mal aus:
+
+#+BEGIN_SRC python :results output :exports both
+zahl = 42
+zeichenkette = "72"
+print(zahl + zeichenkette)
+#+END_SRC
+
+
+* Flusskontrolle
+
+Häufig möchte man, dass sich ein Programm verschieden verhält je nachdem ob eine bestimmte Bedingung wahr ist, oder nicht. Eine Wahrheitsaussage wird in Python über einen besonderen Datentypen modelliert, den sogenannten 'Boolean' (benannt nach dem Mathematiker George Boole). Dieser Datentyp kann nur zwei Werte annehmen: True und False.
+
+#+BEGIN_SRC python :results output :exports both
+print(type(True))
+#+END_SRC
+
+Eine if-Anweisung nimmt einen Wahrheitswert entgegen, und führt den darauffolgenden eingerückten Code-Block nur aus, wenn dieser Wert True ist. In einer else - Anweisung kann der Codeblock angegeben werden, der alternativ ausgeführt werden soll.
+
+#+BEGIN_SRC python :results output :exports both
+es_ist_heiss = True
+
+if es_ist_heiss:
+    print("Sonne")
+#+END_SRC
+
+#+BEGIN_SRC python :results output :exports both
+es_ist_heiss = True
+
+if es_ist_heiss:
+    print("Sonne")
+else:
+    print("Schnee")
+#+END_SRC
+
+Wahrheitswerte lassen sich auch aus Vorbedingungen berechnen. Zum Beispiel durch einen Zahlenvergleich. Angenommen, ihr möchtet in einem Programm eine Sonne anzeigen, wenn die Temperatur über 20 Grad ist. Ganz einfach:
+
+#+BEGIN_SRC python :results output :exports both
+temperatur = 40
+if temperatur <= 0:
+    print ("Schnee")
+
+if temperatur > 0 and temperatur < 20:
+    print("Regen")
+
+if temperatur >= 20:
+    print("Sonne")
+#+END_SRC
+
+Es gibt noch weitere Operatoren zum Vergleichen von Zahlen: <, <=, >, >=, != und ==. Kleiner, kleiner gleich, größer, größer gleich ungleich und gleich. (Doppelt-gleich weil das einfache = für Variablenzuweisung belegt ist).
+
+Mit der elif Anweisung können wir beliebig viele Bedingungen hintereinander prüfen. So lässt sich das Temperatur-Beispiel von eben viel einfacher aufschreiben.
+
+#+BEGIN_SRC python :results output :exports both
+temperatur = 8
+if temperatur < 10:
+    print("Temperatur ist kleiner als 10")
+elif temperatur < 20:
+    print("Temperatur ist kleiner als 20")
+else:
+    print("Temperatur ist größer oder gleich 20")
+#+END_SRC
+
+Mit or und and können wir Bedingungen auch verknüpfen:
+
+#+BEGIN_SRC python :results output :exports both
+if sonne_scheint and is_sunday:
+    print("It's an awesome day")
+#+END_SRC
+
+Solche Ausdrücke werden folgendermaßen ausgewertet:
+
+| a     | b     | a and b | a or b |
+|-------+-------+---------+--------|
+| True  | True  | True    | True   |
+| True  | False | False   | True   |
+| False | True  | False   | True   |
+| False | False | False   | False  |
+
+* Schleifen
+Schleifen sind immer nützlich, wenn ihr Dinge wiederholt tun wollt. Zum Beispiel wäre es ziemlich nervig eine Codezeile für jeden User zu schreiben, dem ihr eine E-Mail schicken wollt. Mit Schleifen ist sowas aber kein Problem. while- Schleifen führen einen Codeblock aus, solange eine Bedingung wahr ist.
+
+#+BEGIN_SRC python :results output :exports both
+i = 1
+while i <= 10: # während i kleiner ist als 10
+    i += 1 # erhöht i um 1. Kurzschreibweise für i = i + 1
+    print(i)
+#+END_SRC
+
+#+BEGIN_SRC python :results output :exports both
+b = 1
+while b <= 10:
+    print(b)
+    b += 2
+#+END_SRC
+
+Der Ablauf einer Schleife wird [[https://goo.gl/images/sdRMLZ][in dieser Animation]] ganz anschaulich dargestellt.
+
+Schleifen umspannen beliebige Code-Blöcke, zum Beispiel kann eine Schleife wieder eine Schleife oder eine If-Else Anweisung enthalten.
+
+#+BEGIN_SRC python :results output :exports both
+a = 1
+while a < 7:
+    if a % 2 == 0:
+        print(a, "ist gerade")
+    else:
+        print(a, "ist ungerade")
+    a += 1
+#+END_SRC
+
+Auch diese Schleife gibt es [[https://goo.gl/images/bE3Mpq][als Animation.]]
+Der Thonny Debugger kann auch besonders bei solchen komplizierten Konstrukten hilfreich sein.
 
 *  Kommentare
 
