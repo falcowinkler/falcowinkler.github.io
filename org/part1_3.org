@@ -1,0 +1,230 @@
+#+TITLE: Baustein 1 Meeting 3
+
+* Lösungen zu den letzten Aufgaben
+
+(Alle Lösungen sind nur Beispiele, es gibt viele Wege die zur Lösung führen)
+** Sternenpyramide
+#+BEGIN_SRC python :results output :exports both
+i = 0
+while i < 10:
+    i += 1
+    print("*" * i)
+while i > 0:
+    i -= 1
+    print("*" * i)
+#+END_SRC
+oder auch:
+#+BEGIN_SRC python :results output :exports both
+for i in range(1, 10):
+    print("*" * i)
+for i in range(10, 0, -1):
+    print("*" * i)
+#+END_SRC
+** Zahlenmuster
+#+BEGIN_SRC python :results output :exports both
+for i in range(1, 10):
+    print(str(i) * i)
+#+END_SRC
+** Goldgräber
+#+BEGIN_SRC python :results output :exports both
+sieves = ["stone", "stone", "gold", "stone", "stone", "stone"]
+
+found = False
+for sieve in sieves:
+    if sieve == "gold":
+        found = True
+
+if found:
+    print("Gold gefunden")
+else:
+    print("Kein Gold gefunden")
+#+END_SRC
+oder noch einfacher (Den Trick habe ich euch noch nicht verraten):
+#+BEGIN_SRC python
+if "gold" in sieves:
+    print("Gold gefunden")
+else:
+    print("Kein Gold gefunden")
+#+END_SRC
+* Listen
+Beim letzten Kurs haben wir die Grundlagen schon kennengelernt. Es folgt ein Ausblick, was Listen alles noch können.
+** Sortieren
+Eine Liste alphabetisch oder numerisch zu sortieren kann häufiger mal nützlich sein. Das kann python bereits:
+#+BEGIN_SRC python :results output :exports both
+zahlen = [1, 5, 7, 4, 10, 26, 2, 42]
+zahlen.sort()
+print(zahlen)
+#+END_SRC
+Es gibt auch eine builtin-Funktion, die das Ergebnis direkt zurückgibt:
+#+BEGIN_SRC python :results output :exports both
+zahlen = [1, 5, 7, 4, 10, 26, 2, 42]
+print(sorted(zahlen))
+#+END_SRC
+** Negative Indexe
+Wenn man sich für ein Element am Ende einer Liste interessiert (z.B. das vorletzte), kann man dies mit einem negativen Index holen:
+#+BEGIN_SRC python :results output :exports both
+#        -8 -7 -6 -5  -4  -3            -2             -1
+zahlen = [1, 5, 7, 4, 10, 26, "interessantes element", 42]
+print(zahlen[-2])
+#+END_SRC
+** Übung - Sortieren und negative Indexe
+Versucht nun sortieren und negative Indexe zu kombinieren, um die zwei größten Zahlen aus einer Liste herauszufinden.
+** Slicing
+Wie im letzten Kurs schon kurz angerissen, kann es hilfreich sein nur bestimmte Ausschnitte von Listen zu bearbeiten.
+
+~a[start:end]~ Elemente von start bis end-1
+
+~a[start:]~ Elemente ab start
+
+~a[:end]~ Elemente vom Anfang bis end-1
+
+~a[:]~ Komplette Kopie eines Arrays
+
+~a[start:end:step]~ Elemente von start bis end-1 mit Schrittgröße step
+
+#+BEGIN_SRC python :results output :exports both
+zahlen = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
+print(zahlen[1:7])
+print(zahlen[5:])
+print(zahlen[:5])
+print(zahlen[1:7:2])
+print(zahlen[7:1:-1])
+#+END_SRC
+** Übung - Slicing
+Ihr schreibt eine Software für einen Supermarkt. In jedem Kassiervorgang kommt die Rechnung für einen Kunden in der folgenden Form:
+
+~basket = ['cucumber', 12, 'pickles', 4, 'sugar', 8, 'rice', 17]~
+
+D.h. es steht immer Produkt gefolgt von Preis in der Liste. Berechnet mit einem Python-Programm die Summe der Preise in einer basket-Liste. Hinweis: die builtin-funktion ~sum~ kann da hilfreich sein, sie nimmt eine Liste an Zahlen entgegen und gibt die Summe zurück.
+* Funktionen
+Funktionen sind wiederverwendbare Codeblöcke mit fest definierten Eingabeparametern und Ausgabewerten. Das Schlüsselwort def leitet die Funktionsdeklaration ein. Darauf folgt der Funktionsname gefolgt von Parametern in geschweifeten Klammern. Parameter sind Platzhalter die erst beim Aufruf einer Funktion durch konkrete Werte ersetzt werden. Eine Funktion kann beliebig viele Parameter (mit Komma getrennt) haben. Im nachfolgenden Codeblock findet die Berechnung der Funktion statt. Wenn es dabei Ergebnisse gibt Nachfolgend sind einige Beispiele:
+
+#+BEGIN_SRC python :results output :exports both
+def greet_user():
+    print("Hello World!")
+
+greet_user()
+
+def greet_user(username):
+    print("Hello " + username + ". Welcome to the Website!")
+
+greet_user("Kurt")
+
+def calculate_prize(prize, versandart):
+    if versandart == "premium":
+        prize += 5
+    else:
+        prize += 1
+    return prize
+
+
+gesamtpreis = calculate_prize(prize=12, versandart="premium")
+print(gesamtpreis)
+#+END_SRC
+
+Die folgenden Funktionen sind vielleicht etwas überraschend. Warum, was ist der unterschied? Und was genau könnte da passieren?
+
+#+BEGIN_SRC python :results output :exports both
+def increment(number):
+    number += 1
+
+meine_zahl = 1
+increment(meine_zahl)
+print(meine_zahl)
+#+END_SRC
+
+#+BEGIN_SRC python :results output :exports both
+def increment_list(list_of_nums):
+    for i in range(len(list_of_nums)):
+        list_of_nums[i] += 1
+
+meine_zahlen_liste = [1, 2, 3, 6, 27, 42, 3]
+increment_list(meine_zahlen_liste)
+print(meine_zahlen_liste)
+#+END_SRC
+
+Der Grund ist ein feines Detail in Datenstrukturen in python. Verändert die Funktion Daten innerhalb einer Liste, wirkt sich diese Änderung auf die Variable die "von aussen" in die Funktion gegeben wurde. Aber die Zuweisung der Variable die im Funktionsargument steht kann man innerhalb einer Funktion nicht verändern.
+
+Dies bezeichnet man auch als den Unterschied zwischen "Referenz-" und "Basisdatentypen".
+
+Grundsätzlich sollte man darauf achten, in Funktionen mit Kopien zu arbeiten und veränderte Werte per return als Rückgabewerte zu liefern. Sonst kann der Umgang mit Referenztypen schnell verwirrend werden. Wiederum ist man bei grossen Listen gezwungen das Kopieren zu vermeiden, da eine Kopie Rechenkapazität und Speicher einnimmt.
+* Wörterbücher
+Wörterbücher (englisch Dictionaries) sind praktische Datenstrukturen. Sie speichern Daten unter einem Schlüssel ab (im Gegensatz zu einem Index bei einer Liste. Wichtig ist dabei, dass die Schlüssel eindeutig sind.
+
+Mit einem Wörterbuch können wir zum Beispiel einen Wetterbericht speichern: Eine Zuordnung von Postleitzahl zu Temperatur zum Beispiel. Oder eine Zuordnung von englischen zu deutschen Wörtern, also buchstäblich ein Wörterbuch.
+
+#+BEGIN_SRC python :results output :exports both
+wetterbericht = {"21337" : 22, "20355": 27, "12345": 17}
+woerterbuch = {"cat": "Katze", "platypus": "Schnabeltier", "rain" : "Regen"}
+
+# Zugriff
+print(woerterbuch["cat"])
+
+# Verändern oder einfügen
+woerterbuch["cat"] = "Tiger"
+print(woerterbuch)
+
+# Löschen
+del woerterbuch["cat"]
+print(woerterbuch)
+#+END_SRC
+
+Wenn ein Schlüssel im Wörterbuch nicht gefunden wird, dann stürzt euer Programm mit einem Fehler ab! Dies kann man durch eine vorherige Prüfung absichern.
+
+#+BEGIN_SRC python :results output :exports both
+if "cat" in woerterbuch:
+    print(woerterbuch["cat"])
+#+END_SRC
+* User-Eingaben
+User - Input in einem Programm holt man sich in Python ganz einfach mit der Funktion input(). Sie lässt einen Blinkenden Cursor im Konsolenfenster erscheinen, und wenn der User mit Enter seine Eingabe bestätigt, liefert sie die Eingabe als Zeichenkette. Zum Beispiel so:
+#+BEGIN_SRC python
+wort = input()
+print(wort)
+#+END_SRC
+
+Man kann der Funktion input() selbst eine Zeichenkette übergeben, diese wird dann als Hinweis an den Nutzer angezeigt.
+
+#+BEGIN_SRC python
+username = input("Bitte geben Sie Ihren Benutzernamen ein: ")
+print("Eingegebener Benutzername: " + username)
+#+END_SRC
+** Übung - Wörterbücher und Nutzereingaben
+Wir schreiben ein interaktives Wörterbuch. Dazu gibt der Nutzer ein gesuchtes Wort ein. Ist das eingegebene Wort im Wörterbuch vorhanden, wird die Übersetzung ausgegeben. Wenn nicht, wird eine Fehlermeldung ausgegeben. In jedem fall wird der Nutzer erneut nach einer Eingabe gefragt, bis er "quit." eingibt. Dazu definiert ihr euch zunächst ein beliebiges Wörterbuch, zum Beispiel das von vorhin:
+
+#+BEGIN_SRC python
+woerterbuch = {"cat": "Katze", "platypus": "Schnabeltier", "rain" : "Regen"}
+# ...
+#+END_SRC
+Vielleicht ist es hier hilfreich, sich erstmal keine Gedanken über den Abbruch der schleife bei ~quit~. zu machen. Ihr könntet erstmal mit einer Endlosschleife Anfangen:
+#+BEGIN_SRC python
+while True:
+    user_input = input("Bitte gesuchtes wort eingeben")
+    ...
+#+END_SRC
+* Wiederholung
+** Funktionen
+Implementiert Funktionen, welche die folgenden Spezifikationen erfüllen (Oder sucht euch eine aus):
+
+1. Schreibt euch eine Funktion combat mit den Parametern Gesundheit (health) eines Spielers und Schaden (damage) den der Spieler nimmt. Als Rückgabewert soll die Differenz zwischen health und damage zurückgeben. Ist diese Differenz allerdings negativ, soll 0 zurückgegeben werden.
+
+2. Die zweite Funktion soll als Parameter einen Namen als Zeichenkette in dem Format “Vorname Nachname” bekommen. Als Rückgabewert liefert sie die Initialien dieses Namens. So wird aus “Gregor Strobel” “G.S” und “Günter Jauch” “G.J”. Ist der Name kleingeschrieben sollen die Initialien trotzdem groß sein!
+
+3. Die dritte funktion bekommt eine Jahreszahl als Integer und gibt das Jahrhundert zurück. Merke: Das erste Jahrhundert spannt von Jahr 1 - 100, das zweite von 101 - 200 usw. Ein paar Beispiele: centuryFromYear(1705) ergibt 18 centuryFromYear(1900) ergibt 19 centuryFromYear(1601) ergibt 17
+
+** Fortgeschritten: Number Guessing Game
+Definiert euch eine geheime Zahl mit beliebigem Wert. Der User soll jetzt in einer Schleife nach einer Zahl gefragt werden. Hat er richtig geraten, bricht die Schleife ab. Wenn er zu klein oder zu groß rät, bekommt er einen Hinweis und darf erneut raten. Zum Beispiel könnte eine Beispielsitzung mit dem Programm so aussehen.
+#+BEGIN_SRC bash
+Rate eine Zahl
+5
+Falsch, zahl zu klein geraten!
+Rate eine Zahl
+72
+Falsch, zu groß geraten
+Rate eine Zahl
+40
+Falsch, zahl zu klein geraten!
+Rate eine Zahl
+42
+Richtig!
+#+END_SRC

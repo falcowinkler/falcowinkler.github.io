@@ -1,0 +1,759 @@
+<!doctype html>
+<html lang="en">
+<head>
+<title>Baustein 1 Meeting 3</title>
+<!-- 2019-05-17 Fri 19:38 -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="generator" content="Org-mode">
+<meta name="author" content="Falco Winkler">
+
+<link  href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<style type="text/css">
+/* org mode styles on top of twbs */
+
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    font-size: 18px;
+    margin-bottom: 105px;
+}
+
+footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 101px;
+    background-color: #f5f5f5;
+}
+
+footer > div {
+    padding: 10px;
+}
+
+footer p {
+    margin: 0 0 5px;
+    text-align: center;
+    font-size: 16px;
+}
+
+#table-of-contents {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+blockquote p {
+    font-size: 18px;
+}
+
+pre {
+    font-size: 16px;
+}
+
+.footpara {
+    display: inline-block;
+}
+
+figcaption {
+  font-size: 16px;
+  color: #666;
+  font-style: italic;
+  padding-bottom: 15px;
+}
+
+/* from twbs docs */
+
+.bs-docs-sidebar.affix {
+    position: static;
+}
+@media (min-width: 768px) {
+    .bs-docs-sidebar {
+        padding-left: 20px;
+    }
+}
+
+/* All levels of nav */
+.bs-docs-sidebar .nav > li > a {
+    display: block;
+    padding: 4px 20px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #999;
+}
+.bs-docs-sidebar .nav > li > a:hover,
+.bs-docs-sidebar .nav > li > a:focus {
+    padding-left: 19px;
+    color: #A1283B;
+    text-decoration: none;
+    background-color: transparent;
+    border-left: 1px solid #A1283B;
+}
+.bs-docs-sidebar .nav > .active > a,
+.bs-docs-sidebar .nav > .active:hover > a,
+.bs-docs-sidebar .nav > .active:focus > a {
+    padding-left: 18px;
+    font-weight: bold;
+    color: #A1283B;
+    background-color: transparent;
+    border-left: 2px solid #A1283B;
+}
+
+/* Nav: second level (shown on .active) */
+.bs-docs-sidebar .nav .nav {
+    display: none; /* Hide by default, but at >768px, show it */
+    padding-bottom: 10px;
+}
+.bs-docs-sidebar .nav .nav > li > a {
+    padding-top: 1px;
+    padding-bottom: 1px;
+    padding-left: 30px;
+    font-size: 12px;
+    font-weight: normal;
+}
+.bs-docs-sidebar .nav .nav > li > a:hover,
+.bs-docs-sidebar .nav .nav > li > a:focus {
+    padding-left: 29px;
+}
+.bs-docs-sidebar .nav .nav > .active > a,
+.bs-docs-sidebar .nav .nav > .active:hover > a,
+.bs-docs-sidebar .nav .nav > .active:focus > a {
+    padding-left: 28px;
+    font-weight: 500;
+}
+
+/* Nav: third level (shown on .active) */
+.bs-docs-sidebar .nav .nav .nav {
+    padding-bottom: 10px;
+}
+.bs-docs-sidebar .nav .nav .nav > li > a {
+    padding-top: 1px;
+    padding-bottom: 1px;
+    padding-left: 40px;
+    font-size: 12px;
+    font-weight: normal;
+}
+.bs-docs-sidebar .nav .nav .nav > li > a:hover,
+.bs-docs-sidebar .nav .nav .nav > li > a:focus {
+    padding-left: 39px;
+}
+.bs-docs-sidebar .nav .nav .nav > .active > a,
+.bs-docs-sidebar .nav .nav .nav > .active:hover > a,
+.bs-docs-sidebar .nav .nav .nav > .active:focus > a {
+    padding-left: 38px;
+    font-weight: 500;
+}
+
+/* Show and affix the side nav when space allows it */
+@media (min-width: 992px) {
+    .bs-docs-sidebar .nav > .active > ul {
+        display: block;
+    }
+    /* Widen the fixed sidebar */
+    .bs-docs-sidebar.affix,
+    .bs-docs-sidebar.affix-bottom {
+        width: 213px;
+    }
+    .bs-docs-sidebar.affix {
+        position: fixed; /* Undo the static from mobile first approach */
+        top: 20px;
+    }
+    .bs-docs-sidebar.affix-bottom {
+        position: absolute; /* Undo the static from mobile first approach */
+    }
+    .bs-docs-sidebar.affix .bs-docs-sidenav,.bs-docs-sidebar.affix-bottom .bs-docs-sidenav {
+        margin-top: 0;
+        margin-bottom: 0
+    }
+}
+@media (min-width: 1200px) {
+    /* Widen the fixed sidebar again */
+    .bs-docs-sidebar.affix-bottom,
+    .bs-docs-sidebar.affix {
+        width: 263px;
+    }
+}
+</style>
+<script type="text/javascript">
+$(function() {
+    'use strict';
+
+    $('.bs-docs-sidebar li').first().addClass('active');
+
+    $(document.body).scrollspy({target: '.bs-docs-sidebar'});
+
+    $('.bs-docs-sidebar').affix();
+});
+</script><link rel="stylesheet" type="text/css" href="css/python_course.css">
+</head>
+<body>
+<div id="content" class="container">
+<div class="row"><div class="col-md-9"><h1 class="title">Baustein 1 Meeting 3</h1>
+
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1"><span class="section-number-2">1</span> Lösungen zu den letzten Aufgaben</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+(Alle Lösungen sind nur Beispiele, es gibt viele Wege die zur Lösung führen)
+</p>
+</div>
+<div id="outline-container-sec-1-1" class="outline-3">
+<h3 id="sec-1-1"><span class="section-number-3">1.1</span> Sternenpyramide</h3>
+<div class="outline-text-3" id="text-1-1">
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #8b4513;">i</span> = 0
+<span style="color: #a626a4;">while</span> i &lt; 10:
+    <span style="color: #8b4513;">i</span> += 1
+    <span style="color: #a626a4;">print</span>(<span style="color: #50a14f;">"*"</span> * i)
+<span style="color: #a626a4;">while</span> i &gt; 0:
+    <span style="color: #8b4513;">i</span> -= 1
+    <span style="color: #a626a4;">print</span>(<span style="color: #50a14f;">"*"</span> * i)
+</pre>
+</div>
+
+<pre class="example">
+*
+**
+***
+****
+*****
+******
+*******
+********
+*********
+**********
+*********
+********
+*******
+******
+*****
+****
+***
+**
+*
+
+</pre>
+
+<p>
+oder auch:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #a626a4;">for</span> i <span style="color: #a626a4;">in</span> <span style="color: #e44649;">range</span>(1, 10):
+    <span style="color: #a626a4;">print</span>(<span style="color: #50a14f;">"*"</span> * i)
+<span style="color: #a626a4;">for</span> i <span style="color: #a626a4;">in</span> <span style="color: #e44649;">range</span>(10, 0, -1):
+    <span style="color: #a626a4;">print</span>(<span style="color: #50a14f;">"*"</span> * i)
+</pre>
+</div>
+
+<pre class="example">
+*
+**
+***
+****
+*****
+******
+*******
+********
+*********
+**********
+*********
+********
+*******
+******
+*****
+****
+***
+**
+*
+</pre>
+</div>
+</div>
+
+<div id="outline-container-sec-1-2" class="outline-3">
+<h3 id="sec-1-2"><span class="section-number-3">1.2</span> Zahlenmuster</h3>
+<div class="outline-text-3" id="text-1-2">
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #a626a4;">for</span> i <span style="color: #a626a4;">in</span> <span style="color: #e44649;">range</span>(1, 10):
+    <span style="color: #a626a4;">print</span>(<span style="color: #e44649;">str</span>(i) * i)
+</pre>
+</div>
+
+<pre class="example">
+1
+22
+333
+4444
+55555
+666666
+7777777
+88888888
+999999999
+
+</pre>
+</div>
+</div>
+
+<div id="outline-container-sec-1-3" class="outline-3">
+<h3 id="sec-1-3"><span class="section-number-3">1.3</span> Goldgräber</h3>
+<div class="outline-text-3" id="text-1-3">
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #8b4513;">sieves</span> = [<span style="color: #50a14f;">"stone"</span>, <span style="color: #50a14f;">"stone"</span>, <span style="color: #50a14f;">"gold"</span>, <span style="color: #50a14f;">"stone"</span>, <span style="color: #50a14f;">"stone"</span>, <span style="color: #50a14f;">"stone"</span>]
+
+<span style="color: #8b4513;">found</span> = <span style="color: #008b8b;">False</span>
+<span style="color: #a626a4;">for</span> sieve <span style="color: #a626a4;">in</span> sieves:
+    <span style="color: #a626a4;">if</span> sieve == <span style="color: #50a14f;">"gold"</span>:
+        <span style="color: #8b4513;">found</span> = <span style="color: #008b8b;">True</span>
+
+<span style="color: #a626a4;">if</span> found:
+    <span style="color: #a626a4;">print</span>(<span style="color: #50a14f;">"Gold gefunden"</span>)
+<span style="color: #a626a4;">else</span>:
+    <span style="color: #a626a4;">print</span>(<span style="color: #50a14f;">"Kein Gold gefunden"</span>)
+</pre>
+</div>
+
+<pre class="example">
+Gold gefunden
+
+</pre>
+
+<p>
+oder noch einfacher (Den Trick habe ich euch noch nicht verraten):
+</p>
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #a626a4;">if</span> <span style="color: #50a14f;">"gold"</span> <span style="color: #a626a4;">in</span> sieves:
+    <span style="color: #a626a4;">print</span>(<span style="color: #50a14f;">"Gold gefunden"</span>)
+<span style="color: #a626a4;">else</span>:
+    <span style="color: #a626a4;">print</span>(<span style="color: #50a14f;">"Kein Gold gefunden"</span>)
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-2" class="outline-2">
+<h2 id="sec-2"><span class="section-number-2">2</span> Listen</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+Beim letzten Kurs haben wir die Grundlagen schon kennengelernt. Es folgt ein Ausblick, was Listen alles noch können.
+</p>
+</div>
+<div id="outline-container-sec-2-1" class="outline-3">
+<h3 id="sec-2-1"><span class="section-number-3">2.1</span> Sortieren</h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+Eine Liste alphabetisch oder numerisch zu sortieren kann häufiger mal nützlich sein. Das kann python bereits:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #8b4513;">zahlen</span> = [1, 5, 7, 4, 10, 26, 2, 42]
+zahlen.sort()
+<span style="color: #a626a4;">print</span>(zahlen)
+</pre>
+</div>
+
+<pre class="example">
+[1, 2, 4, 5, 7, 10, 26, 42]
+
+</pre>
+
+<p>
+Es gibt auch eine builtin-Funktion, die das Ergebnis direkt zurückgibt:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #8b4513;">zahlen</span> = [1, 5, 7, 4, 10, 26, 2, 42]
+<span style="color: #a626a4;">print</span>(<span style="color: #e44649;">sorted</span>(zahlen))
+</pre>
+</div>
+
+<pre class="example">
+[1, 2, 4, 5, 7, 10, 26, 42]
+
+</pre>
+</div>
+</div>
+
+<div id="outline-container-sec-2-2" class="outline-3">
+<h3 id="sec-2-2"><span class="section-number-3">2.2</span> Negative Indexe</h3>
+<div class="outline-text-3" id="text-2-2">
+<p>
+Wenn man sich für ein Element am Ende einer Liste interessiert (z.B. das vorletzte), kann man dies mit einem negativen Index holen:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #a0a1a7; font-weight: bold;">#        </span><span style="color: #a0a1a7;">-8 -7 -6 -5  -4  -3            -2             -1</span>
+<span style="color: #8b4513;">zahlen</span> = [1, 5, 7, 4, 10, 26, <span style="color: #50a14f;">"interessantes element"</span>, 42]
+<span style="color: #a626a4;">print</span>(zahlen[-2])
+</pre>
+</div>
+
+<pre class="example">
+interessantes element
+
+</pre>
+</div>
+</div>
+
+<div id="outline-container-sec-2-3" class="outline-3">
+<h3 id="sec-2-3"><span class="section-number-3">2.3</span> Übung - Sortieren und negative Indexe</h3>
+<div class="outline-text-3" id="text-2-3">
+<p>
+Versucht nun sortieren und negative Indexe zu kombinieren, um die zwei größten Zahlen aus einer Liste herauszufinden.
+</p>
+</div>
+</div>
+<div id="outline-container-sec-2-4" class="outline-3">
+<h3 id="sec-2-4"><span class="section-number-3">2.4</span> Slicing</h3>
+<div class="outline-text-3" id="text-2-4">
+<p>
+Wie im letzten Kurs schon kurz angerissen, kann es hilfreich sein nur bestimmte Ausschnitte von Listen zu bearbeiten.
+</p>
+
+<p>
+<code>a[start:end]</code> Elemente von start bis end-1
+</p>
+
+<p>
+<code>a[start:]</code> Elemente ab start
+</p>
+
+<p>
+<code>a[:end]</code> Elemente vom Anfang bis end-1
+</p>
+
+<p>
+<code>a[:]</code> Komplette Kopie eines Arrays
+</p>
+
+<p>
+<code>a[start:end:step]</code> Elemente von start bis end-1 mit Schrittgröße step
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #8b4513;">zahlen</span> = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
+<span style="color: #a626a4;">print</span>(zahlen[1:7])
+<span style="color: #a626a4;">print</span>(zahlen[5:])
+<span style="color: #a626a4;">print</span>(zahlen[:5])
+<span style="color: #a626a4;">print</span>(zahlen[1:7:2])
+<span style="color: #a626a4;">print</span>(zahlen[7:1:-1])
+</pre>
+</div>
+
+<pre class="example">
+[1, 2, 3, 4, 5, 6]
+[5, 6, 7, 8, 9, 10]
+[0, 1, 2, 3, 4]
+[1, 3, 5]
+[7, 6, 5, 4, 3, 2]
+
+</pre>
+</div>
+</div>
+
+<div id="outline-container-sec-2-5" class="outline-3">
+<h3 id="sec-2-5"><span class="section-number-3">2.5</span> Übung - Slicing</h3>
+<div class="outline-text-3" id="text-2-5">
+<p>
+Ihr schreibt eine Software für einen Supermarkt. In jedem Kassiervorgang kommt die Rechnung für einen Kunden in der folgenden Form:
+</p>
+
+<p>
+<code>basket = ['cucumber', 12, 'pickles', 4, 'sugar', 8, 'rice', 17]</code>
+</p>
+
+<p>
+D.h. es steht immer Produkt gefolgt von Preis in der Liste. Berechnet mit einem Python-Programm die Summe der Preise in einer basket-Liste. Hinweis: die builtin-funktion <code>sum</code> kann da hilfreich sein, sie nimmt eine Liste an Zahlen entgegen und gibt die Summe zurück.
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-3" class="outline-2">
+<h2 id="sec-3"><span class="section-number-2">3</span> Funktionen</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+Funktionen sind wiederverwendbare Codeblöcke mit fest definierten Eingabeparametern und Ausgabewerten. Das Schlüsselwort def leitet die Funktionsdeklaration ein. Darauf folgt der Funktionsname gefolgt von Parametern in geschweifeten Klammern. Parameter sind Platzhalter die erst beim Aufruf einer Funktion durch konkrete Werte ersetzt werden. Eine Funktion kann beliebig viele Parameter (mit Komma getrennt) haben. Im nachfolgenden Codeblock findet die Berechnung der Funktion statt. Wenn es dabei Ergebnisse gibt Nachfolgend sind einige Beispiele:
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #a626a4;">def</span> <span style="color: #0184bc;">greet_user</span>():
+    <span style="color: #a626a4;">print</span>(<span style="color: #50a14f;">"Hello World!"</span>)
+
+greet_user()
+
+<span style="color: #a626a4;">def</span> <span style="color: #0184bc;">greet_user</span>(username):
+    <span style="color: #a626a4;">print</span>(<span style="color: #50a14f;">"Hello "</span> + username + <span style="color: #50a14f;">". Welcome to the Website!"</span>)
+
+greet_user(<span style="color: #50a14f;">"Kurt"</span>)
+
+<span style="color: #a626a4;">def</span> <span style="color: #0184bc;">calculate_prize</span>(prize, versandart):
+    <span style="color: #a626a4;">if</span> versandart == <span style="color: #50a14f;">"premium"</span>:
+        <span style="color: #8b4513;">prize</span> += 5
+    <span style="color: #a626a4;">else</span>:
+        <span style="color: #8b4513;">prize</span> += 1
+    <span style="color: #a626a4;">return</span> prize
+
+
+<span style="color: #8b4513;">gesamtpreis</span> = calculate_prize(prize=12, versandart=<span style="color: #50a14f;">"premium"</span>)
+<span style="color: #a626a4;">print</span>(gesamtpreis)
+</pre>
+</div>
+
+<pre class="example">
+Hello World!
+Hello Kurt. Welcome to the Website!
+17
+
+</pre>
+
+<p>
+Die folgenden Funktionen sind vielleicht etwas überraschend. Warum, was ist der unterschied? Und was genau könnte da passieren?
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #a626a4;">def</span> <span style="color: #0184bc;">increment</span>(number):
+    <span style="color: #8b4513;">number</span> += 1
+
+<span style="color: #8b4513;">meine_zahl</span> = 1
+increment(meine_zahl)
+<span style="color: #a626a4;">print</span>(meine_zahl)
+</pre>
+</div>
+
+<pre class="example">
+1
+
+</pre>
+
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #a626a4;">def</span> <span style="color: #0184bc;">increment_list</span>(list_of_nums):
+    <span style="color: #a626a4;">for</span> i <span style="color: #a626a4;">in</span> <span style="color: #e44649;">range</span>(<span style="color: #e44649;">len</span>(list_of_nums)):
+        <span style="color: #8b4513;">list_of_nums</span>[i] += 1
+
+<span style="color: #8b4513;">meine_zahlen_liste</span> = [1, 2, 3, 6, 27, 42, 3]
+increment_list(meine_zahlen_liste)
+<span style="color: #a626a4;">print</span>(meine_zahlen_liste)
+</pre>
+</div>
+
+<pre class="example">
+[2, 3, 4, 7, 28, 43, 4]
+
+</pre>
+
+<p>
+Der Grund ist ein feines Detail in Datenstrukturen in python. Verändert die Funktion Daten innerhalb einer Liste, wirkt sich diese Änderung auf die Variable die "von aussen" in die Funktion gegeben wurde. Aber die Zuweisung der Variable die im Funktionsargument steht kann man innerhalb einer Funktion nicht verändern.
+</p>
+
+<p>
+Dies bezeichnet man auch als den Unterschied zwischen "Referenz-" und "Basisdatentypen".
+</p>
+
+<p>
+Grundsätzlich sollte man darauf achten, in Funktionen mit Kopien zu arbeiten und veränderte Werte per return als Rückgabewerte zu liefern. Sonst kann der Umgang mit Referenztypen schnell verwirrend werden. Wiederum ist man bei grossen Listen gezwungen das Kopieren zu vermeiden, da eine Kopie Rechenkapazität und Speicher einnimmt.
+</p>
+</div>
+</div>
+<div id="outline-container-sec-4" class="outline-2">
+<h2 id="sec-4"><span class="section-number-2">4</span> Wörterbücher</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+Wörterbücher (englisch Dictionaries) sind praktische Datenstrukturen. Sie speichern Daten unter einem Schlüssel ab (im Gegensatz zu einem Index bei einer Liste. Wichtig ist dabei, dass die Schlüssel eindeutig sind.
+</p>
+
+<p>
+Mit einem Wörterbuch können wir zum Beispiel einen Wetterbericht speichern: Eine Zuordnung von Postleitzahl zu Temperatur zum Beispiel. Oder eine Zuordnung von englischen zu deutschen Wörtern, also buchstäblich ein Wörterbuch.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #8b4513;">wetterbericht</span> = {<span style="color: #50a14f;">"21337"</span> : 22, <span style="color: #50a14f;">"20355"</span>: 27, <span style="color: #50a14f;">"12345"</span>: 17}
+<span style="color: #8b4513;">woerterbuch</span> = {<span style="color: #50a14f;">"cat"</span>: <span style="color: #50a14f;">"Katze"</span>, <span style="color: #50a14f;">"platypus"</span>: <span style="color: #50a14f;">"Schnabeltier"</span>, <span style="color: #50a14f;">"rain"</span> : <span style="color: #50a14f;">"Regen"</span>}
+
+<span style="color: #a0a1a7; font-weight: bold;"># </span><span style="color: #a0a1a7;">Zugriff</span>
+<span style="color: #a626a4;">print</span>(woerterbuch[<span style="color: #50a14f;">"cat"</span>])
+
+<span style="color: #a0a1a7; font-weight: bold;"># </span><span style="color: #a0a1a7;">Ver&#228;ndern oder einf&#252;gen</span>
+<span style="color: #8b4513;">woerterbuch</span>[<span style="color: #50a14f;">"cat"</span>] = <span style="color: #50a14f;">"Tiger"</span>
+<span style="color: #a626a4;">print</span>(woerterbuch)
+
+<span style="color: #a0a1a7; font-weight: bold;"># </span><span style="color: #a0a1a7;">L&#246;schen</span>
+<span style="color: #a626a4;">del</span> woerterbuch[<span style="color: #50a14f;">"cat"</span>]
+<span style="color: #a626a4;">print</span>(woerterbuch)
+</pre>
+</div>
+
+<pre class="example">
+Katze
+{'cat': 'Tiger', 'platypus': 'Schnabeltier', 'rain': 'Regen'}
+{'platypus': 'Schnabeltier', 'rain': 'Regen'}
+
+</pre>
+
+<p>
+Wenn ein Schlüssel im Wörterbuch nicht gefunden wird, dann stürzt euer Programm mit einem Fehler ab! Dies kann man durch eine vorherige Prüfung absichern.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #a626a4;">if</span> <span style="color: #50a14f;">"cat"</span> <span style="color: #a626a4;">in</span> woerterbuch:
+    <span style="color: #a626a4;">print</span>(woerterbuch[<span style="color: #50a14f;">"cat"</span>])
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-5" class="outline-2">
+<h2 id="sec-5"><span class="section-number-2">5</span> User-Eingaben</h2>
+<div class="outline-text-2" id="text-5">
+<p>
+User - Input in einem Programm holt man sich in Python ganz einfach mit der Funktion input(). Sie lässt einen Blinkenden Cursor im Konsolenfenster erscheinen, und wenn der User mit Enter seine Eingabe bestätigt, liefert sie die Eingabe als Zeichenkette. Zum Beispiel so:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #8b4513;">wort</span> = <span style="color: #e44649;">input</span>()
+<span style="color: #a626a4;">print</span>(wort)
+</pre>
+</div>
+
+<p>
+Man kann der Funktion input() selbst eine Zeichenkette übergeben, diese wird dann als Hinweis an den Nutzer angezeigt.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #8b4513;">username</span> = <span style="color: #e44649;">input</span>(<span style="color: #50a14f;">"Bitte geben Sie Ihren Benutzernamen ein: "</span>)
+<span style="color: #a626a4;">print</span>(<span style="color: #50a14f;">"Eingegebener Benutzername: "</span> + username)
+</pre>
+</div>
+</div>
+<div id="outline-container-sec-5-1" class="outline-3">
+<h3 id="sec-5-1"><span class="section-number-3">5.1</span> Übung - Wörterbücher und Nutzereingaben</h3>
+<div class="outline-text-3" id="text-5-1">
+<p>
+Wir schreiben ein interaktives Wörterbuch. Dazu gibt der Nutzer ein gesuchtes Wort ein. Ist das eingegebene Wort im Wörterbuch vorhanden, wird die Übersetzung ausgegeben. Wenn nicht, wird eine Fehlermeldung ausgegeben. In jedem fall wird der Nutzer erneut nach einer Eingabe gefragt, bis er "quit." eingibt. Dazu definiert ihr euch zunächst ein beliebiges Wörterbuch, zum Beispiel das von vorhin:
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #8b4513;">woerterbuch</span> = {<span style="color: #50a14f;">"cat"</span>: <span style="color: #50a14f;">"Katze"</span>, <span style="color: #50a14f;">"platypus"</span>: <span style="color: #50a14f;">"Schnabeltier"</span>, <span style="color: #50a14f;">"rain"</span> : <span style="color: #50a14f;">"Regen"</span>}
+<span style="color: #a0a1a7; font-weight: bold;"># </span><span style="color: #a0a1a7;">...</span>
+</pre>
+</div>
+<p>
+Vielleicht ist es hier hilfreich, sich erstmal keine Gedanken über den Abbruch der schleife bei <code>quit</code>. zu machen. Ihr könntet erstmal mit einer Endlosschleife Anfangen:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #a626a4;">while</span> <span style="color: #008b8b;">True</span>:
+    <span style="color: #8b4513;">user_input</span> = <span style="color: #e44649;">input</span>(<span style="color: #50a14f;">"Bitte gesuchtes wort eingeben"</span>)
+    ...
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-6" class="outline-2">
+<h2 id="sec-6"><span class="section-number-2">6</span> Wiederholung</h2>
+<div class="outline-text-2" id="text-6">
+</div><div id="outline-container-sec-6-1" class="outline-3">
+<h3 id="sec-6-1"><span class="section-number-3">6.1</span> Funktionen</h3>
+<div class="outline-text-3" id="text-6-1">
+<p>
+Implementiert Funktionen, welche die folgenden Spezifikationen erfüllen (Oder sucht euch eine aus):
+</p>
+
+<ol class="org-ol">
+<li>Schreibt euch eine Funktion combat mit den Parametern Gesundheit (health) eines Spielers und Schaden (damage) den der Spieler nimmt. Als Rückgabewert soll die Differenz zwischen health und damage zurückgeben. Ist diese Differenz allerdings negativ, soll 0 zurückgegeben werden.
+</li>
+
+<li>Die zweite Funktion soll als Parameter einen Namen als Zeichenkette in dem Format “Vorname Nachname” bekommen. Als Rückgabewert liefert sie die Initialien dieses Namens. So wird aus “Gregor Strobel” “G.S” und “Günter Jauch” “G.J”. Ist der Name kleingeschrieben sollen die Initialien trotzdem groß sein!
+</li>
+
+<li>Die dritte funktion bekommt eine Jahreszahl als Integer und gibt das Jahrhundert zurück. Merke: Das erste Jahrhundert spannt von Jahr 1 - 100, das zweite von 101 - 200 usw. Ein paar Beispiele: centuryFromYear(1705) ergibt 18 centuryFromYear(1900) ergibt 19 centuryFromYear(1601) ergibt 17
+</li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-sec-6-2" class="outline-3">
+<h3 id="sec-6-2"><span class="section-number-3">6.2</span> Fortgeschritten: Number Guessing Game</h3>
+<div class="outline-text-3" id="text-6-2">
+<p>
+Definiert euch eine geheime Zahl mit beliebigem Wert. Der User soll jetzt in einer Schleife nach einer Zahl gefragt werden. Hat er richtig geraten, bricht die Schleife ab. Wenn er zu klein oder zu groß rät, bekommt er einen Hinweis und darf erneut raten. Zum Beispiel könnte eine Beispielsitzung mit dem Programm so aussehen.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-bash">Rate eine Zahl
+5
+Falsch, zahl zu klein geraten!
+Rate eine Zahl
+72
+Falsch, zu gro&#223; geraten
+Rate eine Zahl
+40
+Falsch, zahl zu klein geraten!
+Rate eine Zahl
+42
+Richtig!
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div><div class="col-md-3"><nav id="table-of-contents">
+<div id="text-table-of-contents" class="bs-docs-sidebar">
+<ul class="nav">
+<li><a href="#sec-1">1. Lösungen zu den letzten Aufgaben</a>
+<ul class="nav">
+<li><a href="#sec-1-1">1.1. Sternenpyramide</a></li>
+<li><a href="#sec-1-2">1.2. Zahlenmuster</a></li>
+<li><a href="#sec-1-3">1.3. Goldgräber</a></li>
+</ul>
+</li>
+<li><a href="#sec-2">2. Listen</a>
+<ul class="nav">
+<li><a href="#sec-2-1">2.1. Sortieren</a></li>
+<li><a href="#sec-2-2">2.2. Negative Indexe</a></li>
+<li><a href="#sec-2-3">2.3. Übung - Sortieren und negative Indexe</a></li>
+<li><a href="#sec-2-4">2.4. Slicing</a></li>
+<li><a href="#sec-2-5">2.5. Übung - Slicing</a></li>
+</ul>
+</li>
+<li><a href="#sec-3">3. Funktionen</a></li>
+<li><a href="#sec-4">4. Wörterbücher</a></li>
+<li><a href="#sec-5">5. User-Eingaben</a>
+<ul class="nav">
+<li><a href="#sec-5-1">5.1. Übung - Wörterbücher und Nutzereingaben</a></li>
+</ul>
+</li>
+<li><a href="#sec-6">6. Wiederholung</a>
+<ul class="nav">
+<li><a href="#sec-6-1">6.1. Funktionen</a></li>
+<li><a href="#sec-6-2">6.2. Fortgeschritten: Number Guessing Game</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</nav>
+</div></div></div>
+<footer id="postamble" class="">
+<div><p class="author">Author: Falco Winkler</p>
+<p class="date">Created: 2019-05-17 Fri 19:38</p>
+<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 26.1 (<a href="http://orgmode.org">Org-mode</a> 9.1.9)</p>
+</div>
+</footer>
+</body>
+</html>
