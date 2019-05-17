@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <title>Baustein 1 Meeting 1</title>
-<!-- 2019-05-17 Fri 00:20 -->
+<!-- 2019-05-17 Fri 08:59 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="generator" content="Org-mode">
@@ -262,8 +262,8 @@ Mit der built-in Funktion type kann man sich jederzeit den typ zu einem Literal 
 </div>
 
 <pre class="example">
-&lt;type 'int'&gt;
-&lt;type 'float'&gt;
+&lt;class 'int'&gt;
+&lt;class 'float'&gt;
 
 </pre>
 
@@ -294,6 +294,14 @@ Variablen sind ein weiterer wichtiger Bestandteil von Python - Programmen. Sie s
 <span style="color: #a626a4;">print</span>(name)
 </pre>
 </div>
+
+<pre class="example">
+Moin
+World
+Hallo
+World
+
+</pre>
 
 <p>
 Variablen kann man genau so gut mit numerischen Literalen belegen.
@@ -365,21 +373,47 @@ Hier ist es sehr hilfreich mit dem Debugger von Thonny zu arbeiten. Mit "Step in
 <span style="color: #8b4513;">z</span> = x + y
 
 <span style="color: #a626a4;">print</span>(z + 2)
-<span style="color: #a0a1a7; font-weight: bold;">#</span><span style="color: #a0a1a7;">print(2 * 2)</span>
-<span style="color: #a0a1a7; font-weight: bold;">#</span><span style="color: #a0a1a7;">print(5 - 2)</span>
-<span style="color: #a0a1a7; font-weight: bold;">#</span><span style="color: #a0a1a7;">print(12 / 4)</span>
-<span style="color: #a0a1a7; font-weight: bold;">#</span><span style="color: #a0a1a7;">print(12 // 4)</span>
+<span style="color: #a626a4;">print</span>(2 * 2)
+<span style="color: #a626a4;">print</span>(5 - 2)
+<span style="color: #a626a4;">print</span>(12 / 4)
+<span style="color: #a626a4;">print</span>(12 // 4)
 
-<span style="color: #a0a1a7; font-weight: bold;">#</span><span style="color: #a0a1a7;">print(13 % 5) # Modulo</span>
-<span style="color: #a0a1a7; font-weight: bold;">#</span><span style="color: #a0a1a7;">print(4 ** 4)</span>
-<span style="color: #a0a1a7; font-weight: bold;">#</span><span style="color: #a0a1a7;">print(0.1 + 0.2)</span>
-
-<span style="color: #a0a1a7; font-weight: bold;">#</span><span style="color: #a0a1a7;">print(10 * (20 + 5)) # Ausdr&#252;cke k&#246;nnen beliebig geklammert werden</span>
 </pre>
 </div>
 
+<pre class="example">
+30
+32
+4
+3
+3.0
+3
+
+</pre>
+
 <p>
-aasdfasdf
+Neben der Grundschulmathe gibt es noch ein paar weitere, weniger gebräuchliche Operationen.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #a626a4;">print</span>(13 % 5) <span style="color: #a0a1a7; font-weight: bold;"># </span><span style="color: #a0a1a7;">Modulo</span>
+<span style="color: #a626a4;">print</span>(4 ** 4) <span style="color: #a0a1a7; font-weight: bold;"># </span><span style="color: #a0a1a7;">Potenz</span>
+<span style="color: #a626a4;">print</span>(0.1 + 0.2)
+<span style="color: #a626a4;">print</span>(10 * (20 + 5)) <span style="color: #a0a1a7; font-weight: bold;"># </span><span style="color: #a0a1a7;">Ausdr&#252;cke k&#246;nnen beliebig geklammert werden</span>
+</pre>
+</div>
+
+<pre class="example">
+3
+256
+0.30000000000000004
+250
+
+</pre>
+
+<p>
+Warum kommt bei 0.1 + 0.2 so ein krummes Ergebnis raus? Wie stellt der Computer "unendliche" Kommazahlen dar wie z.B. 1/3 = 0.333333.. ?
 </p>
 </div>
 </div>
@@ -417,7 +451,7 @@ Moin world
 </div></div></div>
 <footer id="postamble" class="">
 <div><p class="author">Author: Falco Winkler</p>
-<p class="date">Created: 2019-05-17 Fri 00:20</p>
+<p class="date">Created: 2019-05-17 Fri 08:59</p>
 <p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 26.1 (<a href="http://orgmode.org">Org-mode</a> 9.1.9)</p>
 </div>
 </footer>
