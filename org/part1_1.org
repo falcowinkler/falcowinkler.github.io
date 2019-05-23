@@ -238,5 +238,5 @@ print("Moin world") # Dieser Funktionsaufruf gibt Text auf der Konsole aus.
 Es soll eine Schleife programmiert werden, die eine Animation anzeigt.
 Dafür habe ich eine .gif Animation bereitgestellt, sowie eine Funktion ~show(i)~,
 welche das Bild mit der Sequenznummer i anzeigt. Die Sequenznummern gehen von 0 bis 12.
-Laded euch die nötigen dateien runter ([[file:~/Desktop/Projekte/falcowinkler.github.io/resources/python-course/uebung_for_loop.zip][hier klicken]]), entpackt das Archiv und löst die aufgabe dann in der Datei ~uebung.py~.
+Ladet euch die nötigen Dateien herunter ([[https://github.com/falcowinkler/falcowinkler.github.io/raw/master/resources/python-course/uebung_for_loop.zip][hier klicken]]), entpackt das Archiv und löst die aufgabe dann in der Datei ~uebung.py~.
 Weitere Instruktionen sind in der Datei in Kommentaren beschrieben.
