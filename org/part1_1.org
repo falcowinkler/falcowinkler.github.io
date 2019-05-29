@@ -13,6 +13,7 @@ Führt man diese Codezeile in Thonny aus, erscheint die ausgabe in einem separat
 
 ~print~ ist eine Funktion, das bedeutet das der Print-Aufruf ein bestimmtes Verhalten auslöst. Funktionen werden wir später genauer kennen lernen, und wir werden auch eigene Funktionen schreiben.
 
+
 Weiterhin ist print eine sogenannte Built-In Funktion, d.h. sie ist ein fester Bestandteil der Programmiersprache Python und ihr könnt jederzeit auf sie zugreifen. Sie gibt das Funktionsargument auf der Konsole ("Shell" in Thonny) aus. Es gibt [[https://docs.python.org/3/library/functions.html][eine Vielzahl von built-in Funktionen]], einige davon werden wir auch noch im Kurs kennenlernen.
 
 * Datentypen
