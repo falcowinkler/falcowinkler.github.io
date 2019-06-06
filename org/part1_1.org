@@ -86,7 +86,7 @@ print(z + 2)
 print(2 * 2)
 print(5 - 2)
 print(12 / 4)
-print(12 // 4)
+print(12 // 4) # Ganzzahlige Division
 
 #+END_SRC
 Neben der Grundschulmathe gibt es noch ein paar weitere, weniger gebräuchliche Operationen.
@@ -239,4 +239,4 @@ welche das Bild mit der Sequenznummer i anzeigt. Die Sequenznummern gehen von 0 
 Ladet euch die nötigen Dateien herunter ([[https://github.com/falcowinkler/falcowinkler.github.io/raw/master/resources/python-course/uebung_for_loop.zip][hier klicken]]), entpackt das Archiv und löst die aufgabe dann in der Datei ~uebung.py~.
 Weitere Instruktionen sind in der Datei in Kommentaren beschrieben.
 * Code
-Den Code für dieses Meeting könnt ihr euch hier herunterladen: [[file:~/Desktop/Projekte/falcowinkler.github.io/resources/python-course/python_beginner_1.zip][*klick*]]
+Den Code für dieses Meeting könnt ihr euch hier herunterladen: [[https://github.com/falcowinkler/falcowinkler.github.io/raw/master/resources/python-course/python_beginner_1.zip][*klick*]]
