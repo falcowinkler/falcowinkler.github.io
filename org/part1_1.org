@@ -3,21 +3,19 @@ Hello World, Datentypen, Variablen, Verzweigungen und Schleifen
 
 
 * Hello World
-Beim Lernen von Programmiersprachen ist es eine weit verbreitete Tradition, als Erstes ein Programm zu schreiben, welches einfach nur hello world ausgibt. Diese Tradition wollen wir natürlich nicht brechen, außer dass wir es auf die Hamburger Art machen.
+Beim Lernen von Programmiersprachen ist es eine weit verbreitete Tradition, als Erstes ein Programm zu schreiben, welches einfach nur ~hello world~ ausgibt. Diese Tradition wollen wir natürlich nicht brechen, außer dass wir es auf die Hamburger Art machen.
 
 #+BEGIN_SRC python :results output :exports both
 print("Moin world")
 #+END_SRC
 
-Führt man diese Codezeile in Thonny aus, erscheint die ausgabe in einem separaten Fenster namens "Shell". Die shell ist eine rein textuelle Benutzeroberfläche: Der Computer kann hier Ausgaben reinschreiben, und auch der Nutzer kann text eingeben (das lernen wir später kennen).
+Führt man diese Codezeile in Thonny aus, erscheint die Ausgabe in einem separaten Fenster namens "Shell". Die shell ist eine rein textuelle Benutzeroberfläche um mit dem Computer zu arbeiten: Der Computer kann hier Ausgaben reinschreiben, und auch der Nutzer kann Text eingeben (das lernen wir später kennen). In diesem Fenster werden wir also die Ausgaben unserer Programme sehen, d.h. alles was durch den ~print~-Befehl ausgegeben wird. Auch Fehlermeldungen erscheinen hier.
 
 ~print~ ist eine Funktion, das bedeutet das der Print-Aufruf ein bestimmtes Verhalten auslöst. Funktionen werden wir später genauer kennen lernen, und wir werden auch eigene Funktionen schreiben.
 
-
-Weiterhin ist print eine sogenannte Built-In Funktion, d.h. sie ist ein fester Bestandteil der Programmiersprache Python und ihr könnt jederzeit auf sie zugreifen. Sie gibt das Funktionsargument auf der Konsole ("Shell" in Thonny) aus. Es gibt [[https://docs.python.org/3/library/functions.html][eine Vielzahl von built-in Funktionen]], einige davon werden wir auch noch im Kurs kennenlernen.
+Weiterhin ist ~print~ eine sogenannte Built-In Funktion, d.h. sie ist ein fester Bestandteil der Programmiersprache Python und ihr könnt jederzeit auf sie zugreifen. Sie gibt das Funktionsargument auf der Konsole ("Shell" in Thonny) aus. Es gibt [[https://docs.python.org/3/library/functions.html][eine Vielzahl von built-in Funktionen]], einige davon werden wir auch noch im Kurs kennenlernen.
 
 * Datentypen
-
 "Moin world" ist mit Gänsefüßchen abgetrennt. Das bedeutet, dass "Moin world" Daten in Form einer Zeichenkette sind. Daten können als Literale (dh. explizit in das python-programm reingeschrieben, wie in diesem Fall) vorliegen. Oder sie können aus Funktionsaufrufen erhalten oder importiert werden (dazu später mehr). Es gibt auch Daten in Form von Zahlen. Die Literale dazu sehen dann so aus:
 
 #+BEGIN_SRC python :results output :exports both
@@ -228,8 +226,7 @@ while a < 7:
 Auch diese Schleife gibt es [[https://goo.gl/images/bE3Mpq][als Animation.]]
 Der Thonny Debugger kann auch besonders bei solchen komplizierten Konstrukten hilfreich sein.
 
-*  Kommentare
-
+* Kommentare
 Alles hinter einem '#' wird von python ignoriert, so können wir Kommentare schreiben um Nachrichten an unser Zukunfts-Ich zu senden (uns Sachen zu merken)
 
 #+BEGIN_SRC python :results output :exports both
@@ -241,3 +238,5 @@ Dafür habe ich eine .gif Animation bereitgestellt, sowie eine Funktion ~show(i)
 welche das Bild mit der Sequenznummer i anzeigt. Die Sequenznummern gehen von 0 bis 12.
 Ladet euch die nötigen Dateien herunter ([[https://github.com/falcowinkler/falcowinkler.github.io/raw/master/resources/python-course/uebung_for_loop.zip][hier klicken]]), entpackt das Archiv und löst die aufgabe dann in der Datei ~uebung.py~.
 Weitere Instruktionen sind in der Datei in Kommentaren beschrieben.
+* Code
+Den Code für dieses Meeting könnt ihr euch hier herunterladen: [[file:~/Desktop/Projekte/falcowinkler.github.io/resources/python-course/python_beginner_1.zip][*klick*]]

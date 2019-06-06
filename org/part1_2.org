@@ -5,7 +5,7 @@ Listen und die for-schleife
 * Aufwärmübungen
 
 ** Ampelschaltung
-Deklariert euch eine Variable farbe mit dem Wert "rot" "grün" oder "gelb". Danach soll eine if - elif struktur folgen, die Folgendes bewirkt: Wenn der Wert der Variable "rot" ist, soll er umgeändert werden in "grün". Wenn er "grün" ist soll er auf "gelb" umgeändert werden, und wenn er "gelb" ist soll er auf "rot" umgeändert werden (d.h die Variable soll überschrieben werden, so wie gestern bei der Gruß Variable). Gebt euch danach den Wert der Variable farbe zur Prüfung auf der Konsole aus. Hinweis Genau wie bei Zahlen kann man Zeichenketten mit == vergleichen.
+Deklariert euch eine Variable ~farbe~ mit dem Wert "rot" "grün" oder "gelb". Danach soll eine if - elif - else Struktur folgen, die Folgendes bewirkt: Wenn der Wert der Variable "rot" ist, soll er umgeändert werden in "grün". Wenn er "grün" ist soll er auf "gelb" umgeändert werden, und wenn er "gelb" ist soll er auf "rot" umgeändert werden (d.h die Variable soll überschrieben werden, so wie gestern bei der Gruß Variable). Gebt euch danach den Wert der Variable ~farbe~ zur Prüfung auf der Konsole aus. Hinweis: Genau wie bei Zahlen kann man Zeichenketten mit == vergleichen.
 
 #+BEGIN_SRC python
 farbe = 'gelb'
@@ -21,7 +21,7 @@ Ihr sollt ein Programm für folgende Spezifikation schreiben: Ein Automat soll f
 - Personen unter 21 bekommen Bier
 - Personen die 21 und älter sind bekommen Whiskey
 
-Definiert euch dazu eine Variable alter mit beliebigem Wert, und schreibt danach ein if-elif-else Befehl der das korrekte Getränk auf der Konsole ausgibt.
+Definiert euch dazu eine Variable ~alter~ mit beliebigem Wert, und schreibt danach ein if-elif-else Befehl der das korrekte Getränk auf der Konsole ausgibt.
 Danach sollen die Getränke für alle Altersklassen aufgelistet werden. Schreibt eine while-Schleife die bis 25 zählt und in jedem Durchgang den Code aus Aufgabe 1 ausführt.
 #+BEGIN_SRC python
 alter = 10
