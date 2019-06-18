@@ -1,9 +1,9 @@
 #+TITLE: Baustein 1 Meeting 3
 
 * Lösungen zu den letzten Aufgaben
-
 (Alle Lösungen sind nur Beispiele, es gibt viele Wege die zur Lösung führen)
 ** Sternenpyramide
+
 #+BEGIN_SRC python :results output :exports both
 i = 0
 while i < 10:

@@ -28,7 +28,7 @@ alter = 10
 # ...
 #+END_SRC
 * Zeichenketten verändern
-Mit Zeichenketten arbeitet man sehr häufig. Oft sind sie aber nicht in der gewünschten Form, man will Daten aus Ihnen extrahieren, oder sie verkürzen. Dafür stellt Python jede Menge Funktionalität zur Verfügung. Einen Ausschnitt davon werden wir in diesem Kurs kennenlernen.
+Mit Zeichenketten arbeitet man sehr häufig. Oft sind sie aber nicht in der gewünschten Form, man will Daten aus Ihnen extrahieren, oder sie verkürzen. Dafür stellt Python [[https://www.w3schools.com/python/python_ref_string.asp][jede Menge Funktionalität]] zur Verfügung. Einen Ausschnitt davon werden wir in diesem Kurs kennenlernen.
 #+BEGIN_SRC python :results output :exports both
 test_string = "Ich bin hier, Du Bist hier, Schnabeltier."
 
