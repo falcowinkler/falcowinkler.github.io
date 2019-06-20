@@ -51,7 +51,7 @@ my_numbers = {1, 2, 3, 4, 5, 5, 6, 6}
 print(my_numbers)
 #+END_SRC
 
-Wie auch bei Listen und Dictionarys gibt es eine Built-in Funktion die bestimmte Objekte in Mengen umwandeln kann. Nochmal zur Übersicht:
+Wie auch bei Listen und Dictionaries gibt es eine Built-in Funktion die bestimmte Objekte in Mengen umwandeln kann. Nochmal zur Übersicht:
 
 ~list(...)~
 
@@ -85,26 +85,37 @@ Klassen sind Baupläne für Objekte. Sie beschreiben, welche Funktionalität ein
 /Genauere Erklärung und Diskussion über OOP im Kurs/
 
 #+BEGIN_SRC python :results output :exports both
-class Dog:
+class Bike:
 
-    def __init__(self, name, age):
-        self.age = age
-        self.name = name
+    def __init__(self, model, color):
+        self.model = model
+        self.color = color
+        self.current_speed = 0
 
-    def sit(self):
-        print(self.name + " is now sitting.")
+    def speed_up(self):
+        self.current_speed += 5
 
-    def roll_over(self):
-        print(self.name + " rolled over!")
+    def slow_down(self):
+        self.current_speed -= 5
 
-    def print_age(self):
-        print(self.name + " is " + str(self.age) + " years old.")
+    def brake(self):
+        self.current_speed = 0
 
+    def describe(self):
+        print(self.model, "has color", self.color,
+              ", current speed is", str(self.current_speed), "km/h")
 
-cooper = Dog("cooper", 5)
-cooper.roll_over()
-cooper.sit()
-cooper.print_age()
+mountain_bike = Bike("mountain bike", "black")
+mountain_bike.speed_up()
+mountain_bike.describe()
+
+city_bike = Bike("city bike", "pink")
+city_bike.speed_up()
+city_bike.speed_up()
+city_bike.speed_up()
+city_bike.describe()
+city_bike.brake()
+city_bike.describe()
 #+END_SRC
 
 ** Vererbung

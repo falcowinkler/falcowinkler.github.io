@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <title>Baustein 1 Meeting 4</title>
-<!-- 2019-05-17 Fri 20:38 -->
+<!-- 2019-06-20 Thu 14:20 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="generator" content="Org-mode">
@@ -284,7 +284,7 @@ Mengen sind ungeordnete Sammlungen von Objekten. Sie können kein Element mehrfa
 </pre>
 
 <p>
-Wie auch bei Listen und Dictionarys gibt es eine Built-in Funktion die bestimmte Objekte in Mengen umwandeln kann. Nochmal zur Übersicht:
+Wie auch bei Listen und Dictionaries gibt es eine Built-in Funktion die bestimmte Objekte in Mengen umwandeln kann. Nochmal zur Übersicht:
 </p>
 
 <p>
@@ -317,7 +317,7 @@ Erzeugen Listen, Wörterbücher und Mengen aus ihren Argumenten (wenn möglich).
 </div>
 
 <pre class="example">
-{'t', 'P', 'r', 'l', ' ', 'a', 'A', 'u', 'h', 'y', 'n', 'o', 'T', 'i'}
+{'A', 'o', 'r', 'T', 'u', 'y', 'h', 'i', 'l', 'a', 'P', ' ', 'n', 't'}
 
 </pre>
 </div>
@@ -347,33 +347,44 @@ Klassen sind Baupläne für Objekte. Sie beschreiben, welche Funktionalität ein
 
 <div class="org-src-container">
 
-<pre class="src src-python"><span style="color: #a626a4;">class</span> <span style="color: #c18401;">Dog</span>:
+<pre class="src src-python"><span style="color: #a626a4;">class</span> <span style="color: #c18401;">Bike</span>:
 
-    <span style="color: #a626a4;">def</span> <span style="color: #0184bc;">__init__</span>(<span style="color: #a626a4;">self</span>, name, age):
-        <span style="color: #a626a4;">self</span>.age = age
-        <span style="color: #a626a4;">self</span>.name = name
+    <span style="color: #a626a4;">def</span> <span style="color: #0184bc;">__init__</span>(<span style="color: #a626a4;">self</span>, model, color):
+        <span style="color: #a626a4;">self</span>.model = model
+        <span style="color: #a626a4;">self</span>.color = color
+        <span style="color: #a626a4;">self</span>.current_speed = 0
 
-    <span style="color: #a626a4;">def</span> <span style="color: #0184bc;">sit</span>(<span style="color: #a626a4;">self</span>):
-        <span style="color: #a626a4;">print</span>(<span style="color: #a626a4;">self</span>.name + <span style="color: #50a14f;">" is now sitting."</span>)
+    <span style="color: #a626a4;">def</span> <span style="color: #0184bc;">speed_up</span>(<span style="color: #a626a4;">self</span>):
+        <span style="color: #a626a4;">self</span>.current_speed += 5
 
-    <span style="color: #a626a4;">def</span> <span style="color: #0184bc;">roll_over</span>(<span style="color: #a626a4;">self</span>):
-        <span style="color: #a626a4;">print</span>(<span style="color: #a626a4;">self</span>.name + <span style="color: #50a14f;">" rolled over!"</span>)
+    <span style="color: #a626a4;">def</span> <span style="color: #0184bc;">slow_down</span>(<span style="color: #a626a4;">self</span>):
+        <span style="color: #a626a4;">self</span>.current_speed -= 5
 
-    <span style="color: #a626a4;">def</span> <span style="color: #0184bc;">print_age</span>(<span style="color: #a626a4;">self</span>):
-        <span style="color: #a626a4;">print</span>(<span style="color: #a626a4;">self</span>.name + <span style="color: #50a14f;">" is "</span> + <span style="color: #e44649;">str</span>(<span style="color: #a626a4;">self</span>.age) + <span style="color: #50a14f;">" years old."</span>)
+    <span style="color: #a626a4;">def</span> <span style="color: #0184bc;">brake</span>(<span style="color: #a626a4;">self</span>):
+        <span style="color: #a626a4;">self</span>.current_speed = 0
 
+    <span style="color: #a626a4;">def</span> <span style="color: #0184bc;">describe</span>(<span style="color: #a626a4;">self</span>):
+        <span style="color: #a626a4;">print</span>(<span style="color: #a626a4;">self</span>.model, <span style="color: #50a14f;">"has color"</span>, <span style="color: #a626a4;">self</span>.color,
+              <span style="color: #50a14f;">", current speed is"</span>, <span style="color: #e44649;">str</span>(<span style="color: #a626a4;">self</span>.current_speed), <span style="color: #50a14f;">"km/h"</span>)
 
-<span style="color: #8b4513;">cooper</span> = Dog(<span style="color: #50a14f;">"cooper"</span>, 5)
-cooper.roll_over()
-cooper.sit()
-cooper.print_age()
+<span style="color: #8b4513;">mountain_bike</span> = Bike(<span style="color: #50a14f;">"mountain bike"</span>, <span style="color: #50a14f;">"black"</span>)
+mountain_bike.speed_up()
+mountain_bike.describe()
+
+<span style="color: #8b4513;">city_bike</span> = Bike(<span style="color: #50a14f;">"city bike"</span>, <span style="color: #50a14f;">"pink"</span>)
+city_bike.speed_up()
+city_bike.speed_up()
+city_bike.speed_up()
+city_bike.describe()
+city_bike.brake()
+city_bike.describe()
 </pre>
 </div>
 
 <pre class="example">
-cooper rolled over!
-cooper is now sitting.
-cooper is 5 years old.
+mountain bike has color black , current speed is 5 km/h
+city bike has color pink , current speed is 15 km/h
+city bike has color pink , current speed is 0 km/h
 
 </pre>
 </div>
