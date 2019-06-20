@@ -82,6 +82,8 @@ Objektorientierung ist eine Möglichkeit, Zusammenhänge zu modellieren. Die Gru
 
 Klassen sind Baupläne für Objekte. Sie beschreiben, welche Funktionalität ein konkretes Objekt hat, und welche Zustände es besitzt. Objekte sind dann konkrete Instanzen von Klassen.
 
+Wann ist also der Unterschied zwischen Datenstrukturen und Objekten? Datenstrukturen verstecken Funktionalität und bieten Daten an, Objekte bieten Funktionalität und verstecken Daten.
+
 /Genauere Erklärung und Diskussion über OOP im Kurs/
 
 #+BEGIN_SRC python :results output :exports both
