@@ -77,6 +77,7 @@ for line in file_object:
 # Wissen, dass wir die Datei nicht mehr brauchen
 file_object.close()
 #+END_SRC
+Dieser Code erzeugt genau [[https://falcowinkler.github.io/org/kundendaten.txt][diese Datei.]]
 Die Sache mit dem close könnt ihr euch mit dem ~with~ Schlüsselwort einfacher machen. Dieses definiert einen Codeblock, nach dessen Ausführung die geöffnete Datei immer geschlossen wird.
 #+BEGIN_SRC python :results output :exports both
 with open("kundendaten.txt", "r") as file_object, open("ausgabe.txt", "w") as out:
