@@ -1,0 +1,92 @@
+
+
+#+TITLE: Baustein 2 Meeting 1
+
+Herzlich wilkommen zum zweiten Teil des Kurses!
+Nachdem wir die Grundlagen des Programmierens kennengelernt haben, liegt der Fokus in diesem Abschnitt auf dem Sammeln von Erfahrungen und dem Entdecken von coolen Dingen die man mit Python tun kann.
+In den letzten zwei Stunden implementieren wir ein richtiges Projekt! Welches Projekt das sein soll könnt ihr selber über eine Abstimmung in Slack festlegen. Eigene Ideen könnt ihr auch gerne an mich senden.
+* Wiederholung
+
+Wiederholung ist wichtig fürs erfolgreiche Lernen! In dem heutigen warm-up gehen wir zu jedem der Themenbereiche aus dem ersten Kurs eine Aufgabe durch.
+** Teil 1: Variablen und Datentypen, Rechnen
+Die erste Zeile ist vorgegeben: Ihr findet eine Variable ~temperatur_c~ mit einer Kommazahl als ~string~ vor. Rechnet diese Temperatur in Kelvin um (+ 273.15) und gebt in einer lesbaren Nachricht die Temperatur in Kelvin aus, zum Beispiel: Die aktuelle Temperatur ist x Kelvin.
+#+BEGIN_SRC python :results output :exports both
+temperatur_c = 10.12
+# euer code ...
+#+END_SRC
+** Teil 2: while - Schleife, Bedingungen
+Gegeben sein eine Zahl n. Schreibt eine while - Schleife, die solange Folgendes ausführen soll, bis n den Wert 1 bekommt:
+- wenn n ungerade ist, multipliziere n mit 3 und addiere 1
+- wenn n gerade ist, teile n durch 2
+Zur Erinnerung: Die Teilbarkeit einer Zahl n durch m lässt sich in python mittels Teilung mit Rest (modulo) ~n % m == 0~ bestimmen.
+(Für die interessierten: Die Frage ob diese Schleife für jedes ~n~ terminiert, ist ein [[https://www.youtube.com/watch?v=5mFpVDpKX70][höchst interessantes aber bisher ungelöstes Problem]])
+#+BEGIN_SRC python :results output :exports both
+n = 42
+while ...:
+    # euer code
+#+END_SRC
+** Teil 3: Funktionen, Listen, For - Schleifen
+Diese Aufgabe kombiniert viele der bisherigen Konzepte.
+Ihr sollt eine Funktion ~punkte~ schreiben, welche die Punktezahl für einen multiple-choice test ausgibt.
+Genauer gesagt nimmt diese Funktion zwei Listen als Parameter an.
+Beide der Listen enthalten Buchstaben von a bis d, in der ersten Liste stehen die Lösungen,
+in der zweiten Liste die Antworten.
+Eine falsche Antwort gibt -1 Punkt, eine richtige gibt +4 Punkte.
+#+BEGIN_SRC python :results output :exports both
+loesungen = ["a", "a", "b", "b"]
+antworten = ["a", "c", "b", "d"]
+#+END_SRC
+Ein Hinweis: Um beide Listen miteinander zu vergleichen, gibt es die praktische Built-in Funktion ~zip~.
+Diese kombiniert zwei Listen wie ein Reisverschluss, und liefert uns paare mit dem selben index, durch die wir iterieren können.
+#+BEGIN_SRC python :results output :exports both
+loesungen = ["a", "a", "b", "b"]
+antworten = ["a", "c", "b", "d"]
+for loesung, antwort in zip(loesungen, antworten):
+    print(loesung == antwort)
+#+END_SRC
+** Teil 4: Objektorientierung
+Erinnert ihr euch noch an das [[https://falcowinkler.github.io/part1_3.html#sec-6-2][Number Guessing Game aus Baustein 1?]]
+Das Spiel wollen wir jetzt so erweitern, dass man eine bestimmte Anzahl an "Leben" fürs Raten hat.
+Wir schreiben dafür eine Klasse ~GuessingGame~ die
+- im Konstruktor (~__init__~) die geheime Zahl als Parameter annimmt und in  ~self~ speichert,
+die Anzahl an Leben wird inital immer auf 10 gesetzt.
+- eine Methode ~guess~ bereitstellt die eine Zahl als Parameter annimmt, und eine Zahl zurückgibt:
+  -1 für zu klein 0 für richtig, 1 für zu gross.
+- eine Methode ~is_game_over~ bereitstellt, die zurückgibt, ob die Anzahl an Leben kleiner oder gleich 0 ist (also entweder ~True~ oder ~False~).
+Als Zusatz könntet ihr jetzt noch ein interaktives Number Guessing game mithilfe dieser Klasse schreiben.
+Übrigens: Diese Version des Spiels mag vielleicht unnötig kompliziert erscheinen, stellt aber ein wichtiges wiederkehrendes Prinzip vor, dass euch dabei hilft, guten Code zu schreiben: Logische Entitäten in unserem Programm sollen möglichst /modular/, also austauschbar, gehalten werden. Hier haben wir die Spielelogik von der Nutzeroberfäche getrennt.
+* Dateien lesen und schreiben
+Bisher wurden alle Daten in unseren Programmen gelöscht, sobald das Programm beendet wurde. (Nur die Konsolenausgabe bleibt noch eine Weile da). Um Daten zu persistieren oder einfach Informationen aus einer Datei zu lesen, gibt es in Python eine Built-In Funktion ~open~.
+Diese Funktion liefert eine Referenz auf eure Datei. Ihr könnt eine Datei im Modus w für 'write', a für 'append', und r für read öffnen.
+Es ist dabei wichtig, eine Datei nach Verwendung immer mit ~close~ zu schließen. Sonst kann es zu Problemen kommen wenn die Datei erneut geöffnet wird, und es werden Ressourcen verschwendet.
+Die Methode write fügt keinen Zeilenumbruch ein, wie ihr das von ~print~ gewohnt seid. Ein Zeilenumbruch muss mit der sog. Escape-Sequenz ~\n~ manuell hinzugefügt werden.
+#+BEGIN_SRC python :results output :exports both
+# Schreiben in eine Datei
+
+file_object = open("kundendaten.txt", "w")
+file_object.write("Herr Meier, 42, Angestellt\nHerr Müller, 32, Selbstständig")
+file_object.close()
+
+# Lesen einer Datei
+file_object = open("kundendaten.txt", "r") # read-mode
+# Zeile für zeile in einer Schleife
+for line in file_object:
+    print(line)
+
+# Die Referenz sollte geschlossen werden, damit andere Programme
+# Wissen, dass wir die Datei nicht mehr brauchen
+file_object.close()
+#+END_SRC
+Die Sache mit dem close könnt ihr euch mit dem ~with~ Schlüsselwort einfacher machen. Dieses definiert einen Codeblock, nach dessen Ausführung die geöffnete Datei immer geschlossen wird.
+#+BEGIN_SRC python :results output :exports both
+with open("kundendaten.txt", "r") as file_object, open("ausgabe.txt", "w") as out:
+    for line in file_object:
+        print(line)
+        out.write("!!!" + line)
+# close nicht benötigt
+#+END_SRC
+* Übung
+Wir wollen ein kleines Programm schreiben, welches alle Zeilen aus einer Datei A an eine andere Datei B anhängt. Dazu müsst ihr Folgendes, der Reihe nach, tun:
+- Datei A lesend öffnen (~open("meine_datei_A.txt", "r")~)
+- Datei B im Anhänge-Modus öffnen (~open("meine_datei_B.txt", "a")~)
+- Datei A Zeile für Zeile durchlaufen, und jede Zeile mit ~write~ in Datei b schreiben.

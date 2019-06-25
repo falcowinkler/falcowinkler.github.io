@@ -1,0 +1,411 @@
+<!doctype html>
+<html lang="en">
+<head>
+<title>Baustein 2 Meeting 1</title>
+<!-- 2019-06-25 Tue 22:02 -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="generator" content="Org-mode">
+<meta name="author" content="Falco Winkler">
+
+<link  href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<style type="text/css">
+/* org mode styles on top of twbs */
+
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    font-size: 18px;
+    margin-bottom: 105px;
+}
+
+footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 101px;
+    background-color: #f5f5f5;
+}
+
+footer > div {
+    padding: 10px;
+}
+
+footer p {
+    margin: 0 0 5px;
+    text-align: center;
+    font-size: 16px;
+}
+
+#table-of-contents {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+blockquote p {
+    font-size: 18px;
+}
+
+pre {
+    font-size: 16px;
+}
+
+.footpara {
+    display: inline-block;
+}
+
+figcaption {
+  font-size: 16px;
+  color: #666;
+  font-style: italic;
+  padding-bottom: 15px;
+}
+
+/* from twbs docs */
+
+.bs-docs-sidebar.affix {
+    position: static;
+}
+@media (min-width: 768px) {
+    .bs-docs-sidebar {
+        padding-left: 20px;
+    }
+}
+
+/* All levels of nav */
+.bs-docs-sidebar .nav > li > a {
+    display: block;
+    padding: 4px 20px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #999;
+}
+.bs-docs-sidebar .nav > li > a:hover,
+.bs-docs-sidebar .nav > li > a:focus {
+    padding-left: 19px;
+    color: #A1283B;
+    text-decoration: none;
+    background-color: transparent;
+    border-left: 1px solid #A1283B;
+}
+.bs-docs-sidebar .nav > .active > a,
+.bs-docs-sidebar .nav > .active:hover > a,
+.bs-docs-sidebar .nav > .active:focus > a {
+    padding-left: 18px;
+    font-weight: bold;
+    color: #A1283B;
+    background-color: transparent;
+    border-left: 2px solid #A1283B;
+}
+
+/* Nav: second level (shown on .active) */
+.bs-docs-sidebar .nav .nav {
+    display: none; /* Hide by default, but at >768px, show it */
+    padding-bottom: 10px;
+}
+.bs-docs-sidebar .nav .nav > li > a {
+    padding-top: 1px;
+    padding-bottom: 1px;
+    padding-left: 30px;
+    font-size: 12px;
+    font-weight: normal;
+}
+.bs-docs-sidebar .nav .nav > li > a:hover,
+.bs-docs-sidebar .nav .nav > li > a:focus {
+    padding-left: 29px;
+}
+.bs-docs-sidebar .nav .nav > .active > a,
+.bs-docs-sidebar .nav .nav > .active:hover > a,
+.bs-docs-sidebar .nav .nav > .active:focus > a {
+    padding-left: 28px;
+    font-weight: 500;
+}
+
+/* Nav: third level (shown on .active) */
+.bs-docs-sidebar .nav .nav .nav {
+    padding-bottom: 10px;
+}
+.bs-docs-sidebar .nav .nav .nav > li > a {
+    padding-top: 1px;
+    padding-bottom: 1px;
+    padding-left: 40px;
+    font-size: 12px;
+    font-weight: normal;
+}
+.bs-docs-sidebar .nav .nav .nav > li > a:hover,
+.bs-docs-sidebar .nav .nav .nav > li > a:focus {
+    padding-left: 39px;
+}
+.bs-docs-sidebar .nav .nav .nav > .active > a,
+.bs-docs-sidebar .nav .nav .nav > .active:hover > a,
+.bs-docs-sidebar .nav .nav .nav > .active:focus > a {
+    padding-left: 38px;
+    font-weight: 500;
+}
+
+/* Show and affix the side nav when space allows it */
+@media (min-width: 992px) {
+    .bs-docs-sidebar .nav > .active > ul {
+        display: block;
+    }
+    /* Widen the fixed sidebar */
+    .bs-docs-sidebar.affix,
+    .bs-docs-sidebar.affix-bottom {
+        width: 213px;
+    }
+    .bs-docs-sidebar.affix {
+        position: fixed; /* Undo the static from mobile first approach */
+        top: 20px;
+    }
+    .bs-docs-sidebar.affix-bottom {
+        position: absolute; /* Undo the static from mobile first approach */
+    }
+    .bs-docs-sidebar.affix .bs-docs-sidenav,.bs-docs-sidebar.affix-bottom .bs-docs-sidenav {
+        margin-top: 0;
+        margin-bottom: 0
+    }
+}
+@media (min-width: 1200px) {
+    /* Widen the fixed sidebar again */
+    .bs-docs-sidebar.affix-bottom,
+    .bs-docs-sidebar.affix {
+        width: 263px;
+    }
+}
+</style>
+<style>body { margin-bottom: 0px; }</style><script type="text/javascript">
+$(function() {
+    'use strict';
+
+    $('.bs-docs-sidebar li').first().addClass('active');
+
+    $(document.body).scrollspy({target: '.bs-docs-sidebar'});
+
+    $('.bs-docs-sidebar').affix();
+});
+</script><link rel="stylesheet" type="text/css" href="css/python_course.css">
+</head>
+<body>
+<div id="content" class="container">
+<div class="row"><div class="col-md-9"><h1 class="title">Baustein 2 Meeting 1</h1>
+<p>
+Herzlich wilkommen zum zweiten Teil des Kurses!
+Nachdem wir die Grundlagen des Programmierens kennengelernt haben, liegt der Fokus in diesem Abschnitt auf dem Sammeln von Erfahrungen und dem Entdecken von coolen Dingen die man mit Python tun kann.
+In den letzten zwei Stunden implementieren wir ein richtiges Projekt! Welches Projekt das sein soll könnt ihr selber über eine Abstimmung in Slack festlegen. Eigene Ideen könnt ihr auch gerne an mich senden.
+</p>
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1"><span class="section-number-2">1</span> Wiederholung</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+Wiederholung ist wichtig fürs erfolgreiche Lernen! In dem heutigen warm-up gehen wir zu jedem der Themenbereiche aus dem ersten Kurs eine Aufgabe durch.
+</p>
+</div>
+<div id="outline-container-sec-1-1" class="outline-3">
+<h3 id="sec-1-1"><span class="section-number-3">1.1</span> Teil 1: Variablen und Datentypen, Rechnen</h3>
+<div class="outline-text-3" id="text-1-1">
+<p>
+Die erste Zeile ist vorgegeben: Ihr findet eine Variable <code>temperatur_c</code> mit einer Kommazahl als <code>string</code> vor. Rechnet diese Temperatur in Kelvin um (+ 273.15) und gebt in einer lesbaren Nachricht die Temperatur in Kelvin aus, zum Beispiel: Die aktuelle Temperatur ist x Kelvin.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #8b4513;">temperatur_c</span> = 10.12
+<span style="color: #a0a1a7; font-weight: bold;"># </span><span style="color: #a0a1a7;">euer code ...</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-1-2" class="outline-3">
+<h3 id="sec-1-2"><span class="section-number-3">1.2</span> Teil 2: while - Schleife, Bedingungen</h3>
+<div class="outline-text-3" id="text-1-2">
+<p>
+Gegeben sein eine Zahl n. Schreibt eine while - Schleife, die solange Folgendes ausführen soll, bis n den Wert 1 bekommt:
+</p>
+<ul class="org-ul">
+<li>wenn n ungerade ist, multipliziere n mit 3 und addiere 1
+</li>
+<li>wenn n gerade ist, teile n durch 2
+</li>
+</ul>
+<p>
+Zur Erinnerung: Die Teilbarkeit einer Zahl n durch m lässt sich in python mittels Teilung mit Rest (modulo) <code>n % m == 0</code> bestimmen.
+(Für die interessierten: Die Frage ob diese Schleife für jedes <code>n</code> terminiert, ist ein <a href="https://www.youtube.com/watch?v=5mFpVDpKX70">höchst interessantes aber bisher ungelöstes Problem</a>)
+</p>
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #8b4513;">n</span> = 42
+<span style="color: #a626a4;">while</span> ...:
+    <span style="color: #a0a1a7; font-weight: bold;"># </span><span style="color: #a0a1a7;">euer code</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-1-3" class="outline-3">
+<h3 id="sec-1-3"><span class="section-number-3">1.3</span> Teil 3: Funktionen, Listen, For - Schleifen</h3>
+<div class="outline-text-3" id="text-1-3">
+<p>
+Diese Aufgabe kombiniert viele der bisherigen Konzepte.
+Ihr sollt eine Funktion <code>punkte</code> schreiben, welche die Punktezahl für einen multiple-choice test ausgibt.
+Genauer gesagt nimmt diese Funktion zwei Listen als Parameter an.
+Beide der Listen enthalten Buchstaben von a bis d, in der ersten Liste stehen die Lösungen,
+in der zweiten Liste die Antworten.
+Eine falsche Antwort gibt -1 Punkt, eine richtige gibt +4 Punkte.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #8b4513;">loesungen</span> = [<span style="color: #50a14f;">"a"</span>, <span style="color: #50a14f;">"a"</span>, <span style="color: #50a14f;">"b"</span>, <span style="color: #50a14f;">"b"</span>]
+<span style="color: #8b4513;">antworten</span> = [<span style="color: #50a14f;">"a"</span>, <span style="color: #50a14f;">"c"</span>, <span style="color: #50a14f;">"b"</span>, <span style="color: #50a14f;">"d"</span>]
+</pre>
+</div>
+
+<p>
+Ein Hinweis: Um beide Listen miteinander zu vergleichen, gibt es die praktische Built-in Funktion <code>zip</code>.
+Diese kombiniert zwei Listen wie ein Reisverschluss, und liefert uns paare mit dem selben index, durch die wir iterieren können.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #8b4513;">loesungen</span> = [<span style="color: #50a14f;">"a"</span>, <span style="color: #50a14f;">"a"</span>, <span style="color: #50a14f;">"b"</span>, <span style="color: #50a14f;">"b"</span>]
+<span style="color: #8b4513;">antworten</span> = [<span style="color: #50a14f;">"a"</span>, <span style="color: #50a14f;">"c"</span>, <span style="color: #50a14f;">"b"</span>, <span style="color: #50a14f;">"d"</span>]
+<span style="color: #a626a4;">for</span> loesung, antwort <span style="color: #a626a4;">in</span> <span style="color: #e44649;">zip</span>(loesungen, antworten):
+    <span style="color: #a626a4;">print</span>(loesung == antwort)
+</pre>
+</div>
+
+<pre class="example">
+True
+False
+True
+False
+
+</pre>
+</div>
+</div>
+
+<div id="outline-container-sec-1-4" class="outline-3">
+<h3 id="sec-1-4"><span class="section-number-3">1.4</span> Teil 4: Objektorientierung</h3>
+<div class="outline-text-3" id="text-1-4">
+<p>
+Erinnert ihr euch noch an das <a href="https://falcowinkler.github.io/part1_3.html#sec-6-2">Number Guessing Game aus Baustein 1?</a>
+Das Spiel wollen wir jetzt so erweitern, dass man eine bestimmte Anzahl an "Leben" fürs Raten hat.
+Wir schreiben dafür eine Klasse <code>GuessingGame</code> die
+</p>
+<ul class="org-ul">
+<li>im Konstruktor (<code>__init__</code>) die geheime Zahl als Parameter annimmt und in  <code>self</code> speichert,
+</li>
+</ul>
+<p>
+die Anzahl an Leben wird inital immer auf 10 gesetzt.
+</p>
+<ul class="org-ul">
+<li>eine Methode <code>guess</code> bereitstellt die eine Zahl als Parameter annimmt, und eine Zahl zurückgibt:
+-1 für zu klein 0 für richtig, 1 für zu gross.
+</li>
+<li>eine Methode <code>is_game_over</code> bereitstellt, die zurückgibt, ob die Anzahl an Leben kleiner oder gleich 0 ist (also entweder <code>True</code> oder <code>False</code>).
+</li>
+</ul>
+<p>
+Als Zusatz könntet ihr jetzt noch ein interaktives Number Guessing game mithilfe dieser Klasse schreiben.
+Übrigens: Diese Version des Spiels mag vielleicht unnötig kompliziert erscheinen, stellt aber ein wichtiges wiederkehrendes Prinzip vor, dass euch dabei hilft, guten Code zu schreiben: Logische Entitäten in unserem Programm sollen möglichst <i>modular</i>, also austauschbar, gehalten werden. Hier haben wir die Spielelogik von der Nutzeroberfäche getrennt.
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-2" class="outline-2">
+<h2 id="sec-2"><span class="section-number-2">2</span> Dateien lesen und schreiben</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+Bisher wurden alle Daten in unseren Programmen gelöscht, sobald das Programm beendet wurde. (Nur die Konsolenausgabe bleibt noch eine Weile da). Um Daten zu persistieren oder einfach Informationen aus einer Datei zu lesen, gibt es in Python eine Built-In Funktion <code>open</code>.
+Diese Funktion liefert eine Referenz auf eure Datei. Ihr könnt eine Datei im Modus w für 'write', a für 'append', und r für read öffnen.
+Es ist dabei wichtig, eine Datei nach Verwendung immer mit <code>close</code> zu schließen. Sonst kann es zu Problemen kommen wenn die Datei erneut geöffnet wird, und es werden Ressourcen verschwendet.
+Die Methode write fügt keinen Zeilenumbruch ein, wie ihr das von <code>print</code> gewohnt seid. Ein Zeilenumbruch muss mit der sog. Escape-Sequenz <code>\n</code> manuell hinzugefügt werden.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #a0a1a7; font-weight: bold;"># </span><span style="color: #a0a1a7;">Schreiben in eine Datei</span>
+
+<span style="color: #8b4513;">file_object</span> = <span style="color: #e44649;">open</span>(<span style="color: #50a14f;">"kundendaten.txt"</span>, <span style="color: #50a14f;">"w"</span>)
+file_object.write(<span style="color: #50a14f;">"Herr Meier, 42, Angestellt\nHerr M&#252;ller, 32, Selbstst&#228;ndig"</span>)
+file_object.close()
+
+<span style="color: #a0a1a7; font-weight: bold;"># </span><span style="color: #a0a1a7;">Lesen einer Datei</span>
+<span style="color: #8b4513;">file_object</span> = <span style="color: #e44649;">open</span>(<span style="color: #50a14f;">"kundendaten.txt"</span>, <span style="color: #50a14f;">"r"</span>) <span style="color: #a0a1a7; font-weight: bold;"># </span><span style="color: #a0a1a7;">read-mode</span>
+<span style="color: #a0a1a7; font-weight: bold;"># </span><span style="color: #a0a1a7;">Zeile f&#252;r zeile in einer Schleife</span>
+<span style="color: #a626a4;">for</span> line <span style="color: #a626a4;">in</span> file_object:
+    <span style="color: #a626a4;">print</span>(line)
+
+<span style="color: #a0a1a7; font-weight: bold;"># </span><span style="color: #a0a1a7;">Die Referenz sollte geschlossen werden, damit andere Programme</span>
+<span style="color: #a0a1a7; font-weight: bold;"># </span><span style="color: #a0a1a7;">Wissen, dass wir die Datei nicht mehr brauchen</span>
+file_object.close()
+</pre>
+</div>
+
+<pre class="example">
+Herr Meier, 42, Angestellt
+
+Herr Müller, 32, Selbstständig
+
+</pre>
+
+<p>
+Die Sache mit dem close könnt ihr euch mit dem <code>with</code> Schlüsselwort einfacher machen. Dieses definiert einen Codeblock, nach dessen Ausführung die geöffnete Datei immer geschlossen wird.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #a626a4;">with</span> <span style="color: #e44649;">open</span>(<span style="color: #50a14f;">"kundendaten.txt"</span>, <span style="color: #50a14f;">"r"</span>) <span style="color: #a626a4;">as</span> file_object, <span style="color: #e44649;">open</span>(<span style="color: #50a14f;">"ausgabe.txt"</span>, <span style="color: #50a14f;">"w"</span>) <span style="color: #a626a4;">as</span> out:
+    <span style="color: #a626a4;">for</span> line <span style="color: #a626a4;">in</span> file_object:
+        <span style="color: #a626a4;">print</span>(line)
+        out.write(<span style="color: #50a14f;">"!!!"</span> + line)
+<span style="color: #a0a1a7; font-weight: bold;"># </span><span style="color: #a0a1a7;">close nicht ben&#246;tigt</span>
+</pre>
+</div>
+
+<pre class="example">
+Herr Meier, 42, Angestellt
+
+Herr Müller, 32, Selbstständig
+
+</pre>
+</div>
+</div>
+
+<div id="outline-container-sec-3" class="outline-2">
+<h2 id="sec-3"><span class="section-number-2">3</span> Übung</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+Wir wollen ein kleines Programm schreiben, welches alle Zeilen aus einer Datei A an eine andere Datei B anhängt. Dazu müsst ihr Folgendes, der Reihe nach, tun:
+</p>
+<ul class="org-ul">
+<li>Datei A lesend öffnen (<code>open("meine_datei_A.txt", "r")</code>)
+</li>
+<li>Datei B im Anhänge-Modus öffnen (<code>open("meine_datei_B.txt", "a")</code>)
+</li>
+<li>Datei A Zeile für Zeile durchlaufen, und jede Zeile mit <code>write</code> in Datei b schreiben.
+</li>
+</ul>
+</div>
+</div>
+</div><div class="col-md-3"><nav id="table-of-contents">
+<div id="text-table-of-contents" class="bs-docs-sidebar">
+<ul class="nav">
+<li><a href="#sec-1">1. Wiederholung</a>
+<ul class="nav">
+<li><a href="#sec-1-1">1.1. Teil 1: Variablen und Datentypen, Rechnen</a></li>
+<li><a href="#sec-1-2">1.2. Teil 2: while - Schleife, Bedingungen</a></li>
+<li><a href="#sec-1-3">1.3. Teil 3: Funktionen, Listen, For - Schleifen</a></li>
+<li><a href="#sec-1-4">1.4. Teil 4: Objektorientierung</a></li>
+</ul>
+</li>
+<li><a href="#sec-2">2. Dateien lesen und schreiben</a></li>
+<li><a href="#sec-3">3. Übung</a></li>
+</ul>
+</div>
+</nav>
+</div></div></div>
+</body>
+</html>
