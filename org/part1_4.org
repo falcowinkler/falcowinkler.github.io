@@ -187,14 +187,14 @@ Implementiert die Klasse ~Bankkonto~.
 https://www.codewars.com/kata/object-oriented-piracy
 
 * Weiterführend: Python lernen
-Der erste Teil des Kurses ist vorbei und ihr möchtet alleine weitermachen? Kein Problem, es gibt mehrere Möglichkeiten zu üben.
+Der erste Teil des Kurses ist vorbei und ihr möchtet alleine weitermachen? Kein Problem, es gibt eine Vielzahl von Möglichkeiten.
 
 ** Coding - Katas
 Unter Entwicklern hat sich eine bestimmte Trainingsmethode etabliert: Die sogenannten Katas (der Begriff kommt aus dem Kampfsport). Hierbei schreibt ein Entwickler ein Problem auf, dass es zu lösen gilt. Zusätzlich schreibt der Herausforderer Test-Code der Überprüft, ob das Problem richtig gelöst wurde. Der andere Entwickler muss dann versuchen, das Problem so zu lösen dass der Test erfolgreich verläuft.
 
-Es gibt eine Website, auf der man diese Katas in allen Schwierigkeitsgraden lösen kann: https://www.codewars.com. Meldet euch gerne dort an (wenn ihr wollt, tretet dem Clan "moinworld" bei 😉). Eine unterhaltsame Möglichkeit zum Üben :)
+Es gibt eine Website, auf der man diese Katas in allen Schwierigkeitsgraden lösen kann: [[http://www.codewars.com/r/iQ48PQ][www.codewars.com]]. Meldet euch gerne dort an (wenn ihr wollt, tretet dem Clan "moinworld" bei). Eine unterhaltsame Möglichkeit zum Üben :)
 
-Viele Aufgaben aus diesem Kurs sind von codewars. Hier die komplette Liste, falls ihr dafür die Punkte holen wollt:
+Viele Aufgaben aus diesem Kurs habe ich übrigens von dieser Website. Hier die komplette Liste, falls ihr dafür die Punkte holen wollt:
 
 https://www.codewars.com/kata/drink-about/python
 

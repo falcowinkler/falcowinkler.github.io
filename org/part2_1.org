@@ -8,6 +8,7 @@ In den letzten zwei Stunden implementieren wir ein richtiges Projekt! Welches Pr
 * Wiederholung
 
 Wiederholung ist wichtig fürs erfolgreiche Lernen! In dem heutigen warm-up gehen wir zu jedem der Themenbereiche aus dem ersten Kurs eine Aufgabe durch.
+Einige dieser Aufgaben könnt ihr auch auf der in der letzten Stunde erwähnten [[http://www.codewars.com/r/iQ48PQ][Website]] als Lösungen einreichen, wer möchte.
 ** Teil 1: Variablen und Datentypen, Rechnen
 Die erste Zeile ist vorgegeben: Ihr findet eine Variable ~temperatur_c~ mit einer Kommazahl als ~string~ vor. Rechnet diese Temperatur in Kelvin um (+ 273.15) und gebt in einer lesbaren Nachricht die Temperatur in Kelvin aus, zum Beispiel: Die aktuelle Temperatur ist x Kelvin.
 #+BEGIN_SRC python :results output :exports both
@@ -25,6 +26,7 @@ n = 42
 while ...:
     # euer code
 #+END_SRC
+([[https://www.codewars.com/kata/collatz-conjecture-3n-plus-1/train/python][codewars-version]])
 ** Teil 3: Funktionen, Listen, For - Schleifen
 Diese Aufgabe kombiniert viele der bisherigen Konzepte.
 Ihr sollt eine Funktion ~punkte~ schreiben, welche die Punktezahl für einen multiple-choice test ausgibt.
@@ -44,6 +46,7 @@ antworten = ["a", "c", "b", "d"]
 for loesung, antwort in zip(loesungen, antworten):
     print(loesung == antwort)
 #+END_SRC
+([[https://www.codewars.com/kata/check-the-exam/train/python][codewars-version]])
 ** Teil 4: Objektorientierung
 Erinnert ihr euch noch an das [[https://falcowinkler.github.io/part1_3.html#sec-6-2][Number Guessing Game aus Baustein 1?]]
 Das Spiel wollen wir jetzt so erweitern, dass man eine bestimmte Anzahl an "Leben" fürs Raten hat.
