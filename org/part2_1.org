@@ -27,6 +27,7 @@ while ...:
     # euer code
 #+END_SRC
 ([[https://www.codewars.com/kata/collatz-conjecture-3n-plus-1/train/python][codewars-version]])
+([[https://falcowinkler.github.io/resources/python-course/kurs_2_1_wiederholung_schleifen.py][Lösung]])
 ** Teil 3: Funktionen, Listen, For - Schleifen
 Diese Aufgabe kombiniert viele der bisherigen Konzepte.
 Ihr sollt eine Funktion ~punkte~ schreiben, welche die Punktezahl für einen multiple-choice test ausgibt.
@@ -47,6 +48,7 @@ for loesung, antwort in zip(loesungen, antworten):
     print(loesung == antwort)
 #+END_SRC
 ([[https://www.codewars.com/kata/check-the-exam/train/python][codewars-version]])
+([[https://falcowinkler.github.io/resources/python-course/kurs_2_1_wiederholung_punktezahl.py][Lösung]])
 ** Teil 4: Objektorientierung
 Erinnert ihr euch noch an das [[https://falcowinkler.github.io/part1_3.html#sec-6-2][Number Guessing Game aus Baustein 1?]]
 Das Spiel wollen wir jetzt so erweitern, dass man eine bestimmte Anzahl an "Leben" fürs Raten hat.
@@ -58,6 +60,7 @@ die Anzahl an Leben wird inital immer auf 10 gesetzt.
 - eine Methode ~is_game_over~ bereitstellt, die zurückgibt, ob die Anzahl an Leben kleiner oder gleich 0 ist (also entweder ~True~ oder ~False~).
 Als Zusatz könntet ihr jetzt noch ein interaktives Number Guessing game mithilfe dieser Klasse schreiben.
 Übrigens: Diese Version des Spiels mag vielleicht unnötig kompliziert erscheinen, stellt aber ein wichtiges wiederkehrendes Prinzip vor, dass euch dabei hilft, guten Code zu schreiben: Logische Entitäten in unserem Programm sollen möglichst /modular/, also austauschbar, gehalten werden. Hier haben wir die Spielelogik von der Nutzeroberfäche getrennt.
+([[https://falcowinkler.github.io/resources/python-course/kurs_2_1_wiederholung_guessing_game.py][Lösung]])
 * Dateien lesen und schreiben
 Bisher wurden alle Daten in unseren Programmen gelöscht, sobald das Programm beendet wurde. (Nur die Konsolenausgabe bleibt noch eine Weile da). Um Daten zu persistieren oder einfach Informationen aus einer Datei zu lesen, gibt es in Python eine Built-In Funktion ~open~.
 Diese Funktion liefert eine Referenz auf eure Datei. Ihr könnt eine Datei im Modus w für 'write', a für 'append', und r für read öffnen.
