@@ -1,0 +1,543 @@
+<!doctype html>
+<html lang="en">
+<head>
+<title>Baustein 2 Meeting 2</title>
+<!-- 2019-07-04 Thu 13:49 -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="generator" content="Org-mode">
+<meta name="author" content="Falco Winkler">
+
+<link  href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<style type="text/css">
+/* org mode styles on top of twbs */
+
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    font-size: 18px;
+    margin-bottom: 105px;
+}
+
+footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 101px;
+    background-color: #f5f5f5;
+}
+
+footer > div {
+    padding: 10px;
+}
+
+footer p {
+    margin: 0 0 5px;
+    text-align: center;
+    font-size: 16px;
+}
+
+#table-of-contents {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+blockquote p {
+    font-size: 18px;
+}
+
+pre {
+    font-size: 16px;
+}
+
+.footpara {
+    display: inline-block;
+}
+
+figcaption {
+  font-size: 16px;
+  color: #666;
+  font-style: italic;
+  padding-bottom: 15px;
+}
+
+/* from twbs docs */
+
+.bs-docs-sidebar.affix {
+    position: static;
+}
+@media (min-width: 768px) {
+    .bs-docs-sidebar {
+        padding-left: 20px;
+    }
+}
+
+/* All levels of nav */
+.bs-docs-sidebar .nav > li > a {
+    display: block;
+    padding: 4px 20px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #999;
+}
+.bs-docs-sidebar .nav > li > a:hover,
+.bs-docs-sidebar .nav > li > a:focus {
+    padding-left: 19px;
+    color: #A1283B;
+    text-decoration: none;
+    background-color: transparent;
+    border-left: 1px solid #A1283B;
+}
+.bs-docs-sidebar .nav > .active > a,
+.bs-docs-sidebar .nav > .active:hover > a,
+.bs-docs-sidebar .nav > .active:focus > a {
+    padding-left: 18px;
+    font-weight: bold;
+    color: #A1283B;
+    background-color: transparent;
+    border-left: 2px solid #A1283B;
+}
+
+/* Nav: second level (shown on .active) */
+.bs-docs-sidebar .nav .nav {
+    display: none; /* Hide by default, but at >768px, show it */
+    padding-bottom: 10px;
+}
+.bs-docs-sidebar .nav .nav > li > a {
+    padding-top: 1px;
+    padding-bottom: 1px;
+    padding-left: 30px;
+    font-size: 12px;
+    font-weight: normal;
+}
+.bs-docs-sidebar .nav .nav > li > a:hover,
+.bs-docs-sidebar .nav .nav > li > a:focus {
+    padding-left: 29px;
+}
+.bs-docs-sidebar .nav .nav > .active > a,
+.bs-docs-sidebar .nav .nav > .active:hover > a,
+.bs-docs-sidebar .nav .nav > .active:focus > a {
+    padding-left: 28px;
+    font-weight: 500;
+}
+
+/* Nav: third level (shown on .active) */
+.bs-docs-sidebar .nav .nav .nav {
+    padding-bottom: 10px;
+}
+.bs-docs-sidebar .nav .nav .nav > li > a {
+    padding-top: 1px;
+    padding-bottom: 1px;
+    padding-left: 40px;
+    font-size: 12px;
+    font-weight: normal;
+}
+.bs-docs-sidebar .nav .nav .nav > li > a:hover,
+.bs-docs-sidebar .nav .nav .nav > li > a:focus {
+    padding-left: 39px;
+}
+.bs-docs-sidebar .nav .nav .nav > .active > a,
+.bs-docs-sidebar .nav .nav .nav > .active:hover > a,
+.bs-docs-sidebar .nav .nav .nav > .active:focus > a {
+    padding-left: 38px;
+    font-weight: 500;
+}
+
+/* Show and affix the side nav when space allows it */
+@media (min-width: 992px) {
+    .bs-docs-sidebar .nav > .active > ul {
+        display: block;
+    }
+    /* Widen the fixed sidebar */
+    .bs-docs-sidebar.affix,
+    .bs-docs-sidebar.affix-bottom {
+        width: 213px;
+    }
+    .bs-docs-sidebar.affix {
+        position: fixed; /* Undo the static from mobile first approach */
+        top: 20px;
+    }
+    .bs-docs-sidebar.affix-bottom {
+        position: absolute; /* Undo the static from mobile first approach */
+    }
+    .bs-docs-sidebar.affix .bs-docs-sidenav,.bs-docs-sidebar.affix-bottom .bs-docs-sidenav {
+        margin-top: 0;
+        margin-bottom: 0
+    }
+}
+@media (min-width: 1200px) {
+    /* Widen the fixed sidebar again */
+    .bs-docs-sidebar.affix-bottom,
+    .bs-docs-sidebar.affix {
+        width: 263px;
+    }
+}
+</style>
+<style>body { margin-bottom: 0px; }</style><script type="text/javascript">
+$(function() {
+    'use strict';
+
+    $('.bs-docs-sidebar li').first().addClass('active');
+
+    $(document.body).scrollspy({target: '.bs-docs-sidebar'});
+
+    $('.bs-docs-sidebar').affix();
+});
+</script><link rel="stylesheet" type="text/css" href="css/python_course.css">
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  displayAlign: "center",
+  displayIndent: "2em",
+  messageStyle: "none",
+  "HTML-CSS": {
+    scale: 100,
+    styles: {
+      ".MathJax_Display": {
+        "font-size": "100%"
+      }
+    }
+  },
+  "SVG": {
+    scale: 100,
+    styles: {
+      ".MathJax_SVG_Display": {
+        "font-size": "100%",
+        "margin-left": "-2.281em"
+      }
+    }
+  }
+});
+</script>
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_SVG"></script>
+</head>
+<body>
+<div id="content" class="container">
+<div class="row"><div class="col-md-9"><h1 class="title">Baustein 2 Meeting 2</h1>
+<p>
+Thema der heutigen Einheit sind hauptsächlich <i>Bibliotheken</i>.
+Bibliotheken sind im Kern von anderen Entwicklern bereitgestellte Funktionen und Klassen,
+die es uns erlauben, vorgefertigte Implementierungen zu nutzen und so umfangreiche Programme zu schreiben.
+</p>
+
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1"><span class="section-number-2">1</span> Dateien lesen und schreiben</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+Bisher wurden alle Daten in unseren Programmen gelöscht, sobald das Programm beendet wurde. (Nur die Konsolenausgabe bleibt noch eine Weile da). Um Daten zu persistieren oder einfach Informationen aus einer Datei zu lesen, gibt es in Python eine Built-In Funktion <code>open</code>.
+Diese Funktion liefert eine Referenz auf eure Datei. Ihr könnt eine Datei im Modus w für 'write', a für 'append', und r für read öffnen.
+Es ist dabei wichtig, eine Datei nach Verwendung immer mit <code>close</code> zu schließen. Sonst kann es zu Problemen kommen wenn die Datei erneut geöffnet wird, und es werden Ressourcen verschwendet.
+Die Methode write fügt keinen Zeilenumbruch ein, wie ihr das von <code>print</code> gewohnt seid. Ein Zeilenumbruch muss mit der sog. Escape-Sequenz <code>\n</code> manuell hinzugefügt werden.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #a0a1a7; font-weight: bold;"># </span><span style="color: #a0a1a7;">Schreiben in eine Datei</span>
+
+<span style="color: #8b4513;">file_object</span> = <span style="color: #e44649;">open</span>(<span style="color: #50a14f;">"kundendaten.txt"</span>, <span style="color: #50a14f;">"w"</span>)
+file_object.write(<span style="color: #50a14f;">"Herr Meier, 42, Angestellt\nHerr M&#252;ller, 32, Selbstst&#228;ndig"</span>)
+file_object.close()
+
+<span style="color: #a0a1a7; font-weight: bold;"># </span><span style="color: #a0a1a7;">Lesen einer Datei</span>
+<span style="color: #8b4513;">file_object</span> = <span style="color: #e44649;">open</span>(<span style="color: #50a14f;">"kundendaten.txt"</span>, <span style="color: #50a14f;">"r"</span>) <span style="color: #a0a1a7; font-weight: bold;"># </span><span style="color: #a0a1a7;">read-mode</span>
+<span style="color: #a0a1a7; font-weight: bold;"># </span><span style="color: #a0a1a7;">Zeile f&#252;r zeile in einer Schleife</span>
+<span style="color: #a626a4;">for</span> line <span style="color: #a626a4;">in</span> file_object:
+    <span style="color: #a626a4;">print</span>(line)
+
+<span style="color: #a0a1a7; font-weight: bold;"># </span><span style="color: #a0a1a7;">Die Referenz sollte geschlossen werden, damit andere Programme</span>
+<span style="color: #a0a1a7; font-weight: bold;"># </span><span style="color: #a0a1a7;">Wissen, dass wir die Datei nicht mehr brauchen</span>
+file_object.close()
+</pre>
+</div>
+
+<pre class="example">
+Herr Meier, 42, Angestellt
+
+Herr Müller, 32, Selbstständig
+
+</pre>
+
+<p>
+Dieser Code erzeugt genau <a href="https://falcowinkler.github.io/org/kundendaten.txt">diese Datei.</a>
+Die Sache mit dem close könnt ihr euch mit dem <code>with</code> Schlüsselwort einfacher machen. Dieses definiert einen Codeblock, nach dessen Ausführung die geöffnete Datei immer geschlossen wird.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #a626a4;">with</span> <span style="color: #e44649;">open</span>(<span style="color: #50a14f;">"kundendaten.txt"</span>, <span style="color: #50a14f;">"r"</span>) <span style="color: #a626a4;">as</span> file_object, <span style="color: #e44649;">open</span>(<span style="color: #50a14f;">"ausgabe.txt"</span>, <span style="color: #50a14f;">"w"</span>) <span style="color: #a626a4;">as</span> out:
+    <span style="color: #a626a4;">for</span> line <span style="color: #a626a4;">in</span> file_object:
+        <span style="color: #a626a4;">print</span>(line)
+        out.write(<span style="color: #50a14f;">"!!!"</span> + line)
+<span style="color: #a0a1a7; font-weight: bold;"># </span><span style="color: #a0a1a7;">close nicht ben&#246;tigt</span>
+</pre>
+</div>
+
+<pre class="example">
+Herr Meier, 42, Angestellt
+
+Herr Müller, 32, Selbstständig
+
+</pre>
+</div>
+</div>
+
+<div id="outline-container-sec-2" class="outline-2">
+<h2 id="sec-2"><span class="section-number-2">2</span> Übungen (Dateien)</h2>
+<div class="outline-text-2" id="text-2">
+</div><div id="outline-container-sec-2-1" class="outline-3">
+<h3 id="sec-2-1"><span class="section-number-3">2.1</span> Dateien zusammenführen</h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+Wir wollen ein kleines Programm schreiben, welches alle Zeilen aus einer Datei A an eine andere Datei B anhängt. Dazu müsst ihr Folgendes, der Reihe nach, tun:
+</p>
+<ul class="org-ul">
+<li>Datei A lesend öffnen (<code>open("meine_datei_A.txt", "r")</code>)
+</li>
+<li>Datei B im Anhänge-Modus öffnen (<code>open("meine_datei_B.txt", "a")</code>)
+</li>
+<li>Datei A Zeile für Zeile durchlaufen, und jede Zeile mit <code>write</code> in Datei b schreiben.
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-sec-2-2" class="outline-3">
+<h3 id="sec-2-2"><span class="section-number-3">2.2</span> Wörter zählen</h3>
+<div class="outline-text-3" id="text-2-2">
+<ul class="org-ul">
+<li>Schreibt ein Programm welches die Wörter in einer Datei zählt.
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-3" class="outline-2">
+<h2 id="sec-3"><span class="section-number-2">3</span> Bibliotheken</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+Funktionen und Klassen können in eine sogenannte Bibliothek "verpackt" und so wiederverwendbar gemacht werden. Andere Entwickler können diese Bibliotheken dann über den Befehl import verwenden. In Python sind schon einige Bibliotheken vorinstalliert: Sie Enthalten Funktionalität die häufig gebraucht wird, wie zum Beispiel das Rechnen mit Datumswerten und Zeiten, Mathematische Funktionen, Interaktion mit dem Betriebssystem und so weiter. Auch die bisher kennengelerten Built-in Funtionen wie str oder input zählen zu dieser standard - Bibliothek. Eine Übersicht gibt es hier: <a href="https://docs.python.org/3/library/">https://docs.python.org/3/library/</a>
+Wir werden heute beispielhaft die Bibliotheken math, random und time kennenlernen.
+</p>
+</div>
+<div id="outline-container-sec-3-1" class="outline-3">
+<h3 id="sec-3-1"><span class="section-number-3">3.1</span> math</h3>
+<div class="outline-text-3" id="text-3-1">
+<p>
+In dieser Bibliothek findet man alle wichtige mathematische Funktionen. Die braucht man in Computerprogrammen vielleicht häufiger als man denken mag.
+Durch den Befehl import math können wir in der Syntax math.&lt;funktion&gt; auf alle Funktionen zugreifen. Will man sich das math. vorneweg sparen, kann man auch from math import * schreiben.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #a626a4;">import</span> math
+
+<span style="color: #a626a4;">print</span>(math.pi)
+
+<span style="color: #a626a4;">from</span> math <span style="color: #a626a4;">import</span> *
+
+<span style="color: #a626a4;">print</span>(pi)
+
+<span style="color: #8b4513;">radius</span> = 20
+<span style="color: #8b4513;">umfang</span> = radius * 2 * pi
+<span style="color: #a626a4;">print</span>(umfang)
+
+<span style="color: #a626a4;">print</span>(log(1)) <span style="color: #a0a1a7; font-weight: bold;"># </span><span style="color: #a0a1a7;">Logarithmus und Exponentialfunktion</span>
+<span style="color: #a626a4;">print</span>(log(exp(7)))
+<span style="color: #a626a4;">print</span>(gcd(4, 8)) <span style="color: #a0a1a7; font-weight: bold;"># </span><span style="color: #a0a1a7;">Gr&#246;&#223;ter gemeinsamer teiler</span>
+
+<span style="color: #a626a4;">print</span>(sqrt(2)) <span style="color: #a0a1a7; font-weight: bold;"># </span><span style="color: #a0a1a7;">Wurzel</span>
+<span style="color: #a626a4;">print</span>(sqrt(9))
+
+<span style="color: #a626a4;">print</span>(cos(pi)) <span style="color: #a0a1a7; font-weight: bold;"># </span><span style="color: #a0a1a7;">cosinus</span>
+<span style="color: #a626a4;">print</span>(sin(pi)) <span style="color: #a0a1a7; font-weight: bold;"># </span><span style="color: #a0a1a7;">sinus (eigentlich 0, Fehler in der Berechnung)</span>
+
+<span style="color: #a626a4;">print</span>(sin(pi/4))
+<span style="color: #a626a4;">print</span>(sqrt(2)/2)
+
+<span style="color: #a626a4;">print</span>(sin(pi/4) == sqrt(2)/2)
+<span style="color: #a626a4;">print</span>(isclose(sin(pi/4), sqrt(2)/2))
+</pre>
+</div>
+
+<pre class="example">
+3.141592653589793
+3.141592653589793
+125.66370614359172
+0.0
+7.0
+4
+1.4142135623730951
+3.0
+-1.0
+1.2246467991473532e-16
+0.7071067811865475
+0.7071067811865476
+False
+True
+</pre>
+</div>
+
+<div id="outline-container-sec-3-1-1" class="outline-4">
+<h4 id="sec-3-1-1"><span class="section-number-4">3.1.1</span> Übung</h4>
+<div class="outline-text-4" id="text-3-1-1">
+<p>
+Die Funktionen in dieser Bibliothek benötigt man wenn man z.B. eine bestimmte Formel explizit ausrechnen muss.
+In dieser Übung müsst ihr eine Formel in python code ausdrücken.
+Bzgl. der Funktion Sinus gibt es den folgenden Zusammenhang.
+</p>
+\begin{align}
+sin(\frac{\pi} {4}) = \frac{\sqrt(2)}{2}
+\end{align}
+<p>
+Die Aufgabe ist, diese Gleichheit in Python zu überprüfen.
+Warum ergibt der direkte Vergleich mit <code>==</code> <code>False</code>? Wie kann man solche zahlen auf Gleichheit prüfen? (versucht mal <code>math.isclose(a,b)</code>).
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-3-2" class="outline-3">
+<h3 id="sec-3-2"><span class="section-number-3">3.2</span> time</h3>
+<div class="outline-text-3" id="text-3-2">
+<p>
+Diese Bibliothek kann für das Umgehen mit Zeitintervallen, oder einfach dafür das aktuelle Jahr, den aktuellen Tag usw. rauszufinden (mit <code>gmttime</code>). Man kann auch die Zeit messen, die euer Programm zur Ausführung braucht.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #a626a4;">import</span> time
+
+<span style="color: #a626a4;">print</span> (<span style="color: #50a14f;">"Sekunden seit 1970 : "</span> + <span style="color: #e44649;">str</span>(time.time()))
+
+<span style="color: #a0a1a7; font-weight: bold;">#</span><span style="color: #a0a1a7;">Zeitattribute:</span>
+<span style="color: #8b4513;">zeitattribute</span> = time.gmtime()
+<span style="color: #a626a4;">print</span>(zeitattribute.tm_wday) <span style="color: #a0a1a7; font-weight: bold;"># </span><span style="color: #a0a1a7;">Wochentag 1, = dienstag, 2 2= mittwoch</span>
+<span style="color: #a626a4;">print</span>(zeitattribute)
+<span style="color: #a0a1a7; font-weight: bold;"># </span><span style="color: #a0a1a7;">So kann man zum beispiel die Zeit messen</span>
+<span style="color: #8b4513;">vorher</span> = time.time()
+<span style="color: #e44649;">sum</span> = 0
+<span style="color: #a626a4;">for</span> i <span style="color: #a626a4;">in</span> <span style="color: #e44649;">range</span>(1000000):
+    <span style="color: #e44649;">sum</span> += -1 * i
+
+<span style="color: #8b4513;">nachher</span> = time.time()
+<span style="color: #a626a4;">print</span>(nachher-vorher)
+
+
+<span style="color: #a0a1a7; font-weight: bold;"># </span><span style="color: #a0a1a7;">Mit strptime kann man aus einem String ein Datum machen</span>
+<span style="color: #8b4513;">birthday</span> = time.strptime(<span style="color: #50a14f;">"19.08.95"</span>, <span style="color: #50a14f;">"%d.%m.%y"</span>)
+<span style="color: #a626a4;">print</span>(birthday.tm_wday)
+</pre>
+</div>
+
+<pre class="example">
+Sekunden seit 1970 : 1562248151.9118562
+3
+time.struct_time(tm_year=2019, tm_mon=7, tm_mday=4, tm_hour=13, tm_min=49, tm_sec=11, tm_wday=3, tm_yday=185, tm_isdst=0)
+0.15817904472351074
+5
+
+</pre>
+</div>
+
+<div id="outline-container-sec-3-2-1" class="outline-4">
+<h4 id="sec-3-2-1"><span class="section-number-4">3.2.1</span> Übung</h4>
+<div class="outline-text-4" id="text-3-2-1">
+<p>
+Schreibt eine Funktion <code>get_weekday</code> die ein Datum im üblichen europäischen Format (z.B. "01.02.2013") entgegennimmt, und den Wochentag dafür als Zahl zurückgibt. Wenn noch Zeit ist, erweitert dann die Funktion damit sie den Wochentag als Zeichenkette zurückgibt ("Mittwoch" zum Beispiel)
+Wer schon früher fertig ist: Schreibt eine Funktion, die euch die Anzahl an Tagen von jetzt bis zu einem gegebenen Datum liefert.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #a626a4;">import</span> time
+
+<span style="color: #a626a4;">def</span> <span style="color: #0184bc;">get_weekday</span>(date_as_string):
+    ...
+    <span style="color: #a626a4;">return</span> ...
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-3-3" class="outline-3">
+<h3 id="sec-3-3"><span class="section-number-3">3.3</span> random</h3>
+<div class="outline-text-3" id="text-3-3">
+<p>
+Mit <code>random</code> kann man zufällige Zahlen erzeugen. Außerdem gibt es noch einige Funktionen für Listen, die ein zufälliges Element zurückgeben oder die Elemente zufällig neu anordnen.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #a626a4;">import</span> random
+
+<span style="color: #a626a4;">print</span>(random.randint(0,8)) <span style="color: #a0a1a7; font-weight: bold;"># </span><span style="color: #a0a1a7;">Zuf&#228;llige Zahl im Bereich 0 bis 8</span>
+<span style="color: #a626a4;">print</span>(random.random()) <span style="color: #a0a1a7; font-weight: bold;"># </span><span style="color: #a0a1a7;">Zuf&#228;llige Kommazahl im bereich 0 - 1</span>
+<span style="color: #a626a4;">print</span>(random.random() * 10 + 20) <span style="color: #a0a1a7; font-weight: bold;"># </span><span style="color: #a0a1a7;">Zuf&#228;llige Kommazahl im bereich 20-30</span>
+
+<span style="color: #a0a1a7; font-weight: bold;"># </span><span style="color: #a0a1a7;">Welches kleid heute? ;)</span>
+<span style="color: #a626a4;">print</span>(random.choice([<span style="color: #50a14f;">"Das rote"</span>, <span style="color: #50a14f;">"Das blaue"</span>, <span style="color: #50a14f;">"Das gr&#252;ne"</span>]))
+
+<span style="color: #8b4513;">sortiert</span> = [1, 2, 3, 4, 5, 6]
+random.shuffle(sortiert)
+<span style="color: #a626a4;">print</span>(sortiert)
+</pre>
+</div>
+
+<pre class="example">
+3
+0.8484127146726312
+22.152997998213756
+Das grüne
+[4, 2, 1, 3, 5, 6]
+
+</pre>
+</div>
+
+<div id="outline-container-sec-3-3-1" class="outline-4">
+<h4 id="sec-3-3-1"><span class="section-number-4">3.3.1</span> Übung</h4>
+<div class="outline-text-4" id="text-3-3-1">
+<p>
+Wir schreiben eine Funktion, die einen Satz als parameter bekommt, und die Reihenfolge der Wörter zufällig verändert.
+Der veränderte Satz wird als String zurückgegeben.
+</p>
+
+<p>
+Zur Erinnerung:
+</p>
+<ul class="org-ul">
+<li><code>string.split("trennzeichen")</code> spaltet einen String in Teile
+</li>
+<li><code>"trennzeichen".join(liste)</code> fügt eine Liste aus strings wieder zusammen, mit dem Trennzeichen dazwischen.
+</li>
+</ul>
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #a626a4;">def</span> <span style="color: #0184bc;">randomize_sentence</span>(sentence):
+    ...
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div><div class="col-md-3"><nav id="table-of-contents">
+<div id="text-table-of-contents" class="bs-docs-sidebar">
+<ul class="nav">
+<li><a href="#sec-1">1. Dateien lesen und schreiben</a></li>
+<li><a href="#sec-2">2. Übungen (Dateien)</a>
+<ul class="nav">
+<li><a href="#sec-2-1">2.1. Dateien zusammenführen</a></li>
+<li><a href="#sec-2-2">2.2. Wörter zählen</a></li>
+</ul>
+</li>
+<li><a href="#sec-3">3. Bibliotheken</a>
+<ul class="nav">
+<li><a href="#sec-3-1">3.1. math</a></li>
+<li><a href="#sec-3-2">3.2. time</a></li>
+<li><a href="#sec-3-3">3.3. random</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</nav>
+</div></div></div>
+</body>
+</html>

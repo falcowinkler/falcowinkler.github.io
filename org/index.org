@@ -11,7 +11,8 @@ falco's website ヾ(＾-＾)ノ
 **** [[file:part1_3.org][Funktionen und Wörterbücher]]
 **** [[file:part1_4.org][Objektorientierte Programmierung]]
 *** Baustein 2
-**** [[file:part2_1.org][Wiederholung Baustein 1, Umgang mit Dateien]]
+**** [[file:part2_1.org][Wiederholung Baustein 1]]
+**** [[file:part2_2.org][Bibliotheken]]
 * presentations
 **** [[https://falcowinkler.github.io/haw_ethik_in_algorithmen.html][Ethik in Algorithmen]]
 **** [[https://github.com/falcowinkler/falcowinkler.github.io/raw/master/resources/pdf/se_in_data_science.pdf][Software Engineering in Machine Learning und Data Science]]
