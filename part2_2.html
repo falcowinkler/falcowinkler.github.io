@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <title>Baustein 2 Meeting 2</title>
-<!-- 2019-07-05 Fri 08:00 -->
+<!-- 2019-07-05 Fri 08:19 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="generator" content="Org-mode">
@@ -375,7 +375,8 @@ Angenommen wir wollen Prüfen ob diese Gleicheit stimmt.
 </p>
 <div class="org-src-container">
 
-<pre class="src src-python"><span style="color: #a626a4;">print</span>(cos(pi)) <span style="color: #a0a1a7; font-weight: bold;"># </span><span style="color: #a0a1a7;">cosinus</span>
+<pre class="src src-python"><span style="color: #a626a4;">from</span> math <span style="color: #a626a4;">import</span> *
+<span style="color: #a626a4;">print</span>(cos(pi)) <span style="color: #a0a1a7; font-weight: bold;"># </span><span style="color: #a0a1a7;">cosinus</span>
 <span style="color: #a626a4;">print</span>(sin(pi)) <span style="color: #a0a1a7; font-weight: bold;"># </span><span style="color: #a0a1a7;">sinus (eigentlich 0, Ungenauigkeit in der Berechnung)</span>
 
 <span style="color: #a626a4;">print</span>(sin(pi/4))
@@ -385,6 +386,16 @@ Angenommen wir wollen Prüfen ob diese Gleicheit stimmt.
 <span style="color: #a626a4;">print</span>(isclose(sin(pi/4), sqrt(2)/2))
 </pre>
 </div>
+
+<pre class="example">
+-1.0
+1.2246467991473532e-16
+0.7071067811865475
+0.7071067811865476
+False
+True
+
+</pre>
 
 <p>
 Warum ergibt der direkte Vergleich mit <code>==</code> <code>False</code>?
@@ -440,10 +451,10 @@ Diese Bibliothek kann für das Umgehen mit Zeitintervallen, oder einfach dafür 
 </div>
 
 <pre class="example">
-Sekunden seit 1970 : 1562313626.131798
+Sekunden seit 1970 : 1562314798.195922
 4
-time.struct_time(tm_year=2019, tm_mon=7, tm_mday=5, tm_hour=8, tm_min=0, tm_sec=26, tm_wday=4, tm_yday=186, tm_isdst=0)
-0.15041184425354004
+time.struct_time(tm_year=2019, tm_mon=7, tm_mday=5, tm_hour=8, tm_min=19, tm_sec=58, tm_wday=4, tm_yday=186, tm_isdst=0)
+0.14162278175354004
 5
 
 </pre>
@@ -496,11 +507,11 @@ random.shuffle(sortiert)
 </div>
 
 <pre class="example">
-2
-0.8922446717430403
-23.127382164651593
-Das blaue
-[3, 5, 1, 6, 2, 4]
+6
+0.5346427583308654
+21.772147622520762
+Das rote
+[2, 4, 5, 3, 6, 1]
 
 </pre>
 </div>

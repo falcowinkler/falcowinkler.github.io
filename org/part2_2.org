@@ -78,6 +78,7 @@ sin(\frac{\pi} {4}) = \frac{\sqrt(2)}{2}
 \end{align}
 Angenommen wir wollen Prüfen ob diese Gleicheit stimmt.
 #+BEGIN_SRC python :results output :exports both
+from math import *
 print(cos(pi)) # cosinus
 print(sin(pi)) # sinus (eigentlich 0, Ungenauigkeit in der Berechnung)
 
