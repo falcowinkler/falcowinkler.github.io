@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <title>Baustein 2 Meeting 1</title>
-<!-- 2019-06-30 Sun 07:54 -->
+<!-- 2019-07-05 Fri 08:00 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="generator" content="Org-mode">
@@ -326,81 +326,6 @@ Als Zusatz könntet ihr jetzt noch ein interaktives Number Guessing game mithilf
 </div>
 </div>
 </div>
-<div id="outline-container-sec-2" class="outline-2">
-<h2 id="sec-2"><span class="section-number-2">2</span> Dateien lesen und schreiben</h2>
-<div class="outline-text-2" id="text-2">
-<p>
-Bisher wurden alle Daten in unseren Programmen gelöscht, sobald das Programm beendet wurde. (Nur die Konsolenausgabe bleibt noch eine Weile da). Um Daten zu persistieren oder einfach Informationen aus einer Datei zu lesen, gibt es in Python eine Built-In Funktion <code>open</code>.
-Diese Funktion liefert eine Referenz auf eure Datei. Ihr könnt eine Datei im Modus w für 'write', a für 'append', und r für read öffnen.
-Es ist dabei wichtig, eine Datei nach Verwendung immer mit <code>close</code> zu schließen. Sonst kann es zu Problemen kommen wenn die Datei erneut geöffnet wird, und es werden Ressourcen verschwendet.
-Die Methode write fügt keinen Zeilenumbruch ein, wie ihr das von <code>print</code> gewohnt seid. Ein Zeilenumbruch muss mit der sog. Escape-Sequenz <code>\n</code> manuell hinzugefügt werden.
-</p>
-<div class="org-src-container">
-
-<pre class="src src-python"><span style="color: #a0a1a7; font-weight: bold;"># </span><span style="color: #a0a1a7;">Schreiben in eine Datei</span>
-
-<span style="color: #8b4513;">file_object</span> = <span style="color: #e44649;">open</span>(<span style="color: #50a14f;">"kundendaten.txt"</span>, <span style="color: #50a14f;">"w"</span>)
-file_object.write(<span style="color: #50a14f;">"Herr Meier, 42, Angestellt\nHerr M&#252;ller, 32, Selbstst&#228;ndig"</span>)
-file_object.close()
-
-<span style="color: #a0a1a7; font-weight: bold;"># </span><span style="color: #a0a1a7;">Lesen einer Datei</span>
-<span style="color: #8b4513;">file_object</span> = <span style="color: #e44649;">open</span>(<span style="color: #50a14f;">"kundendaten.txt"</span>, <span style="color: #50a14f;">"r"</span>) <span style="color: #a0a1a7; font-weight: bold;"># </span><span style="color: #a0a1a7;">read-mode</span>
-<span style="color: #a0a1a7; font-weight: bold;"># </span><span style="color: #a0a1a7;">Zeile f&#252;r zeile in einer Schleife</span>
-<span style="color: #a626a4;">for</span> line <span style="color: #a626a4;">in</span> file_object:
-    <span style="color: #a626a4;">print</span>(line)
-
-<span style="color: #a0a1a7; font-weight: bold;"># </span><span style="color: #a0a1a7;">Die Referenz sollte geschlossen werden, damit andere Programme</span>
-<span style="color: #a0a1a7; font-weight: bold;"># </span><span style="color: #a0a1a7;">Wissen, dass wir die Datei nicht mehr brauchen</span>
-file_object.close()
-</pre>
-</div>
-
-<pre class="example">
-Herr Meier, 42, Angestellt
-
-Herr Müller, 32, Selbstständig
-
-</pre>
-
-<p>
-Dieser Code erzeugt genau <a href="https://falcowinkler.github.io/org/kundendaten.txt">diese Datei.</a>
-Die Sache mit dem close könnt ihr euch mit dem <code>with</code> Schlüsselwort einfacher machen. Dieses definiert einen Codeblock, nach dessen Ausführung die geöffnete Datei immer geschlossen wird.
-</p>
-<div class="org-src-container">
-
-<pre class="src src-python"><span style="color: #a626a4;">with</span> <span style="color: #e44649;">open</span>(<span style="color: #50a14f;">"kundendaten.txt"</span>, <span style="color: #50a14f;">"r"</span>) <span style="color: #a626a4;">as</span> file_object, <span style="color: #e44649;">open</span>(<span style="color: #50a14f;">"ausgabe.txt"</span>, <span style="color: #50a14f;">"w"</span>) <span style="color: #a626a4;">as</span> out:
-    <span style="color: #a626a4;">for</span> line <span style="color: #a626a4;">in</span> file_object:
-        <span style="color: #a626a4;">print</span>(line)
-        out.write(<span style="color: #50a14f;">"!!!"</span> + line)
-<span style="color: #a0a1a7; font-weight: bold;"># </span><span style="color: #a0a1a7;">close nicht ben&#246;tigt</span>
-</pre>
-</div>
-
-<pre class="example">
-Herr Meier, 42, Angestellt
-
-Herr Müller, 32, Selbstständig
-
-</pre>
-</div>
-</div>
-
-<div id="outline-container-sec-3" class="outline-2">
-<h2 id="sec-3"><span class="section-number-2">3</span> Übung</h2>
-<div class="outline-text-2" id="text-3">
-<p>
-Wir wollen ein kleines Programm schreiben, welches alle Zeilen aus einer Datei A an eine andere Datei B anhängt. Dazu müsst ihr Folgendes, der Reihe nach, tun:
-</p>
-<ul class="org-ul">
-<li>Datei A lesend öffnen (<code>open("meine_datei_A.txt", "r")</code>)
-</li>
-<li>Datei B im Anhänge-Modus öffnen (<code>open("meine_datei_B.txt", "a")</code>)
-</li>
-<li>Datei A Zeile für Zeile durchlaufen, und jede Zeile mit <code>write</code> in Datei b schreiben.
-</li>
-</ul>
-</div>
-</div>
 </div><div class="col-md-3"><nav id="table-of-contents">
 <div id="text-table-of-contents" class="bs-docs-sidebar">
 <ul class="nav">
@@ -412,8 +337,6 @@ Wir wollen ein kleines Programm schreiben, welches alle Zeilen aus einer Datei A
 <li><a href="#sec-1-4">1.4. Teil 4: Objektorientierung</a></li>
 </ul>
 </li>
-<li><a href="#sec-2">2. Dateien lesen und schreiben</a></li>
-<li><a href="#sec-3">3. Übung</a></li>
 </ul>
 </div>
 </nav>

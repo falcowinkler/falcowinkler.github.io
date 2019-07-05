@@ -70,9 +70,16 @@ print(gcd(4, 8)) # Größter gemeinsamer teiler
 
 print(sqrt(2)) # Wurzel
 print(sqrt(9))
-
+#+END_SRC
+Die Funktionen in dieser Bibliothek benötigt man wenn man z.B. eine bestimmte Formel explizit ausrechnen muss.
+Bzgl. der Funktion Sinus gibt es den folgenden Zusammenhang.
+\begin{align}
+sin(\frac{\pi} {4}) = \frac{\sqrt(2)}{2}
+\end{align}
+Angenommen wir wollen Prüfen ob diese Gleicheit stimmt.
+#+BEGIN_SRC python :results output :exports both
 print(cos(pi)) # cosinus
-print(sin(pi)) # sinus (eigentlich 0, Fehler in der Berechnung)
+print(sin(pi)) # sinus (eigentlich 0, Ungenauigkeit in der Berechnung)
 
 print(sin(pi/4))
 print(sqrt(2)/2)
@@ -80,15 +87,13 @@ print(sqrt(2)/2)
 print(sin(pi/4) == sqrt(2)/2)
 print(isclose(sin(pi/4), sqrt(2)/2))
 #+END_SRC
-*** Übung
-Die Funktionen in dieser Bibliothek benötigt man wenn man z.B. eine bestimmte Formel explizit ausrechnen muss.
-In dieser Übung müsst ihr eine Formel in python code ausdrücken.
-Bzgl. der Funktion Sinus gibt es den folgenden Zusammenhang.
-\begin{align}
-sin(\frac{\pi} {4}) = \frac{\sqrt(2)}{2}
-\end{align}
-Die Aufgabe ist, diese Gleichheit in Python zu überprüfen.
-Warum ergibt der direkte Vergleich mit ~==~ ~False~? Wie kann man solche zahlen auf Gleichheit prüfen? (versucht mal ~math.isclose(a,b)~).
+Warum ergibt der direkte Vergleich mit ~==~ ~False~?
+Der Grund liegt wieder in der Ungenauigkeit von Fließkommazahlen in Computern. Ihr erinnert euch eventell:
+#+BEGIN_SRC python :results output :exports both
+print(0.1 + 0.2)
+#+END_SRC
+Die ~math~ Bibliothek achtet nicht auf solche Rundungen.
+Mit ~math.isclose(a,b)~ kann man aber zum Beispiel zwei Zahlen auf Gleichheit prüfen, auch wenn sie ein bisschen verschieden sind.
 ** time
 Diese Bibliothek kann für das Umgehen mit Zeitintervallen, oder einfach dafür das aktuelle Jahr, den aktuellen Tag usw. rauszufinden (mit ~gmttime~). Man kann auch die Zeit messen, die euer Programm zur Ausführung braucht.
 #+BEGIN_SRC python :results output :exports both
@@ -115,7 +120,7 @@ birthday = time.strptime("19.08.95", "%d.%m.%y")
 print(birthday.tm_wday)
 #+END_SRC
 *** Übung
-Schreibt eine Funktion ~get_weekday~ die ein Datum im üblichen europäischen Format (z.B. "01.02.2013") entgegennimmt, und den Wochentag dafür als Zahl zurückgibt. Wenn noch Zeit ist, erweitert dann die Funktion damit sie den Wochentag als Zeichenkette zurückgibt ("Mittwoch" zum Beispiel)
+Schreibt eine Funktion ~get_weekday~ die ein Datum im üblichen europäischen Format (z.B. "01.02.2013") (das Format dafür ist ~"%d.%m.%Y"~, grosses ~Y~) entgegennimmt, und den Wochentag dafür als Zahl zurückgibt. Wenn noch Zeit ist, erweitert dann die Funktion damit sie den Wochentag als Zeichenkette zurückgibt ("Mittwoch" zum Beispiel)
 Wer schon früher fertig ist: Schreibt eine Funktion, die euch die Anzahl an Tagen von jetzt bis zu einem gegebenen Datum liefert.
 #+BEGIN_SRC python :results output :exports both
 import time
@@ -124,6 +129,7 @@ def get_weekday(date_as_string):
     ...
     return ...
 #+END_SRC
+([[https://falcowinkler.github.io/resources/python-course/kurs_2_2_time.py][Lösung]])
 ** random
 Mit ~random~ kann man zufällige Zahlen erzeugen. Außerdem gibt es noch einige Funktionen für Listen, die ein zufälliges Element zurückgeben oder die Elemente zufällig neu anordnen.
 #+BEGIN_SRC python :results output :exports both

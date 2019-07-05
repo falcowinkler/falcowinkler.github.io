@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <title>Baustein 2 Meeting 2</title>
-<!-- 2019-07-04 Thu 13:49 -->
+<!-- 2019-07-05 Fri 08:00 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="generator" content="Org-mode">
@@ -348,15 +348,6 @@ Durch den Befehl import math können wir in der Syntax math.&lt;funktion&gt; auf
 
 <span style="color: #a626a4;">print</span>(sqrt(2)) <span style="color: #a0a1a7; font-weight: bold;"># </span><span style="color: #a0a1a7;">Wurzel</span>
 <span style="color: #a626a4;">print</span>(sqrt(9))
-
-<span style="color: #a626a4;">print</span>(cos(pi)) <span style="color: #a0a1a7; font-weight: bold;"># </span><span style="color: #a0a1a7;">cosinus</span>
-<span style="color: #a626a4;">print</span>(sin(pi)) <span style="color: #a0a1a7; font-weight: bold;"># </span><span style="color: #a0a1a7;">sinus (eigentlich 0, Fehler in der Berechnung)</span>
-
-<span style="color: #a626a4;">print</span>(sin(pi/4))
-<span style="color: #a626a4;">print</span>(sqrt(2)/2)
-
-<span style="color: #a626a4;">print</span>(sin(pi/4) == sqrt(2)/2)
-<span style="color: #a626a4;">print</span>(isclose(sin(pi/4), sqrt(2)/2))
 </pre>
 </div>
 
@@ -369,31 +360,51 @@ Durch den Befehl import math können wir in der Syntax math.&lt;funktion&gt; auf
 4
 1.4142135623730951
 3.0
--1.0
-1.2246467991473532e-16
-0.7071067811865475
-0.7071067811865476
-False
-True
-</pre>
-</div>
 
-<div id="outline-container-sec-3-1-1" class="outline-4">
-<h4 id="sec-3-1-1"><span class="section-number-4">3.1.1</span> Übung</h4>
-<div class="outline-text-4" id="text-3-1-1">
+</pre>
+
 <p>
 Die Funktionen in dieser Bibliothek benötigt man wenn man z.B. eine bestimmte Formel explizit ausrechnen muss.
-In dieser Übung müsst ihr eine Formel in python code ausdrücken.
 Bzgl. der Funktion Sinus gibt es den folgenden Zusammenhang.
 </p>
 \begin{align}
 sin(\frac{\pi} {4}) = \frac{\sqrt(2)}{2}
 \end{align}
 <p>
-Die Aufgabe ist, diese Gleichheit in Python zu überprüfen.
-Warum ergibt der direkte Vergleich mit <code>==</code> <code>False</code>? Wie kann man solche zahlen auf Gleichheit prüfen? (versucht mal <code>math.isclose(a,b)</code>).
+Angenommen wir wollen Prüfen ob diese Gleicheit stimmt.
 </p>
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #a626a4;">print</span>(cos(pi)) <span style="color: #a0a1a7; font-weight: bold;"># </span><span style="color: #a0a1a7;">cosinus</span>
+<span style="color: #a626a4;">print</span>(sin(pi)) <span style="color: #a0a1a7; font-weight: bold;"># </span><span style="color: #a0a1a7;">sinus (eigentlich 0, Ungenauigkeit in der Berechnung)</span>
+
+<span style="color: #a626a4;">print</span>(sin(pi/4))
+<span style="color: #a626a4;">print</span>(sqrt(2)/2)
+
+<span style="color: #a626a4;">print</span>(sin(pi/4) == sqrt(2)/2)
+<span style="color: #a626a4;">print</span>(isclose(sin(pi/4), sqrt(2)/2))
+</pre>
 </div>
+
+<p>
+Warum ergibt der direkte Vergleich mit <code>==</code> <code>False</code>?
+Der Grund liegt wieder in der Ungenauigkeit von Fließkommazahlen in Computern. Ihr erinnert euch eventell:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #a626a4;">print</span>(0.1 + 0.2)
+</pre>
+</div>
+
+<pre class="example">
+0.30000000000000004
+
+</pre>
+
+<p>
+Die <code>math</code> Bibliothek achtet nicht auf solche Rundungen.
+Mit <code>math.isclose(a,b)</code> kann man aber zum Beispiel zwei Zahlen auf Gleichheit prüfen, auch wenn sie ein bisschen verschieden sind.
+</p>
 </div>
 </div>
 <div id="outline-container-sec-3-2" class="outline-3">
@@ -429,10 +440,10 @@ Diese Bibliothek kann für das Umgehen mit Zeitintervallen, oder einfach dafür 
 </div>
 
 <pre class="example">
-Sekunden seit 1970 : 1562248151.9118562
-3
-time.struct_time(tm_year=2019, tm_mon=7, tm_mday=4, tm_hour=13, tm_min=49, tm_sec=11, tm_wday=3, tm_yday=185, tm_isdst=0)
-0.15817904472351074
+Sekunden seit 1970 : 1562313626.131798
+4
+time.struct_time(tm_year=2019, tm_mon=7, tm_mday=5, tm_hour=8, tm_min=0, tm_sec=26, tm_wday=4, tm_yday=186, tm_isdst=0)
+0.15041184425354004
 5
 
 </pre>
@@ -442,7 +453,7 @@ time.struct_time(tm_year=2019, tm_mon=7, tm_mday=4, tm_hour=13, tm_min=49, tm_se
 <h4 id="sec-3-2-1"><span class="section-number-4">3.2.1</span> Übung</h4>
 <div class="outline-text-4" id="text-3-2-1">
 <p>
-Schreibt eine Funktion <code>get_weekday</code> die ein Datum im üblichen europäischen Format (z.B. "01.02.2013") entgegennimmt, und den Wochentag dafür als Zahl zurückgibt. Wenn noch Zeit ist, erweitert dann die Funktion damit sie den Wochentag als Zeichenkette zurückgibt ("Mittwoch" zum Beispiel)
+Schreibt eine Funktion <code>get_weekday</code> die ein Datum im üblichen europäischen Format (z.B. "01.02.2013") (das Format dafür ist <code>"%d.%m.%Y"</code>, grosses <code>Y</code>) entgegennimmt, und den Wochentag dafür als Zahl zurückgibt. Wenn noch Zeit ist, erweitert dann die Funktion damit sie den Wochentag als Zeichenkette zurückgibt ("Mittwoch" zum Beispiel)
 Wer schon früher fertig ist: Schreibt eine Funktion, die euch die Anzahl an Tagen von jetzt bis zu einem gegebenen Datum liefert.
 </p>
 <div class="org-src-container">
@@ -454,10 +465,13 @@ Wer schon früher fertig ist: Schreibt eine Funktion, die euch die Anzahl an Tag
     <span style="color: #a626a4;">return</span> ...
 </pre>
 </div>
-</div>
-</div>
-</div>
 
+<p>
+(<a href="https://falcowinkler.github.io/resources/python-course/kurs_2_2_time.py">Lösung</a>)
+</p>
+</div>
+</div>
+</div>
 <div id="outline-container-sec-3-3" class="outline-3">
 <h3 id="sec-3-3"><span class="section-number-3">3.3</span> random</h3>
 <div class="outline-text-3" id="text-3-3">
@@ -482,11 +496,11 @@ random.shuffle(sortiert)
 </div>
 
 <pre class="example">
-3
-0.8484127146726312
-22.152997998213756
-Das grüne
-[4, 2, 1, 3, 5, 6]
+2
+0.8922446717430403
+23.127382164651593
+Das blaue
+[3, 5, 1, 6, 2, 4]
 
 </pre>
 </div>
