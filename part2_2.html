@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <title>Baustein 2 Meeting 2</title>
-<!-- 2019-07-05 Fri 08:19 -->
+<!-- 2019-07-11 Thu 19:28 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="generator" content="Org-mode">
@@ -254,13 +254,6 @@ file_object.close()
 </pre>
 </div>
 
-<pre class="example">
-Herr Meier, 42, Angestellt
-
-Herr Müller, 32, Selbstständig
-
-</pre>
-
 <p>
 Dieser Code erzeugt genau <a href="https://falcowinkler.github.io/org/kundendaten.txt">diese Datei.</a>
 Die Sache mit dem close könnt ihr euch mit dem <code>with</code> Schlüsselwort einfacher machen. Dieses definiert einen Codeblock, nach dessen Ausführung die geöffnete Datei immer geschlossen wird.
@@ -274,13 +267,6 @@ Die Sache mit dem close könnt ihr euch mit dem <code>with</code> Schlüsselwort
 <span style="color: #a0a1a7; font-weight: bold;"># </span><span style="color: #a0a1a7;">close nicht ben&#246;tigt</span>
 </pre>
 </div>
-
-<pre class="example">
-Herr Meier, 42, Angestellt
-
-Herr Müller, 32, Selbstständig
-
-</pre>
 </div>
 </div>
 
@@ -301,6 +287,9 @@ Wir wollen ein kleines Programm schreiben, welches alle Zeilen aus einer Datei A
 <li>Datei A Zeile für Zeile durchlaufen, und jede Zeile mit <code>write</code> in Datei b schreiben.
 </li>
 </ul>
+<p>
+(<a href="https://falcowinkler.github.io/resources/python-course/kurs_2_2_files1.py">Lösung</a>)
+</p>
 </div>
 </div>
 <div id="outline-container-sec-2-2" class="outline-3">
@@ -310,6 +299,9 @@ Wir wollen ein kleines Programm schreiben, welches alle Zeilen aus einer Datei A
 <li>Schreibt ein Programm welches die Wörter in einer Datei zählt.
 </li>
 </ul>
+<p>
+([[<a href="https://falcowinkler.github.io/resources/python-course/kurs_2_2_files2.py">https://falcowinkler.github.io/resources/python-course/kurs_2_2_files2.py</a>][Lösung])
+</p>
 </div>
 </div>
 </div>
@@ -351,18 +343,6 @@ Durch den Befehl import math können wir in der Syntax math.&lt;funktion&gt; auf
 </pre>
 </div>
 
-<pre class="example">
-3.141592653589793
-3.141592653589793
-125.66370614359172
-0.0
-7.0
-4
-1.4142135623730951
-3.0
-
-</pre>
-
 <p>
 Die Funktionen in dieser Bibliothek benötigt man wenn man z.B. eine bestimmte Formel explizit ausrechnen muss.
 Bzgl. der Funktion Sinus gibt es den folgenden Zusammenhang.
@@ -387,16 +367,6 @@ Angenommen wir wollen Prüfen ob diese Gleicheit stimmt.
 </pre>
 </div>
 
-<pre class="example">
--1.0
-1.2246467991473532e-16
-0.7071067811865475
-0.7071067811865476
-False
-True
-
-</pre>
-
 <p>
 Warum ergibt der direkte Vergleich mit <code>==</code> <code>False</code>?
 Der Grund liegt wieder in der Ungenauigkeit von Fließkommazahlen in Computern. Ihr erinnert euch eventell:
@@ -406,11 +376,6 @@ Der Grund liegt wieder in der Ungenauigkeit von Fließkommazahlen in Computern. 
 <pre class="src src-python"><span style="color: #a626a4;">print</span>(0.1 + 0.2)
 </pre>
 </div>
-
-<pre class="example">
-0.30000000000000004
-
-</pre>
 
 <p>
 Die <code>math</code> Bibliothek achtet nicht auf solche Rundungen.
@@ -449,15 +414,6 @@ Diese Bibliothek kann für das Umgehen mit Zeitintervallen, oder einfach dafür 
 <span style="color: #a626a4;">print</span>(birthday.tm_wday)
 </pre>
 </div>
-
-<pre class="example">
-Sekunden seit 1970 : 1562314798.195922
-4
-time.struct_time(tm_year=2019, tm_mon=7, tm_mday=5, tm_hour=8, tm_min=19, tm_sec=58, tm_wday=4, tm_yday=186, tm_isdst=0)
-0.14162278175354004
-5
-
-</pre>
 </div>
 
 <div id="outline-container-sec-3-2-1" class="outline-4">
@@ -505,15 +461,6 @@ random.shuffle(sortiert)
 <span style="color: #a626a4;">print</span>(sortiert)
 </pre>
 </div>
-
-<pre class="example">
-6
-0.5346427583308654
-21.772147622520762
-Das rote
-[2, 4, 5, 3, 6, 1]
-
-</pre>
 </div>
 
 <div id="outline-container-sec-3-3-1" class="outline-4">
