@@ -46,7 +46,7 @@ Wir wollen ein kleines Programm schreiben, welches alle Zeilen aus einer Datei A
 ([[https://falcowinkler.github.io/resources/python-course/kurs_2_2_files1.py][Lösung]])
 ** Wörter zählen
 - Schreibt ein Programm welches die Wörter in einer Datei zählt.
-([[https://falcowinkler.github.io/resources/python-course/kurs_2_2_files2.py][Lösung])
+([[https://falcowinkler.github.io/resources/python-course/kurs_2_2_files2.py][Lösung]])
 * Bibliotheken
 Funktionen und Klassen können in eine sogenannte Bibliothek "verpackt" und so wiederverwendbar gemacht werden. Andere Entwickler können diese Bibliotheken dann über den Befehl import verwenden. In Python sind schon einige Bibliotheken vorinstalliert: Sie Enthalten Funktionalität die häufig gebraucht wird, wie zum Beispiel das Rechnen mit Datumswerten und Zeiten, Mathematische Funktionen, Interaktion mit dem Betriebssystem und so weiter. Auch die bisher kennengelerten Built-in Funtionen wie str oder input zählen zu dieser standard - Bibliothek. Eine Übersicht gibt es hier: https://docs.python.org/3/library/
 Wir werden heute beispielhaft die Bibliotheken math, random und time kennenlernen.
