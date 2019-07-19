@@ -10,3 +10,4 @@ Am ersten Termin haben wir bereits ein Programm geschrieben, welches eine Unters
 Monat auswertet und die relevanten Daten sammelt.
 
 ([[https://falcowinkler.github.io/resources/python-course/web_scraper_stand_1.py][Stand nach dem ersten Termin]])
+([[https://falcowinkler.github.io/resources/python-course/web_scraper_stand_2.zip][Stand nach dem zweiten Termin (zip)]])
