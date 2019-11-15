@@ -1,0 +1,136 @@
+#+OPTIONS: num:nil
+TLDR:
+
+(╯°□°）╯︵ ǝsnoɥǝɹɥɐʍ ɐʇɐp
+
+(╯°□°）╯︵ ǝʞɐl ɐʇɐp
+
+decentralize ノ( º _ ºノ)
+
+* introduction
+Datalakes are a common architecture pattern, idea is to 
+democratize data access to enable buisiness insights and decision making.
+
+This has some failure modes, mainly because of the monolythic base design,
+need shift to decentralized architectures, utilizing domain driven design and platform thinking.
+
+"Data as product."
+
+Intelligent empowerment brings much value, but despite heavy investments, 
+the return is small in many enterprises.
+
+Challenges are competing buisiness prioritys and legacy systems/thinking,
+plus architectural failure modes.
+
+To remedy against architectural failures, this article provides the definition of a /data mesh/.
+
+* the current enterprise data platform architecture
+The classical DWH / ETL stack underutilizes potential, as it incurs tech debt and is only 
+usable by a small number of people 
+
+Data lake is again problematic because it's operated by a small number of people, and they follow a 
+"build it; they will come" mentality => store everything that could be useful [[https://www.thoughtworks.com/insights/blog/curse-data-lake-monster][(source)]]  
+
+Related: [[https://martinfowler.com/bliki/Datensparsamkeit.html][Datensparsamkeit]]
+
+The /current/ generation of data architecture is something in the direction
+of kappa, bash & stream unified (Beam) and utilizing cloud services.
+
+
+* Architecture failure modes
+_First failure mode: doesn't scale._
+
+Even though /domain driven design/ has been successfully applied for enterprise architectures,
+this has been disregarded for data.
+
+That might work for small enterprises, but but doesn't scale for rich domain structures and many
+producers/consumers.
+
+Another problem is that /ownerships are seperated/, incurring a long response time to satisfy
+a data consumers need.
+
+_Second failure mode: architecture is wrongly decomposed._
+
+It is ideal to seperate into architectural /quanta/, meaning independently deployable
+and single responsibility.
+
+But sometimes data processing pipelines are decomposed into pipelines where every 
+pipeline step is thought to be a /quanta/. That is wrong becase there are still a lot of
+dependency horizontally.
+
+So the quantum here is everything that changes when a new dataset gets integrated and provided
+for consumers.
+
+_Third failure mode: silo governance of the data platform_
+
+Data engineers are seperated by their big data tooling expertise and lack domain knowledge.
+This organizational setup leaves no incentive for producer teams to create high quality
+data, and the data engineers can not serve the consumers optimally because of lack of domain knowledge.
+
+This puts a sad face on the cosumer and data engineering team :(..
+
+* The next enterprise data platform architecture
+
+Is it a bird? Is it a plane? No it's a \Data Mesh\!
+
+Buzzwords: Distributed Domain Driven Architecture, Self-serve Platform Design, and Product Thinking with Data.
+
+(Side note: [[https://domainlanguage.com/ddd/][this]] seems to be a good book about DDD)
+
+DDD is usually only applied until the /ingestion boundary/ by having producing
+teems emit their Domain Events.
+
+A good summary of the underlying problem is [[https://www.confluent.io/blog/data-dichotomy-rethinking-the-way-we-treat-data-and-services/][Data Dichometry]]: 
+"Data systems are about exposing data. Services are about hiding it."
+
+A solution to this dichometry is that 
+"domains need to host and serve their domain datasets in an easily consumable way."
+
+In essence we need to move from push and ingest, to serving and pull.
+
+In reality, data comes from all kinds of system into what fowler calls
+"reality dataset" or source aligned dataset. 
+
+So a team owning a domain can own multiple "reality" datasets, 
+and it's the teams responsibility to publish domain aligned datasets (also called "Source domain datasets") out of these (on a Stream,
+for anyone to consume).
+
+Then there are also consumer datasets, they are aggreageted from source domain datasets, 
+and are made to fit for specific consumer domains. They must be possible to regenerate from source.
+
+This allows to seperate pipeline stages into domains.
+
+* Data as a product
+
+Product thinking has been successfully applied to API's: Teams strive to create the best 
+experience for the API's they offer, in order to create higher value in the organization.
+The same needs to happen with datasets.
+
+** Discoverable
+When data is published, it should be documented in a centralized metadata registry
+** Trustworthy and truthful
+Producers need to define service level objectives. E.g. "this data is realtime but counts
+can be inaccurate sometimes" or "this data appears with 2 min accuracy and is deduplicated...".
+Responsibility of data cleansing moves from data lake to producers \rightarrow paradigm shift.
+** Self-describing semantics and syntax
+Meaning of data, schema and ideally example data items need to be provided, so the consumption
+can happen without any communication between producer and consumer teams.
+** Inter-operable and governed by global standards
+Source domain datasets (raw event stream), should enforce global standards for naming, data formatting
+and normalization
+** Secure and governed by a global access control
+Datasets have to be secure and access-restricted by SSO or role based access.
+
+* Domain data cross-functional teams
+
+This paradigm shift comes with a need for data engineers and a data product owner in product teams.
+
+The /data product owner/ is like a PO for end-consumer facing products, just that the 
+consumer in this case are other teams in the organization. (Preferred pronoun) takes 
+roadmap decisions with respect to data products, and measures KPI's such as time to discovery
+of a dataset.
+
+Need for data engineers in such teams is obvious, this has the good side effect that 
+engineers and data engineers can learn from each other.
+
+* Data and self-serve platform design convergence

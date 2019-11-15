@@ -1,0 +1,3 @@
+#+OPTIONS: num:nil
+* data engineering
+** [[file:data-engineering/fowler-monolith-to-mesh.org][Martin Fowler - How to Move Beyond a Monolithic Data Lake to a Distributed Data Mesh]]

@@ -1,0 +1,9 @@
+* Baustein 1
+** [[file:part1_1.org][Datentypen, Variablen, Verzweigungen und Schleifen]]
+** [[file:part1_2.org][Listen und die for-Schleife]]
+** [[file:part1_3.org][Funktionen und Wörterbücher]]
+** [[file:part1_4.org][Objektorientierte Programmierung]]
+* Baustein 2
+** [[file:part2_1.org][Wiederholung Baustein 1]]
+** [[file:part2_2.org][Bibliotheken]]
+** [[file:project_web_scraper.org][Projekt: Web Scraper]]
