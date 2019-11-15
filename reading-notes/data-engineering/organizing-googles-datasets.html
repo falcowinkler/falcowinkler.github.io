@@ -1,0 +1,493 @@
+<!doctype html>
+<html lang="en">
+<head>
+<title></title>
+<!-- 2019-11-15 Fri 22:25 -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="generator" content="Org-mode">
+<meta name="author" content="Falco Winkler">
+
+<link  href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<style type="text/css">
+/* org mode styles on top of twbs */
+
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    font-size: 18px;
+    margin-bottom: 105px;
+}
+
+footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 101px;
+    background-color: #f5f5f5;
+}
+
+footer > div {
+    padding: 10px;
+}
+
+footer p {
+    margin: 0 0 5px;
+    text-align: center;
+    font-size: 16px;
+}
+
+#table-of-contents {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+blockquote p {
+    font-size: 18px;
+}
+
+pre {
+    font-size: 16px;
+}
+
+.footpara {
+    display: inline-block;
+}
+
+figcaption {
+  font-size: 16px;
+  color: #666;
+  font-style: italic;
+  padding-bottom: 15px;
+}
+
+/* from twbs docs */
+
+.bs-docs-sidebar.affix {
+    position: static;
+}
+@media (min-width: 768px) {
+    .bs-docs-sidebar {
+        padding-left: 20px;
+    }
+}
+
+/* All levels of nav */
+.bs-docs-sidebar .nav > li > a {
+    display: block;
+    padding: 4px 20px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #999;
+}
+.bs-docs-sidebar .nav > li > a:hover,
+.bs-docs-sidebar .nav > li > a:focus {
+    padding-left: 19px;
+    color: #A1283B;
+    text-decoration: none;
+    background-color: transparent;
+    border-left: 1px solid #A1283B;
+}
+.bs-docs-sidebar .nav > .active > a,
+.bs-docs-sidebar .nav > .active:hover > a,
+.bs-docs-sidebar .nav > .active:focus > a {
+    padding-left: 18px;
+    font-weight: bold;
+    color: #A1283B;
+    background-color: transparent;
+    border-left: 2px solid #A1283B;
+}
+
+/* Nav: second level (shown on .active) */
+.bs-docs-sidebar .nav .nav {
+    display: none; /* Hide by default, but at >768px, show it */
+    padding-bottom: 10px;
+}
+.bs-docs-sidebar .nav .nav > li > a {
+    padding-top: 1px;
+    padding-bottom: 1px;
+    padding-left: 30px;
+    font-size: 12px;
+    font-weight: normal;
+}
+.bs-docs-sidebar .nav .nav > li > a:hover,
+.bs-docs-sidebar .nav .nav > li > a:focus {
+    padding-left: 29px;
+}
+.bs-docs-sidebar .nav .nav > .active > a,
+.bs-docs-sidebar .nav .nav > .active:hover > a,
+.bs-docs-sidebar .nav .nav > .active:focus > a {
+    padding-left: 28px;
+    font-weight: 500;
+}
+
+/* Nav: third level (shown on .active) */
+.bs-docs-sidebar .nav .nav .nav {
+    padding-bottom: 10px;
+}
+.bs-docs-sidebar .nav .nav .nav > li > a {
+    padding-top: 1px;
+    padding-bottom: 1px;
+    padding-left: 40px;
+    font-size: 12px;
+    font-weight: normal;
+}
+.bs-docs-sidebar .nav .nav .nav > li > a:hover,
+.bs-docs-sidebar .nav .nav .nav > li > a:focus {
+    padding-left: 39px;
+}
+.bs-docs-sidebar .nav .nav .nav > .active > a,
+.bs-docs-sidebar .nav .nav .nav > .active:hover > a,
+.bs-docs-sidebar .nav .nav .nav > .active:focus > a {
+    padding-left: 38px;
+    font-weight: 500;
+}
+
+/* Show and affix the side nav when space allows it */
+@media (min-width: 992px) {
+    .bs-docs-sidebar .nav > .active > ul {
+        display: block;
+    }
+    /* Widen the fixed sidebar */
+    .bs-docs-sidebar.affix,
+    .bs-docs-sidebar.affix-bottom {
+        width: 213px;
+    }
+    .bs-docs-sidebar.affix {
+        position: fixed; /* Undo the static from mobile first approach */
+        top: 20px;
+    }
+    .bs-docs-sidebar.affix-bottom {
+        position: absolute; /* Undo the static from mobile first approach */
+    }
+    .bs-docs-sidebar.affix .bs-docs-sidenav,.bs-docs-sidebar.affix-bottom .bs-docs-sidenav {
+        margin-top: 0;
+        margin-bottom: 0
+    }
+}
+@media (min-width: 1200px) {
+    /* Widen the fixed sidebar again */
+    .bs-docs-sidebar.affix-bottom,
+    .bs-docs-sidebar.affix {
+        width: 263px;
+    }
+}
+</style>
+<style>body { margin-bottom: 0px; }</style><script type="text/javascript">
+$(function() {
+    'use strict';
+
+    $('.bs-docs-sidebar li').first().addClass('active');
+
+    $(document.body).scrollspy({target: '.bs-docs-sidebar'});
+
+    $('.bs-docs-sidebar').affix();
+});
+</script><link rel="stylesheet" type="text/css" href="css/python_course.css">
+</head>
+<body>
+<div id="content" class="container">
+<div class="row"><div class="col-md-9"><h1 class="title"></h1>
+
+<div id="outline-container-sec-" class="outline-2">
+<h2 id="sec-">Summary</h2>
+<div class="outline-text-2" id="text-">
+<p>
+Original source: <a href="https://static.googleusercontent.com/media/research.google.com/de//pubs/archive/45390.pdf">https://static.googleusercontent.com/media/research.google.com/de//pubs/archive/45390.pdf</a>, 14.11.2019
+</p>
+
+<p>
+Google engineers describe Goods, googles automated, non-invasive metadata index that tracks over 26 billion
+datasets.
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-" class="outline-2">
+<h2 id="sec-">Introduction</h2>
+<div class="outline-text-2" id="text-">
+<p>
+We have well established standards for source code management (version control, reviews, etc.) 
+lack the same for datasets. This incurs opportunity cost, duplicated effort and mishandling of
+data. 
+</p>
+
+<p>
+Enterprise Data Management (EDM) is a common way to organize datasets, but requires all
+stackeholders to follow the rules closely.
+</p>
+
+<p>
+Other is to allow complete freedom for creating and consuming datasets, maybe 
+a bit similar to datalake (which has <a href="fowler-monolith-to-mesh.html">fallen out of favor</a> for some people).
+</p>
+
+<p>
+The idea behind <i>Google dataset search (GOODS)</i> is to leave the complete freedom to people,
+but to impose some order upon chaos and achieve discoverability by automatically crawling
+and indexing metadata.
+</p>
+
+<p>
+Goods automatically tracks provenance and can also monitor features automatically.
+It provides a unified view on spread-out datasets in multiple systems.
+</p>
+
+<p>
+From the consumer side it is a search engine to discover data. It provides
+a dashboard for each dataset, so data structure and meanings can be quickly understood,
+along with boilerplatecode to access the data and similar datasets.
+</p>
+
+<p>
+Additionally to the automated metadata inference, dataset owners can annotate
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-" class="outline-2">
+<h2 id="sec-">Challenges</h2>
+<div class="outline-text-2" id="text-">
+<ul class="org-ul">
+<li>Knowing whats important and whats not (don't index marker files with no content)
+</li>
+<li>deduplicating sharded datasets
+</li>
+<li>scaling for large datasets (min. 26 billion at google)
+</li>
+<li>Format and storage system variety
+</li>
+<li>Transient datasets (limeted TTL)
+</li>
+<li>Uncertainty when discovering metadata e.g. associated protobuf schema, primary keys
+</li>
+<li>Importance ranking
+</li>
+<li>Semantic inference (e.g. infer that an integer column is actually landmark ID's)
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-" class="outline-2">
+<h2 id="sec-">the goods catalog</h2>
+<div class="outline-text-2" id="text-">
+<p>
+At the core is the catalog that contains metadata and strives to provide an unified view.
+For that it creates clusters of related datasets, e.g. for versioned datasets they return a 
+single unified view for all versions.
+</p>
+</div>
+
+<div id="outline-container-sec-" class="outline-3">
+<h3 id="sec-">metadata</h3>
+<div class="outline-text-3" id="text-">
+<p>
+Initially some basic crawling is perfomed to discover what datasets are there
+</p>
+
+<p>
+After that metadata inference discovers 
+</p>
+<ul class="org-ul">
+<li>Flat metadata like owners, readers, permissions, file format and timestamp.
+</li>
+<li>Provenance is inferred from logs, and transitive relations are partly propagated
+</li>
+<li>Metadata is inferred by matching against all protobuf schemas in a central repo o<sub>o</sub>
+</li>
+<li>Content summary: Potential keys are found by running HyperLogLog to estimate number of distinct values for a 
+</li>
+</ul>
+<p>
+field, and then matching to record counts of other fields. Fingerprints are used to find similar
+datasets.
+</p>
+<ul class="org-ul">
+<li>Manual Annotations are processed and be crucial for ranking, as well as filter out experimental
+</li>
+</ul>
+<p>
+datasets
+</p>
+<ul class="org-ul">
+<li>Semantics are inferred by manual annotation, parsing comments in protobuf files, and matching against
+</li>
+</ul>
+<p>
+googles knowledge graph.
+</p>
+</div>
+</div>
+<div id="outline-container-sec-" class="outline-3">
+<h3 id="sec-">clusters</h3>
+<div class="outline-text-3" id="text-">
+<p>
+Inferring metadata is computationally expensive, in case where datasets are produced hourly over
+years it can save a lot of costs to cluster them. This happens mainly by output path: If a
+output path is similar exept a data path component, it is clustered as one. The distinction
+between propagated and computed metadata is kept, so that if you <span class="underline">really</span> need to make sure, you
+can compute the data.
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-" class="outline-2">
+<h2 id="sec-">backend implementation</h2>
+<div class="outline-text-2" id="text-">
+<p>
+section 4 of the paper describes implementation details.
+Some interesting facts
+</p>
+<ul class="org-ul">
+<li>they use big table as backend
+</li>
+<li>large crawler jobs handle data ingestion, while smaller jobs serve the frontend. Sometimes
+</li>
+</ul>
+<p>
+the schema analyser takes weeks to get up to date, for these cases some prioritazation has been implemented
+</p>
+<ul class="org-ul">
+<li>data is aggressively garbage-collected. simply deleting unused data after a week is not enough,
+</li>
+</ul>
+<p>
+for the storage not to become bloated they defined more sophisticated predicates for if a row
+can be garbage collected.
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-" class="outline-2">
+<h2 id="sec-">functionality</h2>
+<div class="outline-text-2" id="text-">
+</div><div id="outline-container-sec-" class="outline-3">
+<h3 id="sec-">Dataset profiles</h3>
+<div class="outline-text-3" id="text-">
+<p>
+Dataset profile pages show and also allow to edit metadata.
+They are compressed, old entries get discarded, and/or dependency trees are pruned 
+if the profile becomes to large.
+When possible metadata is linked to specialized tools. E.g. jobs are linked to their job definitions,
+schema is linked to protobuf code
+A dataset profile page also generates code for accessing the data.
+</p>
+</div>
+</div>
+<div id="outline-container-sec-" class="outline-3">
+<h3 id="sec-">search</h3>
+<div class="outline-text-3" id="text-">
+<p>
+A sophisticated search is also provided
+</p>
+
+<p>
+Firstly datasets are matched by path and metadata against a fulltext query.
+Then a scoring function computes the importance of a dataset.
+Following things are considered when computing the score
+</p>
+<ul class="org-ul">
+<li>keyword match, e.g. match on path is more important than match on some metadata
+</li>
+<li>type of dataset, e.g. raw file is less important than a dreml table, where the user
+</li>
+</ul>
+<p>
+had to take more action to actually register the dataset
+</p>
+<ul class="org-ul">
+<li>The more consumers the more important ~
+</li>
+<li>Manually annotated datasets are also favored
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-" class="outline-3">
+<h3 id="sec-">dashboards</h3>
+<div class="outline-text-3" id="text-">
+<p>
+Dashboards showing metrics of datasets genereted by a team can be easily created,
+e.g. availability, sharding, other metadata.
+These can include monitoring of signal distributions.
+The dashboard system can even reccomend to put certain metrics under an alerting monitor,
+if they stay the same over time.
+Monitors are easily embedded.
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-" class="outline-2">
+<h2 id="sec-">Related work</h2>
+<div class="outline-text-2" id="text-">
+<p>
+Goods is characterized as a data lake, with the main difference to traditional 
+approaches being the post-hoc approach to metadata inference.
+</p>
+
+<p>
+The paper refers some other data lake approaches that do not follow the post-hoc approach primarily.
+<a href="http://homepages.inf.ed.ac.uk/jcheney/publications/provdbsurvey.pdf">this paper</a> about data provenance seems interesting.
+</p>
+
+<p>
+Some systems for provenance tracking of databases and files are referred. PASS and Trio.
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-" class="outline-2">
+<h2 id="sec-">Conclusion</h2>
+<div class="outline-text-2" id="text-">
+<p>
+The paper conclued that we need to build systems that enable “data culture” for enterprises.
+Their post-hoc approach worked really well, but challenges remain.
+</p>
+<ul class="org-ul">
+<li>much needed metadata remains unfilled
+</li>
+<li>data is not realtime, but pushing metadata instead of pulling would violate the non-invasive approach
+</li>
+<li>datasets ranking can be improved
+</li>
+<li>understanding of dataset semantics is often lacking.
+</li>
+</ul>
+</div>
+</div>
+</div><div class="col-md-3"><nav id="table-of-contents">
+<div id="text-table-of-contents" class="bs-docs-sidebar">
+<ul class="nav">
+<li><a href="#sec-">Summary</a></li>
+<li><a href="#sec-">Introduction</a></li>
+<li><a href="#sec-">Challenges</a></li>
+<li><a href="#sec-">the goods catalog</a>
+<ul class="nav">
+<li><a href="#sec-">metadata</a></li>
+<li><a href="#sec-">clusters</a></li>
+</ul>
+</li>
+<li><a href="#sec-">backend implementation</a></li>
+<li><a href="#sec-">functionality</a>
+<ul class="nav">
+<li><a href="#sec-">Dataset profiles</a></li>
+<li><a href="#sec-">search</a></li>
+<li><a href="#sec-">dashboards</a></li>
+</ul>
+</li>
+<li><a href="#sec-">Related work</a></li>
+<li><a href="#sec-">Conclusion</a></li>
+</ul>
+</div>
+</nav>
+</div></div></div>
+</body>
+</html>

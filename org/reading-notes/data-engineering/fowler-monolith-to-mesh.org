@@ -12,6 +12,8 @@ decentralize ノ( º _ ºノ)
 - Publishing events as streams over flowing data around via centralized pipelines
 - Ecosystem of data products over centralized data platform
 
+Original source: https://martinfowler.com/articles/data-monolith-to-mesh.html , 14.11.2019
+
 * introduction
 Datalakes are a common architecture pattern, idea is to 
 democratize data access to enable buisiness insights and decision making.

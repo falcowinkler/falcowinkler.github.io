@@ -1,0 +1,123 @@
+#+OPTIONS: num:nil
+
+* Summary
+Original source: https://static.googleusercontent.com/media/research.google.com/de//pubs/archive/45390.pdf, 14.11.2019
+
+Google engineers describe Goods, googles automated, non-invasive metadata index that tracks over 26 billion
+datasets.
+
+* Introduction
+
+We have well established standards for source code management (version control, reviews, etc.) 
+lack the same for datasets. This incurs opportunity cost, duplicated effort and mishandling of
+data. 
+
+Enterprise Data Management (EDM) is a common way to organize datasets, but requires all
+stackeholders to follow the rules closely.
+
+Other is to allow complete freedom for creating and consuming datasets, maybe 
+a bit similar to datalake (which has [[file:fowler-monolith-to-mesh.org][fallen out of favor]] for some people).
+
+The idea behind /Google dataset search (GOODS)/ is to leave the complete freedom to people,
+but to impose some order upon chaos and achieve discoverability by automatically crawling
+and indexing metadata.
+
+Goods automatically tracks provenance and can also monitor features automatically.
+It provides a unified view on spread-out datasets in multiple systems.
+
+From the consumer side it is a search engine to discover data. It provides
+a dashboard for each dataset, so data structure and meanings can be quickly understood,
+along with boilerplatecode to access the data and similar datasets.
+
+Additionally to the automated metadata inference, dataset owners can annotate
+
+* Challenges
+
+- Knowing whats important and whats not (don't index marker files with no content)
+- deduplicating sharded datasets
+- scaling for large datasets (min. 26 billion at google)
+- Format and storage system variety
+- Transient datasets (limeted TTL)
+- Uncertainty when discovering metadata e.g. associated protobuf schema, primary keys
+- Importance ranking
+- Semantic inference (e.g. infer that an integer column is actually landmark ID's)
+
+* the goods catalog
+At the core is the catalog that contains metadata and strives to provide an unified view.
+For that it creates clusters of related datasets, e.g. for versioned datasets they return a 
+single unified view for all versions.
+
+** metadata
+Initially some basic crawling is perfomed to discover what datasets are there
+
+After that metadata inference discovers 
+- Flat metadata like owners, readers, permissions, file format and timestamp.
+- Provenance is inferred from logs, and transitive relations are partly propagated
+- Metadata is inferred by matching against all protobuf schemas in a central repo o_o
+- Content summary: Potential keys are found by running HyperLogLog to estimate number of distinct values for a 
+field, and then matching to record counts of other fields. Fingerprints are used to find similar
+datasets.
+- Manual Annotations are processed and be crucial for ranking, as well as filter out experimental
+datasets
+- Semantics are inferred by manual annotation, parsing comments in protobuf files, and matching against
+googles knowledge graph.
+** clusters
+Inferring metadata is computationally expensive, in case where datasets are produced hourly over
+years it can save a lot of costs to cluster them. This happens mainly by output path: If a
+output path is similar exept a data path component, it is clustered as one. The distinction
+between propagated and computed metadata is kept, so that if you _really_ need to make sure, you
+can compute the data.
+* backend implementation
+section 4 of the paper describes implementation details.
+Some interesting facts
+- they use big table as backend
+- large crawler jobs handle data ingestion, while smaller jobs serve the frontend. Sometimes
+the schema analyser takes weeks to get up to date, for these cases some prioritazation has been implemented
+- data is aggressively garbage-collected. simply deleting unused data after a week is not enough,
+for the storage not to become bloated they defined more sophisticated predicates for if a row
+can be garbage collected.
+
+* functionality
+** Dataset profiles
+Dataset profile pages show and also allow to edit metadata.
+They are compressed, old entries get discarded, and/or dependency trees are pruned 
+if the profile becomes to large.
+When possible metadata is linked to specialized tools. E.g. jobs are linked to their job definitions,
+schema is linked to protobuf code
+A dataset profile page also generates code for accessing the data.
+** search
+A sophisticated search is also provided
+
+Firstly datasets are matched by path and metadata against a fulltext query.
+Then a scoring function computes the importance of a dataset.
+Following things are considered when computing the score
+- keyword match, e.g. match on path is more important than match on some metadata
+- type of dataset, e.g. raw file is less important than a dreml table, where the user
+had to take more action to actually register the dataset
+- The more consumers the more important ~
+- Manually annotated datasets are also favored
+
+** dashboards
+Dashboards showing metrics of datasets genereted by a team can be easily created,
+e.g. availability, sharding, other metadata.
+These can include monitoring of signal distributions.
+The dashboard system can even reccomend to put certain metrics under an alerting monitor,
+if they stay the same over time.
+Monitors are easily embedded.
+
+* Related work
+Goods is characterized as a data lake, with the main difference to traditional 
+approaches being the post-hoc approach to metadata inference.
+
+The paper refers some other data lake approaches that do not follow the post-hoc approach primarily.
+[[http://homepages.inf.ed.ac.uk/jcheney/publications/provdbsurvey.pdf][this paper]] about data provenance seems interesting.
+
+Some systems for provenance tracking of databases and files are referred. PASS and Trio.
+
+* Conclusion
+The paper conclued that we need to build systems that enable “data culture” for enterprises.
+Their post-hoc approach worked really well, but challenges remain.
+- much needed metadata remains unfilled
+- data is not realtime, but pushing metadata instead of pulling would violate the non-invasive approach
+- datasets ranking can be improved
+- understanding of dataset semantics is often lacking.
