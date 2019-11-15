@@ -1,11 +1,16 @@
 #+OPTIONS: num:nil
-TLDR:
+* Summary
 
 (╯°□°）╯︵ ǝsnoɥǝɹɥɐʍ ɐʇɐp
 
 (╯°□°）╯︵ ǝʞɐl ɐʇɐp
 
 decentralize ノ( º _ ºノ)
+
+- serving over ingesting
+- discovering and using over extracting and loading
+- Publishing events as streams over flowing data around via centralized pipelines
+- Ecosystem of data products over centralized data platform
 
 * introduction
 Datalakes are a common architecture pattern, idea is to 
@@ -80,10 +85,10 @@ Buzzwords: Distributed Domain Driven Architecture, Self-serve Platform Design, a
 DDD is usually only applied until the /ingestion boundary/ by having producing
 teems emit their Domain Events.
 
-A good summary of the underlying problem is [[https://www.confluent.io/blog/data-dichotomy-rethinking-the-way-we-treat-data-and-services/][Data Dichometry]]: 
+A good summary of the underlying problem is [[https://www.confluent.io/blog/data-dichotomy-rethinking-the-way-we-treat-data-and-services/][Data Dichotomy]]: 
 "Data systems are about exposing data. Services are about hiding it."
 
-A solution to this dichometry is that 
+A solution to this dichotomy is that 
 "domains need to host and serve their domain datasets in an easily consumable way."
 
 In essence we need to move from push and ingest, to serving and pull.
@@ -134,3 +139,11 @@ Need for data engineers in such teams is obvious, this has the good side effect 
 engineers and data engineers can learn from each other.
 
 * Data and self-serve platform design convergence
+Thats all fine and dandy, but how do we avoid duplicated efforts in infrastructure/tooling?
+The solution is again something that has been proven sucessful before: Platform thinking.
+
+A team of data infra engineers is responsible to provide self-service domain-agnostic infra. 
+This encludes many things, from providing a common streaming platform to encryption services,
+lineage tracking and caching to name a few.
+
+Should measure lead time until new data product goes live as metric.

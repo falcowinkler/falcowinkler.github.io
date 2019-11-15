@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <title></title>
-<!-- 2019-11-15 Fri 16:00 -->
+<!-- 2019-11-15 Fri 18:08 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="generator" content="Org-mode">
@@ -219,10 +219,9 @@ MathJax.Hub.Config({
 <body>
 <div id="content" class="container">
 <div class="row"><div class="col-md-9"><h1 class="title"></h1>
-<p>
-TLDR:
-</p>
-
+<div id="outline-container-sec-" class="outline-2">
+<h2 id="sec-">Summary</h2>
+<div class="outline-text-2" id="text-">
 <p>
 (╯°□°）╯︵ ǝsnoɥǝɹɥɐʍ ɐʇɐp
 </p>
@@ -234,6 +233,19 @@ TLDR:
 <p>
 decentralize ノ( º _ ºノ)
 </p>
+
+<ul class="org-ul">
+<li>serving over ingesting
+</li>
+<li>discovering and using over extracting and loading
+</li>
+<li>Publishing events as streams over flowing data around via centralized pipelines
+</li>
+<li>Ecosystem of data products over centralized data platform
+</li>
+</ul>
+</div>
+</div>
 
 <div id="outline-container-sec-" class="outline-2">
 <h2 id="sec-">introduction</h2>
@@ -372,12 +384,12 @@ teems emit their Domain Events.
 </p>
 
 <p>
-A good summary of the underlying problem is <a href="https://www.confluent.io/blog/data-dichotomy-rethinking-the-way-we-treat-data-and-services/">Data Dichometry</a>: 
+A good summary of the underlying problem is <a href="https://www.confluent.io/blog/data-dichotomy-rethinking-the-way-we-treat-data-and-services/">Data Dichotomy</a>: 
 "Data systems are about exposing data. Services are about hiding it."
 </p>
 
 <p>
-A solution to this dichometry is that 
+A solution to this dichotomy is that 
 "domains need to host and serve their domain datasets in an easily consumable way."
 </p>
 
@@ -486,10 +498,27 @@ engineers and data engineers can learn from each other.
 
 <div id="outline-container-sec-" class="outline-2">
 <h2 id="sec-">Data and self-serve platform design convergence</h2>
+<div class="outline-text-2" id="text-">
+<p>
+Thats all fine and dandy, but how do we avoid duplicated efforts in infrastructure/tooling?
+The solution is again something that has been proven sucessful before: Platform thinking.
+</p>
+
+<p>
+A team of data infra engineers is responsible to provide self-service domain-agnostic infra. 
+This encludes many things, from providing a common streaming platform to encryption services,
+lineage tracking and caching to name a few.
+</p>
+
+<p>
+Should measure lead time until new data product goes live as metric.
+</p>
+</div>
 </div>
 </div><div class="col-md-3"><nav id="table-of-contents">
 <div id="text-table-of-contents" class="bs-docs-sidebar">
 <ul class="nav">
+<li><a href="#sec-">Summary</a></li>
 <li><a href="#sec-">introduction</a></li>
 <li><a href="#sec-">the current enterprise data platform architecture</a></li>
 <li><a href="#sec-">Architecture failure modes</a></li>
