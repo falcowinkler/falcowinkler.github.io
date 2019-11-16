@@ -1,0 +1,67 @@
+* Summary
+
+original source: https://sceweb.uhcl.edu/boetticher/swen5230/concepts-in-configuration-management.pdf
+
+This paper is a bit outdated but contains a good overview of what configuration management means,
+and what the functionalities of a CM system are, and how CM is used by different roles.
+
+
+* Definition of configuration management
+
+The term is defined in the [[https://ieeexplore.ieee.org/document/7435207][729-1983 - IEEE Standard Glossary of Software Engineering Terminology]].
+
+configuration management (CM). A discipline applying technical and administrative
+ direction and surveillance to: identify
+and document the functional and physical
+characteristics of a configuration item,
+control changes to those characteristics,
+record and report change processing and
+implementation status, and verify compliance with specified requirements.
+
+CM should
+
+- identify a products structure
+- control releases and changes
+- gather statistics and manage change requests and component status
+- ensure that a product is well defined assembly of components
+and adheres to standards, audit and review
+
+
+A CM system should implement functionality for all these aspects, 
+but in reality implements only a part of them, and stuff beyond that.
+
+
+* User scenario
+
+CM is and important thing of daily work from many perspectives
+
+- The project manager wants to deliver timely, so he is interested in statistics and reviews
+- the configuaration manager (?) makes sure procedures for creating, reviewing, testing
+code are followed, tracks which components are problematic, makes system info available
+- Software engineers want to work effectively and use CM to manage tasks, merge changes
+- testers track test results for different versions/configurations
+- QA track bugs and assign them to different versions, and follow up on customer complaint
+
+
+* Functionality of a CM system
+
+The above yields the following functionality every CM system should have
+
+
+- Identification, classification, store & retrieval of the different components that make
+up a system. Versioning of components, definition what components make up what is a working
+system, definition of baselines ("significant states")
+- Reveal structure of the overall sytem (e.g. component interdependencies), system modelling,
+compatibility tracking
+- Should provide a way of (re-) building the artifacts
+- enables teamwork and the development process with
+ mechanisms for bugtracking/changerequest and merging of work, access control.
+- Enables reports and audits of the system, change history, work log.
+
+
+
+... The rest of the paper describes things like when to use CM, and CM automation,
+along with a extensive description of CM systems and their concepts, which i skipped reading for now.
+
+
+
