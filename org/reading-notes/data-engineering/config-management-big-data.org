@@ -1,0 +1,112 @@
+#+OPTIONS: num:nil
+* Summary
+"The aim of this research is to articulate how changes in assets and the associated asset information are managed in the delivery of complex projects as we enter the era of ‘big data.’.
+This is done by analysing leading practices in three organizations: Airbus, CERN and Crossrail."
+
+Original source: https://www.sciencedirect.com/science/article/pii/S0263786315000393
+
+* Introduction
+
+Configuration management ([[file:~/Desktop/falcowinkler.github.io/org/reading-notes/software-engineering/concepts-in-cm-systems.org][relevant reading notes)]] is a systems engineering approach with origins in the 1990's.
+
+Change management has changed a lot since the early days of software engineering. 
+
+Changed from up-front planning to flexible approaches using data for flexible decision making.
+
+We enter an era of "big data", asset information is becoming a project deliverable 
+(asset information are things such as "provenance, part types and serial numbers, design life, maintenance schedule, and design rationale for sub-systems or components.").
+
+
+* Managing change in project delivery
+** Development of configuration management techniques to manage change
+This section gives a history of config management techniques and closes with the remark that they get adopted now to agile delivery.
+
+Interestingly; "Configuration management was developed in the 1950s by the US military to control documentation in the manufacture of missiles".
+
+Here's a good definition of config management from the military:
+
+/The US military describes configuration management’s overarching goal as:/
+/“to ensure there is documentation which completely and accurately describes the intended design,/
+/the actual product matches the documentation, and there are processes in place so this continues throughout the product’s life”/.
+
+And for "configuration": 
+/a generic term for anything that has a defined structure or is composed of some predetermined pattern/.
+
+** Reuse of information and data linkages in the era of ‘big data’
+This section defines big data, with an emphasis on the fact that it is data in a form that reqires new means of processing
+and thinking about it.
+
+Big data gets used for agile real-time decision making in complex projects.
+
+** ‘Reconstructing’ project management: configuration management in an era of big data
+Big data is involved in many aspects of complex product delivery.
+Datasets enrich asset information and support decision making.
+
+Here, two things become problemtatic
+- datasets cross organizational boundaries
+- project management becomes overwhelmed by the massive amounts of information
+
+* Method
+The researchers colected info in a ~3:30 hours long workshop, personal interviews,
+presentations and online calls.
+
+The results were evaluated with respect to
+- background
+- lifecycle
+- complexity
+- configuration management motivation
+- approach and systems
+- managing change and change control process 
+- risks; cultural and social issues
+
+Airbus, CERN and Crossrail (huge railroad comapny) were studied.
+
+* Findings
+
+All companies require good change management for auditability, they underly strict regulations.
+
+At /Airbus/ configuration management is a huge thing, with a "center of competence" employing more than 150 people to edit methods, processes and tools.
+The number of professionals with related work go in the thousands. Thats because airplane design is super complex and regulated, and can take decades.
+
+Airplane design became a big data problem
+
+- A380 has 4 mil. parts
+- performance data needs to be tracked, which consists of 
+ unstructured data-sets with test results, 
+electrical bonding calculations, requirements from economic analyses, weight distribution, and weight calculations, etc. 
+
+- Problems occur when the interface between datasets is not linked (data provenance needs to be known)
+
+Data is handled differently in dev (concept phase) and production (definition phase),
+upon the transition between the phases, manual work is done to update, renumber, and re-link datasets.
+
+Airbus wants
+- scalability; reuse of data; 
+- agility; integration of data
+- adaptability; flexibility in integrating data changes.
+
+Problems include 
+- the management and in the end, the agreement on one of multiple different architecture variants,
+- problems being agile in a highly controlled environment.
+- multiple software vendors with lacking interfaces to each other
+- growing complexity and configuration management user community
+- big loads of change to manage
+
+CERN is highly regulated as well ( classified as a nuclear installation).
+
+The kilometer-long installation contains millions of parts that need to be documented, 
+along with datasets for tests results, radiation measurements, technical drawings.
+
+CERN eployees have a mature understanding of configuration management,
+and use the knowledge for breaking down structures to manage assets and their supply - chain individually.
+
+There is an initiative to improve change management.
+
+Crossrail also uses CM to manage assets and their supply chain,
+similar to the previous two they have a massive amount of assets that are linked to datasets (geo data, technical data,
+
+** Approaches to managing change
+
+* Discussion: renewed importance of configuration management in an era of ‘big data’
+* Conclusion
+
