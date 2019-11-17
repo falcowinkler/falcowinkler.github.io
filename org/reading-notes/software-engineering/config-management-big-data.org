@@ -11,7 +11,7 @@ Original source: https://www.sciencedirect.com/science/article/pii/S026378631500
 
 * Introduction
 
-Configuration management ([[file:~/Desktop/falcowinkler.github.io/org/reading-notes/software-engineering/concepts-in-cm-systems.org][relevant reading notes)]] is a systems engineering approach with origins in the 1990's.
+Configuration management ([[file:concepts-in-cm-systems.org][see here]]) s is a systems engineering approach with origins in the 1990's.
 
 Change management has changed a lot since the early days of software engineering. 
 
@@ -19,7 +19,6 @@ Changed from up-front planning to flexible approaches using data for flexible de
 
 We enter an era of "big data", asset information is becoming a project deliverable 
 (asset information are things such as "provenance, part types and serial numbers, design life, maintenance schedule, and design rationale for sub-systems or components.").
-
 
 * Managing change in project delivery
 ** Development of configuration management techniques to manage change

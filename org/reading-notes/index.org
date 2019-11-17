@@ -4,4 +4,4 @@
 ** [[file:data-engineering/organizing-googles-datasets.org][Goods: Organizing Google’s Datasets]]
 * software engineering
 ** [[file:software-engineering/concepts-in-cm-systems.org][Concepts in configuration management systems (from 1991)]]
-** [[file:data-engineering/config-management-big-data.org][Managing change in the delivery of complex projects: Configuration management, asset information and ‘big data’]]
+** [[file:software-engineering/config-management-big-data.org][Managing change in the delivery of complex projects: Configuration management, asset information and ‘big data’]]
