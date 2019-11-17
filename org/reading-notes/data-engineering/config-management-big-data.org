@@ -1,7 +1,11 @@
 #+OPTIONS: num:nil
 * Summary
-"The aim of this research is to articulate how changes in assets and the associated asset information are managed in the delivery of complex projects as we enter the era of ‘big data.’.
-This is done by analysing leading practices in three organizations: Airbus, CERN and Crossrail."
+Configuration management (CM) changed a lot since its origins in mid 20th century.
+Asset information (test data for a technical part, measurements, statistics etc.)
+are often a deliverable along with the actual product.
+Big data is collected around assets that poses challenges to the ways CM was
+tradtionally handled, and gives opportunities for agile CM with rapid partly automated
+decision making.
 
 Original source: https://www.sciencedirect.com/science/article/pii/S0263786315000393
 
