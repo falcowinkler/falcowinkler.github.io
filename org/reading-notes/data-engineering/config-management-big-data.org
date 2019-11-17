@@ -105,8 +105,39 @@ There is an initiative to improve change management.
 Crossrail also uses CM to manage assets and their supply chain,
 similar to the previous two they have a massive amount of assets that are linked to datasets (geo data, technical data,
 
+They configured a interface that enforces some things, specifically how how asset information is to be identified, named, labelled, stored, synthesized and managed/
+The system adheres to international configuration management standards (?).
+
+It also has a /metadata search/ and allows to link asssets together to form systems.
+
+
 ** Approaches to managing change
 
+All organizations rely heavily on CM, mainly in design and specification phases.
+Airbus has a dedicated process to agree on configuration items, while CERN interestingly 
+manages multiple confiugrations in parallel. 
+
+Finding configuration baselines is really hard in such a scaled scenario.
+Airbus and CERN manage functional and engineering baselines in parallel.
+
+The volume, velocity and variety of data bring new challenges of version control, linkages across
+project stages and with other data-sets and ways of structuring and organizing. 
+
+Heterogenous systems and the integration between them is a big problem resulting in 
+lots of manual work.
+
 * Discussion: renewed importance of configuration management in an era of ‘big data’
+
+CM is pretty old, it changed from a paper-based process to complex project management using
+databases at scale. Still the same base principles apply. New standards are being developed 
+to reflect this change.
+
 * Conclusion
 
+CM became a big data problem.
+However, the authors anticipate limits for the ways in which big data can radially change
+traditional approaches. It's deemed possible that a shift away from baseline planning, or even
+the bureaucratic decomposition and hirarchy will happen.
+
+Other approaches like mining datasets to determine asset information automatically, 
+and change management a la wikipedia in noncritical documents are imaginable.
