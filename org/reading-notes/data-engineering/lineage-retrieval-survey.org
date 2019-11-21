@@ -1,0 +1,154 @@
+* Summary
+original source: https://dl.acm.org/citation.cfm?id=1057978
+
+This paper is a bit old (2005) but summarizes well the different concepts around lineage retrieval,
+which is relevant for end to end reproducibility of machine learning today.
+
+* Introduction
+The paper is very much focused on scientific applications (which is where the main need for reproducibility was in 2005).
+
+Computing systems that store lineage have been developed since around 1985.
+
+The paper differntiates between differend kinds of data processing.
+
+Program, Query, Workflow or service-based.
+
+Good definition of workflow and lineage
+
+"Workflow is prospective in nature and defines plans for desired
+processing. Lineage, on the other hand,
+is retrospective like an audit [Becker and
+Chambers 1988] and describes the relationships between data products and data
+transformations after processing has occurred."
+
+Lineage is "all the processes and transformations of data from original measurements to current form.".
+And by definition, knowing lineage for a dataset means knowing its ancestory but also its descendants.
+
+Lineage retrieval is problemeatic cause it's usually an afterthought, and no tooling is provided.
+
+It gets more complex, the more sophisticated data processing techniques evolve.
+
+There are some standards for lineage tracking, but they are quite specialized (e.g. on geographic data)
+
+* LINEAGE RETRIEVAL FOR DATA PROCESSING SYSTEMS
+
+This chapter is categorized into different types of data processing system. this categorization
+acknowledges the heterogenous nature of most processing systems, so it's a bit simplified.
+
+** Command Line-Based Data Processing
+One approach is to capture user commands along with their transformations automatically and record them
+to a file, which can later be parsed and reveals the lineage.
+
+Already in the 1990's there was work done on doing this with a metadatabase (for GIS data)
+
+Another approach was to capture read and write processes from a shell and record and cache these files that are read and written.
+
+** Script- and Program-Based Data Processing
+
+One approach here is to use client apis within the scripts to weave in lineage tracking and later display the results in a web ui.
+
+There's a couple of specialized algorithms for transformations in e.g. relational algebra or the "Array Transformation language"
+(see also here https://dl.acm.org/citation.cfm?id=775456&dl=ACM&coll=DL)
+
+The system goose takes the approach of enforcing registration of any data objects within the system before allowing to 
+transform it.
+
+**  WFMS-Based Data Processing
+Here the Geo-Opera extension of the OPERA kernel (whatever that is) is described as an example
+of a workflow based system. the user registeres internal or external data objects and configures a workflow
+through a graphical interface.
+
+** Query-Based Data Processing
+This category is similar to whats described here https://dl.acm.org/citation.cfm?id=775456&dl=ACM&coll=DL.
+The idea is to do all transformations in a dbms and register all transformation functions within the system, along with their inverse.
+Problems with that is integration between different systems, as well as the fact most transformations are not invertible without much effort.
+
+** Service-Based Data Processing
+The Chimera Virtual Data System (VDS) can execute data transformation written in a specific language on a grid.
+These requests and their effects are stored and can be queried. 
+Chimera defines the concept of "virtual data", it is capable of generating transformation DAG's that regenerate a dataset.
+
+Another approach builds metadata out of workflow execution logs.
+
+* RELATED RESEARCH: COLLABORATIVE ENVIRONMENTS AND EXPERIMENT MANAGEMENT
+
+The information lifecycle for an experiment consists of
+data acquisition, or retrieval both before and after conducting experiments, 
+and data analysis, exploration, or visualization of experimental results
+
+There exist a variety of software that attempts to fully encompass this lifecycle.
+These systems often have a graphical interface and shield the user from low-level stuff.
+
+When not using a computer in scientific research, the use of paper notebooks was common,
+and it was subject to some regulations, for example attestations had to be made for notebook pages,
+in order to prove the presence of scientific knowledge at the time, eg. for patents.
+
+Some software tries to replicate this in digital form. In the prototype ViNE researchers have to 
+register the location of their flatfiles, and define a DAG transformation in a web interface.
+An execution controller can then execute the program and share results.
+
+in the Virtual Laboratory Notebook metadata is automatically tracked as a researcher 
+conducts experiments. It tracks variations of one experiment as a tree.
+
+* RELATED RESEARCH: WORKFLOWS
+
+Def. "Workflows
+are activities involving the coordinated
+execution of multiple tasks performed by
+different processing entities"
+
+So a workflow is constructed /before/ an experiment, and after that
+the lineage is navigated.
+
+There are many many workflow definition languages and execution languages,
+in the 2000s there were attemots to standardize that.
+
+Sharing workflows through webservers did not yet evolve at the time.
+The Business Process Execution Language for Web Services is deemed promising,
+along with the Web Services Choreog- raphy Description Language.
+
+
+* VERSION MANAGEMENT
+Version management, known also as ver- sion or revision control, 
+is used for tracking modifications to files or objects (particularly documents,
+ application code components, and database records) over time.
+
+The paper references a vcs from 1993 "Concurrent Versions System (CVS) [Cederqvist 1993]"
+
+VCS applicable per repository, for connections between related objects Config management 
+is needed
+
+The difficulty of version management for data is acknowledged.
+Some approaches use version management on metadata graphs that describe
+connections between datasets.
+
+* Lineage metamodel
+
+The paper concluded with the definition of a metamodel for lineage retrieval 
+system design.
+
+At the heart of the model is the workflow, that publishes
+data items over time along with their metadata and lineage metadata.
+Metadata and lineage metadata may or may not be in distinct systems.
+
+The metadata has to be structured in a way that 
+lineage retrieval requires the capability to
+ assemble a retrospective view of workflow using extant metadata.
+
+** the workflow model
+\rightarrow how is the processing workflow abstracted and described?
+It needs to describe the model used (graph, tree, list etc.),
+how identifiers are assigned, how the relationships between workflow constituents
+are stored and how the workflow is invoked.
+
+** The metadata model
+What metadata is tracked and how is it generated for new items?
+What container is used for metadata? How is it stored?
+What lineage data is created and how? How is it stored?
+** Lineage retrieval
+How does one access a system overview?
+What kinds of queries are possible and how are they executed?
+
+
+The paper also includes manifold example of how the above questions are answered
+for some existing systems.

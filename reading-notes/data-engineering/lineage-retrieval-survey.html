@@ -1,0 +1,520 @@
+<!doctype html>
+<html lang="en">
+<head>
+<title></title>
+<!-- 2019-11-21 Thu 13:02 -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="generator" content="Org-mode">
+<meta name="author" content="Falco Winkler">
+
+<link  href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<style type="text/css">
+/* org mode styles on top of twbs */
+
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    font-size: 18px;
+    margin-bottom: 105px;
+}
+
+footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 101px;
+    background-color: #f5f5f5;
+}
+
+footer > div {
+    padding: 10px;
+}
+
+footer p {
+    margin: 0 0 5px;
+    text-align: center;
+    font-size: 16px;
+}
+
+#table-of-contents {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+blockquote p {
+    font-size: 18px;
+}
+
+pre {
+    font-size: 16px;
+}
+
+.footpara {
+    display: inline-block;
+}
+
+figcaption {
+  font-size: 16px;
+  color: #666;
+  font-style: italic;
+  padding-bottom: 15px;
+}
+
+/* from twbs docs */
+
+.bs-docs-sidebar.affix {
+    position: static;
+}
+@media (min-width: 768px) {
+    .bs-docs-sidebar {
+        padding-left: 20px;
+    }
+}
+
+/* All levels of nav */
+.bs-docs-sidebar .nav > li > a {
+    display: block;
+    padding: 4px 20px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #999;
+}
+.bs-docs-sidebar .nav > li > a:hover,
+.bs-docs-sidebar .nav > li > a:focus {
+    padding-left: 19px;
+    color: #A1283B;
+    text-decoration: none;
+    background-color: transparent;
+    border-left: 1px solid #A1283B;
+}
+.bs-docs-sidebar .nav > .active > a,
+.bs-docs-sidebar .nav > .active:hover > a,
+.bs-docs-sidebar .nav > .active:focus > a {
+    padding-left: 18px;
+    font-weight: bold;
+    color: #A1283B;
+    background-color: transparent;
+    border-left: 2px solid #A1283B;
+}
+
+/* Nav: second level (shown on .active) */
+.bs-docs-sidebar .nav .nav {
+    display: none; /* Hide by default, but at >768px, show it */
+    padding-bottom: 10px;
+}
+.bs-docs-sidebar .nav .nav > li > a {
+    padding-top: 1px;
+    padding-bottom: 1px;
+    padding-left: 30px;
+    font-size: 12px;
+    font-weight: normal;
+}
+.bs-docs-sidebar .nav .nav > li > a:hover,
+.bs-docs-sidebar .nav .nav > li > a:focus {
+    padding-left: 29px;
+}
+.bs-docs-sidebar .nav .nav > .active > a,
+.bs-docs-sidebar .nav .nav > .active:hover > a,
+.bs-docs-sidebar .nav .nav > .active:focus > a {
+    padding-left: 28px;
+    font-weight: 500;
+}
+
+/* Nav: third level (shown on .active) */
+.bs-docs-sidebar .nav .nav .nav {
+    padding-bottom: 10px;
+}
+.bs-docs-sidebar .nav .nav .nav > li > a {
+    padding-top: 1px;
+    padding-bottom: 1px;
+    padding-left: 40px;
+    font-size: 12px;
+    font-weight: normal;
+}
+.bs-docs-sidebar .nav .nav .nav > li > a:hover,
+.bs-docs-sidebar .nav .nav .nav > li > a:focus {
+    padding-left: 39px;
+}
+.bs-docs-sidebar .nav .nav .nav > .active > a,
+.bs-docs-sidebar .nav .nav .nav > .active:hover > a,
+.bs-docs-sidebar .nav .nav .nav > .active:focus > a {
+    padding-left: 38px;
+    font-weight: 500;
+}
+
+/* Show and affix the side nav when space allows it */
+@media (min-width: 992px) {
+    .bs-docs-sidebar .nav > .active > ul {
+        display: block;
+    }
+    /* Widen the fixed sidebar */
+    .bs-docs-sidebar.affix,
+    .bs-docs-sidebar.affix-bottom {
+        width: 213px;
+    }
+    .bs-docs-sidebar.affix {
+        position: fixed; /* Undo the static from mobile first approach */
+        top: 20px;
+    }
+    .bs-docs-sidebar.affix-bottom {
+        position: absolute; /* Undo the static from mobile first approach */
+    }
+    .bs-docs-sidebar.affix .bs-docs-sidenav,.bs-docs-sidebar.affix-bottom .bs-docs-sidenav {
+        margin-top: 0;
+        margin-bottom: 0
+    }
+}
+@media (min-width: 1200px) {
+    /* Widen the fixed sidebar again */
+    .bs-docs-sidebar.affix-bottom,
+    .bs-docs-sidebar.affix {
+        width: 263px;
+    }
+}
+</style>
+<style>body { margin-bottom: 0px; }</style><script type="text/javascript">
+$(function() {
+    'use strict';
+
+    $('.bs-docs-sidebar li').first().addClass('active');
+
+    $(document.body).scrollspy({target: '.bs-docs-sidebar'});
+
+    $('.bs-docs-sidebar').affix();
+});
+</script><link rel="stylesheet" type="text/css" href="css/python_course.css">
+</head>
+<body>
+<div id="content" class="container">
+<div class="row"><div class="col-md-9"><h1 class="title"></h1>
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1"><span class="section-number-2">1</span> Summary</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+original source: <a href="https://dl.acm.org/citation.cfm?id=1057978">https://dl.acm.org/citation.cfm?id=1057978</a>
+</p>
+
+<p>
+This paper is a bit old (2005) but summarizes well the different concepts around lineage retrieval,
+which is relevant for end to end reproducibility of machine learning today.
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-2" class="outline-2">
+<h2 id="sec-2"><span class="section-number-2">2</span> Introduction</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+The paper is very much focused on scientific applications (which is where the main need for reproducibility was in 2005).
+</p>
+
+<p>
+Computing systems that store lineage have been developed since around 1985.
+</p>
+
+<p>
+The paper differntiates between differend kinds of data processing.
+</p>
+
+<p>
+Program, Query, Workflow or service-based.
+</p>
+
+<p>
+Good definition of workflow and lineage
+</p>
+
+<p>
+"Workflow is prospective in nature and defines plans for desired
+processing. Lineage, on the other hand,
+is retrospective like an audit [Becker and
+Chambers 1988] and describes the relationships between data products and data
+transformations after processing has occurred."
+</p>
+
+<p>
+Lineage is "all the processes and transformations of data from original measurements to current form.".
+And by definition, knowing lineage for a dataset means knowing its ancestory but also its descendants.
+</p>
+
+<p>
+Lineage retrieval is problemeatic cause it's usually an afterthought, and no tooling is provided.
+</p>
+
+<p>
+It gets more complex, the more sophisticated data processing techniques evolve.
+</p>
+
+<p>
+There are some standards for lineage tracking, but they are quite specialized (e.g. on geographic data)
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-3" class="outline-2">
+<h2 id="sec-3"><span class="section-number-2">3</span> LINEAGE RETRIEVAL FOR DATA PROCESSING SYSTEMS</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+This chapter is categorized into different types of data processing system. this categorization
+acknowledges the heterogenous nature of most processing systems, so it's a bit simplified.
+</p>
+</div>
+
+<div id="outline-container-sec-3-1" class="outline-3">
+<h3 id="sec-3-1"><span class="section-number-3">3.1</span> Command Line-Based Data Processing</h3>
+<div class="outline-text-3" id="text-3-1">
+<p>
+One approach is to capture user commands along with their transformations automatically and record them
+to a file, which can later be parsed and reveals the lineage.
+</p>
+
+<p>
+Already in the 1990's there was work done on doing this with a metadatabase (for GIS data)
+</p>
+
+<p>
+Another approach was to capture read and write processes from a shell and record and cache these files that are read and written.
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-3-2" class="outline-3">
+<h3 id="sec-3-2"><span class="section-number-3">3.2</span> Script- and Program-Based Data Processing</h3>
+<div class="outline-text-3" id="text-3-2">
+<p>
+One approach here is to use client apis within the scripts to weave in lineage tracking and later display the results in a web ui.
+</p>
+
+<p>
+There's a couple of specialized algorithms for transformations in e.g. relational algebra or the "Array Transformation language"
+(see also here <a href="https://dl.acm.org/citation.cfm?id=775456&amp;dl=ACM&amp;coll=DL">https://dl.acm.org/citation.cfm?id=775456&amp;dl=ACM&amp;coll=DL</a>)
+</p>
+
+<p>
+The system goose takes the approach of enforcing registration of any data objects within the system before allowing to 
+transform it.
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-3-3" class="outline-3">
+<h3 id="sec-3-3"><span class="section-number-3">3.3</span> WFMS-Based Data Processing</h3>
+<div class="outline-text-3" id="text-3-3">
+<p>
+Here the Geo-Opera extension of the OPERA kernel (whatever that is) is described as an example
+of a workflow based system. the user registeres internal or external data objects and configures a workflow
+through a graphical interface.
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-3-4" class="outline-3">
+<h3 id="sec-3-4"><span class="section-number-3">3.4</span> Query-Based Data Processing</h3>
+<div class="outline-text-3" id="text-3-4">
+<p>
+This category is similar to whats described here <a href="https://dl.acm.org/citation.cfm?id=775456&amp;dl=ACM&amp;coll=DL">https://dl.acm.org/citation.cfm?id=775456&amp;dl=ACM&amp;coll=DL</a>.
+The idea is to do all transformations in a dbms and register all transformation functions within the system, along with their inverse.
+Problems with that is integration between different systems, as well as the fact most transformations are not invertible without much effort.
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-3-5" class="outline-3">
+<h3 id="sec-3-5"><span class="section-number-3">3.5</span> Service-Based Data Processing</h3>
+<div class="outline-text-3" id="text-3-5">
+<p>
+The Chimera Virtual Data System (VDS) can execute data transformation written in a specific language on a grid.
+These requests and their effects are stored and can be queried. 
+Chimera defines the concept of "virtual data", it is capable of generating transformation DAG's that regenerate a dataset.
+</p>
+
+<p>
+Another approach builds metadata out of workflow execution logs.
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-4" class="outline-2">
+<h2 id="sec-4"><span class="section-number-2">4</span> RELATED RESEARCH: COLLABORATIVE ENVIRONMENTS AND EXPERIMENT MANAGEMENT</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+The information lifecycle for an experiment consists of
+data acquisition, or retrieval both before and after conducting experiments, 
+and data analysis, exploration, or visualization of experimental results
+</p>
+
+<p>
+There exist a variety of software that attempts to fully encompass this lifecycle.
+These systems often have a graphical interface and shield the user from low-level stuff.
+</p>
+
+<p>
+When not using a computer in scientific research, the use of paper notebooks was common,
+and it was subject to some regulations, for example attestations had to be made for notebook pages,
+in order to prove the presence of scientific knowledge at the time, eg. for patents.
+</p>
+
+<p>
+Some software tries to replicate this in digital form. In the prototype ViNE researchers have to 
+register the location of their flatfiles, and define a DAG transformation in a web interface.
+An execution controller can then execute the program and share results.
+</p>
+
+<p>
+in the Virtual Laboratory Notebook metadata is automatically tracked as a researcher 
+conducts experiments. It tracks variations of one experiment as a tree.
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-5" class="outline-2">
+<h2 id="sec-5"><span class="section-number-2">5</span> RELATED RESEARCH: WORKFLOWS</h2>
+<div class="outline-text-2" id="text-5">
+<p>
+Def. "Workflows
+are activities involving the coordinated
+execution of multiple tasks performed by
+different processing entities"
+</p>
+
+<p>
+So a workflow is constructed <i>before</i> an experiment, and after that
+the lineage is navigated.
+</p>
+
+<p>
+There are many many workflow definition languages and execution languages,
+in the 2000s there were attemots to standardize that.
+</p>
+
+<p>
+Sharing workflows through webservers did not yet evolve at the time.
+The Business Process Execution Language for Web Services is deemed promising,
+along with the Web Services Choreog- raphy Description Language.
+</p>
+</div>
+</div>
+
+
+<div id="outline-container-sec-6" class="outline-2">
+<h2 id="sec-6"><span class="section-number-2">6</span> VERSION MANAGEMENT</h2>
+<div class="outline-text-2" id="text-6">
+<p>
+Version management, known also as ver- sion or revision control, 
+is used for tracking modifications to files or objects (particularly documents,
+ application code components, and database records) over time.
+</p>
+
+<p>
+The paper references a vcs from 1993 "Concurrent Versions System (CVS) [Cederqvist 1993]"
+</p>
+
+<p>
+VCS applicable per repository, for connections between related objects Config management 
+is needed
+</p>
+
+<p>
+The difficulty of version management for data is acknowledged.
+Some approaches use version management on metadata graphs that describe
+connections between datasets.
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-7" class="outline-2">
+<h2 id="sec-7"><span class="section-number-2">7</span> Lineage metamodel</h2>
+<div class="outline-text-2" id="text-7">
+<p>
+The paper concluded with the definition of a metamodel for lineage retrieval 
+system design.
+</p>
+
+<p>
+At the heart of the model is the workflow, that publishes
+data items over time along with their metadata and lineage metadata.
+Metadata and lineage metadata may or may not be in distinct systems.
+</p>
+
+<p>
+The metadata has to be structured in a way that 
+lineage retrieval requires the capability to
+ assemble a retrospective view of workflow using extant metadata.
+</p>
+</div>
+
+<div id="outline-container-sec-7-1" class="outline-3">
+<h3 id="sec-7-1"><span class="section-number-3">7.1</span> the workflow model</h3>
+<div class="outline-text-3" id="text-7-1">
+<p>
+&rarr; how is the processing workflow abstracted and described?
+It needs to describe the model used (graph, tree, list etc.),
+how identifiers are assigned, how the relationships between workflow constituents
+are stored and how the workflow is invoked.
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-7-2" class="outline-3">
+<h3 id="sec-7-2"><span class="section-number-3">7.2</span> The metadata model</h3>
+<div class="outline-text-3" id="text-7-2">
+<p>
+What metadata is tracked and how is it generated for new items?
+What container is used for metadata? How is it stored?
+What lineage data is created and how? How is it stored?
+</p>
+</div>
+</div>
+<div id="outline-container-sec-7-3" class="outline-3">
+<h3 id="sec-7-3"><span class="section-number-3">7.3</span> Lineage retrieval</h3>
+<div class="outline-text-3" id="text-7-3">
+<p>
+How does one access a system overview?
+What kinds of queries are possible and how are they executed?
+</p>
+
+
+<p>
+The paper also includes manifold example of how the above questions are answered
+for some existing systems.
+</p>
+</div>
+</div>
+</div>
+</div><div class="col-md-3"><nav id="table-of-contents">
+<div id="text-table-of-contents" class="bs-docs-sidebar">
+<ul class="nav">
+<li><a href="#sec-1">1. Summary</a></li>
+<li><a href="#sec-2">2. Introduction</a></li>
+<li><a href="#sec-3">3. LINEAGE RETRIEVAL FOR DATA PROCESSING SYSTEMS</a>
+<ul class="nav">
+<li><a href="#sec-3-1">3.1. Command Line-Based Data Processing</a></li>
+<li><a href="#sec-3-2">3.2. Script- and Program-Based Data Processing</a></li>
+<li><a href="#sec-3-3">3.3. WFMS-Based Data Processing</a></li>
+<li><a href="#sec-3-4">3.4. Query-Based Data Processing</a></li>
+<li><a href="#sec-3-5">3.5. Service-Based Data Processing</a></li>
+</ul>
+</li>
+<li><a href="#sec-4">4. RELATED RESEARCH: COLLABORATIVE ENVIRONMENTS AND EXPERIMENT MANAGEMENT</a></li>
+<li><a href="#sec-5">5. RELATED RESEARCH: WORKFLOWS</a></li>
+<li><a href="#sec-6">6. VERSION MANAGEMENT</a></li>
+<li><a href="#sec-7">7. Lineage metamodel</a>
+<ul class="nav">
+<li><a href="#sec-7-1">7.1. the workflow model</a></li>
+<li><a href="#sec-7-2">7.2. The metadata model</a></li>
+<li><a href="#sec-7-3">7.3. Lineage retrieval</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</nav>
+</div></div></div>
+</body>
+</html>
