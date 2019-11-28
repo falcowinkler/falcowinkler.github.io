@@ -5,11 +5,18 @@ Listen und die for-schleife
 * Aufwärmübungen
 
 ** Ampelschaltung
-Deklariert euch eine Variable ~farbe~ mit dem Wert "rot" "grün" oder "gelb". Danach soll eine if - elif - else Struktur folgen, die Folgendes bewirkt: Wenn der Wert der Variable "rot" ist, soll er umgeändert werden in "grün". Wenn er "grün" ist soll er auf "gelb" umgeändert werden, und wenn er "gelb" ist soll er auf "rot" umgeändert werden (d.h die Variable soll überschrieben werden, so wie gestern bei der Gruß Variable). Gebt euch danach den Wert der Variable ~farbe~ zur Prüfung auf der Konsole aus. Hinweis: Genau wie bei Zahlen kann man Zeichenketten mit == vergleichen.
+Deklariert euch eine Variable ~farbe~ mit dem Wert "rot" "grün" oder "gelb".
+Danach soll eine if - elif - else Struktur folgen, die Folgendes bewirkt: 
+Wenn der Wert der Variable "rot" ist, soll er umgeändert werden in "grün".
+Wenn er "grün" ist soll er auf "gelb" umgeändert werden, und wenn er "gelb" 
+ist soll er auf "rot" umgeändert werden (d.h die Variable soll überschrieben werden,
+so wie gestern bei der Gruß Variable). 
+Gebt euch danach den Wert der Variable ~farbe~ zur Prüfung auf der Konsole aus. 
+Hinweis: Genau wie bei Zahlen kann man Zeichenketten mit == vergleichen.
 
 #+BEGIN_SRC python
 farbe = 'gelb'
-#...
+# ...
 #+END_SRC
 
 ** Getränkeautomat
@@ -28,7 +35,11 @@ alter = 10
 # ...
 #+END_SRC
 * Zeichenketten verändern
-Mit Zeichenketten arbeitet man sehr häufig. Oft sind sie aber nicht in der gewünschten Form, man will Daten aus Ihnen extrahieren, oder sie verkürzen. Dafür stellt Python [[https://www.w3schools.com/python/python_ref_string.asp][jede Menge Funktionalität]] zur Verfügung. Einen Ausschnitt davon werden wir in diesem Kurs kennenlernen.
+Mit Zeichenketten arbeitet man sehr häufig. 
+Oft sind sie aber nicht in der gewünschten Form, 
+man will Daten aus Ihnen extrahieren, oder sie verkürzen. 
+Dafür stellt Python [[https://www.w3schools.com/python/python_ref_string.asp][jede Menge Funktionalität]] zur Verfügung.
+Nachfolgend einige Beispiele:
 #+BEGIN_SRC python :results output :exports both
 test_string = "Ich bin hier, Du Bist hier, Schnabeltier."
 
@@ -39,7 +50,14 @@ du_korrigiert = test_string.replace("Du ", "du ").replace("Bist ", "bist ")
 print(du_korrigiert)
 #+END_SRC
 
-Es gibt auch Funktionen, die Informationen über eine Zeichenkette liefern. Wie zum Beispiel die built-in Funktion len(), die die Anzahl an Zeichen in einer Zeichenkette zurückgibt. Mit count() lassen sich Wörter in einer Zeichenkette zählen. Und mit find() kann man die Stelle des Ersten Vorkommens eines Buchstaben finden!
+Anders als bei /built-in/ Funktionen werden diese mit Punktnotation zusammen mit der 
+Zeichenkette aufgerufen. In diesem Fall spricht man eher von /Methoden/ anstatt /Funktionen/.
+
+Es gibt auch Methoden, die Informationen über eine Zeichenkette liefern. 
+\Wie zum Beispiel die built-in Funktion len(), 
+die die Anzahl an Zeichen in einer Zeichenkette zurückgibt. 
+Mit count() lassen sich Wörter in einer Zeichenkette zählen. 
+Und mit find() kann man die Stelle des Ersten Vorkommens eines Buchstaben finden!
 
 #+BEGIN_SRC python :results output :exports both
 lange_zeichenkette = "The brown fox jumps over the lazy dog. The brown fox jumps over the lazy dog."
@@ -96,8 +114,10 @@ print(satz.split(" "))
 
 * Schleifen
 
-
-Es passiert auch häufig dass man eine Sequenz von Dingen der Reihe nach durchgehen muss, um mit jedem Element irgendwas zu machen. Mit der bereits bekannten ~while~ Schleife könnte man das natürlich machen, jedoch gibt es noch eine einfacherere Möglichkeit.
+Es passiert auch häufig dass man eine Sequenz von Dingen der Reihe nach durchgehen muss,
+ um mit jedem Element irgendwas zu machen. 
+Mit der bereits bekannten ~while~ Schleife könnte man das natürlich machen, 
+jedoch gibt es noch eine einfacherere Möglichkeit.
 
 #+BEGIN_SRC python :results output :exports both
 users = ["Anton", "Bertha", "Caesar", "Detlef", "Emil"]
@@ -107,17 +127,9 @@ for name in users:
     print(name + " ist super")
 #+END_SRC
 
-* Übungen
-
-** Strings in Listen verändern
-Deklariert euch eine Liste von Zeichenketten. Wie z.B. die users liste in obigem Code. Dann schreibt euch eine Funktion die jede Zeichenkette in der Liste in Großbuchstaben umwandelt, und drei Ausrufezeichen anhängt.
-
-** for als while
-Versucht die selbe Funktionalität wie mit der for-Schleife oben mit einer while-Schleife zu erreichen.
-
-** range
-
-Die ~range~ Funktion erlaubt es uns durch Zahlenfolgen zu iterieren. Dafür geben wir einen Anfangswert und eine Grenze der Zahlenfolge an. Optional können wir auch angeben wieviele Zahlen wir pro Schleifendurchlauf "springen".
+Die ~range~ Funktion erlaubt es uns durch Zahlenfolgen zu iterieren. 
+Dafür geben wir einen Anfangswert und eine Grenze der Zahlenfolge an. 
+Optional können wir auch angeben wieviele Zahlen wir pro Schleifendurchlauf "springen".
 #+BEGIN_SRC python :results output :exports both
 for i in range(1, 5):
     print(i)
@@ -128,6 +140,25 @@ for i in range(1, 10, 2):
     print(i)
 #+END_SRC
 
+for-Schleifen können Grundsätzlich mit Allem arbeiten, was sich irgendwie nach einer festen Reihenfolge
+abzählen lässt. Zum Beispiel iterieren wir bei Zeichen/ketten/ durch die einzelnen Zeichen.
+
+#+BEGIN_SRC python :results output :exports both
+string = "mallorca"
+for letter in string:
+    print("Gib mir ein ", letter, "!!")
+print("mallorca")
+#+END_SRC
+
+
+* Übungen
+** Strings in Listen verändern
+Deklariert euch eine Liste von Zeichenketten. Wie z.B. die users liste in obigem Code. Dann schreibt euch eine Funktion die jede Zeichenkette in der Liste in Großbuchstaben umwandelt, und drei Ausrufezeichen anhängt.
+
+** for als while
+Versucht die selbe Funktionalität wie mit der for-Schleife oben mit einer while-Schleife zu erreichen.
+
+** Pyramiden bauen
 Versucht, ein Python-Programm zu schreiben, welches die Pyramide
 #+BEGIN_SRC python
 *
@@ -143,7 +174,18 @@ Versucht, ein Python-Programm zu schreiben, welches die Pyramide
 ausgibt. Das Ganze soll in einer Schleife passieren, damit wir die höhe der Pyramide variieren können.
 
 * Zur Wiederholung
+** Labyrinth
+Ladet euch den Quellcode für diese Übung bitte [[https://github.com/falcowinkler/falcowinkler.github.io/raw/master/resources/python-course/python_labyrinth.zip][hier]] herunter. Die Datei muss dann vollständig entpackt
+werden (Das ist wichtig, unter windows funktioniert es sonst nicht). Öffnet dann die Datei
+playground.py in dem Ordner.
+Wenn ihr das Programm startet, seht ihr eine Spielfigur die sich über ein (noch relativ leeres)
+Spielfeld bewegt.
+- Nutzt den ~block~-Befehl um ein Labyrinth zu erstellen. Die zahlen sind (x, y) Koordinaten, 
+und es gibt "Dreck", "Gras", "Wasser", "Ziel", und "Kohle".
+- Nutzt den ~bewegung~-Befehl, um euch durch das Labyrinth zu Bewegen
+ (Erlaubte Parameter sind links, rechts, hoch, runter).
 
+Wenn euch diese Übung Spass gemacht hat, schaut mal auf [[https://codecombat.com/play/][CodeCombat]] :)
 ** Echte Pyramide
 Versucht, ein Python-Programm zu schreiben, welches eine "echte" Pyramide ausgibt:
 #+BEGIN_SRC python
