@@ -6,7 +6,7 @@ In den letzten zwei Stunden implementieren wir ein richtiges Projekt! Welches Pr
 * Wiederholung
 
 Wiederholung ist wichtig fürs erfolgreiche Lernen! In dem heutigen warm-up gehen wir zu jedem der Themenbereiche aus dem ersten Kurs eine Aufgabe durch.
-Einige dieser Aufgaben könnt ihr auch auf der in der letzten Stunde erwähnten als Lösungen einreichen, wer möchte.
+
 ** Teil 1: Variablen und Datentypen, Rechnen
 Die erste Zeile ist vorgegeben: Ihr findet eine Variable ~temperatur_c~ mit einer Kommazahl als ~string~ vor. Rechnet diese Temperatur in Kelvin um (+ 273.15) und gebt in einer lesbaren Nachricht die Temperatur in Kelvin aus, zum Beispiel: Die aktuelle Temperatur ist x Kelvin.
 #+BEGIN_SRC python :results output :exports both
