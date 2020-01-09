@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <title>Baustein 1 Meeting 4</title>
-<!-- 2019-11-15 Fri 12:08 -->
+<!-- 2020-01-09 Thu 17:55 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="generator" content="Org-mode">
@@ -279,7 +279,7 @@ Mengen sind ungeordnete Sammlungen von Objekten. Sie können kein Element mehrfa
 </div>
 
 <pre class="example">
-{1, 2, 3, 4, 5, 6}
+set([1, 2, 3, 4, 5, 6])
 </pre>
 
 
@@ -315,10 +315,6 @@ Erzeugen Listen, Wörterbücher und Mengen aus ihren Argumenten (wenn möglich).
 <span style="color: #7590db;">liste_ohne_duplikate</span> = <span style="color: #4f97d7;">list</span><span style="color: #4f97d7;">(</span><span style="color: #4f97d7;">set</span><span style="color: #bc6ec5;">(</span>meine_liste<span style="color: #bc6ec5;">)</span><span style="color: #4f97d7;">)</span>
 </pre>
 </div>
-
-<pre class="example">
-{'y', ' ', 'o', 'a', 'l', 'A', 'n', 'P', 'h', 'r', 't', 'i', 'u', 'T'}
-</pre>
 </div>
 </div>
 
@@ -385,9 +381,9 @@ city_bike.describe<span style="color: #4f97d7;">()</span>
 </div>
 
 <pre class="example">
-mountain bike has color black , current speed is 5 km/h
-city bike has color pink , current speed is 15 km/h
-city bike has color pink , current speed is 0 km/h
+('mountain bike', 'has color', 'black', ', current speed is', '5', 'km/h')
+('city bike', 'has color', 'pink', ', current speed is', '15', 'km/h')
+('city bike', 'has color', 'pink', ', current speed is', '0', 'km/h')
 </pre>
 </div>
 </div>
@@ -492,10 +488,17 @@ Implementiert die Klasse <code>Bankkonto</code>.
 Der erste Teil des Kurses ist vorbei und ihr möchtet alleine weitermachen? Kein Problem, es gibt eine Vielzahl von Möglichkeiten.
 </p>
 </div>
-
 <div id="outline-container-sec-4-1" class="outline-3">
-<h3 id="sec-4-1"><span class="section-number-3">4.1</span> Coding - Katas</h3>
+<h3 id="sec-4-1"><span class="section-number-3">4.1</span> CodeCombat</h3>
 <div class="outline-text-3" id="text-4-1">
+<p>
+Von einer Teilnehmerin empfohlen, kann man hier spielerisch am Ball bleiben: <a href="https://codecombat.com/play/">Link</a>
+</p>
+</div>
+</div>
+<div id="outline-container-sec-4-2" class="outline-3">
+<h3 id="sec-4-2"><span class="section-number-3">4.2</span> Coding - Katas</h3>
+<div class="outline-text-3" id="text-4-2">
 <p>
 Unter Entwicklern hat sich eine bestimmte Trainingsmethode etabliert: Die sogenannten Katas (der Begriff kommt aus dem Kampfsport). Hierbei schreibt ein Entwickler ein Problem auf, dass es zu lösen gilt. Zusätzlich schreibt der Herausforderer Test-Code der Überprüft, ob das Problem richtig gelöst wurde. Der andere Entwickler muss dann versuchen, das Problem so zu lösen dass der Test erfolgreich verläuft.
 </p>
@@ -542,9 +545,9 @@ Für unser Erfahrungslevel sind Kata der Schwierigkeitsstufe 8 und 7 (sprache Py
 </div>
 </div>
 
-<div id="outline-container-sec-4-2" class="outline-3">
-<h3 id="sec-4-2"><span class="section-number-3">4.2</span> Online - Kurse</h3>
-<div class="outline-text-3" id="text-4-2">
+<div id="outline-container-sec-4-3" class="outline-3">
+<h3 id="sec-4-3"><span class="section-number-3">4.3</span> Online - Kurse</h3>
+<div class="outline-text-3" id="text-4-3">
 <p>
 Generell eine gute Resource um selbst zu lernen ist der Kurs von codecadamy: <a href="https://www.codecademy.com/learn/learn-python">https://www.codecademy.com/learn/learn-python</a> Dort gibt es interaktive Erklärungen zum Stoff und auch Übungsaufgaben die ganz genau erklärt und mit Hinweisen bestückt sind. Aber vorsicht: Dieser Kurs lehrt die Python Version zwei. Ist aber wie bereits erwähnt nicht schlimm, da der Unterschied zwischen Python 2 und 3 nicht groß ist. Es gibt auch einen Kurs für Python3, Kostet aber ziemlich viel (Mitgliedschaft für ~ 20€ /Monat), immerhin gibt es eine kostenlose 7 Tage mitgliedschaft.
 </p>
@@ -555,9 +558,9 @@ Darüber hinaus gibt es noch unzählige Kurse, sogar mobile Apps zum Lernen. Die
 </div>
 </div>
 
-<div id="outline-container-sec-4-3" class="outline-3">
-<h3 id="sec-4-3"><span class="section-number-3">4.3</span> Eigene Projekte</h3>
-<div class="outline-text-3" id="text-4-3">
+<div id="outline-container-sec-4-4" class="outline-3">
+<h3 id="sec-4-4"><span class="section-number-3">4.4</span> Eigene Projekte</h3>
+<div class="outline-text-3" id="text-4-4">
 <p>
 Für die Motivation super: Ein eigenes Projekt ausdenken (nicht zu schwierig!) und einfach kraft Suchmaschine und Entwicklerforen wie stackoverflow.com / moinworld slack umsetzen.
 </p>
@@ -584,9 +587,10 @@ Für die Motivation super: Ein eigenes Projekt ausdenken (nicht zu schwierig!) u
 </li>
 <li><a href="#sec-4">4. Weiterführend: Python lernen</a>
 <ul class="nav">
-<li><a href="#sec-4-1">4.1. Coding - Katas</a></li>
-<li><a href="#sec-4-2">4.2. Online - Kurse</a></li>
-<li><a href="#sec-4-3">4.3. Eigene Projekte</a></li>
+<li><a href="#sec-4-1">4.1. CodeCombat</a></li>
+<li><a href="#sec-4-2">4.2. Coding - Katas</a></li>
+<li><a href="#sec-4-3">4.3. Online - Kurse</a></li>
+<li><a href="#sec-4-4">4.4. Eigene Projekte</a></li>
 </ul>
 </li>
 </ul>

@@ -188,7 +188,8 @@ https://www.codewars.com/kata/object-oriented-piracy
 
 * Weiterführend: Python lernen
 Der erste Teil des Kurses ist vorbei und ihr möchtet alleine weitermachen? Kein Problem, es gibt eine Vielzahl von Möglichkeiten.
-
+** CodeCombat
+Von einer Teilnehmerin empfohlen, kann man hier spielerisch am Ball bleiben: [[https://codecombat.com/play/][Link]]
 ** Coding - Katas
 Unter Entwicklern hat sich eine bestimmte Trainingsmethode etabliert: Die sogenannten Katas (der Begriff kommt aus dem Kampfsport). Hierbei schreibt ein Entwickler ein Problem auf, dass es zu lösen gilt. Zusätzlich schreibt der Herausforderer Test-Code der Überprüft, ob das Problem richtig gelöst wurde. Der andere Entwickler muss dann versuchen, das Problem so zu lösen dass der Test erfolgreich verläuft.
 

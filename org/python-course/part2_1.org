@@ -6,7 +6,7 @@ In den letzten zwei Stunden implementieren wir ein richtiges Projekt! Welches Pr
 * Wiederholung
 
 Wiederholung ist wichtig fürs erfolgreiche Lernen! In dem heutigen warm-up gehen wir zu jedem der Themenbereiche aus dem ersten Kurs eine Aufgabe durch.
-Einige dieser Aufgaben könnt ihr auch auf der in der letzten Stunde erwähnten [[http://www.codewars.com/r/iQ48PQ][Website]] als Lösungen einreichen, wer möchte.
+Einige dieser Aufgaben könnt ihr auch auf der in der letzten Stunde erwähnten als Lösungen einreichen, wer möchte.
 ** Teil 1: Variablen und Datentypen, Rechnen
 Die erste Zeile ist vorgegeben: Ihr findet eine Variable ~temperatur_c~ mit einer Kommazahl als ~string~ vor. Rechnet diese Temperatur in Kelvin um (+ 273.15) und gebt in einer lesbaren Nachricht die Temperatur in Kelvin aus, zum Beispiel: Die aktuelle Temperatur ist x Kelvin.
 #+BEGIN_SRC python :results output :exports both
@@ -17,14 +17,14 @@ temperatur_c = 10.12
 Gegeben sein eine Zahl n. Schreibt eine while - Schleife, die solange Folgendes ausführen soll, bis n den Wert 1 bekommt:
 - wenn n ungerade ist, multipliziere n mit 3 und addiere 1
 - wenn n gerade ist, teile n durch 2
+Der Wert von ~n~ soll in jedem Schleifendurchlauf ausgegeben werden.
 Zur Erinnerung: Die Teilbarkeit einer Zahl n durch m lässt sich in python mittels Teilung mit Rest (modulo) ~n % m == 0~ bestimmen.
-(Für die interessierten: Die Frage ob diese Schleife für jedes ~n~ terminiert, ist ein [[https://www.youtube.com/watch?v=5mFpVDpKX70][höchst interessantes aber bisher ungelöstes Problem]])
+(by the way: Die Frage ob diese Schleife für jede Zahl ~n~ terminiert, ist ein [[https://www.youtube.com/watch?v=5mFpVDpKX70][bisher ungelöstes Problem]]).
 #+BEGIN_SRC python :results output :exports both
 n = 42
 while ...:
     # euer code
 #+END_SRC
-([[https://www.codewars.com/kata/collatz-conjecture-3n-plus-1/train/python][codewars-version]])
 ([[https://falcowinkler.github.io/resources/python-course/kurs_2_1_wiederholung_schleifen.py][Lösung]])
 ** Teil 3: Funktionen, Listen, For - Schleifen
 Diese Aufgabe kombiniert viele der bisherigen Konzepte.
@@ -45,7 +45,6 @@ antworten = ["a", "c", "b", "d"]
 for loesung, antwort in zip(loesungen, antworten):
     print(loesung == antwort)
 #+END_SRC
-([[https://www.codewars.com/kata/check-the-exam/train/python][codewars-version]])
 ([[https://falcowinkler.github.io/resources/python-course/kurs_2_1_wiederholung_punktezahl.py][Lösung]])
 ** Teil 4: Objektorientierung
 Erinnert ihr euch noch an das [[https://falcowinkler.github.io/part1_3.html#sec-6-2][Number Guessing Game aus Baustein 1?]]
