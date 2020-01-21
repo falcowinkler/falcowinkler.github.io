@@ -7,3 +7,4 @@
 ** [[file:part2_1.org][Wiederholung Baustein 1]]
 ** [[file:part2_2.org][Bibliotheken]]
 ** [[file:project_web_scraper.org][Projekt: Web Scraper]]
+** [[file:project_data_analytics.org][Projekt: Datenanalyse und -visualizierung]]
