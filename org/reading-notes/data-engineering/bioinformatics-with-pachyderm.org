@@ -1,0 +1,92 @@
+#+OPTIONS: num:nil
+* Introduction
+Computational bioinformatics use complex pipelines that need to be orchestrated on modern
+infrastructure, and reproducible.
+Needs to
+- Run tools reliably in any computational environment
+- A well-defined way to orchestrate this
+- Data management layer for reproducibility
+Pachyderm fullfils these requirements, the thesis contains multiple contributions
+to pachyderm as well as an example that shows the properties of pachyderm.
+
+Bioinformatics turned more complex and data-intensive in the recent years.
+Foundation of the scientific method is that experiments are reproducible by
+other researchers.
+
+Usage of various processing environments and franeworks make this hard.
+Snakemake, galaxy aid researchers by managing dependencies between tools under the hood.
+VMs have fallen out of favor since availability and reproducibility are poor.
+Microservices architecture inspired use of Docker containers for pipelines.
+They are lightweight, scalabe and capture the compute env. reliably.
+
+*Pachyderm*. built on kubernetes, promises scalability, as well as reproducibility
+through use of containers and a fully versioned filesystem.
+
+Many pipeline solutions exist
+- Bpipe, Reflow are tied to specific language, no containers
+- Dat, Git LFS handle data dependencies, not integrated with any pipelining things
+- iRODS can be used to implement file access layer and pipelining solution through a 
+rule-based language
+
+Pachyderm along with Argo is one of the few workflow tools,
+that are language/data agnostic.
+
+* System and methods
+
+Pachyderm leverages open source software of the container ecosystem (docker, k8s, etcd)
+The pachyderm daemon (pachd) consists of 
+- block store component
+- filesystem component cooperates with block store to handle pfs (pachyderm file system) requests
+- pipelining component controls the worker pods via k8s API, coordinates the injection of data with file system component
+- A separate object store is used to save data
+- ETCD key value store is used for managing pipeline state and such
+- Pachyderm has an internal caching system
+
+External storage does not have to be used
+But you can use e.g. external GlusterFS and minion processes to pull/upload files between k8s and glusterfs
+
+PFS
+
+- Copy on write semantics, every dataset used needs to be possible to restore
+- Files are hashed, and stored in the filesystem using this hash (similar to DVC)
+- Hash is tracked in etcd
+- Versions of files live in a pachyderm data repository (pdr)
+
+Using this concept of data repositories and pipelines data provenance/lineage can be automatically tracked.
+Any state of data is identified by a commit, and it is also possible to get versioned pipeline definitions used to process a datum.
+"any run of any pipeline producing any result is completely reproducible and explainable"
+
+Pachyderm workers
+
+Are long-running pods (by default) that run pachyderm system containers along with the user container.
+They are created alongside the pipeline definition.
+
+Incremental processing, only new data is fed to jobs as soon as it's commited to a repository
+
+Data is split into /datums/, minimum independently processable units (e.g. lines in a csv file) for parallel processing.
+Number of workers is controlled by the user, and a worker processes one datum at the time in isolation.
+
+* Results
+- Authors contributed block storage (S3?) integrations with pachyderm
+- And a helm chart to deploy in multiple infrastructure scenarios
+
+Pachyderm was used to implement a really complex bioinformatics pipeline.
+Scaling efficiency and speedup with regards to reference solution were measured.
+
+
+* Discussion
+
+Containers are more and more used for distributed and reproducible processing,
+high adoption in bioinformatics
+Performance impact of using containers (as opposed to say .jar applications) is negligible.
+/"a scaling efficiency of 79% and a speedup of 63 were achieved when using 80 workers in one of the benchmarks."/
+
+Drawbacks of pachyderm
+
+- limited access to external storage and data locality
+- non-optimal container networking and security
+- performance overhead when compared to bare-metal settings
+- It's possible to implement streaming pipelines, but job parallelism is not possible
+- 100% tied to k8s, and Kubernetes is not easy to set up
+
+Overall pachyderm is a good and convenient tool if one can live with above drawbacks.
