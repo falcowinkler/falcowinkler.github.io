@@ -24,3 +24,7 @@ Alle Rechte vorbehalten: © 2015-20178 Alexander C.S. Hendorf, Königsweg GmbH, 
 
 Das Original gibt es hier. Falls es mit der Installation nicht klappt, könnt ihr dort das Notebook online ausführen.
 https://github.com/alanderex/pydata-pandas-workshop.git
+
+* Teil 2
+Wir analysieren ein Datenset von UFO-Sichtungen.
+Das Notebook von heute gibt es [[https://github.com/falcowinkler/falcowinkler.github.io/raw/master/resources/python-course/projekt-ufos.zip][hier]].
