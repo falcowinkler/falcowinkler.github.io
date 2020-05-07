@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <title>Baustein 1 Meeting 1</title>
-<!-- 2019-11-15 Fri 12:08 -->
+<!-- 2020-05-07 Thu 13:42 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="generator" content="Org-mode">
@@ -198,6 +198,7 @@ Hello World, Datentypen, Variablen, Verzweigungen und Schleifen
 </p>
 
 
+
 <div id="outline-container-sec-1" class="outline-2">
 <h2 id="sec-1"><span class="section-number-2">1</span> Hello World</h2>
 <div class="outline-text-2" id="text-1">
@@ -217,11 +218,17 @@ Moin world
 
 
 <p>
+🎉
+</p>
+
+
+<p>
 Führt man diese Codezeile in Thonny aus, erscheint die Ausgabe in einem separaten Fenster namens "Shell". Die shell ist eine rein textuelle Benutzeroberfläche um mit dem Computer zu arbeiten: Der Computer kann hier Ausgaben reinschreiben, und auch der Nutzer kann Text eingeben (das lernen wir später kennen). In diesem Fenster werden wir also die Ausgaben unserer Programme sehen, d.h. alles was durch den <code>print</code>-Befehl ausgegeben wird. Auch Fehlermeldungen erscheinen hier.
 </p>
 
 <p>
-<code>print</code> ist eine Funktion, das bedeutet das der Print-Aufruf ein bestimmtes Verhalten auslöst. Funktionen werden wir später genauer kennen lernen, und wir werden auch eigene Funktionen schreiben.
+<code>print</code> ist eine Funktion, das bedeutet das der Print-Aufruf ein bes
+timmtes Verhalten auslöst. Funktionen werden wir später genauer kennen lernen, und wir werden auch eigene Funktionen schreiben.
 </p>
 
 <p>
@@ -377,7 +384,7 @@ Hier ist es sehr hilfreich mit dem Debugger von Thonny zu arbeiten. Mit "Step in
 <span style="color: #4f97d7; font-weight: bold;">print</span><span style="color: #4f97d7;">(</span><span style="color: #a45bad;">5</span> - <span style="color: #a45bad;">2</span><span style="color: #4f97d7;">)</span>
 <span style="color: #4f97d7; font-weight: bold;">print</span><span style="color: #4f97d7;">(</span><span style="color: #a45bad;">12</span> / <span style="color: #a45bad;">4</span><span style="color: #4f97d7;">)</span>
 <span style="color: #4f97d7; font-weight: bold;">print</span><span style="color: #4f97d7;">(</span><span style="color: #a45bad;">12</span> // <span style="color: #a45bad;">4</span><span style="color: #4f97d7;">)</span> <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">Ganzzahlige Division</span>
-
+<span style="color: #4f97d7; font-weight: bold;">print</span><span style="color: #4f97d7;">(</span><span style="color: #a45bad;">10</span> * <span style="color: #bc6ec5;">(</span><span style="color: #a45bad;">20</span> + <span style="color: #a45bad;">5</span><span style="color: #bc6ec5;">)</span><span style="color: #4f97d7;">)</span> <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">Ausdr&#252;cke k&#246;nnen beliebig geklammert werden</span>
 </pre>
 </div>
 
@@ -388,37 +395,46 @@ Hier ist es sehr hilfreich mit dem Debugger von Thonny zu arbeiten. Mit "Step in
 3
 3.0
 3
+250
 </pre>
 
 
 <p>
-Neben der Grundschulmathe gibt es noch ein paar weitere, weniger gebräuchliche Operationen.
+Neben der Grundrechenarten gibt es noch ein paar weitere Operatoren.
 </p>
 
 <div class="org-src-container">
 
 <pre class="src src-python"><span style="color: #4f97d7; font-weight: bold;">print</span><span style="color: #4f97d7;">(</span><span style="color: #a45bad;">13</span> % <span style="color: #a45bad;">5</span><span style="color: #4f97d7;">)</span> <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">Modulo</span>
 <span style="color: #4f97d7; font-weight: bold;">print</span><span style="color: #4f97d7;">(</span><span style="color: #a45bad;">4</span> ** <span style="color: #a45bad;">4</span><span style="color: #4f97d7;">)</span> <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">Potenz</span>
-<span style="color: #4f97d7; font-weight: bold;">print</span><span style="color: #4f97d7;">(</span><span style="color: #a45bad;">0</span>.<span style="color: #a45bad;">1</span> + <span style="color: #a45bad;">0</span>.<span style="color: #a45bad;">2</span><span style="color: #4f97d7;">)</span>
-<span style="color: #4f97d7; font-weight: bold;">print</span><span style="color: #4f97d7;">(</span><span style="color: #a45bad;">10</span> * <span style="color: #bc6ec5;">(</span><span style="color: #a45bad;">20</span> + <span style="color: #a45bad;">5</span><span style="color: #bc6ec5;">)</span><span style="color: #4f97d7;">)</span> <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">Ausdr&#252;cke k&#246;nnen beliebig geklammert werden</span>
 </pre>
 </div>
 
 <pre class="example">
 3
 256
+</pre>
+
+
+<p>
+"Modulo" gibt den Rest bei einer ganzzahligen Division. Um zu verstehen warum <code>13 % 5 == 3</code>, kann man das Beispiel vom Teilen von z.B. Keksen auf eine Gruppe Freunde vorstellen.
+Wenn ihr 13 Kekse auf 5 freunde fair aufteilen wollt (jeder bekommt die gleiche Anzahl, und man kann Kekse nicht weiter teilen), dann bekommt jeder 2 Kekse und 3 bleiben übrig.
+Die <code>3</code> ist der modulo💡.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #4f97d7; font-weight: bold;">print</span><span style="color: #4f97d7;">(</span><span style="color: #a45bad;">0</span>.<span style="color: #a45bad;">1</span> + <span style="color: #a45bad;">0</span>.<span style="color: #a45bad;">2</span><span style="color: #4f97d7;">)</span>
+</pre>
+</div>
+
+<pre class="example">
 0.30000000000000004
-250
 </pre>
 
 
 <p>
 Warum kommt bei 0.1 + 0.2 so ein krummes Ergebnis raus? Wie stellt der Computer "unendliche" Kommazahlen dar wie z.B. 1/3 = 0.333333.. ?
-</p>
-
-
-<p>
-Eine gute Übung ist hier den obigen Code Zeile für Zeile durchzugehen und die Ausgabe zu verstehen. Spielt auch mal mit den Zahlen herum und schaut, wie sich die Ausgabe verändert!
 </p>
 
 <p>
@@ -436,6 +452,12 @@ Mit + lassen sich zwei Zeichenketten zusammenfügen, und * wiederholt eine Zeich
 </pre>
 </div>
 
+<pre class="example">
+moin moin moin moin moin Jürgen
+moin Jürgen
+</pre>
+
+
 <p>
 Funktioniert das + auch mit Zahlen und Zeichenketten? Probiert das mal aus:
 </p>
@@ -446,6 +468,48 @@ Funktioniert das + auch mit Zahlen und Zeichenketten? Probiert das mal aus:
 <span style="color: #7590db;">zeichenkette</span> = <span style="color: #2d9574;">"72"</span>
 <span style="color: #4f97d7; font-weight: bold;">print</span><span style="color: #4f97d7;">(</span>zahl + zeichenkette<span style="color: #4f97d7;">)</span>
 </pre>
+</div>
+</div>
+
+<div id="outline-container-sec-4-1" class="outline-3">
+<h3 id="sec-4-1"><span class="section-number-3">4.1</span> Übung: Einkauf</h3>
+<div class="outline-text-3" id="text-4-1">
+<p>
+Angenommen ihr habt 10 Euro dabei und wollt damit eine Schokolade, einen Lolli und eine Achterbahnfahrt kaufen. Wieviel bleibt übrig?
+Beginnt damit Variablen für die einzelnen Preise zu deklarieren. Das Ergebnis soll auch einer Variable zugewiesen und dann ausgegeben werden.
+</p>
+
+<table class="table table-striped table-bordered table-hover table-condensed">
+
+
+<colgroup>
+<col  class="left">
+
+<col  class="right">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="text-left">Produkt</th>
+<th scope="col" class="text-right">Preis</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="text-left">Schokolade</td>
+<td class="text-right">1.5</td>
+</tr>
+
+<tr>
+<td class="text-left">Lolli</td>
+<td class="text-right">2</td>
+</tr>
+
+<tr>
+<td class="text-left">Achterbahn</td>
+<td class="text-right">1</td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 </div>
@@ -731,8 +795,21 @@ welche das Bild mit der Sequenznummer i anzeigt. Die Sequenznummern gehen von 0 
 Ladet euch die nötigen Dateien herunter (<a href="https://github.com/falcowinkler/falcowinkler.github.io/raw/master/resources/python-course/uebung_for_loop.zip">hier klicken</a>), entpackt das Archiv und löst die aufgabe dann in der Datei <code>uebung.py</code>.
 Weitere Instruktionen sind in der Datei in Kommentaren beschrieben.
 </p>
+
+<p>
+So oder so ähnlich sieht euer Endergebnis aus:
+</p>
+
+
+<figure id="cat_gif">
+<p><img src="https:/i.pinimg.com/originals/85/b4/f6/85b4f61e440d18c956edc07e9cf5045d.gif" class="img-responsive" alt="85b4f61e440d18c956edc07e9cf5045d.gif">
+</p>
+<figcaption><span class="figure-number">Figure 1:</span> Katzenanimation mit einer for-schleife</figcaption>
+</figure>
 </div>
 </div>
+
+
 <div id="outline-container-sec-9" class="outline-2">
 <h2 id="sec-9"><span class="section-number-2">9</span> Code</h2>
 <div class="outline-text-2" id="text-9">
@@ -747,7 +824,11 @@ Den Code für dieses Meeting könnt ihr euch hier herunterladen: <a href="https:
 <li><a href="#sec-1">1. Hello World</a></li>
 <li><a href="#sec-2">2. Datentypen</a></li>
 <li><a href="#sec-3">3. Variablen</a></li>
-<li><a href="#sec-4">4. Basisoperationen</a></li>
+<li><a href="#sec-4">4. Basisoperationen</a>
+<ul class="nav">
+<li><a href="#sec-4-1">4.1. Übung: Einkauf</a></li>
+</ul>
+</li>
 <li><a href="#sec-5">5. Flusskontrolle</a></li>
 <li><a href="#sec-6">6. Schleifen</a></li>
 <li><a href="#sec-7">7. Kommentare</a></li>
