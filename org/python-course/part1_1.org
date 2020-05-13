@@ -263,8 +263,7 @@ So oder so ähnlich sieht euer Endergebnis aus:
 
 #+CAPTION: Katzenanimation mit einer for-schleife
 #+NAME: cat_gif
-[[file:https:/i.pinimg.com/originals/85/b4/f6/85b4f61e440d18c956edc07e9cf5045d.gif]]
-
+[[file:https://raw.githubusercontent.com/falcowinkler/falcowinkler.github.io/master/resources/python-course/cat.gif]]
 
 * Code
 Den Code für dieses Meeting könnt ihr euch hier herunterladen: [[https://github.com/falcowinkler/falcowinkler.github.io/raw/master/resources/python-course/python_beginner_1.zip][*klick*]]

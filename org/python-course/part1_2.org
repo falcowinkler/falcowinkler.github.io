@@ -29,43 +29,11 @@ Ihr sollt ein Programm für folgende Spezifikation schreiben: Ein Automat soll f
 - Personen die 21 und älter sind bekommen Whiskey
 
 Definiert euch dazu eine Variable ~alter~ mit beliebigem Wert, und schreibt danach ein if-elif-else Befehl der das korrekte Getränk auf der Konsole ausgibt.
-Danach sollen die Getränke für alle Altersklassen aufgelistet werden. Schreibt eine while-Schleife die bis 25 zählt und in jedem Durchgang den Code aus Aufgabe 1 ausführt.
+Bonus: Es sollen die Getränke für alle Altersklassen aufgelistet werden. Schreibt eine while-Schleife die bis 25 zählt und in jedem Durchgang den Code aus Aufgabe 1 ausführt.
 #+BEGIN_SRC python
 alter = 10
 # ...
 #+END_SRC
-* Zeichenketten verändern
-Mit Zeichenketten arbeitet man sehr häufig. 
-Oft sind sie aber nicht in der gewünschten Form, 
-man will Daten aus Ihnen extrahieren, oder sie verkürzen. 
-Dafür stellt Python [[https://www.w3schools.com/python/python_ref_string.asp][jede Menge Funktionalität]] zur Verfügung.
-Nachfolgend einige Beispiele:
-#+BEGIN_SRC python :results output :exports both
-test_string = "Ich bin hier, Du Bist hier, Schnabeltier."
-
-print(test_string.upper())
-print(test_string.lower())
-print(test_string.title())
-du_korrigiert = test_string.replace("Du ", "du ").replace("Bist ", "bist ")
-print(du_korrigiert)
-#+END_SRC
-
-Anders als bei /built-in/ Funktionen werden diese mit Punktnotation zusammen mit der 
-Zeichenkette aufgerufen. In diesem Fall spricht man eher von /Methoden/ anstatt /Funktionen/.
-
-Es gibt auch Methoden, die Informationen über eine Zeichenkette liefern. 
-\Wie zum Beispiel die built-in Funktion len(), 
-die die Anzahl an Zeichen in einer Zeichenkette zurückgibt. 
-Mit count() lassen sich Wörter in einer Zeichenkette zählen. 
-Und mit find() kann man die Stelle des Ersten Vorkommens eines Buchstaben finden!
-
-#+BEGIN_SRC python :results output :exports both
-lange_zeichenkette = "The brown fox jumps over the lazy dog. The brown fox jumps over the lazy dog."
-print(len(lange_zeichenkette))
-print(lange_zeichenkette.count("fox"))
-print("abc123".find("c"))
-#+END_SRC
-
 * Listen
 Listen sind eine Sammlung von Elementen in fester Reihenfolge. Jedes Element einer Liste hat dabei einen festen /Index/, also eine Zahl, die beschreibt an welcher Stelle der Liste das Element steht.
 
@@ -85,24 +53,27 @@ print(meine_liste[2]) #Wasser ist an Stelle 3, hat aber den Index 2.
 Natürlich können Listen noch einiges mehr: Löschen, Hinzufügen, und Verändern von Elementen. Dafür gibt es wieder [[https://docs.python.org/3/tutorial/datastructures.html][ziemlich viel Funktionalität]] von der wir einen Teil kennen lernen werden.
 
 #+BEGIN_SRC python :results output :exports both
-elements = ["Feuer", "Wasser", "Erde", "Wind", 1, 2, 3, 4, 5, True]
+animals = ["Giraffe", "Affe", "Schnabeltier", "Oxolotl"]
 # Zugriff:
-element = elements[2]
-print("Element aus der Liste: " + element)
+animal = animals[2]
+print("Element aus der Liste: " + animal)
 
 # Verändern
-elements[2] = "Erdnussbutter"
+animals[2] = "Großaugenmaki"
 
 # Einfügen und Anhängen:
-elements.insert(6, "was neues")
-elements.append("!")
-print(elements)
+animals.insert(1, "Meerschweinchen")
+animals.append("Pottwal")
+print(animals)
 
 # Löschen:
-# ganze liste: del elements
-# einzelnes Element:
-del elements[6]
-print(elements)
+# ganze liste: del animals
+# einzelnes Element nach index:
+del animals[4]
+print(animals)
+# suchen und entfernen
+animals.remove("Giraffe")
+print(animals)
 #+END_SRC
 
 Und hier noch was Nützliches: Mit ~split~ kann man eine Zeichenkette anhand eines Trennzeichens aufteilen, und die "Splitter" in eine Liste stecken.
@@ -112,7 +83,7 @@ satz = "The brown fox jumps over the lazy dog"
 print(satz.split(" "))
 #+END_SRC
 
-* Schleifen
+* for-Schleife
 
 Es passiert auch häufig dass man eine Sequenz von Dingen der Reihe nach durchgehen muss,
  um mit jedem Element irgendwas zu machen. 
@@ -150,6 +121,35 @@ for letter in string:
 print("mallorca")
 #+END_SRC
 
+* Übung: Labyrinth
+
+Die bisher kennengelernten Sprachbausteine scheinen aktuell noch sehr abstrakt, und man 
+mag sich fragen wozu man sie denn braucht. Wie ihr schnell beim Lösen von Aufgaben und dem Umsetzen von
+Projekten merken werdet, sind sie aber absolut essentiell und werden sehr oft gebraucht.
+
+In dieser Aufgabe benutzen wir Listen und schleifen um ein Labyrinth zu erstellen,
+und dann einen Spielecharakter durch dieses Spielfeld zu bewegen.
+
+Ladet euch den Quellcode für diese Übung bitte [[https://github.com/falcowinkler/falcowinkler.github.io/raw/master/resources/python-course/python_labyrinth.zip][hier]] herunter. Die Datei muss dann vollständig entpackt
+werden (Das ist wichtig, unter windows funktioniert es sonst nicht). Öffnet dann die Datei
+playground.py in dem Ordner.
+Wenn ihr das Programm startet, seht ihr eine Spielfigur die sich über ein (noch relativ leeres)
+Spielfeld bewegt.
+- Mit dem Befehl ~set_size(breite, hoehe)~ könnt ihr die Größe eures Spielfeldes festlegen.
+- Es gibt eine männliche und eine weibliche Spielfigur, die ihr mit der Funktion ~waehle_spieler()~ auswählen könnt.
+Es gibt ~steve~ ~amy~ oder ~default~ zur Auswahl.   
+- Nutzt den ~block~-Befehl um ein Labyrinth zu erstellen. Die Zahlen sind (x, y) Koordinaten, 
+und es gibt "Dreck", "Gras", "Wasser", "Ziel", und "Kohle".
+- Nutzt den ~bewegung~-Befehl, um euch durch das Labyrinth zu Bewegen
+ (Erlaubte Parameter sind links, rechts, hoch, runter).
+
+Falls ihr euch mit den Koordinaten nicht sicher seid, seht ihr hier eine Übersicht aller Koordinaten für ein 10 x 10 Labyrinth:
+
+#+CAPTION: Koordinatensystem
+#+NAME: cat_gif
+[[file:https://raw.githubusercontent.com/falcowinkler/falcowinkler.github.io/master/resources/python-course/grid.png]]
+
+Wenn euch diese Übung Spass gemacht hat, schaut mal auf [[https://codecombat.com/play/][CodeCombat]] :)
 
 * Übungen
 ** Strings in Listen verändern
@@ -175,17 +175,6 @@ ausgibt. Das Ganze soll in einer Schleife passieren, damit wir die höhe der Pyr
 
 * Zur Wiederholung
 ** Labyrinth
-Ladet euch den Quellcode für diese Übung bitte [[https://github.com/falcowinkler/falcowinkler.github.io/raw/master/resources/python-course/python_labyrinth.zip][hier]] herunter. Die Datei muss dann vollständig entpackt
-werden (Das ist wichtig, unter windows funktioniert es sonst nicht). Öffnet dann die Datei
-playground.py in dem Ordner.
-Wenn ihr das Programm startet, seht ihr eine Spielfigur die sich über ein (noch relativ leeres)
-Spielfeld bewegt.
-- Nutzt den ~block~-Befehl um ein Labyrinth zu erstellen. Die zahlen sind (x, y) Koordinaten, 
-und es gibt "Dreck", "Gras", "Wasser", "Ziel", und "Kohle".
-- Nutzt den ~bewegung~-Befehl, um euch durch das Labyrinth zu Bewegen
- (Erlaubte Parameter sind links, rechts, hoch, runter).
-
-Wenn euch diese Übung Spass gemacht hat, schaut mal auf [[https://codecombat.com/play/][CodeCombat]] :)
 ** Echte Pyramide
 Versucht, ein Python-Programm zu schreiben, welches eine "echte" Pyramide ausgibt:
 #+BEGIN_SRC python
