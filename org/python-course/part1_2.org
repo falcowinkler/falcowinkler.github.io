@@ -117,8 +117,7 @@ abzählen lässt. Zum Beispiel iterieren wir bei Zeichen/ketten/ durch die einze
 #+BEGIN_SRC python :results output :exports both
 string = "mallorca"
 for letter in string:
-    print("Gib mir ein ", letter, "!!")
-print("mallorca")
+    print(letter)
 #+END_SRC
 
 * Übung: Labyrinth
