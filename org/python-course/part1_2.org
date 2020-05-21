@@ -150,10 +150,7 @@ Falls ihr euch mit den Koordinaten nicht sicher seid, seht ihr hier eine Übersi
 
 Wenn euch diese Übung Spass gemacht hat, schaut mal auf [[https://codecombat.com/play/][CodeCombat]] :)
 
-* Übungen
-** Strings in Listen verändern
-Deklariert euch eine Liste von Zeichenketten. Wie z.B. die users liste in obigem Code. Dann schreibt euch eine Funktion die jede Zeichenkette in der Liste in Großbuchstaben umwandelt, und drei Ausrufezeichen anhängt.
-
+* Weitere Übungen
 ** for als while
 Versucht die selbe Funktionalität wie mit der for-Schleife oben mit einer while-Schleife zu erreichen.
 
@@ -172,8 +169,6 @@ Versucht, ein Python-Programm zu schreiben, welches die Pyramide
 
 ausgibt. Das Ganze soll in einer Schleife passieren, damit wir die höhe der Pyramide variieren können.
 
-* Zur Wiederholung
-** Labyrinth
 ** Echte Pyramide
 Versucht, ein Python-Programm zu schreiben, welches eine "echte" Pyramide ausgibt:
 #+BEGIN_SRC python
@@ -208,10 +203,3 @@ Schreibt ein Programm welches euch das Muster
 #+END_SRC
 Auf der Konsole ausgibt. Zur Erinnerung: Mit ~str(zahl_variable)~ könnt ihr eine Zahl in eine Zeichenkette umwandeln. Mit ~zeichenkette_variable * i~ könnt ihr eine Zeichenkette i-mal wiederholen.
 
-** Goldgräber
-Ihr seid Goldgräber im wilden Westen und bekommt eure Sieb-Inhalte per Liste übergeben, z.B. so:
-#+BEGIN_SRC python :results output :exports both
-sieves = ["gold", "stone", "stone", "gold", "stone"]
-#+END_SRC
-
-Schreibt euch eine Schleife die "Gold gefunden" ausgibt, wenn mindestens einmal "gold" in der Liste vorkommt, und "kein Gold gefunden" wenn nur "stone" in der Liste ist.

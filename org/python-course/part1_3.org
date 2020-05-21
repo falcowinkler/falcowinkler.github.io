@@ -25,31 +25,10 @@ for i in range(10, 0, -1):
 for i in range(1, 10):
     print(str(i) * i)
 #+END_SRC
-** Goldgräber
-#+BEGIN_SRC python :results output :exports both
-sieves = ["stone", "stone", "gold", "stone", "stone", "stone"]
-
-found = False
-for sieve in sieves:
-    if sieve == "gold":
-        found = True
-
-if found:
-    print("Gold gefunden")
-else:
-    print("Kein Gold gefunden")
-#+END_SRC
-oder noch einfacher (Den Trick habe ich euch noch nicht verraten):
-#+BEGIN_SRC python
-if "gold" in sieves:
-    print("Gold gefunden")
-else:
-    print("Kein Gold gefunden")
-#+END_SRC
 * Listen
 Beim letzten Kurs haben wir die Grundlagen schon kennengelernt. Es folgt ein Ausblick, was Listen alles noch können.
 ** Sortieren
-Eine Liste alphabetisch oder numerisch zu sortieren kann häufiger mal nützlich sein. Das kann python bereits:
+   Eine Liste alphabetisch oder numerisch zu sortieren kann häufiger mal nützlich sein. Das kann python bereits:
 #+BEGIN_SRC python :results output :exports both
 zahlen = [1, 5, 7, 4, 10, 26, 2, 42]
 zahlen.sort()
@@ -123,32 +102,33 @@ gesamtpreis = calculate_prize(prize=12, versandart="premium")
 print(gesamtpreis)
 #+END_SRC
 
-Die folgenden Funktionen sind vielleicht etwas überraschend. Warum, was ist der unterschied? Und was genau könnte da passieren?
+** Übung: Hangman
 
+Ziel dieser Übung ist es eine Funktion ~zeige_wort~ für das Spiel "Hangman" zu schreiben.
+Diese Funktion nimmt ein wort und eine Liste geratener Buchstaben entgegen.
+Das Wort wird auf dem Bildschirm ausgegeben, wobei aber noch nicht erratene Buchstaben mit einem ~_~ ersetzt werden.
+
+Beispiel:
+#+BEGIN_SRC python
+zeige_wort("schifffahrt", ['f', 's', 'h'])
+#+END_SRC
+Sollte ~s_h_fff_h__~ ausgeben.
+
+Wichtige tipps:
+- Mit der ~for~ schleife kann man die einzelnen Buchstaben einer Zeichenkette durchlaufen
+- mit print("_", end="") kann man einzelne Buchstaben auf der Konsole ausgeben
+- Ob ein Buchstabe in einer Liste vorhanden ist, könnt ihr mit dem ~in~ Schlüsselwort herausfinden. Beispiel:
 #+BEGIN_SRC python :results output :exports both
-def increment(number):
-    number += 1
-
-meine_zahl = 1
-increment(meine_zahl)
-print(meine_zahl)
+print("a" in ["a", "b", "c"])
+print("d" in ["a", "b", "c"])
 #+END_SRC
 
-#+BEGIN_SRC python :results output :exports both
-def increment_list(list_of_nums):
-    for i in range(len(list_of_nums)):
-        list_of_nums[i] += 1
+Die Aufgabestellung in anderen Worten:
 
-meine_zahlen_liste = [1, 2, 3, 6, 27, 42, 3]
-increment_list(meine_zahlen_liste)
-print(meine_zahlen_liste)
-#+END_SRC
+Für jeden Buchstaben im Wort:
+- wenn dieser geraten wurde (in der Liste enthalten ist), gebe ihn aus,
+- wenn nicht gebe einen Unterstrich aus.
 
-Der Grund ist ein feines Detail in Datenstrukturen in python. Verändert die Funktion Daten innerhalb einer Liste, wirkt sich diese Änderung auf die Variable die "von aussen" in die Funktion gegeben wurde. Aber die Zuweisung der Variable die im Funktionsargument steht kann man innerhalb einer Funktion nicht verändern.
-
-Dies bezeichnet man auch als den Unterschied zwischen "Referenz-" und "Basisdatentypen".
-
-Grundsätzlich sollte man darauf achten, in Funktionen mit Kopien zu arbeiten und veränderte Werte per return als Rückgabewerte zu liefern. Sonst kann der Umgang mit Referenztypen schnell verwirrend werden. Wiederum ist man bei grossen Listen gezwungen das Kopieren zu vermeiden, da eine Kopie Rechenkapazität und Speicher einnimmt.
 * Wörterbücher
 Wörterbücher (englisch Dictionaries) sind praktische Datenstrukturen. Sie speichern Daten unter einem Schlüssel ab (im Gegensatz zu einem Index bei einer Liste. Wichtig ist dabei, dass die Schlüssel eindeutig sind.
 
