@@ -169,6 +169,30 @@ Man kann der Funktion input() selbst eine Zeichenkette übergeben, diese wird da
 username = input("Bitte geben Sie Ihren Benutzernamen ein: ")
 print("Eingegebener Benutzername: " + username)
 #+END_SRC
+
+** Übung - Interaktives Hangman spiel
+Entwickelt ein richtiges Hangman (Galgenmännchen) spiel. Dafür könnt ihr die Funtion aus der vorherigen
+Aufgabe (~zeige_wort~) nehmen. Die Entwicklung des Spiels teilt Ihr am Besten in mehrere Schritte.
+
+- Zunächst soll es möglich sein, in einer Endlosschleife das Wort zu vervollständigen. 
+Hier ist eine Vorlage für das Spiel in einer Endlosschleife:
+#+BEGIN_SRC python 
+geraten = []
+geheimwort = "schifffahrt" # zur Einfachheit alles in kleinbuchstaben
+while True:
+    eingabe = input()
+    geraten.append(eingabe)
+    # Hier zeige_wort mit den richtigen parametern aufrufen!
+#+END_SRC
+
+- Nun soll "Game Over" mit eingebaut werden. Wenn die anzahl der geratenen Buchstaben 
+(denkt dran, mit `len` kann man die Länge einer Liste herausfinden) ~10~ überschreitet, 
+soll das spiel abgebrochen werden.
+
+- Bonuspunkte gibt es noch, wenn das Spiel auch abbricht, wenn man gewonnen hat.
+
+Tipp: Ihr müsst dafür die Bedingung in der while schleife anpassen. 
+
 ** Übung - Wörterbücher und Nutzereingaben
 Wir schreiben ein interaktives Wörterbuch. Dazu gibt der Nutzer ein gesuchtes Wort ein. Ist das eingegebene Wort im Wörterbuch vorhanden, wird die Übersetzung ausgegeben. Wenn nicht, wird eine Fehlermeldung ausgegeben. In jedem fall wird der Nutzer erneut nach einer Eingabe gefragt, bis er "quit." eingibt. Dazu definiert ihr euch zunächst ein beliebiges Wörterbuch, zum Beispiel das von vorhin:
 
