@@ -72,6 +72,37 @@ leeres_wörterbuch = dict()
 liste_ohne_duplikate = list(set(meine_liste))
 #+END_SRC
 
+Weitere interessante Operationen mit sets sind die sogenannten Mengenoperationen.
+
+#+BEGIN_SRC python :results output :exports both
+saeugetiere = {"löwe", "pferd", "eierlegende wollmilchsau", "schnabeltier", "giraffe", "affe"}
+ovipare = {"rabe", "spatz", "eierlegende wollmilchsau", "schnabeltier", "tucan", "papagei"}
+
+# Welche Tiere legen Eier und sind Säugetiere?
+
+print(saeugetiere & ovipare)
+
+# Welche tiere legen nur Eier
+
+print(ovipare - saeugetiere)
+
+# Welche tiere legen Eier, oder sind Säugetiere, aber nicht beides?
+
+print(ovipare ^ saeugetiere)
+
+# Alle tiere (Vereinigung beider mengen)
+
+print(saeugetiere | ovipare)
+#+END_SRC
+
+** Übung: gemeinsame Buchstaben
+
+Die selbe Übung, in drei Schwierigkeitsgraden:
+
+- Deklariere zwei Zeichenketten ~text_1~ und ~text_2~. Versuche dann die Buchstaben auszugeben, die in beiden Zeichenketten enthalten sind.
+- Schreibe eine Funktion ~gemeinsame_buchstaben(text_1, text_2)~, welche diese gemeinsamen Buchstaben entweder ausgibt, oder als Rückgabewert liefert.
+- Schreibe ein Programm, welches zwei Zeichenketten vom User entgegennimmt, und dann die gemeinsamen Buchstaben ausgibt.
+
 * Objektorientierte Programmierung
 
 ** Klassen und Objekte
