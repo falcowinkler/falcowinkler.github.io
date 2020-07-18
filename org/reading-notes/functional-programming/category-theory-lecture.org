@@ -139,13 +139,17 @@ print(result)
 4. [@4] a and d have no side effects.
 5. [@5] We can map t, f to tt, tf, ff, ft so there are 4 functions
 6. (on paper)
-#+BEGIN_SRC dot :file images/reading-notes/functional-programming/x.svg :cmdline -Kdot -Tsvg
+
+#+BEGIN_SRC dot :file x.svg :cmdline -Kdot -Tsvg
 digraph {
   rankdir=LR; // graph from left to right
 
   A -> B -> C
 }
 #+END_SRC
+#+attr_html: :src /images/reading-notes/functional-programming/x.svg
+#+RESULTS:
+[[file:x.svg]]
 
 * Functions, ephimorphisms
 A function is defined between sets / types where
