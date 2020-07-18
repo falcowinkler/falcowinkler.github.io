@@ -1,0 +1,190 @@
+Original source 
+(online-lecture): https://www.youtube.com/watch?v=I8LbkfSSR58&list=PLbgaMIhjbmEnaH_LTkxLI7FMa2HsnawM_&index=2&t=0s
+(book, exercises): https://bartoszmilewski.com/2014/10/28/category-theory-for-programmers-the-preface/
+
+* Relation of category theory to programming
+- Programming evolved from imperative, low-level (assembly) to more reusable (procedural, object oriented) languages
+- Object oriented languages don't play well with concurrency, because they hide the wrong things: mutation and resource sharing between each other.
+Mixing mutation and resource sharing: "Data races"
+- Functional programming abstracts everything into functions, avoids mutations
+
+- Every language has limits of what you can abstract "barrier of abstraction", even in haskell this is a very active frontier
+- Here category theory becomes important: "Category theory is the higher level language above haskell, ml, assembly ..."
+- Highest possible level of abstraction that percolates down to even languages like javascript, assembly
+
+* Philosophy
+- Category theory found similarities between many fields of mathematics ("essentially all areas of mathematics")
+- Type theory not invented for computer science, but to push other frontiers in mathematics. E.g. to talk about paradoxes (e.g. Russels, barber paradox)
+- Russel initiated type theory
+- Curry–Howard–Lambek correspondence describes an isomorphism between logic, type theory, and category theory
+
+- The human brain evolved to solve problems by dividing them into smaller problems, which is why these seperate fields evolved
+without first seeing the "bigger" field/ theory.
+- Maybe seperability / composability are not the properties of the true nature of the universe, but our brains are just built in a way that they have to see structure everywhere
+
+* What is a category
+The major tools in the "Toolbox" of our brain are
+- Abstractiont
+- Composition
+- Identity (are two things replaceable on a level of abstraction) (-> Homotype type theory is a hot topic around this)
+
+Composition and identity define category theory
+
+A category is a "bunch" of objects.
+-> We don't say a "set" of objects, because of the limitations of set theory (paradoxes, sets of sets, does a set contain itself etc.)
+Morphisms are arrows between the objects.
+
+Objects and morphisms are primitives of this theory with out any properties, other than arrows are between objects.
+- You can have 0 or more morphisms between objects, even uncountable number of arrows. In both directions.
+- Morphisms can point from an object to that same object.
+
+
+- Composition in this context means: Arrows for the "transitive closure" exist.
+
+- Objects, morphisms and there composition completely define a /category/.
+- For every object, an identity morphism $id$ exists that points from an object to itself.
+- $id$ obeys left and right identity law
+- Morphisms also obey associativity: $(h \circ g) \circ f = h \circ (g \circ f)$
+/On the side/, if objects can form a /set/, the category is called /small/ otherwise *large*.
+
+Categories seem similar to an algebraic group, but they are not the same:
+- A group would be a category with one object
+- The biggest distinction is that in categories, not everything is composeable
+
+
+Relation to programing: "A function is a morphism between two types"
+
+What are types in programming languages? Simple definition: Types are sets, functions map between sets.
+-> When building a category to model this, we "forget" about the set elements and view these sets as "atoms" (objects). This is the "Set" category.
+
+We throw all information away except morphisms 
+
+
+** Exercises Chapter 1
+1. 
+#+BEGIN_SRC python :results output :exports both
+lambda x: x
+#+END_SRC
+2. [@2] 
+#+BEGIN_SRC python :results output :exports both
+lambda f,g:lambda x: g(f(x)) 
+#+END_SRC
+3. [@3]
+#+BEGIN_SRC python :results output :exports both
+id = lambda x: x
+comp = lambda f,g:lambda x: g(f(x)) 
+plus1 = lambda x: x+1
+for i in range(100):
+    assert comp(plus1, id)(i) = i + 1
+    assert comp(id, plus1)(i) = i + 1
+#+END_SRC
+4. [@4]
+I think it largely depends what the objects are? If this is not specified, you could think of a way to model the web as a category that contains one object.
+If the websites are objects, links are not composable, e.g. if a website A has a link to B and B has a link to C, A does not necessarily have a link to C.
+5. [@5] No because friendships are not transitive.
+6. [@6] When you define your nodes as objects and (directed) links as morphisms, and the adjacency matrix contains it's transitive closure and the main diagonal is filled.
+Of course you can not represent any category with a graph like that, as multiple connections in the same direction, and infinite graphs / connections have to be possible.
+** Exercises Chapter 2
+1. 
+#+BEGIN_SRC python :results output :exports both
+from functools import lru_cache
+import time
+from random import randint
+
+memoize = lru_cache(maxsize=None)
+
+
+def fib(n):
+    if n == 0:
+        return 0
+    elif n == 1:
+        return 1
+    return fib(n - 1) + fib(n - 2)
+
+
+fib = memoize(fib)
+
+before = time.time()
+print(fib(333))
+after = time.time()
+print("memoized fib took ", after - before, " s")
+
+randint = memoize(randint)
+
+print(randint(1, 100))
+print(randint(1, 100))
+print(randint(1, 100))
+
+import random
+
+# if we memoize the seed it obviously works 
+# because random() is deterministic
+# in python we can also use Random's state:
+
+def rand_gen(state):
+    rand = random.Random()
+    rand.setstate(state)
+    return rand.random(), rand.getstate()
+
+
+rand_gen = memoize(rand_gen)  # hash == state
+
+state = random.Random().getstate()
+result, next_state = rand_gen(state)
+print(result)
+result, next_state = rand_gen(next_state)
+print(result)
+
+#+END_SRC
+4. [@4] a and d have no side effects.
+5. [@5] We can map t, f to tt, tf, ff, ft so there are 4 functions
+6. (on paper)
+#+BEGIN_SRC dot :file reading-notes/functional-programming/x.svg :cmdline -Kdot -Tsvg
+digraph {
+  rankdir=LR; // graph from left to right
+
+  A -> B -> C
+}
+#+END_SRC
+
+#+attr_html: :width 100%
+#+RESULTS:
+[[file:~/Desktop/falcowinkler.github.io/images/reading-notes/functional-programming/x.svg][test]]
+
+
+* Functions, ephimorphisms
+A function is defined between sets / types where
+- the set the function is defined for is the /domain/
+- the set of reachable values is the /image/ that is a subset of the /codomain/
+** Isomorphisms
+- $f$ is an isomorphism if $g \circ f = id$ and $f \circ g = id$, meaning that there is a 1-1 correspondence between the two sets.
+- Isomorphisms are defined for every category: the definition above uses just composition and identity.
+- Isomorphisms are invertable (If a function is mapping to values to the same output, or if it's image does not fill the whole codomain, it is not invertible)
+- /Injective/ functions map different vals to different outputs. (we "inject" in the codomain)
+- /Surjective/ functions fill the whole codomain. 
+- /Injective + Surjective = Isomorphism/
+We can extend these definitions for set theory to category theory
+** Epimorphisms
+- surjectivity in terms of categories?
+- if we look at $f : a \rightarrow b, g : b \rightarrow c$, f is surjective if it fills the whole domain b.
+In category theory we can express this with composition: f is surjective (in set theory) if for any two functions from $b$ to $c$,
+the composition with f is the same. (Equality being defined by functional extensionality)
+$\forall g_1, g_2: g_1 \circ f = g_2 \circ f$
+- Morphisms that have this properties are called epimorphisms
+** Monomorphisms
+1) If diffent values are mapped to different outputs, it must be true that, if we compose any $g_1, g_2$ before f, and these compositions are equal,
+$g_1, g_2$ must also be equal (otherwise f would have to map two outputs of $g1$ and $g_2$ to the same output value!
+- $forall g_1, g_2: f \circ g_1 = f \circ g_2 \rightarrow g_1 = g_2$
+- ! Mono & epic does not imply isomorphism !
+* Simple types
+- Void correspondence to the empty set (Falsity in logic), can be never constructed
+- () is the singleton, can be always created
+- functions from sinlgeton type to any type /enumerate/ that type
+- other types can be built of these two simple types
+* Other categories that SET
+- Zero category: no objects
+- One object category: One dot with $id$
+- Graphs can be categories, or made into categories (nodes are objects, links are morphisms) (called "free" categories)
+- The category of all categories also exists (in this context, above simple categories become important)
+- $\leq$ is also a category (preorder). Categories that correspond to preorder are called "thin" categories: Zero or more arrows between all objects.
+More specific: $\forall a,b: |C(a,b)| = 0 or |C(a,b)| = 0$ where $C(a,b)$ is the Hom-set (set of arrows) from a to b
