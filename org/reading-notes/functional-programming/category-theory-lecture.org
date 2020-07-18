@@ -1,4 +1,4 @@
-Original source 
+yyyyyOriginal source 
 (online-lecture): https://www.youtube.com/watch?v=I8LbkfSSR58&list=PLbgaMIhjbmEnaH_LTkxLI7FMa2HsnawM_&index=2&t=0s
 (book, exercises): https://bartoszmilewski.com/2014/10/28/category-theory-for-programmers-the-preface/
 
@@ -189,9 +189,49 @@ $g_1, g_2$ must also be equal (otherwise f would have to map two outputs of $g1$
 - other types can be built of these two simple types
 * Other categories that SET
 - Zero category: no objects
-- One object category: One dot with $id$
+- One object category: One dot with one arrow to itself
+- Monoid: one object arbitrarily many morphisms to itself. This is the same as a monoid in group theory,
+from the category theory perspective: The associative operation is induced by composition in $HomSet$, and the identity element is
+provided by $id$. We can always extract a "classical" monoid from a "category" monoid.
 - Graphs can be categories, or made into categories (nodes are objects, links are morphisms) (called "free" categories)
 - The category of all categories also exists (in this context, above simple categories become important)
 - $\leq$ is also a category (preorder). Categories that correspond to preorder are called "thin" categories: Zero or more arrows between all objects.
 More specific: $\forall a,b: |C(a,b)| = 0 or |C(a,b)| = 0$ where $C(a,b)$ is the Hom-set (set of arrows) from a to b.
 This category gives a good example for the fact that a morphism that is mono and epic, is not invertible.
+** Exercises (Chapter 3)
+1.
+#+BEGIN_SRC dot :file free-categories.svg :cmdline -Kdot -Tsvg
+  digraph {
+     compound=true;
+     subgraph {
+              A
+              A -> A [label="id"]
+              A -> B [style = invis]
+     }
+     subgraph {
+              B:e -> B:e [label="x"]
+              B:s -> B:s [label="x . x"]
+              B:n -> B:n [label= "x . x . x ..."]
+              B:w -> B:w [label="id"]
+              B -> C1 [style = invis];
+     }
+     subgraph {
+              C1
+              C2
+              C1 -> C2
+              C1 -> C1 [label = "id"]
+              C2 -> C2 [label = "id"]
+              C2 -> D [style = invisible]
+     } 
+     subgraph {
+              D
+              D:n -> D:n [label = "id"]
+              D:s -> D:s [label = "a.."]
+              D:w -> D:w [label = "a . b"]
+              D:e -> D:e [label = "a . c . b . z . x"]
+     }
+  }
+#+END_SRC
+#+attr_html: :src /images/reading-notes/functional-programming/free-categories.svg
+#+RESULTS:
+[[free-categories.svg]]
