@@ -140,17 +140,24 @@ print(result)
 5. [@5] We can map t, f to tt, tf, ff, ft so there are 4 functions
 6. (on paper)
 
-#+BEGIN_SRC dot :file x.svg :cmdline -Kdot -Tsvg
+#+BEGIN_SRC dot :file simple-types.svg :cmdline -Kdot -Tsvg
 digraph {
-  rankdir=LR; // graph from left to right
-
-  A -> B -> C
+  V [label="void"]
+  S [label="()"]
+  B [label="Bool"]
+  V -> B
+  V -> S
+  S -> B [label="()->True"]
+  S -> B [label="()->False"]
+  V -> V
+  S -> S
+  B -> B
+  B -> S
 }
 #+END_SRC
-#+attr_html: :src /images/reading-notes/functional-programming/x.svg
+#+attr_html: :src /images/reading-notes/functional-programming/simple-types.svg
 #+RESULTS:
-[[file:x.svg]]
-
+[[file:simple-types.svg]]
 * Functions, ephimorphisms
 A function is defined between sets / types where
 - the set the function is defined for is the /domain/
@@ -173,7 +180,7 @@ $\forall g_1, g_2: g_1 \circ f = g_2 \circ f$
 ** Monomorphisms
 1) If diffent values are mapped to different outputs, it must be true that, if we compose any $g_1, g_2$ before f, and these compositions are equal,
 $g_1, g_2$ must also be equal (otherwise f would have to map two outputs of $g1$ and $g_2$ to the same output value!
-- $forall g_1, g_2: f \circ g_1 = f \circ g_2 \rightarrow g_1 = g_2$
+- $\forall g_1, g_2: f \circ g_1 = f \circ g_2 \rightarrow g_1 = g_2$
 - ! Mono & epic does not imply isomorphism !
 * Simple types
 - Void correspondence to the empty set (Falsity in logic), can be never constructed
@@ -186,4 +193,5 @@ $g_1, g_2$ must also be equal (otherwise f would have to map two outputs of $g1$
 - Graphs can be categories, or made into categories (nodes are objects, links are morphisms) (called "free" categories)
 - The category of all categories also exists (in this context, above simple categories become important)
 - $\leq$ is also a category (preorder). Categories that correspond to preorder are called "thin" categories: Zero or more arrows between all objects.
-More specific: $\forall a,b: |C(a,b)| = 0 or |C(a,b)| = 0$ where $C(a,b)$ is the Hom-set (set of arrows) from a to b
+More specific: $\forall a,b: |C(a,b)| = 0 or |C(a,b)| = 0$ where $C(a,b)$ is the Hom-set (set of arrows) from a to b.
+This category gives a good example for the fact that a morphism that is mono and epic, is not invertible.
