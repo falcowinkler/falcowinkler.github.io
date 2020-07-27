@@ -8,3 +8,5 @@
 ** [[file:part2_2.org][Bibliotheken]]
 ** [[file:project_web_scraper.org][Projekt: Web Scraper]]
 ** [[file:project_data_analytics.org][Projekt: Datenanalyse und -visualizierung]]
+* Baustein 3
+** [[file:part3_1.org][OOP, Vererbung und Lambda-Funktionen]]

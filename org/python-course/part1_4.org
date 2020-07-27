@@ -151,62 +151,6 @@ city_bike.brake()
 city_bike.describe()
 #+END_SRC
 
-** Vererbung
-
-- Einige Klassen haben Gemeinsamkeiten und Unterschiede
-- Die Gemeinsamkeiten wollen wir nicht doppelt in Code ausdrücken
-- Deshalb erstellen wir eine “Elternklasse” mit den Gemeinsamkeiten und “erben” davon.
-
-#+BEGIN_SRC python :results output :exports both
-class Animal:
-
-    def __init__(self, name, age):
-        self.name = name
-        self.age = age
-
-    def eat(self):
-        print(self.name + " isst etwas.")
-
-    def move(self):
-        print(self.name + " bewegt sich.")
-
-class Bird(Animal):
-
-    def fly(self):
-        print("Ich kann flieeeegen - " + self.name + ".")
-
-class Dog(Animal):
-
-    def bark(self):
-        print("Woof Woof")
-
-
-class Mops(Dog):
-
-    def bark(self):
-        super().bark()
-        print("fiep")
-
-class Parrot(Bird, Dog):
-
-    def __init__(self, name, age, color):
-        super().__init__(name, age)
-        self.color = color
-
-
-loewe = Animal("Löwe", 5)
-loewe.eat()
-loewe.move()
-print("-------------")
-doggie = Dog("Doggie", 7)
-doggie.bark()
-doggie.eat()
-print("-------------")
-ruffi = Mops("Ruffi", 3)
-ruffi.eat()
-ruffi.bark()
-#+END_SRC
-
 ** Übung: Objektorientiertes Bankkonto
 
 Implementiert die Klasse ~Bankkonto~.
