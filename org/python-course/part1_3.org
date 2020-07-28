@@ -129,6 +129,7 @@ Für jeden Buchstaben im Wort:
 - wenn dieser geraten wurde (in der Liste enthalten ist), gebe ihn aus,
 - wenn nicht gebe einen Unterstrich aus.
 
+
 * Wörterbücher
 Wörterbücher (englisch Dictionaries) sind praktische Datenstrukturen. Sie speichern Daten unter einem Schlüssel ab (im Gegensatz zu einem Index bei einer Liste. Wichtig ist dabei, dass die Schlüssel eindeutig sind.
 

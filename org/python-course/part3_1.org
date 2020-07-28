@@ -51,6 +51,45 @@ und Wartbarkeit von Programmcode.
 
 [[file:part1_4.org][Wiederholung aus Kurs 1]]
  
+** Übung (Funktionen+Objekte): Trip-Kosten
+Die nächste Urlaubsplanung steht an, und ihr wollt mit euren Freunden eine Roadtrip in den USA machen.
+Amerika hat komische Gesetze, zum Beispiel dass sich die Kosten eines Hotels (für eine Nacht) aus der Anzahl der Vokale
+~(aeiou)~ berechnet.
+Dafür schreibt ihr erstmal eine Funktion ~hotel_cost(hotel_name)~ die die Anzahl von Vokalen im Namen zurück gibt.
+Beispiel:
+#+BEGIN_SRC python
+print(hotel_cost("alabama inn")) # 5
+#+END_SRC
+
+Um die Nächte und Anzahl an Personen für den Trip zu speichern, habt ihr schon eine Klasse geschrieben:
+
+#+BEGIN_SRC python
+class Stay:
+
+    def __init__(self, hotel, nights, people):
+        self.hotel = hotel
+        self.nights = nights
+        self.people = people
+#+END_SRC
+
+Jetzt müsst ihr nur noch eine Funktion ~trip_cost(stays)~ schreiben, um die Gesamtkosten der Reise zu berechnen.
+Beispiel:
+#+BEGIN_SRC python
+print(trip_cost([Stay("alabama inn", 6, 2), Stay("kentucky ranch", 3, 5)])) # 105
+#+END_SRC
+
+Tipps:
+- Um auf ein Attribut eines Objekts zuzugreifen, einfach die Punktnotation verwenden:
+#+BEGIN_SRC python :results output :exports both
+my_stay = Stay("alabama inn", 6, 2)
+print(my_stay.hotel)
+#+END_SRC
+- Um zu prüfen ob ein Buchstabe ein Vokal ist:
+#+BEGIN_SRC python :results output :exports both
+print("a" in "aeiou")
+print("c" in "aeiou")
+#+END_SRC
+
 ** Übung: Highscore Liste
 
 Ihr programmiert ein neues Spiel "Kampf gegen den Kakadu", und wollt dem Spieler 
@@ -61,7 +100,7 @@ mit einer typischen Highscore-Liste einen Anreiz geben sich wieder und wieder zu
 Dabei soll die Liste stets sortiert sein, und nie die Maximalkapazität überschreiten.
 - Reset löscht die gesamte Liste.
 
-#+BEGIN_SRC python :results output :exports both
+#+BEGIN_SRC python
 highScoreTable = HighScoreTable(3)
 print(highScoreTable.scores) # []
 highScoreTable.update(10)
