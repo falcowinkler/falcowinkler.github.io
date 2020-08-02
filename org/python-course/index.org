@@ -10,3 +10,4 @@
 ** [[file:project_data_analytics.org][Projekt: Datenanalyse und -visualizierung]]
 * Baustein 3
 ** [[file:part3_1.org][OOP, Vererbung und Lambda-Funktionen]]
+** [[file:part3_2.org][Vererbung, Lambda-Funktionen]]
