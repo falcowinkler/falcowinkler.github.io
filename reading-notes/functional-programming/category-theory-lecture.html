@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <title></title>
-<!-- 2020-07-18 Sat 21:11 -->
+<!-- 2020-08-04 Tue 21:50 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="generator" content="Org-mode">
@@ -497,12 +497,12 @@ Of course you can not represent any category with a graph like that, as multiple
 
 <pre class="example">
 1751455877444438095408940282208383549115781784912085789506677971125378
-memoized fib took  0.00023698806762695312  s
-91
-91
-91
-0.013745586882865535
-0.17112054157934775
+memoized fib took  0.0003311634063720703  s
+73
+73
+73
+0.9119698190384509
+0.625561491801808
 </pre>
 
 
@@ -632,11 +632,11 @@ provided by \(id\). We can always extract a "classical" monoid from a "category"
 </li>
 <li>The category of all categories also exists (in this context, above simple categories become important)
 </li>
-<li>\(\leq\) is also a category (preorder). Categories that correspond to preorder are called "thin" categories: Zero or more arrows between all objects.
+<li>\(\leq\) is also a category (preorder). Categories that correspond to preorder are called "thin" categories: Zero or one arrows between all objects.
 </li>
 </ul>
 <p>
-More specific: \(\forall a,b: |C(a,b)| = 0 or |C(a,b)| = 0\) where \(C(a,b)\) is the Hom-set (set of arrows) from a to b.
+More specific: \(\forall a,b: |C(a,b)| = 0\) or \(|C(a,b)| = 1\) where \(C(a,b)\) is the Hom-set (set of arrows) from a to b.
 This category gives a good example for the fact that a morphism that is mono and epic, is not invertible.
 </p>
 </div>
@@ -651,6 +651,15 @@ This category gives a good example for the fact that a morphism that is mono and
 <p><img src="/images/reading-notes/functional-programming/free-categories.svg" class="img-responsive" alt="free-categories.svg">
 </p>
 </figure>
+
+<ol class="org-ol">
+<li value="2">a) The inclusion relation is a <i>partial order</i>. Set inclusion does not relate every set to every other set,
+</li>
+</ol>
+<p>
+e.g. $ {1} \nsubseteq {2} $. But we have transitivity: \(a \subseteq b, b \subseteq c \rightarrow a \subseteq c\).
+b) Not too sure about c++ types but this might be a preorder. C++ has multi-inheritance right?
+</p>
 </div>
 </div>
 </div>

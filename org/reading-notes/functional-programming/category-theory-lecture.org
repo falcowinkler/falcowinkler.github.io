@@ -195,8 +195,8 @@ from the category theory perspective: The associative operation is induced by co
 provided by $id$. We can always extract a "classical" monoid from a "category" monoid.
 - Graphs can be categories, or made into categories (nodes are objects, links are morphisms) (called "free" categories)
 - The category of all categories also exists (in this context, above simple categories become important)
-- $\leq$ is also a category (preorder). Categories that correspond to preorder are called "thin" categories: Zero or more arrows between all objects.
-More specific: $\forall a,b: |C(a,b)| = 0 or |C(a,b)| = 0$ where $C(a,b)$ is the Hom-set (set of arrows) from a to b.
+- $\leq$ is also a category (preorder). Categories that correspond to preorder are called "thin" categories: Zero or one arrows between all objects.
+More specific: $\forall a,b: |C(a,b)| = 0$ or $|C(a,b)| = 1$ where $C(a,b)$ is the Hom-set (set of arrows) from a to b.
 This category gives a good example for the fact that a morphism that is mono and epic, is not invertible.
 ** Exercises (Chapter 3)
 1.
@@ -235,3 +235,12 @@ This category gives a good example for the fact that a morphism that is mono and
 #+attr_html: :src /images/reading-notes/functional-programming/free-categories.svg
 #+RESULTS:
 [[free-categories.svg]]
+
+2. [@2] a) The inclusion relation is a /partial order/. Set inclusion does not relate every set to every other set,
+e.g. $ {1} \nsubseteq {2} $. But we have transitivity: $a \subseteq b, b \subseteq c \rightarrow a \subseteq c$.
+b) Not too sure about c++ types but this might be a preorder. C++ has multi-inheritance right?
+
+3. [@3]
+- wrt. &&, Bool is a monoid with True as the neutral element. Using or (||), the neutral element is False. These claims, and the associativity of && and || can be verified by writing out the truth tables, which i am too lazy to do here.
+
+

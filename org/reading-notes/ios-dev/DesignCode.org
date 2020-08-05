@@ -1,0 +1,5 @@
+* Shortcuts
+
+| Shift-C-l  | Add menu (Add components                  |
+| CMD+mouse1 | Inspector menu (both on code and preview) |
+| Option + Click | Documentation                             |
