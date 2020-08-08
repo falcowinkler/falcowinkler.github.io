@@ -1,0 +1,492 @@
+<!doctype html>
+<html lang="en">
+<head>
+<title>Baustein 3 Meeting 1</title>
+<!-- 2020-08-08 Sat 19:37 -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="generator" content="Org-mode">
+<meta name="author" content="Falco Winkler">
+
+<link  href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<style>
+/* org mode styles on top of twbs */
+
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    font-size: 18px;
+    margin-bottom: 105px;
+}
+
+footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 101px;
+    background-color: #f5f5f5;
+}
+
+footer > div {
+    padding: 10px;
+}
+
+footer p {
+    margin: 0 0 5px;
+    text-align: center;
+    font-size: 16px;
+}
+
+#table-of-contents {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+blockquote p {
+    font-size: 18px;
+}
+
+pre {
+    font-size: 16px;
+}
+
+.footpara {
+    display: inline-block;
+}
+
+figcaption {
+  font-size: 16px;
+  color: #666;
+  font-style: italic;
+  padding-bottom: 15px;
+}
+
+/* from twbs docs */
+
+.bs-docs-sidebar.affix {
+    position: static;
+}
+@media (min-width: 768px) {
+    .bs-docs-sidebar {
+        padding-left: 20px;
+    }
+}
+
+/* All levels of nav */
+.bs-docs-sidebar .nav > li > a {
+    display: block;
+    padding: 4px 20px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #999;
+}
+.bs-docs-sidebar .nav > li > a:hover,
+.bs-docs-sidebar .nav > li > a:focus {
+    padding-left: 19px;
+    color: #A1283B;
+    text-decoration: none;
+    background-color: transparent;
+    border-left: 1px solid #A1283B;
+}
+.bs-docs-sidebar .nav > .active > a,
+.bs-docs-sidebar .nav > .active:hover > a,
+.bs-docs-sidebar .nav > .active:focus > a {
+    padding-left: 18px;
+    font-weight: bold;
+    color: #A1283B;
+    background-color: transparent;
+    border-left: 2px solid #A1283B;
+}
+
+/* Nav: second level (shown on .active) */
+.bs-docs-sidebar .nav .nav {
+    display: none; /* Hide by default, but at >768px, show it */
+    padding-bottom: 10px;
+}
+.bs-docs-sidebar .nav .nav > li > a {
+    padding-top: 1px;
+    padding-bottom: 1px;
+    padding-left: 30px;
+    font-size: 12px;
+    font-weight: normal;
+}
+.bs-docs-sidebar .nav .nav > li > a:hover,
+.bs-docs-sidebar .nav .nav > li > a:focus {
+    padding-left: 29px;
+}
+.bs-docs-sidebar .nav .nav > .active > a,
+.bs-docs-sidebar .nav .nav > .active:hover > a,
+.bs-docs-sidebar .nav .nav > .active:focus > a {
+    padding-left: 28px;
+    font-weight: 500;
+}
+
+/* Nav: third level (shown on .active) */
+.bs-docs-sidebar .nav .nav .nav {
+    padding-bottom: 10px;
+}
+.bs-docs-sidebar .nav .nav .nav > li > a {
+    padding-top: 1px;
+    padding-bottom: 1px;
+    padding-left: 40px;
+    font-size: 12px;
+    font-weight: normal;
+}
+.bs-docs-sidebar .nav .nav .nav > li > a:hover,
+.bs-docs-sidebar .nav .nav .nav > li > a:focus {
+    padding-left: 39px;
+}
+.bs-docs-sidebar .nav .nav .nav > .active > a,
+.bs-docs-sidebar .nav .nav .nav > .active:hover > a,
+.bs-docs-sidebar .nav .nav .nav > .active:focus > a {
+    padding-left: 38px;
+    font-weight: 500;
+}
+
+/* Show and affix the side nav when space allows it */
+@media (min-width: 992px) {
+    .bs-docs-sidebar .nav > .active > ul {
+        display: block;
+    }
+    /* Widen the fixed sidebar */
+    .bs-docs-sidebar.affix,
+    .bs-docs-sidebar.affix-bottom {
+        width: 213px;
+    }
+    .bs-docs-sidebar.affix {
+        position: fixed; /* Undo the static from mobile first approach */
+        top: 20px;
+    }
+    .bs-docs-sidebar.affix-bottom {
+        position: absolute; /* Undo the static from mobile first approach */
+    }
+    .bs-docs-sidebar.affix .bs-docs-sidenav,.bs-docs-sidebar.affix-bottom .bs-docs-sidenav {
+        margin-top: 0;
+        margin-bottom: 0
+    }
+}
+@media (min-width: 1200px) {
+    /* Widen the fixed sidebar again */
+    .bs-docs-sidebar.affix-bottom,
+    .bs-docs-sidebar.affix {
+        width: 263px;
+    }
+}
+</style>
+<style>body { margin-bottom: 0px; }</style><script>
+$(function() {
+    'use strict';
+
+    $('.bs-docs-sidebar li').first().addClass('active');
+
+    $(document.body).scrollspy({target: '.bs-docs-sidebar'});
+
+    $('.bs-docs-sidebar').affix();
+});
+</script><link rel="stylesheet" type="text/css" href="css/python_course.css">
+</head>
+<body>
+<div id="content" class="container">
+<div class="row"><div class="col-md-3 col-md-push-9"><nav id="table-of-contents">
+<div id="text-table-of-contents" class="bs-docs-sidebar">
+<ul class="nav">
+<li><a href="#sec-1">1. Wiederholung und Warmup</a>
+<ul class="nav">
+<li><a href="#sec-1-1">1.1. Übung: Wetterdaten auswerten</a></li>
+</ul>
+</li>
+<li><a href="#sec-2">2. Fortgeschrittene Sprachkonstrukte</a>
+<ul class="nav">
+<li><a href="#sec-2-1">2.1. Übung</a></li>
+</ul>
+</li>
+<li><a href="#sec-3">3. Python - Standardbibliothek</a>
+<ul class="nav">
+<li><a href="#sec-3-1">3.1. Übung</a></li>
+<li><a href="#sec-3-2">3.2. Wiederholung</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</nav>
+</div><div class="col-md-9 col-md-pull-3"><h1 class="title">Baustein 3 Meeting 1</h1>
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1"><span class="section-number-2">1</span> Wiederholung und Warmup</h2>
+<div class="outline-text-2" id="text-1">
+</div><div id="outline-container-sec-1-1" class="outline-3">
+<h3 id="sec-1-1"><span class="section-number-3">1.1</span> Übung: Wetterdaten auswerten</h3>
+<div class="outline-text-3" id="text-1-1">
+<p>
+Eure Aufgabe ist es, Wetterdaten (gegeben als <code>str</code>) in einem bestimmten Format, in Python auszuwerten.
+Schreibt eine Funktion <code>parse_rain_data(data)</code>, welche einen String im folgenden Format entgegennimmt
+<code>Rome:Jan 81.2,Feb 63.2,Mar 70.3,Apr 55.7,May 53.0,Jun 36.4,Jul 17.5,Aug 27.5,Sep 60.9,Oct 117.7,Nov 111.0,Dec 97.9</code>
+Zuerst kommt die Stadt, gefolgt von einem Doppelpunkt
+Dann mit Komma getrennt die Regenfall-Daten für die einzelnen Monate. Ein Monat hat immer drei Buchstaben
+Die Funktion soll die Stadt als string, sowie die Regenfälle als Liste von Zahlen zurückgeben.
+</p>
+</div>
+<div id="outline-container-sec-1-1-1" class="outline-4">
+<h4 id="sec-1-1-1"><span class="section-number-4">1.1.1</span> Tipps</h4>
+<div class="outline-text-4" id="text-1-1-1">
+<ul class="org-ul">
+<li>Die string Funktion <code>.split(trener)</code> ist hier sehr nützlich. Probiert mal <code>.split(":")</code>  und <code>.split(",")</code>  auf dem Beispiel-String aufzurufen.
+</li>
+<li>Die Ersten vier Zahlen (der Monat) lassen sich aus einem String mit <code>str[4:]</code>  entfernen. Zum Beispiel: <code>"Apr 55.7"[4:]</code>
+</li>
+<li>Gegeben eine Zeichenkette <code>"55.7"</code> könnt ihr diese mit <code>float(55.7)</code> in eine Zahl umwandeln
+</li>
+<li>Vielleicht ist es einfacher, eine Funktion zu extrahieren die einzelne Zellen (<code>"Apr 55.7"</code>  zum Beispiel) in eine Zahl umwandelt. Dann muss man doch eigentlich nur noch die Funktion auf die gesamte Liste <i>anwenden</i> (denkt an die letzte Übung gestern). Das müsst ihr aber nicht machen.
+</li>
+</ul>
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #4f97d7; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">anwenden</span><span style="color: #4f97d7;">(</span>funktion, liste<span style="color: #4f97d7;">)</span>:
+    <span style="color: #7590db;">neue_liste</span> = <span style="color: #4f97d7;">[]</span>
+    <span style="color: #4f97d7; font-weight: bold;">for</span> element <span style="color: #4f97d7; font-weight: bold;">in</span> liste:
+        <span style="color: #7590db;">neues_element</span> = funktion<span style="color: #4f97d7;">(</span>element<span style="color: #4f97d7;">)</span>
+        neue_liste.append<span style="color: #4f97d7;">(</span>neues_element<span style="color: #4f97d7;">)</span>
+    <span style="color: #4f97d7; font-weight: bold;">return</span> neue_liste
+</pre>
+</div>
+<ul class="org-ul">
+<li>Wenn ihr hinter dem <code>return</code> in einer Funktion mehrere Werte mit Komma getrennt schreibt, könnt ihr mehrere Werte zurückgeben.
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-sec-1-1-2" class="outline-4">
+<h4 id="sec-1-1-2"><span class="section-number-4">1.1.2</span> Beispiel:</h4>
+<div class="outline-text-4" id="text-1-1-2">
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #7590db;">data</span>=<span style="color: #2d9574;">"Rome:Jan 81.2,Feb 63.2,Mar 70.3,Apr 55.7,May 53.0,Jun 36.4,Jul 17.5,Aug 27.5,Sep 60.9,Oct 117.7,Nov 111.0,Dec 97.9"</span>
+parse_rain_data<span style="color: #4f97d7;">(</span>data<span style="color: #4f97d7;">)</span> <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">Rome, [81.2, 63.2, 70.3, 55.7, 53.0, 36.4, 17.5, 27.5, 60.9, 117.7, 111.0, 97.9]</span>
+</pre>
+</div>
+
+<p>
+Jetzt wollen wir uns den durchschnittlichen Regenfall im Jahr pro Stadt anschauen.
+</p>
+
+<p>
+Dazu schreiben wir eine Funktion <code>city_average_rainfalls(data)</code>, welche mehrere Wetterdaten mit <code>\n</code> (Zeilenumbruch) auswertet.
+Sie gibt ein Wörterbuch mit der Stadt als Schlüssel, und dem durchschnittlichen Regenfall als Wert. Beispiel:
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #7590db;">data</span> = <span style="color: #2d9574;">"""Rome:Jan 81.2,Feb 63.2,Mar 70.3,Apr 55.7,May 53.0,Jun 36.4,Jul 17.5,Aug 27.5,Sep 60.9,Oct 117.7,Nov 111.0,Dec 97.9</span>
+<span style="color: #2d9574;">London:Jan 48.0,Feb 38.9,Mar 39.9,Apr 42.2,May 47.3,Jun 52.1,Jul 59.5,Aug 57.2,Sep 55.4,Oct 62.0,Nov 59.0,Dec 52.9</span>
+<span style="color: #2d9574;">Paris:Jan 182.3,Feb 120.6,Mar 158.1,Apr 204.9,May 323.1,Jun 300.5,Jul 236.8,Aug 192.9,Sep 66.3,Oct 63.3,Nov 83.2,Dec 154.7</span>
+<span style="color: #2d9574;">NY:Jan 108.7,Feb 101.8,Mar 131.9,Apr 93.5,May 98.8,Jun 93.6,Jul 102.2,Aug 131.8,Sep 92.0,Oct 82.3,Nov 107.8,Dec 94.2"""</span>
+<span style="color: #4f97d7; font-weight: bold;">print</span><span style="color: #4f97d7;">(</span>city_average_rainfalls<span style="color: #bc6ec5;">(</span>data<span style="color: #bc6ec5;">)</span><span style="color: #4f97d7;">)</span> <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">{'Rome': 66.02499999999999, 'London': 51.199999999999996, 'Paris': 173.89166666666665, 'NY': 103.21666666666665}</span>
+</pre>
+</div>
+
+<p>
+(<a href="https://www.codewars.com/kata/56a32dd6e4f4748cc3000006/train/python">referenz</a>) 
+</p>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-2" class="outline-2">
+<h2 id="sec-2"><span class="section-number-2">2</span> Fortgeschrittene Sprachkonstrukte</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+So etwas wie die Funktion <code>anwenden</code> braucht man ziemlich häufig: Eine Funktion auf eine Liste (oder eine andere Datenstruktur) anwenden.
+Tatsächlich gibt es so etwas in python schon:
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #4f97d7; font-weight: bold;">print</span><span style="color: #4f97d7;">(</span><span style="color: #bc6ec5;">[</span>x + <span style="color: #a45bad;">2</span> <span style="color: #4f97d7; font-weight: bold;">for</span> x <span style="color: #4f97d7; font-weight: bold;">in</span> <span style="color: #2d9574;">[</span><span style="color: #a45bad;">1</span>, <span style="color: #a45bad;">2</span>, <span style="color: #a45bad;">3</span>, <span style="color: #a45bad;">7</span>, <span style="color: #a45bad;">0</span>, -<span style="color: #a45bad;">1</span><span style="color: #2d9574;">]</span><span style="color: #bc6ec5;">]</span><span style="color: #4f97d7;">)</span>
+<span style="color: #4f97d7; font-weight: bold;">print</span><span style="color: #4f97d7;">(</span><span style="color: #bc6ec5;">[</span>name.upper<span style="color: #2d9574;">()</span> <span style="color: #4f97d7; font-weight: bold;">for</span> name <span style="color: #4f97d7; font-weight: bold;">in</span> <span style="color: #2d9574;">[</span><span style="color: #2d9574;">"hans"</span>, <span style="color: #2d9574;">"gretel"</span>, <span style="color: #2d9574;">"ruffi"</span>, <span style="color: #2d9574;">"guenter"</span><span style="color: #2d9574;">]</span><span style="color: #bc6ec5;">]</span><span style="color: #4f97d7;">)</span>
+</pre>
+</div>
+
+<pre class="example">
+[3, 4, 5, 9, 2, 1]
+['HANS', 'GRETEL', 'RUFFI', 'GUENTER']
+</pre>
+
+
+<p>
+Diese Schreibweise nennt sich <i>list comprehension</i>. Mit der selben Schreibweise können wir auch <i>filtern</i>.
+</p>
+
+
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #4f97d7; font-weight: bold;">print</span><span style="color: #4f97d7;">(</span><span style="color: #bc6ec5;">[</span>x * <span style="color: #a45bad;">2</span> <span style="color: #4f97d7; font-weight: bold;">for</span> x <span style="color: #4f97d7; font-weight: bold;">in</span> <span style="color: #2d9574;">[</span><span style="color: #a45bad;">42</span>, <span style="color: #a45bad;">73</span>, <span style="color: #a45bad;">19</span>, <span style="color: #a45bad;">11</span>, <span style="color: #a45bad;">1</span>, <span style="color: #a45bad;">5</span><span style="color: #2d9574;">]</span> <span style="color: #4f97d7; font-weight: bold;">if</span> x % <span style="color: #a45bad;">2</span> == <span style="color: #a45bad;">0</span><span style="color: #bc6ec5;">]</span><span style="color: #4f97d7;">)</span>
+<span style="color: #4f97d7; font-weight: bold;">print</span><span style="color: #4f97d7;">(</span><span style="color: #bc6ec5;">[</span>name.upper<span style="color: #2d9574;">()</span> <span style="color: #4f97d7; font-weight: bold;">for</span> name <span style="color: #4f97d7; font-weight: bold;">in</span> <span style="color: #2d9574;">[</span><span style="color: #2d9574;">"hans"</span>, <span style="color: #2d9574;">"gretel"</span>, <span style="color: #2d9574;">"ruffi"</span>, <span style="color: #2d9574;">"guenter"</span><span style="color: #2d9574;">]</span> <span style="color: #4f97d7; font-weight: bold;">if</span> name.startswith<span style="color: #2d9574;">(</span><span style="color: #2d9574;">"g"</span><span style="color: #2d9574;">)</span><span style="color: #bc6ec5;">]</span><span style="color: #4f97d7;">)</span>
+</pre>
+</div>
+
+<pre class="example">
+[84]
+['GRETEL', 'GUENTER']
+</pre>
+</div>
+
+<div id="outline-container-sec-2-1" class="outline-3">
+<h3 id="sec-2-1"><span class="section-number-3">2.1</span> Übung</h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+Gegeben ist eine Klasse <code>Bewerber</code> :
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #4f97d7; font-weight: bold;">class</span> <span style="color: #ce537a; font-weight: bold;">Bewerber</span>:
+    <span style="color: #4f97d7; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">__init__</span><span style="color: #4f97d7;">(</span><span style="color: #4f97d7; font-weight: bold;">self</span>, name, gehaltsstufe<span style="color: #4f97d7;">)</span>:
+       <span style="color: #4f97d7; font-weight: bold;">self</span>.name = name
+       <span style="color: #4f97d7; font-weight: bold;">self</span>.gehaltsstufe = gehaltsstufe
+</pre>
+</div>
+
+<p>
+Schreibe einen <i>list comprehension</i> Ausdruck, der die Namen der Bewerber als Liste ergibt. 
+</p>
+<ul class="org-ul">
+<li>Nur Bewerber mit einer Gehaltsstufe <code>&lt;=2</code> sollen darin Enthalten sein.
+</li>
+<li>Namen sollen immer mit einem Grossbuchstaben beginnen und danach mit Kleinbuchstaben geschrieben sein (<code>title</code>).
+</li>
+</ul>
+
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #7590db;">bewerber</span> = <span style="color: #4f97d7;">[</span>Bewerber<span style="color: #bc6ec5;">(</span><span style="color: #2d9574;">"g&#252;nni"</span>, <span style="color: #a45bad;">1</span><span style="color: #bc6ec5;">)</span>, Bewerber<span style="color: #bc6ec5;">(</span><span style="color: #2d9574;">"EdelTraut"</span>, <span style="color: #a45bad;">2</span><span style="color: #bc6ec5;">)</span>, Bewerber<span style="color: #bc6ec5;">(</span><span style="color: #2d9574;">"MAGGIE"</span>, <span style="color: #a45bad;">99</span><span style="color: #bc6ec5;">)</span><span style="color: #4f97d7;">]</span>
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">G&#252;nni, Edeltraut </span>
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-3" class="outline-2">
+<h2 id="sec-3"><span class="section-number-2">3</span> Python - Standardbibliothek</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+Bibliotheken kann man sich als Packete von Python code vorstellen, die im python code den ihr entwickelt eingebunden werden können.
+Dazu verwendet man den <code>import</code> Befehl.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #4f97d7; font-weight: bold;">import</span> collections
+</pre>
+</div>
+
+<p>
+Man kann dann Klassen und Funktionen in diesen Packeten mit Punktnotation aufrufen.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #4f97d7; font-weight: bold;">import</span> collections
+<span style="color: #7590db;">my_dict</span> = collections.defaultdict<span style="color: #4f97d7;">(</span><span style="color: #4f97d7; font-weight: bold;">lambda</span>: <span style="color: #a45bad;">0</span><span style="color: #4f97d7;">)</span>
+</pre>
+</div>
+
+<p>
+Diese Punktnotation kann man sich auch sparen:
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #4f97d7; font-weight: bold;">from</span> collections <span style="color: #4f97d7; font-weight: bold;">import</span> defaultdict
+<span style="color: #7590db;">my_dict</span> = defaultdict<span style="color: #4f97d7;">(</span><span style="color: #4f97d7; font-weight: bold;">lambda</span>: <span style="color: #a45bad;">0</span><span style="color: #4f97d7;">)</span>
+</pre>
+</div>
+
+<p>
+Was ist also jetzt die Bibliothek <code>collections</code>? Sie enthält praktische Funktionen im Umgang mit Datenstrukturen.
+<code>defaultdict</code> ist zum Beispiel ein Wörterbuch, welches immer einen Wert liefert, auch wenn der Schlüssel nicht vorhanden ist.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #4f97d7; font-weight: bold;">from</span> collections <span style="color: #4f97d7; font-weight: bold;">import</span> defaultdict
+<span style="color: #7590db;">my_dict</span> = defaultdict<span style="color: #4f97d7;">(</span><span style="color: #4f97d7; font-weight: bold;">lambda</span>: <span style="color: #a45bad;">0</span><span style="color: #4f97d7;">)</span>
+<span style="color: #7590db;">my_dict</span><span style="color: #4f97d7;">[</span><span style="color: #2d9574;">"Rome"</span><span style="color: #4f97d7;">]</span> = <span style="color: #a45bad;">42</span>
+<span style="color: #7590db;">my_dict</span><span style="color: #4f97d7;">[</span><span style="color: #2d9574;">"London"</span><span style="color: #4f97d7;">]</span> = <span style="color: #a45bad;">33</span>
+<span style="color: #4f97d7; font-weight: bold;">print</span><span style="color: #4f97d7;">(</span>my_dict<span style="color: #bc6ec5;">[</span><span style="color: #2d9574;">"Rome"</span><span style="color: #bc6ec5;">]</span><span style="color: #4f97d7;">)</span>
+<span style="color: #4f97d7; font-weight: bold;">print</span><span style="color: #4f97d7;">(</span>my_dict<span style="color: #bc6ec5;">[</span><span style="color: #2d9574;">"Lissabon"</span><span style="color: #bc6ec5;">]</span><span style="color: #4f97d7;">)</span> <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">Kein Key Error, sondern 0</span>
+</pre>
+</div>
+
+<pre class="example">
+42
+0
+</pre>
+
+
+<p>
+Eine weitere praktische Klasse aus dem Packet <code>collections</code> ist <code>Counter</code>. Mit ihr können wir die Vorkommen von Elementen zählen.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #4f97d7; font-weight: bold;">from</span> collections <span style="color: #4f97d7; font-weight: bold;">import</span> Counter
+<span style="color: #4f97d7; font-weight: bold;">print</span><span style="color: #4f97d7;">(</span>Counter<span style="color: #bc6ec5;">(</span><span style="color: #2d9574;">"Bananarama"</span><span style="color: #bc6ec5;">)</span><span style="color: #4f97d7;">)</span>
+<span style="color: #4f97d7; font-weight: bold;">print</span><span style="color: #4f97d7;">(</span>Counter<span style="color: #bc6ec5;">(</span><span style="color: #2d9574;">[</span><span style="color: #a45bad;">5</span>, <span style="color: #a45bad;">1</span>, <span style="color: #a45bad;">2</span>, <span style="color: #a45bad;">6</span>, <span style="color: #a45bad;">12</span>, <span style="color: #a45bad;">1</span>, <span style="color: #a45bad;">5</span>, <span style="color: #a45bad;">2</span><span style="color: #2d9574;">]</span><span style="color: #bc6ec5;">)</span><span style="color: #4f97d7;">)</span>
+</pre>
+</div>
+
+<pre class="example">
+Counter({'a': 5, 'n': 2, 'B': 1, 'r': 1, 'm': 1})
+Counter({5: 2, 1: 2, 2: 2, 6: 1, 12: 1})
+</pre>
+
+
+<p>
+Wie könnte man jetzt die Wörter in einem Text zählen?
+</p>
+</div>
+
+<div id="outline-container-sec-3-1" class="outline-3">
+<h3 id="sec-3-1"><span class="section-number-3">3.1</span> Übung</h3>
+<div class="outline-text-3" id="text-3-1">
+<p>
+Schreibt eine Funktion <code>most_occurring_word(filename)</code> die einen Dateinahmnen entgegennimmt, 
+und dann die 10 häufigsten Wörter im Text (sortiert nach Anzahl der Vorkommen) ausgibt. 
+Wir nehmnen vereinfacht an, dass keine Sonderzeichen im Text vorkommen.
+</p>
+
+<p>
+Tipps: 
+</p>
+<ul class="org-ul">
+<li>Mit <code>mein_counter.items()</code> bekommt ihr eine Liste von (Wort, Vorkommen) paaren. Diese könnt ihr dann sortieren, wenn ihr als <code>key</code> eine Funktion angebt, die die Vorkommen (das Zweite Element) aus dem Paar extrahiert.
+</li>
+<li><code>"string.split()</code> ohne Argumente aufgerufen, nimmt als Trennzeichen alle <i>whitespace</i> characters (Also Zeilenumbruch, Leerzeichen, Tabulator).
+</li>
+</ul>
+
+<p>
+Andere Python-Dateien können wir auch wie Bibliotheken einbinden. 
+Zur Demonstration wollen wir einmal die gerade geschriebene Funktion aus einer Seperaten Datei abrufen. 
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-3-2" class="outline-3">
+<h3 id="sec-3-2"><span class="section-number-3">3.2</span> Wiederholung</h3>
+<div class="outline-text-3" id="text-3-2">
+<p>
+<code>time</code>, <code>random</code> und <code>math</code> aus Kurs 1.
+</p>
+</div>
+</div>
+</div>
+</div></div></div>
+</body>
+</html>

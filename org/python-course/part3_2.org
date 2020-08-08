@@ -81,30 +81,6 @@ ruffi.eat()
 ruffi.bark()
 #+END_SRC
 
-** Übung: Vererbung
-
-Nach dem Erfolg eures ersten Spiels "Kampf gegen den Kakadu" 
-wollt ihr nun ein weiteres Spiel "Tucan vs. Pflanzen" programmieren.
-Hier gibt es zwei Minispiele, einmal ist eine Niedrige Punktzahl besser, 
-in dem anderen eine hohe Punktzahl. 
-
-Ihr entscheidet euch die `HighScoreTable` aus der vorherigen Übung wiederzuverwenden,
-aber bei der Erzeugung soll nun ein Parameter ~highest_first~ angegeben werden, der per default immer
-auf ~True~ gesetzt ist. Basierend auf dem Parameter soll dann die Ordnung in der Liste entprechend angepasst werden.
-
-#+BEGIN_SRC python :results output :exports both
-highScoreTable = HighScoreTable(3)
-print(highScoreTable.scores) # []
-highScoreTable.update(10)
-print(highScoreTable.scores) # [10]
-highScoreTable.update(8)
-highScoreTable.update(12)
-highScoreTable.update(5)
-highScoreTable.update(10)
-print(highScoreTable.scores) # [10, 10, 12]
-highScoreTable.reset()
-print(highScoreTable.scores) # []
-#+END_SRC
 * Higher order Funktionen, Lambda-Funktionen
 In Python können Funktionen genau so wie andere Werte als Variablen weitergegeben und in 
 Datenstrukturen (z.B. Listen) gespeichert werden.
