@@ -1,0 +1,101 @@
+key takeaways for https://www.pointfree.co/
+
+* Setters and key paths (7)
+Key paths are generic over type they apply to, and the specific value, eg.
+#+BEGIN_SRC swift
+KeyPath<User, String>
+#+END_SRC
+you can use a keypath with array syntax!
+#+BEGIN_SRC swift
+user[keyPath: \User.name]
+#+END_SRC
+Key paths are compiler generated (generate setters/getters under the hood)
+
+
+Use prop to compose functions over key paths
+#+BEGIN_SRC swift
+  func prop<Root, Value>(_ kp: WritableKeyPath<Root, Value>)
+    -> (@escaping (Value) -> Value)
+    -> (Root)
+    -> Root
+  
+  (prop(\User.name)) { $0.uppercased() } // User -> User
+  // composing:
+  prop(\User.location) <<< prop(\Location.name)
+  // ((String) -> String) -> (User) -> User
+  // Even though that's equivalent to \User.location.name
+#+END_SRC
+
+~prop~ allows you to write neat date formatters, URLrequest configurations etc.
+pointfree in one expression (without computed props/stateful funcs)..
+** Exercises
+   1. Dictionary’s subscript key path.
+      #+BEGIN_SRC swift
+      ((Value?) -> Value?) -> Dictionary<Key, Value> -> Dictionary<Key, Value>
+      #+END_SRC
+      The difference when piping map is that the optional in the signature vanishes, because we lift the
+      transformation in it's monadic context (the monad being the maybe monad).
+   2. Functional setters for sets
+      #+BEGIN_SRC swift
+        func elem<A>(_ a: (A)) -> (@escaping (Bool) -> Bool) -> (Set<A>) -> Set<A> {
+            { f in
+                { set in
+                    var set = set
+                    if (f(set.contains(a))) {
+                        set.insert(a)
+                    }
+                    return set
+                }
+            }
+        }
+      #+END_SRC
+   3. Array subscript key path on user
+      Guess i misunderstood the task
+      #+BEGIN_SRC swift
+        prop(\User.favoriteFoods)({
+            if $0.isEmpty {
+                return []
+            } else {
+                return [$0.first!.uppercased()] + Array($0.dropFirst())
+            }
+        })
+      #+END_SRC
+      correctAnswer:
+      #+BEGIN_SRC swift
+        (prop(\User.favoriteFoods[0].name)) { $0.uppercased() }
+      #+END_SRC
+   4. filtering in place
+      #+BEGIN_SRC swift
+        (prop(\User.favoriteFoods) <<< filter) // (String -> Bool) -> User -> User
+      #+END_SRC 
+   5. We will use `Result<Value, Error>` from `Foundation`.
+      #+BEGIN_SRC swift
+        let result = Result<Int, Error>.success(1)
+        func value<V, E>(f: @escaping ((V)->V)) -> (Result<V, E>) -> (Result<V, E>) {
+            { res in
+                switch res {
+                case .failure:
+                    return res
+                case .success(let v):
+                    return Result<V, E>.success(f(v))
+                }
+            }
+        }
+        // Error defined equivalently for failure case.
+      #+END_SRC
+    6. No, there are no key paths for structs (Case paths from pointfree as an alternative)
+    7. e.g. for prop, the mapper function returns Void, and we simply need to call it, rather than re-assigning.
+       #+BEGIN_SRC swift
+         func inoutProp<Root, Value>(_ kp: WritableKeyPath<Root, Value>)
+         -> (@escaping (inout Value) -> ())
+         -> (Root)
+         -> Root {
+             { f in
+                 { root in
+                     var root = root
+                     f(&root[keyPath: kp])
+                     return root
+                 }
+             }
+         }
+       #+END_SRC
