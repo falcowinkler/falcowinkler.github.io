@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <title></title>
-<!-- 2021-09-05 Sun 16:57 -->
+<!-- 2021-09-05 Sun 19:54 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="generator" content="Org-mode">
@@ -195,7 +195,7 @@ $(function() {
 <div class="row"><div class="col-md-3 col-md-push-9"><nav id="table-of-contents">
 <div id="text-table-of-contents" class="bs-docs-sidebar">
 <ul class="nav">
-<li><a href="#sec-1">1. Setters and key paths</a>
+<li><a href="#sec-1">1. Setters and key paths (7)</a>
 <ul class="nav">
 <li><a href="#sec-1-1">1.1. Exercises</a></li>
 </ul>
@@ -209,7 +209,7 @@ key takeaways for <a href="https://www.pointfree.co/">https://www.pointfree.co/<
 </p>
 
 <div id="outline-container-sec-1" class="outline-2">
-<h2 id="sec-1"><span class="section-number-2">1</span> Setters and key paths</h2>
+<h2 id="sec-1"><span class="section-number-2">1</span> Setters and key paths (7)</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 Key paths are generic over type they apply to, and the specific value, eg.
@@ -315,6 +315,46 @@ correctAnswer:
 <pre class="src src-swift"><span style="color: #4f97d7;">(</span><span style="color: #bc6ec5; font-weight: bold;">prop</span><span style="color: #bc6ec5;">(</span>\User.<span style="color: #7590db;">favoriteFoods</span><span style="color: #bc6ec5;">)</span> &lt;&lt;&lt; filter<span style="color: #4f97d7;">)</span> <span style="color: #2aa1ae; background-color: #292e34;">// </span><span style="color: #2aa1ae; background-color: #292e34;">(String -&gt; Bool) -&gt; User -&gt; User</span>
 </pre>
 </div>
+</li>
+<li>We will use `Result&lt;Value, Error&gt;` from `Foundation`.
+<div class="org-src-container">
+
+<pre class="src src-swift"><span style="color: #4f97d7; font-weight: bold;">let</span> result = <span style="color: #4f97d7;">Result</span>&lt;<span style="color: #4f97d7;">Int</span>, <span style="color: #4f97d7;">Error</span>&gt;.<span style="color: #4f97d7;">success</span><span style="color: #4f97d7;">(</span><span style="color: #a45bad;">1</span><span style="color: #4f97d7;">)</span>
+<span style="color: #4f97d7; font-weight: bold;">func</span> <span style="color: #bc6ec5; font-weight: bold;">value</span>&lt;V, E&gt;<span style="color: #4f97d7;">(</span>f: <span style="color: #4f97d7; font-weight: bold;">@escaping</span> <span style="color: #bc6ec5;">(</span><span style="color: #2d9574;">(</span>V<span style="color: #2d9574;">)</span>-&gt;V<span style="color: #bc6ec5;">)</span><span style="color: #4f97d7;">)</span> -&gt; <span style="color: #4f97d7;">(</span><span style="color: #4f97d7;">Result</span>&lt;V, E&gt;<span style="color: #4f97d7;">)</span> -&gt; <span style="color: #4f97d7;">(</span><span style="color: #4f97d7;">Result</span>&lt;V, E&gt;<span style="color: #4f97d7;">)</span> <span style="color: #4f97d7;">{</span>
+    <span style="color: #bc6ec5;">{</span> res <span style="color: #4f97d7; font-weight: bold;">in</span>
+        <span style="color: #4f97d7; font-weight: bold;">switch</span> res <span style="color: #2d9574;">{</span>
+        <span style="color: #4f97d7; font-weight: bold;">case</span> .<span style="color: #4f97d7;">failure</span>:
+            <span style="color: #4f97d7; font-weight: bold;">return</span> res
+        <span style="color: #4f97d7; font-weight: bold;">case</span> .<span style="color: #4f97d7;">success</span><span style="color: #67b11d;">(</span><span style="color: #4f97d7; font-weight: bold;">let</span> v<span style="color: #67b11d;">)</span>:
+            <span style="color: #4f97d7; font-weight: bold;">return</span> <span style="color: #4f97d7;">Result</span>&lt;V, E&gt;.<span style="color: #4f97d7;">success</span><span style="color: #67b11d;">(</span><span style="color: #bc6ec5; font-weight: bold;">f</span><span style="color: #b1951d;">(</span>v<span style="color: #b1951d;">)</span><span style="color: #67b11d;">)</span>
+        <span style="color: #2d9574;">}</span>
+    <span style="color: #bc6ec5;">}</span>
+<span style="color: #4f97d7;">}</span>
+<span style="color: #2aa1ae; background-color: #292e34;">// </span><span style="color: #2aa1ae; background-color: #292e34;">Error defined equivalently for failure case.</span>
+</pre>
+</div>
+<ol class="org-ol">
+<li>No, there are no key paths for structs (Case paths from pointfree as an alternative)
+</li>
+<li>e.g. for prop, the mapper function returns Void, and we simply need to call it, rather than re-assigning.
+<div class="org-src-container">
+
+<pre class="src src-swift"><span style="color: #4f97d7; font-weight: bold;">func</span> <span style="color: #bc6ec5; font-weight: bold;">inoutProp</span>&lt;Root, <span style="color: #4f97d7;">Value</span>&gt;<span style="color: #4f97d7;">(</span>_ kp: <span style="color: #4f97d7;">WritableKeyPath</span>&lt;Root, <span style="color: #4f97d7;">Value</span>&gt;<span style="color: #4f97d7;">)</span>
+-&gt; <span style="color: #4f97d7;">(</span><span style="color: #4f97d7; font-weight: bold;">@escaping</span> <span style="color: #bc6ec5;">(</span><span style="color: #4f97d7; font-weight: bold;">inout</span> <span style="color: #4f97d7;">Value</span><span style="color: #bc6ec5;">)</span> -&gt; <span style="color: #bc6ec5;">()</span><span style="color: #4f97d7;">)</span>
+-&gt; <span style="color: #4f97d7;">(</span>Root<span style="color: #4f97d7;">)</span>
+-&gt; Root <span style="color: #4f97d7;">{</span>
+    <span style="color: #bc6ec5;">{</span> f <span style="color: #4f97d7; font-weight: bold;">in</span>
+        <span style="color: #2d9574;">{</span> root <span style="color: #4f97d7; font-weight: bold;">in</span>
+            <span style="color: #4f97d7; font-weight: bold;">var</span> root = root
+            <span style="color: #bc6ec5; font-weight: bold;">f</span><span style="color: #67b11d;">(</span>&amp;root<span style="color: #b1951d;">[</span>keyPath: kp<span style="color: #b1951d;">]</span><span style="color: #67b11d;">)</span>
+            <span style="color: #4f97d7; font-weight: bold;">return</span> root
+        <span style="color: #2d9574;">}</span>
+    <span style="color: #bc6ec5;">}</span>
+<span style="color: #4f97d7;">}</span>
+</pre>
+</div>
+</li>
+</ol>
 </li>
 </ol>
 </div>

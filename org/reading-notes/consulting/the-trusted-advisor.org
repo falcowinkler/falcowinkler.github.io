@@ -1,0 +1,245 @@
+# Trusted Advisor
+* Lists
+(Extract lists here later)
+* Chapter 1
+** the book
+   - "trusted advisor" Well known term that was already widely used
+   - First book 20 years before this, but very different because of profound impact of digitalization
+   - Digital has profound impacts, but not the basics and dynamics of personal trust. Adapt digital to trust
+   - Leadership is more about ability to influence, not charisma
+   - Institutional trust became way more important
+   - Trust is a very overlapping term in many sectors
+   - Book is primarily about _interpersonal trust_
+   - Focus on how trust is created
+   - if trust is down, is it because less willingness to trust, or actually less trustworthiness?
+   - Def. Trust: One kind of relationship between 2 persons. Increases if 1 person (the truster) increases risk by trusting the other persion,
+     and the trustee becomes more trustworthy
+   - Sole focus on trustworthiness is a mistake
+* Chapter 2, Introduction
+  _Trust is the answer to many questions_
+   1. How can i get access to my clients more often?
+   2. How can i persuade clients to introduce me to other?
+   3. How can i cross-sell?
+   4. How can i avoid being typecast?
+   5. Not being an expert in related fields?
+   6. Less focus on price?
+   7. To get Clients to play fairly with me?
+* Chapter 3 - how to use the book
+* Chapter 4
+  3 key skills
+  1. learning trust
+  2. giving advice effectively
+  3. building relationships
+* Chapter 5 - a sneak preview
+  _What benefits would you obtain if your clients trusted you more?_
+  The clients are more likely to...
+  1. Reach for your advice
+  2. Be inclined to accept & act on your reccomendations
+  3. Bring you in on more advanced, complex, strategic issues
+  4. Treat you as you wish to be treated
+  5. Respect your
+  6. Share more information that helps you help them
+  7. Pay your bills without question
+  8. Refer you
+  9. Lower the level of stress in your interactions
+  10. Benefit of the doubt
+  11. Forgive you if you make a mistake
+  12. Protect you if you need it
+  13. Warn you of dangers that you might wanna avoid
+  14. Be comfortable and allow you to be comfortable
+  15. Involve you early on, when issues start to form
+  16. Start your instincts and judgements
+
+  _What to trusted advisors have in common?_
+  1. Seem to understand us effortlessly and like us
+  2. Dependable
+  3. Always help us see things from fresh perspectives
+  4. Dont try to force things on us
+  5. Help us think things through
+  6. Don't substitute their judegemnt for ours
+  7. Stay calm
+  8. Help us think, seperate logic from emotion
+  9. Criticise and correct us gently
+  10. Rely on them to tell us the truth
+  11. In it for the long haul. (Relationship is more important than the current issue)
+  12. Give us reasoning to think not just their conclusions
+  13. Give us options, reccomendations but let us choose
+  14. Challenge our assumptions
+  15. Make us feel comfortable and casual personally, while taking the issue seriously
+  16. Act like real people, not like just someone in a position
+  17. Reliably on our side
+  18. Remember what we tell them without notes
+  19. Always honorable, don't gossip, we trust their values
+  20. Help us to put issues in context, by stories and anekdotes
+  21. Sense of humor
+  22. Smart, sometimes in ways we are not
+
+  Which of these items do my clients think i posess?
+* Chapter 6 - What is a trusted advisor?
+  _There are levels to advisory_
+  - Database of answers
+  - Find solutions (the problem is seldom what the client says it is)
+  - Broad strategy issues
+  - Trusted advisor - all issues are open for discussion and exploration.
+  The trusted advisor is a person the clients turn to as problems arise.
+  The important part is to shift to any of the levels any time, not the amount of hours you spend on the levels
+
+ | Relationship       | Focuses on                | Energy spent on                    | client reveices             | Indicators of success |
+ |--------------------+---------------------------+------------------------------------+-----------------------------+-----------------------|
+ | Service Based      | Answers, Expertise, Input | Explaining                         | Information                 | Timely, high quality  |
+ | Needs Based        | Business problem          | Problem defining, solving          | solutions                   | problems resolved     |
+ | Relationship based | Client organization       | providing insights                 | Ideas                       | Repeat business       |
+ | Trust based        | Client as individual      | Understanding the client as person | Safe haven for tough issues | Win win               |
+
+  _Attributes for trusted advisors_
+  1. Focus on client instead of themselves, confidence to listen without judgement, inquire without supposing an answer
+  2. Focus on the client as an individual
+  3. Believe that a continued focus on problem definition and solution is more important than content mastery
+  4. Strong competetive drive towards new ways of being of greater service to the client
+  5. Focus on doing the next right thing
+  6. Motivated by internalized drive to do the right thing
+  7. View methodologies, models, techniques, business processes as means to an end.
+  8. Believe that success in client relationships is tied to the accumulation of quality experiences. 
+  9. Selling and serving are aspects of professionalism. Prove to the client that you are dedicated to solve their issues
+  10. Distintion between business and personal live, but both are very alike and personal.
+
+  _The benefits of a trusted advisor_
+  - Efficiency gains due to less tedious procedures
+  - Individuals are allowed to be fully who they are
+  - we have more chance to tune our offering to the real needs of the clients
+
+  _Evolution of the trusted advisor role_
+  - networked organizations are the norm
+  - role models are harder to find
+  - applications are shifting
+  - networking instead of just one trusted relationship
+* Chapter 7 - Earning trust
+  - Never label yourself as trustworthy
+  - Be empathic, think about what's most relevant to the other party
+  - Trust can be lost very rapidly. Keep your self-interest in check
+
+** _Characteristics of trust_
+  1. Grows, rather than just appears
+  2. Is both rational and emotional
+  3. Is a two way relationship
+  4. Is intrinsically about perceived risk
+  5. Is different for the client than the advisor
+  6. Is personal
+  7. Trust increases as step function
+  8. Much of business is conducted as if trust was in professional realm, but this is mostly untrue
+  9. Trust cannot be forced, and is deeply personal
+  10. Trust entails risk. Many techniques in the book are risky. If you are not taking a risk, you are not likely to create trust.
+  11. trust relationship is unidirectional, one leads and one follows.
+  12. If you are not able to trust, you are likely not trustworthy
+  13. Trust is about relationships, you being in it for the long haul
+* Chapter 8 - How to give advice
+  - Advice giving is almost never a logical process, but an emotional duett.
+  - Need to earn the right to be critical
+  - need to take sensitivity, emotions and politics into account
+** _The clients perspective_
+  - Can enter a consultant relationship with anxiety
+  - An advisor usually reveils problems. That can be seen as creating more problems, if conveyed incorrectly.
+  - Looking for reassurance, calming fear, sparking confidence.
+  - Don't like being told what to do, unless advisor shows that they understand and respect them
+    - Deep listening, take the time to understand the situation
+  - Wants to feel in charge
+  - primarily wants reasons, not instructions
+  - Advisor shoud explain on eye-level with the client (regarding the skill/experience level in the matter)
+** _Finding the right words_
+  - prefer soft over hard phrasing
+  - turn assertions into questions
+  - Avoid situations where someone has to confess weakness
+    - E.g. "Did everyone understand that? " vs "Have i made myself clear?"
+    - "Would you like to stay on this point, or move to the next one?"
+  - Trusted advisor assumes responsibility for mutual understanding
+  - Avoid starting with Why?, has a judgemental edge. Strive for curiosity not judgement.
+  - Rehearse a client conversation to understand how you are perceived
+    - Rehease with a friend, colleague
+    - Take a video
+** _The teaches skills_
+  - Where is the student starting from? For what messages are they ready? What do they believe in?
+  - A lot of questioning and listening
+  - Take on a journey of discovery
+  - Socratic teaching
+    - Why do you think we have this problem?
+    - What would you do differently?
+    - What advantages do the options have?
+    - How do you think the relevant players would react?
+    - Have you considered the adverse consequences of such an action?
+    - Other people have encountered the following dificulties, how do you think we get around it?
+    - What benefits do you see?
+** _Dealing with client politics_
+  - Make the client feel like it was their idea
+  - Avoid taking a stance early
+  - we are "A guide through the reasoning", show perspectives
+  A good process for the advisor to follow is
+  1. Give them their options
+  2. Give them the education about the options
+  3. Give them a reccomendation
+  4. Let them choose
+  - Many people are involved
+  - Helpful to get all players on board beforehand, when a group decision is made
+  - Conflicting agendas and schedules are also the advisors responsibility
+** _Customizing your approach_
+  - Consulting is a /performing/ art.
+  - "The essence of advice-giving is the ability to design a process and means of interaction that fits each client situation".
+  - Understand preferred style of interaction
+* Chapter 5 - The rules of relationship building
+- Tend to distinguish from our clients
+- Effect can be they cut off our humanity, hindering the communication
+** Key principles in relationship building
+1. Go first
+   + Give a favor to earn a favor
+   + Need to take a risk
+2. illustrate, don't tell
+   + What you claim about yourself will always be perceived sceptically
+   + Create opportunities to demonstrate, that you have something to contribute
+   + Demonstrate that you
+     1. Have listened to what the client has said
+     2. have appreciated the importance the client has assigned to what they've been saying
+     3. understand the unique aspects of their situation
+     4. understand their business
+     5. be a comfortable and supportive person to work with
+     6. are able to make an unique contribution
+     7. can be trusted to keep your word
+     8. have experience in dealing with their problem
+     Exercise: Pick 3 points that are most important, think about how you demonstrate them.
+3. Listen for what's different, not for what's familiar
+   What makes this person different from other clients?
+   "What clients want" is a dangerous phrase, because clients want to be seen as individuals.
+4. Be sure your advice is sought
+   - provide affirmation, approval, support and appreciation along with your support
+5. Earn the right to offer advice
+   Be aware of stages in the relationship
+   Three parts
+   1. Understanding the clients situation
+   2. Understanding how the client feels about it
+   3. Convince the client that that we have achieved the previous two points
+6. Keep asking
+   - People tend to hint, and not communicate clearly.
+   - Ask, and listen can not be emphasised enough
+7. Say what you mean
+   - Misunderstanding can be a big source of missed trust
+8. When you need help, ask for it
+   - Don't portray an image of complete mastery
+   - Keeping the focus on the clients problem, builds trust
+   - Demands are resented, requests for help are met with a positive response
+9. Show an interest in the person
+   - Keep them talking about themselves, to learn as much as possible how to adjust your communication
+   - Invokes the feeling of "this person understands me"
+   - Take notes
+10. Use compliments, not flattery
+   - Specific enough, sincere
+11. Show appreciation
+
+_Digital age_
+Immitate, facilitate, and recreate the primal sense of being face-to-face with someone.
+Suggestions to personalize digital communications
+1. Guard against defaulting to the lowest emotional bandwith of communication
+2. Exploit the capabilities of a given communications technology
+3. Compensate for the limitations of the chosen technology
+4. Make in-person meetings in the beginning
+5. Brake the walls of your technology (e.g. find out the weather in a different locations)
+6. Do your digital homework (find information about your communication partners)
+7. Humanize yourself (give bits information about yourself)
+* Chapter 10 - The Importance of mindsets
