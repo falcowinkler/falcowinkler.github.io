@@ -9,3 +9,6 @@
 ** [[file:software-engineering/config-management-big-data.org][Managing change in the delivery of complex projects: Configuration management, asset information and ‘big data’]]
 * functional programming
 ** [[file:functional-programming/category-theory-lecture.org][category theory for programmers]]
+** [[file:functional-programming/pointfree.org][pointfree]]
+* consulting
+** [[file:consulting/the-trusted-advisor.org][the trusted advisor]]
