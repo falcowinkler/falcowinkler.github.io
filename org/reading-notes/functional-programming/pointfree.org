@@ -1,4 +1,17 @@
 key takeaways for https://www.pointfree.co/
+* Functions
+Introduces operator `|>` (forward application) and `>>>` (forward composition).
+#+BEGIN_SRC swift
+  2 |> incr // == incr(2)
+  (incr >>> square)(2) // 9
+#+END_SRC
+- Forward composition is the oposite of haskells `.` composition operator (`(b->c)->(a->b)->(a->c)`)
+- Use precedencegroups to avoid writing brackets
+- Use operators with care.
+- Tooling suffers from Free functions + operators (no autocomplete)
+- Methods don't compose as well, because they have to be associated with a value all the time
+- Pointfree: never refer to the value you are processing, focus on functions and compositions
+* Side effects
 
 * Setters and key paths (7)
 Key paths are generic over type they apply to, and the specific value, eg.
