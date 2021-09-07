@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <title></title>
-<!-- 2021-09-06 Mon 18:49 -->
+<!-- 2021-09-07 Tue 21:27 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="generator" content="Org-mode">
@@ -189,6 +189,32 @@ $(function() {
     $('.bs-docs-sidebar').affix();
 });
 </script><link rel="stylesheet" type="text/css" href="css/python_course.css">
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  displayAlign: "center",
+  displayIndent: "2em",
+  messageStyle: "none",
+  "HTML-CSS": {
+    scale: 100,
+    styles: {
+      ".MathJax_Display": {
+        "font-size": "100%"
+      }
+    }
+  },
+  "SVG": {
+    scale: 100,
+    styles: {
+      ".MathJax_SVG_Display": {
+        "font-size": "100%",
+        "margin-left": "-2.281em"
+      }
+    }
+  }
+});
+</script>
+<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_SVG"></script>
 </head>
 <body>
 <div id="content" class="container">
@@ -197,9 +223,15 @@ $(function() {
 <ul class="nav">
 <li><a href="#sec-1">1. Functions</a></li>
 <li><a href="#sec-2">2. Side effects</a></li>
-<li><a href="#sec-3">3. Setters and key paths (7)</a>
+<li><a href="#sec-3">3. UIKit styling with functions</a></li>
+<li><a href="#sec-4">4. Algebraic data types</a>
 <ul class="nav">
-<li><a href="#sec-3-1">3.1. Exercises</a></li>
+<li><a href="#sec-4-1">4.1. Exercises</a></li>
+</ul>
+</li>
+<li><a href="#sec-5">5. Setters and key paths</a>
+<ul class="nav">
+<li><a href="#sec-5-1">5.1. Exercises</a></li>
 </ul>
 </li>
 </ul>
@@ -213,7 +245,7 @@ key takeaways for <a href="https://www.pointfree.co/">https://www.pointfree.co/<
 <h2 id="sec-1"><span class="section-number-2">1</span> Functions</h2>
 <div class="outline-text-2" id="text-1">
 <p>
-Introduces operator `|&gt;` (forward application) and `&gt;&gt;&gt;` (forward composition).
+Introduces operator <code>|&gt;</code> (forward application) and <code>&gt;&gt;&gt;</code> (forward composition).
 </p>
 <div class="org-src-container">
 
@@ -222,7 +254,7 @@ Introduces operator `|&gt;` (forward application) and `&gt;&gt;&gt;` (forward co
 </pre>
 </div>
 <ul class="org-ul">
-<li>Forward composition is the oposite of haskells `.` composition operator (`(b-&gt;c)-&gt;(a-&gt;b)-&gt;(a-&gt;c)`)
+<li>Forward composition is the oposite of haskells <code>.</code> composition operator (<code>(b-&gt;c)-&gt;(a-&gt;b)-&gt;(a-&gt;c)</code>)
 </li>
 <li>Use precedencegroups to avoid writing brackets
 </li>
@@ -239,11 +271,91 @@ Introduces operator `|&gt;` (forward application) and `&gt;&gt;&gt;` (forward co
 </div>
 <div id="outline-container-sec-2" class="outline-2">
 <h2 id="sec-2"><span class="section-number-2">2</span> Side effects</h2>
-</div>
+<div class="outline-text-2" id="text-2">
+<p>
+Side effects break composability, eg <code>map $ map f</code> can have
+different side effects than <code>map (f . f)</code>, but the same return value.
+</p>
 
+<p>
+Take for example writing logs.
+We can fix the problem of returning logs alongside the computation (<code>(_ x: Int) -&gt; (Int, [String])</code>).
+But for this kind of function/operator we need a new <code>compose</code> function that appends the logs from both function executions.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-swift"><span style="color: #4f97d7; font-weight: bold;">func</span> &gt;=&gt; &lt;A, B, C&gt;<span style="color: #4f97d7;">(</span>
+  _ f: <span style="color: #4f97d7; font-weight: bold;">@escaping</span> <span style="color: #bc6ec5;">(</span>A<span style="color: #bc6ec5;">)</span> -&gt; B?,
+  _ g: <span style="color: #4f97d7; font-weight: bold;">@escaping</span> <span style="color: #bc6ec5;">(</span>B<span style="color: #bc6ec5;">)</span> -&gt; C?
+  <span style="color: #4f97d7;">)</span> -&gt; <span style="color: #4f97d7;">(</span><span style="color: #bc6ec5;">(</span>A<span style="color: #bc6ec5;">)</span> -&gt; C?<span style="color: #4f97d7;">)</span> <span style="color: #4f97d7;">{</span>
+
+  <span style="color: #4f97d7; font-weight: bold;">return</span> <span style="color: #bc6ec5;">{</span> a <span style="color: #4f97d7; font-weight: bold;">in</span>
+      <span style="color: #2aa1ae; background-color: #292e34;">// </span><span style="color: #2aa1ae; background-color: #292e34;">same for lists and optionals:</span>
+      <span style="color: #bc6ec5; font-weight: bold;">f</span><span style="color: #2d9574;">(</span>a<span style="color: #2d9574;">)</span>.<span style="color: #4f97d7;">flatMap</span><span style="color: #2d9574;">(</span>g<span style="color: #2d9574;">)</span>
+  <span style="color: #bc6ec5;">}</span>
+<span style="color: #4f97d7;">}</span>
+</pre>
+</div>
+<p>
+In haskell, it has type <code>(&gt;=&gt;) :: Monad m =&gt; (a -&gt; m b) -&gt; (b -&gt; m c) -&gt; a -&gt; m c</code>,
+forward composition for monadic functions.
+</p>
+
+<p>
+We can avoid having inputs from side effects with currying.
+<code>&lt;&gt;</code> is then defined as function composition for functions that return the input type.
+(In haskell this is more generally defined on semigroups, namely: <code>(&lt;&gt;) :: Semigroup a =&gt; a -&gt; a -&gt; a</code>.
+</p>
+</div>
+</div>
 <div id="outline-container-sec-3" class="outline-2">
-<h2 id="sec-3"><span class="section-number-2">3</span> Setters and key paths (7)</h2>
-<div class="outline-text-2" id="text-3">
+<h2 id="sec-3"><span class="section-number-2">3</span> <span class="label label-primary TODO">TODO</span> UIKit styling with functions</h2>
+</div>
+<div id="outline-container-sec-4" class="outline-2">
+<h2 id="sec-4"><span class="section-number-2">4</span> Algebraic data types</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+Composite types can also be called <i>algebraic data types</i>, because we can do algebra with them.
+E.g. if an enum has cases for type A and B we can construct \(A + B\) values from it, where in this notation,
+\(A\) and \(B\) denote the number of values that can be constructed in the respective type. For pairs that's \(A * B\).
+<code>Void</code> has 1 value and <code>Never</code> 0.
+</p>
+</div>
+<div id="outline-container-sec-4-1" class="outline-3">
+<h3 id="sec-4-1"><span class="section-number-3">4.1</span> Exercises</h3>
+<div class="outline-text-3" id="text-4-1">
+<ol class="org-ol">
+<li>Exponential. So for \(A->B\), it has \(B^A\) types. Because we choose a value from set \(B\) \(A\) times.
+</li>
+<li><code>List&lt;A&gt; = 1 + A * List&lt;A&gt;</code>
+</li>
+<li><code>Optional&lt;Either&lt;A, B&gt;&gt; = 1 + A + B</code>
+<code>!= (A + 1) + (B + 1) = Either&lt;Optional&lt;A&gt;, Optional&lt;B&gt;&gt;</code>.
+In the second type there is <code>Left nil</code> and <code>Right nil</code> whereas in the first there is just <code>nil</code> for the absence of values.
+</li>
+<li><code>Either&lt;Optional&lt;A&gt;, B&gt; = 1+A+B = Optional&lt;Either&lt;A, B&gt;&gt;</code>. They are equivalent.
+</li>
+<li>Using the previous definitions for Pair and Either:
+<div class="org-src-container">
+
+<pre class="src src-swift"><span style="color: #4f97d7; font-weight: bold;">func</span> * &lt;A, B&gt;<span style="color: #4f97d7;">(</span>lhs: A.<span style="color: #4f97d7; font-weight: bold;">Type</span>, rhs: B.<span style="color: #4f97d7; font-weight: bold;">Type</span><span style="color: #4f97d7;">)</span> -&gt; Pair&lt;A, B&gt;.<span style="color: #4f97d7; font-weight: bold;">Type</span> <span style="color: #4f97d7;">{</span>
+  <span style="color: #4f97d7; font-weight: bold;">return</span> Pair&lt;A, B&gt;.<span style="color: #4f97d7; font-weight: bold;">self</span>
+<span style="color: #4f97d7;">}</span>
+
+<span style="color: #4f97d7; font-weight: bold;">func</span> + &lt;A, B&gt;<span style="color: #4f97d7;">(</span>lhs: A.<span style="color: #4f97d7; font-weight: bold;">Type</span>, rhs: B.<span style="color: #4f97d7; font-weight: bold;">Type</span><span style="color: #4f97d7;">)</span> -&gt; Either&lt;A, B&gt;.<span style="color: #4f97d7; font-weight: bold;">Type</span> <span style="color: #4f97d7;">{</span>
+  <span style="color: #4f97d7; font-weight: bold;">return</span> Either&lt;A, B&gt;.<span style="color: #4f97d7; font-weight: bold;">self</span>
+<span style="color: #4f97d7;">}</span>
+</pre>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-5" class="outline-2">
+<h2 id="sec-5"><span class="section-number-2">5</span> Setters and key paths</h2>
+<div class="outline-text-2" id="text-5">
 <p>
 Key paths are generic over type they apply to, and the specific value, eg.
 </p>
@@ -288,9 +400,9 @@ Use prop to compose functions over key paths
 pointfree in one expression (without computed props/stateful funcs)..
 </p>
 </div>
-<div id="outline-container-sec-3-1" class="outline-3">
-<h3 id="sec-3-1"><span class="section-number-3">3.1</span> Exercises</h3>
-<div class="outline-text-3" id="text-3-1">
+<div id="outline-container-sec-5-1" class="outline-3">
+<h3 id="sec-5-1"><span class="section-number-3">5.1</span> Exercises</h3>
+<div class="outline-text-3" id="text-5-1">
 <ol class="org-ol">
 <li>Dictionary’s subscript key path.
 <div class="org-src-container">
@@ -349,7 +461,7 @@ correctAnswer:
 </pre>
 </div>
 </li>
-<li>We will use `Result&lt;Value, Error&gt;` from `Foundation`.
+<li>We will use <code>Result&lt;Value, Error&gt;</code> from <code>Foundation</code>.
 <div class="org-src-container">
 
 <pre class="src src-swift"><span style="color: #4f97d7; font-weight: bold;">let</span> result = <span style="color: #4f97d7;">Result</span>&lt;<span style="color: #4f97d7;">Int</span>, <span style="color: #4f97d7;">Error</span>&gt;.<span style="color: #4f97d7;">success</span><span style="color: #4f97d7;">(</span><span style="color: #a45bad;">1</span><span style="color: #4f97d7;">)</span>

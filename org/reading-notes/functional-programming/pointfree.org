@@ -1,19 +1,66 @@
 key takeaways for https://www.pointfree.co/
 * Functions
-Introduces operator `|>` (forward application) and `>>>` (forward composition).
+Introduces operator ~|>~ (forward application) and ~>>>~ (forward composition).
 #+BEGIN_SRC swift
   2 |> incr // == incr(2)
   (incr >>> square)(2) // 9
 #+END_SRC
-- Forward composition is the oposite of haskells `.` composition operator (`(b->c)->(a->b)->(a->c)`)
+- Forward composition is the oposite of haskells ~.~ composition operator (~(b->c)->(a->b)->(a->c)~)
 - Use precedencegroups to avoid writing brackets
 - Use operators with care.
 - Tooling suffers from Free functions + operators (no autocomplete)
 - Methods don't compose as well, because they have to be associated with a value all the time
 - Pointfree: never refer to the value you are processing, focus on functions and compositions
 * Side effects
+Side effects break composability, eg ~map $ map f~ can have
+different side effects than ~map (f . f)~, but the same return value.
 
-* Setters and key paths (7)
+Take for example writing logs.
+We can fix the problem of returning logs alongside the computation (~(_ x: Int) -> (Int, [String])~).
+But for this kind of function/operator we need a new ~compose~ function that appends the logs from both function executions.
+
+#+BEGIN_SRC swift
+  func >=> <A, B, C>(
+    _ f: @escaping (A) -> B?,
+    _ g: @escaping (B) -> C?
+    ) -> ((A) -> C?) {
+  
+    return { a in
+        // same for lists and optionals:
+        f(a).flatMap(g)
+    }
+  }
+#+END_SRC
+In haskell, it has type ~(>=>) :: Monad m => (a -> m b) -> (b -> m c) -> a -> m c~,
+forward composition for monadic functions.
+
+We can avoid having inputs from side effects with currying.
+~<>~ is then defined as function composition for functions that return the input type.
+(In haskell this is more generally defined on semigroups, namely: ~(<>) :: Semigroup a => a -> a -> a~.
+* TODO UIKit styling with functions
+* Algebraic data types
+Composite types can also be called /algebraic data types/, because we can do algebra with them.
+E.g. if an enum has cases for type A and B we can construct $A + B$ values from it, where in this notation,
+$A$ and $B$ denote the number of values that can be constructed in the respective type. For pairs that's $A * B$.
+~Void~ has 1 value and ~Never~ 0.
+** Exercises
+   1. Exponential. So for $A->B$, it has $B^A$ types. Because we choose a value from set $B$ $A$ times.
+   2. ~List<A> = 1 + A * List<A>~
+   3. ~Optional<Either<A, B>> = 1 + A + B~
+      ~!= (A + 1) + (B + 1) = Either<Optional<A>, Optional<B>>~.
+      In the second type there is ~Left nil~ and ~Right nil~ whereas in the first there is just ~nil~ for the absence of values.
+   4. ~Either<Optional<A>, B> = 1+A+B = Optional<Either<A, B>>~. They are equivalent.
+   5. Using the previous definitions for Pair and Either:
+      #+BEGIN_SRC swift
+        func * <A, B>(lhs: A.Type, rhs: B.Type) -> Pair<A, B>.Type {
+          return Pair<A, B>.self
+        }
+        
+        func + <A, B>(lhs: A.Type, rhs: B.Type) -> Either<A, B>.Type {
+          return Either<A, B>.self
+        }
+      #+END_SRC
+* Setters and key paths
 Key paths are generic over type they apply to, and the specific value, eg.
 #+BEGIN_SRC swift
 KeyPath<User, String>
@@ -81,7 +128,7 @@ pointfree in one expression (without computed props/stateful funcs)..
       #+BEGIN_SRC swift
         (prop(\User.favoriteFoods) <<< filter) // (String -> Bool) -> User -> User
       #+END_SRC 
-   5. We will use `Result<Value, Error>` from `Foundation`.
+   5. We will use ~Result<Value, Error>~ from ~Foundation~.
       #+BEGIN_SRC swift
         let result = Result<Int, Error>.success(1)
         func value<V, E>(f: @escaping ((V)->V)) -> (Result<V, E>) -> (Result<V, E>) {
