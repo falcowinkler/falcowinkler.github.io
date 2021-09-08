@@ -1,8 +1,5 @@
 # Trusted Advisor
-* Lists
-(Extract lists here later)
-* Chapter 1
-** the book
+* The book
    - "trusted advisor" Well known term that was already widely used
    - First book 20 years before this, but very different because of profound impact of digitalization
    - Digital has profound impacts, but not the basics and dynamics of personal trust. Adapt digital to trust
@@ -15,7 +12,7 @@
    - Def. Trust: One kind of relationship between 2 persons. Increases if 1 person (the truster) increases risk by trusting the other persion,
      and the trustee becomes more trustworthy
    - Sole focus on trustworthiness is a mistake
-* Chapter 2, Introduction
+* Introduction
   _Trust is the answer to many questions_
    1. How can i get access to my clients more often?
    2. How can i persuade clients to introduce me to other?
@@ -24,13 +21,13 @@
    5. Not being an expert in related fields?
    6. Less focus on price?
    7. To get Clients to play fairly with me?
-* Chapter 3 - how to use the book
-* Chapter 4
+* How to use the book
+* Key skills
   3 key skills
   1. learning trust
   2. giving advice effectively
   3. building relationships
-* Chapter 5 - a sneak preview
+* A sneak preview
   _What benefits would you obtain if your clients trusted you more?_
   The clients are more likely to...
   1. Reach for your advice
@@ -75,7 +72,7 @@
   22. Smart, sometimes in ways we are not
 
   Which of these items do my clients think i posess?
-* Chapter 6 - What is a trusted advisor?
+* What is a trusted advisor?
   _There are levels to advisory_
   - Database of answers
   - Find solutions (the problem is seldom what the client says it is)
@@ -113,7 +110,7 @@
   - role models are harder to find
   - applications are shifting
   - networking instead of just one trusted relationship
-* Chapter 7 - Earning trust
+* Earning trust
   - Never label yourself as trustworthy
   - Be empathic, think about what's most relevant to the other party
   - Trust can be lost very rapidly. Keep your self-interest in check
@@ -132,7 +129,7 @@
   11. trust relationship is unidirectional, one leads and one follows.
   12. If you are not able to trust, you are likely not trustworthy
   13. Trust is about relationships, you being in it for the long haul
-* Chapter 8 - How to give advice
+* How to give advice
   - Advice giving is almost never a logical process, but an emotional duett.
   - Need to earn the right to be critical
   - need to take sensitivity, emotions and politics into account
@@ -184,7 +181,7 @@
   - Consulting is a /performing/ art.
   - "The essence of advice-giving is the ability to design a process and means of interaction that fits each client situation".
   - Understand preferred style of interaction
-* Chapter 5 - The rules of relationship building
+* The rules of relationship building
 - Tend to distinguish from our clients
 - Effect can be they cut off our humanity, hindering the communication
 ** Key principles in relationship building
@@ -242,4 +239,4 @@ Suggestions to personalize digital communications
 5. Brake the walls of your technology (e.g. find out the weather in a different locations)
 6. Do your digital homework (find information about your communication partners)
 7. Humanize yourself (give bits information about yourself)
-* Chapter 10 - The Importance of mindsets
+* The Importance of mindsets
