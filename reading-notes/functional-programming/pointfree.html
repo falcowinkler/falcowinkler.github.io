@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <title></title>
-<!-- 2021-09-07 Tue 21:27 -->
+<!-- 2021-09-10 Fri 10:45 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="generator" content="Org-mode">
@@ -229,9 +229,14 @@ MathJax.Hub.Config({
 <li><a href="#sec-4-1">4.1. Exercises</a></li>
 </ul>
 </li>
-<li><a href="#sec-5">5. Setters and key paths</a>
+<li><a href="#sec-5">5. Higher order functions</a>
 <ul class="nav">
 <li><a href="#sec-5-1">5.1. Exercises</a></li>
+</ul>
+</li>
+<li><a href="#sec-6">6. Setters and key paths</a>
+<ul class="nav">
+<li><a href="#sec-6-1">6.1. Exercises</a></li>
 </ul>
 </li>
 </ul>
@@ -354,8 +359,139 @@ In the second type there is <code>Left nil</code> and <code>Right nil</code> whe
 </div>
 </div>
 <div id="outline-container-sec-5" class="outline-2">
-<h2 id="sec-5"><span class="section-number-2">5</span> Setters and key paths</h2>
+<h2 id="sec-5"><span class="section-number-2">5</span> Higher order functions</h2>
 <div class="outline-text-2" id="text-5">
+<p>
+How can we fit functions that we work with every day into our composition?
+We can define functions that manipulate functions such as <code>curry</code> and <code>flip</code> (equivalent to haskell).
+</p>
+
+<p>
+How do we deal with methods?
+Every method secretly defines a static function, which is already curried in the way that i'ts signature is always
+<code>Self -&gt; Arguments -&gt; ReturnType</code>
+<i>Zero argument functions</i> can be a problem, because you have these empty parathesis flying around.
+Solution: Zurry (zero argument curry).
+</p>
+<div class="org-src-container">
+
+<pre class="src src-swift"><span style="color: #4f97d7; font-weight: bold;">func</span> <span style="color: #bc6ec5; font-weight: bold;">zurry</span>&lt;A&gt;<span style="color: #4f97d7;">(</span>_ f: <span style="color: #bc6ec5;">()</span> -&gt; A<span style="color: #4f97d7;">)</span> -&gt; A <span style="color: #4f97d7;">{</span>
+  <span style="color: #4f97d7; font-weight: bold;">return</span> <span style="color: #bc6ec5; font-weight: bold;">f</span><span style="color: #bc6ec5;">()</span>
+<span style="color: #4f97d7;">}</span>
+</pre>
+</div>
+
+<p>
+Generic and <code>throws</code> functions are problematic, but we can redefine functions such as <code>map</code> and <code>filter</code> to free, curried functions.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-swift"><span style="color: #4f97d7; font-weight: bold;">func</span> <span style="color: #bc6ec5; font-weight: bold;">map</span>&lt;A, B&gt;<span style="color: #4f97d7;">(</span>_ f: <span style="color: #4f97d7; font-weight: bold;">@escaping</span> <span style="color: #bc6ec5;">(</span>A<span style="color: #bc6ec5;">)</span> -&gt; B<span style="color: #4f97d7;">)</span> -&gt; <span style="color: #4f97d7;">(</span><span style="color: #bc6ec5;">[</span>A<span style="color: #bc6ec5;">]</span><span style="color: #4f97d7;">)</span> -&gt; <span style="color: #4f97d7;">[</span>B<span style="color: #4f97d7;">]</span> <span style="color: #4f97d7;">{</span>
+  <span style="color: #4f97d7; font-weight: bold;">return</span> <span style="color: #bc6ec5;">{</span> $0.<span style="color: #4f97d7;">map</span><span style="color: #2d9574;">(</span>f<span style="color: #2d9574;">)</span> <span style="color: #bc6ec5;">}</span>
+<span style="color: #4f97d7;">}</span>
+</pre>
+</div>
+
+<p>
+What's the point? "When they work, they work really well, saving us a lot of boilerplate. 
+When they don’t work, we’re still using the concepts and building intuitions for them."
+</p>
+</div>
+<div id="outline-container-sec-5-1" class="outline-3">
+<h3 id="sec-5-1"><span class="section-number-3">5.1</span> Exercises</h3>
+<div class="outline-text-3" id="text-5-1">
+<ol class="org-ol">
+<li>3 argument curry
+</li>
+</ol>
+<div class="org-src-container">
+
+<pre class="src src-swift"><span style="color: #4f97d7; font-weight: bold;">func</span> <span style="color: #bc6ec5; font-weight: bold;">curry</span>&lt;A, B, C, D&gt;<span style="color: #4f97d7;">(</span>_ f: <span style="color: #4f97d7; font-weight: bold;">@escaping</span> <span style="color: #bc6ec5;">(</span>A, B, C<span style="color: #bc6ec5;">)</span> -&gt; D<span style="color: #4f97d7;">)</span> -&gt; <span style="color: #4f97d7;">(</span>A<span style="color: #4f97d7;">)</span> -&gt; <span style="color: #4f97d7;">(</span>B<span style="color: #4f97d7;">)</span> -&gt; <span style="color: #4f97d7;">(</span>C<span style="color: #4f97d7;">)</span> -&gt; D <span style="color: #4f97d7;">{</span>
+    <span style="color: #4f97d7; font-weight: bold;">return</span> <span style="color: #bc6ec5;">{</span> a <span style="color: #4f97d7; font-weight: bold;">in</span> <span style="color: #2d9574;">{</span> b <span style="color: #4f97d7; font-weight: bold;">in</span> <span style="color: #67b11d;">{</span> c <span style="color: #4f97d7; font-weight: bold;">in</span> <span style="color: #bc6ec5; font-weight: bold;">f</span><span style="color: #b1951d;">(</span>a, b, c<span style="color: #b1951d;">)</span> <span style="color: #67b11d;">}</span> <span style="color: #2d9574;">}</span> <span style="color: #bc6ec5;">}</span>
+<span style="color: #4f97d7;">}</span>
+</pre>
+</div>
+<ol class="org-ol">
+<li>With e.g. URL.appendingPathComponent these tricks don't work, because you can not disambiguate the overloads.
+</li>
+</ol>
+<div class="org-src-container">
+
+<pre class="src src-swift"><span style="color: #4f97d7; font-weight: bold;">let</span> urlForPath = <span style="color: #bc6ec5; font-weight: bold;">flip</span><span style="color: #4f97d7;">(</span><span style="color: #bc6ec5; font-weight: bold;">curry</span><span style="color: #bc6ec5;">(</span><span style="color: #4f97d7;">URL</span>.<span style="color: #4f97d7; font-weight: bold;">init</span><span style="color: #2d9574;">(</span>fileURLWithPath:isDirectory:<span style="color: #2d9574;">)</span><span style="color: #bc6ec5;">)</span><span style="color: #4f97d7;">)(</span><span style="color: #a45bad;">true</span><span style="color: #4f97d7;">)</span>
+</pre>
+</div>
+<ol class="org-ol">
+<li>As we know from haskell, it's only right associative.
+</li>
+</ol>
+<div class="org-src-container">
+
+<pre class="src src-haskell"><span style="color: #ce537a; font-weight: bold;">A</span><span style="color: #7590db;">-&gt;</span><span style="color: #ce537a; font-weight: bold;">B</span><span style="color: #7590db;">-&gt;</span><span style="color: #ce537a; font-weight: bold;">C</span><span style="color: #7590db;">-&gt;</span><span style="color: #ce537a; font-weight: bold;">D</span> <span style="color: #2aa1ae; background-color: #292e34;">-- </span><span style="color: #2aa1ae; background-color: #292e34;">(A-&gt;(B-&gt;(C-&gt;D)))</span>
+</pre>
+</div>
+<ol class="org-ol">
+<li>uncurry
+</li>
+</ol>
+<div class="org-src-container">
+
+<pre class="src src-swift"><span style="color: #4f97d7; font-weight: bold;">func</span> <span style="color: #bc6ec5; font-weight: bold;">uncurry</span>&lt;A, B, C&gt;<span style="color: #4f97d7;">(</span>_ f: <span style="color: #4f97d7; font-weight: bold;">@escaping</span> <span style="color: #bc6ec5;">(</span>A<span style="color: #bc6ec5;">)</span> -&gt; <span style="color: #bc6ec5;">(</span>B<span style="color: #bc6ec5;">)</span> -&gt; C<span style="color: #4f97d7;">)</span> -&gt; <span style="color: #4f97d7;">(</span>A, B<span style="color: #4f97d7;">)</span> -&gt; C <span style="color: #4f97d7;">{</span>
+    <span style="color: #4f97d7; font-weight: bold;">return</span> <span style="color: #bc6ec5;">{</span> <span style="color: #2d9574;">(</span>a, b<span style="color: #2d9574;">)</span> <span style="color: #4f97d7; font-weight: bold;">in</span> <span style="color: #bc6ec5; font-weight: bold;">f</span><span style="color: #2d9574;">(</span>a<span style="color: #2d9574;">)(</span>b<span style="color: #2d9574;">)</span> <span style="color: #bc6ec5;">}</span>
+<span style="color: #4f97d7;">}</span>
+</pre>
+</div>
+<ol class="org-ol">
+<li>reduce
+</li>
+</ol>
+<div class="org-src-container">
+
+<pre class="src src-swift"><span style="color: #4f97d7; font-weight: bold;">func</span> <span style="color: #bc6ec5; font-weight: bold;">reduce</span>&lt;A,E&gt;<span style="color: #4f97d7;">(</span>f: <span style="color: #4f97d7; font-weight: bold;">@escaping</span><span style="color: #bc6ec5;">(</span>A,E<span style="color: #bc6ec5;">)</span> -&gt; A<span style="color: #4f97d7;">)</span> -&gt; <span style="color: #4f97d7;">(</span><span style="color: #bc6ec5;">[</span>E<span style="color: #bc6ec5;">]</span><span style="color: #4f97d7;">)</span> -&gt; <span style="color: #4f97d7;">(</span>A<span style="color: #4f97d7;">)</span> -&gt; A <span style="color: #4f97d7;">{</span>
+    <span style="color: #4f97d7; font-weight: bold;">return</span> <span style="color: #bc6ec5;">{</span> l <span style="color: #4f97d7; font-weight: bold;">in</span> <span style="color: #2d9574;">{</span> i <span style="color: #4f97d7; font-weight: bold;">in</span>
+                   l.<span style="color: #4f97d7;">reduce</span><span style="color: #67b11d;">(</span>i, f<span style="color: #67b11d;">)</span>
+    <span style="color: #2d9574;">}</span><span style="color: #bc6ec5;">}</span>
+<span style="color: #4f97d7;">}</span>
+</pre>
+</div>
+<ol class="org-ol">
+<li>pseudoEither:
+</li>
+</ol>
+<div class="org-src-container">
+
+<pre class="src src-swift"><span style="color: #4f97d7; font-weight: bold;">struct</span> <span style="color: #bc6ec5; font-weight: bold;">PseudoEither</span>&lt;A, B&gt; <span style="color: #4f97d7;">{</span>
+    <span style="color: #4f97d7; font-weight: bold;">let</span> <span style="color: #4f97d7; font-weight: bold;">left</span>: A?
+    <span style="color: #4f97d7; font-weight: bold;">let</span> <span style="color: #4f97d7; font-weight: bold;">right</span>: B?
+<span style="color: #4f97d7;">}</span>
+
+<span style="color: #4f97d7; font-weight: bold;">func</span> <span style="color: #4f97d7; font-weight: bold;">left</span>&lt;A, B&gt;<span style="color: #4f97d7;">(</span>a: A<span style="color: #4f97d7;">)</span> -&gt; PseudoEither&lt;A, B&gt; <span style="color: #4f97d7;">{</span>
+    <span style="color: #bc6ec5; font-weight: bold;">PseudoEither</span><span style="color: #bc6ec5;">(</span><span style="color: #4f97d7; font-weight: bold;">left</span>: a, <span style="color: #4f97d7; font-weight: bold;">right</span>: <span style="color: #a45bad;">nil</span><span style="color: #bc6ec5;">)</span>
+<span style="color: #4f97d7;">}</span>
+
+<span style="color: #4f97d7; font-weight: bold;">func</span> <span style="color: #4f97d7; font-weight: bold;">right</span>&lt;A, B&gt;<span style="color: #4f97d7;">(</span>b: B<span style="color: #4f97d7;">)</span>-&gt; PseudoEither&lt;A, B&gt; <span style="color: #4f97d7;">{</span>
+    <span style="color: #bc6ec5; font-weight: bold;">PseudoEither</span><span style="color: #bc6ec5;">(</span><span style="color: #4f97d7; font-weight: bold;">left</span>: <span style="color: #a45bad;">nil</span>, <span style="color: #4f97d7; font-weight: bold;">right</span>: b<span style="color: #bc6ec5;">)</span>
+<span style="color: #4f97d7;">}</span>
+
+<span style="color: #4f97d7; font-weight: bold;">let</span> x: PseudoEither&lt;<span style="color: #4f97d7;">String</span>, <span style="color: #4f97d7;">Int</span>&gt; = <span style="color: #4f97d7; font-weight: bold;">left</span><span style="color: #4f97d7;">(</span>a: <span style="color: #2d9574;">"wuff"</span><span style="color: #4f97d7;">)</span>
+<span style="color: #4f97d7; font-weight: bold;">let</span> y: PseudoEither&lt;<span style="color: #4f97d7;">String</span>, <span style="color: #4f97d7;">Int</span>&gt; = <span style="color: #4f97d7; font-weight: bold;">right</span><span style="color: #4f97d7;">(</span>b: <span style="color: #a45bad;">42</span><span style="color: #4f97d7;">)</span>
+</pre>
+</div>
+<ol class="org-ol">
+<li>nested map
+</li>
+</ol>
+<div class="org-src-container">
+
+<pre class="src src-swift"><span style="color: #4f97d7; font-weight: bold;">let</span> arr = <span style="color: #4f97d7;">[</span><span style="color: #bc6ec5;">[</span><span style="color: #a45bad;">1</span>, <span style="color: #a45bad;">2</span><span style="color: #bc6ec5;">]</span>, <span style="color: #bc6ec5;">[</span><span style="color: #a45bad;">3</span>, <span style="color: #a45bad;">4</span><span style="color: #bc6ec5;">]</span><span style="color: #4f97d7;">]</span>
+<span style="color: #4f97d7;">(</span><span style="color: #bc6ec5;">(</span>map &gt;&gt;&gt; map<span style="color: #bc6ec5;">)</span> <span style="color: #bc6ec5;">{</span> $0 + <span style="color: #a45bad;">1</span> <span style="color: #bc6ec5;">}</span><span style="color: #4f97d7;">)</span> <span style="color: #4f97d7;">(</span>arr<span style="color: #4f97d7;">)</span> <span style="color: #2aa1ae; background-color: #292e34;">// </span><span style="color: #2aa1ae; background-color: #292e34;">[[2, 3], [4, 5]]</span>
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-6" class="outline-2">
+<h2 id="sec-6"><span class="section-number-2">6</span> Setters and key paths</h2>
+<div class="outline-text-2" id="text-6">
 <p>
 Key paths are generic over type they apply to, and the specific value, eg.
 </p>
@@ -400,9 +536,9 @@ Use prop to compose functions over key paths
 pointfree in one expression (without computed props/stateful funcs)..
 </p>
 </div>
-<div id="outline-container-sec-5-1" class="outline-3">
-<h3 id="sec-5-1"><span class="section-number-3">5.1</span> Exercises</h3>
-<div class="outline-text-3" id="text-5-1">
+<div id="outline-container-sec-6-1" class="outline-3">
+<h3 id="sec-6-1"><span class="section-number-3">6.1</span> Exercises</h3>
+<div class="outline-text-3" id="text-6-1">
 <ol class="org-ol">
 <li>Dictionary’s subscript key path.
 <div class="org-src-container">

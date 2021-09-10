@@ -60,6 +60,82 @@ $A$ and $B$ denote the number of values that can be constructed in the respectiv
           return Either<A, B>.self
         }
       #+END_SRC
+* Higher order functions
+How can we fit functions that we work with every day into our composition?
+We can define functions that manipulate functions such as ~curry~ and ~flip~ (equivalent to haskell).
+
+How do we deal with methods?
+Every method secretly defines a static function, which is already curried in the way that i'ts signature is always
+~Self -> Arguments -> ReturnType~
+/Zero argument functions/ can be a problem, because you have these empty parathesis flying around.
+Solution: Zurry (zero argument curry).
+#+BEGIN_SRC swift
+  func zurry<A>(_ f: () -> A) -> A {
+    return f()
+  }
+#+END_SRC
+
+Generic and ~throws~ functions are problematic, but we can redefine functions such as ~map~ and ~filter~ to free, curried functions.
+#+BEGIN_SRC swift
+  func map<A, B>(_ f: @escaping (A) -> B) -> ([A]) -> [B] {
+    return { $0.map(f) }
+  }
+#+END_SRC
+
+What's the point? "When they work, they work really well, saving us a lot of boilerplate. 
+When they don’t work, we’re still using the concepts and building intuitions for them."
+** Exercises
+   1. 3 argument curry
+   #+BEGIN_SRC swift
+     func curry<A, B, C, D>(_ f: @escaping (A, B, C) -> D) -> (A) -> (B) -> (C) -> D {
+         return { a in { b in { c in f(a, b, c) } } }
+     }
+   #+END_SRC
+   2. With e.g. URL.appendingPathComponent these tricks don't work, because you can not disambiguate the overloads.
+   #+BEGIN_SRC swift
+     let urlForPath = flip(curry(URL.init(fileURLWithPath:isDirectory:)))(true)
+   #+END_SRC
+   3. As we know from haskell, it's only right associative.
+   #+BEGIN_SRC haskell
+     A->B->C->D -- (A->(B->(C->D)))
+   #+END_SRC
+   4. uncurry
+   #+BEGIN_SRC swift
+     func uncurry<A, B, C>(_ f: @escaping (A) -> (B) -> C) -> (A, B) -> C {
+         return { (a, b) in f(a)(b) }
+     }
+   #+END_SRC
+   5. reduce
+   #+BEGIN_SRC swift
+     func reduce<A,E>(f: @escaping(A,E) -> A) -> ([E]) -> (A) -> A {
+         return { l in { i in
+                        l.reduce(i, f)
+         }}
+     }
+   #+END_SRC
+   6. pseudoEither:
+   #+BEGIN_SRC swift     
+     struct PseudoEither<A, B> {
+         let left: A?
+         let right: B?
+     }
+     
+     func left<A, B>(a: A) -> PseudoEither<A, B> {
+         PseudoEither(left: a, right: nil)
+     }
+     
+     func right<A, B>(b: B)-> PseudoEither<A, B> {
+         PseudoEither(left: nil, right: b)
+     }
+     
+     let x: PseudoEither<String, Int> = left(a: "wuff")
+     let y: PseudoEither<String, Int> = right(b: 42)
+   #+END_SRC
+   7. nested map
+   #+BEGIN_SRC swift
+     let arr = [[1, 2], [3, 4]]
+     ((map >>> map) { $0 + 1 }) (arr) // [[2, 3], [4, 5]]
+   #+END_SRC
 * Setters and key paths
 Key paths are generic over type they apply to, and the specific value, eg.
 #+BEGIN_SRC swift
