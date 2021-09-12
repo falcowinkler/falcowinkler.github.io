@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <title></title>
-<!-- 2021-09-10 Fri 10:45 -->
+<!-- 2021-09-12 Sun 20:34 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="generator" content="Org-mode">
@@ -234,11 +234,17 @@ MathJax.Hub.Config({
 <li><a href="#sec-5-1">5.1. Exercises</a></li>
 </ul>
 </li>
-<li><a href="#sec-6">6. Setters and key paths</a>
+<li><a href="#sec-6">6. Functional setters</a>
 <ul class="nav">
 <li><a href="#sec-6-1">6.1. Exercises</a></li>
 </ul>
 </li>
+<li><a href="#sec-7">7. Setters and key paths</a>
+<ul class="nav">
+<li><a href="#sec-7-1">7.1. Exercises</a></li>
+</ul>
+</li>
+<li><a href="#sec-8">8. Getters and key paths</a></li>
 </ul>
 </div>
 </nav>
@@ -490,8 +496,161 @@ When they don’t work, we’re still using the concepts and building intuitions
 </div>
 </div>
 <div id="outline-container-sec-6" class="outline-2">
-<h2 id="sec-6"><span class="section-number-2">6</span> Setters and key paths</h2>
+<h2 id="sec-6"><span class="section-number-2">6</span> Functional setters</h2>
 <div class="outline-text-2" id="text-6">
+<p>
+If you modify data structures (by returning a copy), you will end up repeating a lot of code for transforming just one value.
+Solution: Define generic functions for applying a function on a property.
+This reduces boilerplate especially when types are modified, because you need a new copy everytime the type changes.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-swift">pair
+  |&gt; <span style="color: #bc6ec5; font-weight: bold;">first</span><span style="color: #4f97d7;">(</span>incr<span style="color: #4f97d7;">)</span>
+  |&gt; <span style="color: #bc6ec5; font-weight: bold;">first</span><span style="color: #4f97d7;">(</span><span style="color: #4f97d7;">String</span>.<span style="color: #4f97d7; font-weight: bold;">init</span><span style="color: #4f97d7;">)</span>
+  |&gt; <span style="color: #bc6ec5; font-weight: bold;">second</span><span style="color: #4f97d7;">(</span><span style="color: #bc6ec5; font-weight: bold;">zurry</span><span style="color: #bc6ec5;">(</span><span style="color: #bc6ec5; font-weight: bold;">flip</span><span style="color: #2d9574;">(</span><span style="color: #4f97d7;">String</span>.<span style="color: #4f97d7;">uppercased</span><span style="color: #2d9574;">)</span><span style="color: #bc6ec5;">)</span><span style="color: #4f97d7;">)</span>
+<span style="color: #2aa1ae; background-color: #292e34;">// </span><span style="color: #2aa1ae; background-color: #292e34;">("43", "SWIFT")</span>
+</pre>
+</div>
+<p>
+To compose functions within setters, we need to take care that it is done in the correct order.
+E.g.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-swift">  <span style="color: #4f97d7; font-weight: bold;">let</span> nested = <span style="color: #4f97d7;">(</span><span style="color: #bc6ec5;">(</span><span style="color: #a45bad;">1</span>, <span style="color: #a45bad;">true</span><span style="color: #bc6ec5;">)</span>, <span style="color: #2d9574;">"Swift"</span><span style="color: #4f97d7;">)</span>
+  nested
+  |&gt; <span style="color: #4f97d7;">(</span>second &gt;&gt;&gt; first<span style="color: #4f97d7;">)</span> <span style="color: #4f97d7;">{</span> <span style="color: #a45bad;">!</span>$0 <span style="color: #4f97d7;">}</span>
+<span style="color: #2aa1ae; background-color: #292e34;">// </span><span style="color: #2aa1ae; background-color: #292e34;">((1, false), "Swift")</span>
+</pre>
+</div>
+<p>
+Setter composition <i>composes backwards</i>.
+Setters <i>lift</i> a transformation on an individual value into a function operating
+on the surrounding datatype.
+</p>
+</div>
+<div id="outline-container-sec-6-1" class="outline-3">
+<h3 id="sec-6-1"><span class="section-number-3">6.1</span> Exercises</h3>
+<div class="outline-text-3" id="text-6-1">
+<ol class="org-ol">
+<li>optional setters
+</li>
+</ol>
+<div class="org-src-container">
+
+<pre class="src src-swift"><span style="color: #4f97d7; font-weight: bold;">func</span> <span style="color: #bc6ec5; font-weight: bold;">map</span>&lt;A&gt;<span style="color: #4f97d7;">(</span>f: <span style="color: #4f97d7; font-weight: bold;">@escaping</span> <span style="color: #bc6ec5;">(</span><span style="color: #2d9574;">(</span>A<span style="color: #2d9574;">)</span>-&gt;A<span style="color: #bc6ec5;">)</span><span style="color: #4f97d7;">)</span> -&gt; <span style="color: #4f97d7;">(</span>A?<span style="color: #4f97d7;">)</span> -&gt; A? <span style="color: #4f97d7;">{</span>
+    <span style="color: #bc6ec5;">{</span> <span style="color: #4f97d7; font-weight: bold;">optional</span> <span style="color: #4f97d7; font-weight: bold;">in</span>
+        <span style="color: #4f97d7; font-weight: bold;">optional</span>.<span style="color: #4f97d7;">flatMap</span><span style="color: #2d9574;">(</span>f<span style="color: #2d9574;">)</span>
+    <span style="color: #bc6ec5;">}</span>
+<span style="color: #4f97d7;">}</span>
+<span style="color: #4f97d7; font-weight: bold;">struct</span> <span style="color: #bc6ec5; font-weight: bold;">Dog</span> <span style="color: #4f97d7;">{</span>
+    <span style="color: #4f97d7; font-weight: bold;">let</span> age: <span style="color: #4f97d7;">Int</span>?
+    <span style="color: #4f97d7; font-weight: bold;">let</span> name: <span style="color: #4f97d7;">String</span>
+<span style="color: #4f97d7;">}</span>
+
+<span style="color: #4f97d7; font-weight: bold;">func</span> <span style="color: #bc6ec5; font-weight: bold;">propDogAge</span><span style="color: #4f97d7;">(</span>f: <span style="color: #4f97d7; font-weight: bold;">@escaping</span> <span style="color: #bc6ec5;">(</span><span style="color: #4f97d7;">Int</span><span style="color: #bc6ec5;">)</span> -&gt; <span style="color: #4f97d7;">Int</span><span style="color: #4f97d7;">)</span> -&gt; <span style="color: #4f97d7;">(</span>Dog<span style="color: #4f97d7;">)</span> -&gt; Dog <span style="color: #4f97d7;">{</span>
+    <span style="color: #bc6ec5;">{</span> dog <span style="color: #4f97d7; font-weight: bold;">in</span>
+        <span style="color: #bc6ec5; font-weight: bold;">Dog</span><span style="color: #2d9574;">(</span>age: <span style="color: #bc6ec5; font-weight: bold;">map</span><span style="color: #67b11d;">(</span>f: f<span style="color: #67b11d;">)(</span>dog.<span style="color: #4f97d7;">age</span><span style="color: #67b11d;">)</span>, name: dog.<span style="color: #4f97d7;">name</span><span style="color: #2d9574;">)</span>
+    <span style="color: #bc6ec5;">}</span>
+<span style="color: #4f97d7;">}</span>
+
+<span style="color: #4f97d7; font-weight: bold;">let</span> snoopy = <span style="color: #bc6ec5; font-weight: bold;">Dog</span><span style="color: #4f97d7;">(</span>age: <span style="color: #a45bad;">1</span>, name: <span style="color: #2d9574;">"snoopy"</span><span style="color: #4f97d7;">)</span>
+
+snoopy |&gt;
+  <span style="color: #bc6ec5; font-weight: bold;">propDogAge</span><span style="color: #4f97d7;">(</span>f: <span style="color: #bc6ec5;">{</span> n <span style="color: #4f97d7; font-weight: bold;">in</span> n+<span style="color: #a45bad;">1</span> <span style="color: #bc6ec5;">}</span><span style="color: #4f97d7;">)</span>
+</pre>
+</div>
+<ol class="org-ol">
+<li>For the <code>Dog</code> struct above:
+</li>
+</ol>
+<div class="org-src-container">
+
+<pre class="src src-swift"><span style="color: #4f97d7; font-weight: bold;">func</span> <span style="color: #bc6ec5; font-weight: bold;">propDogName</span><span style="color: #4f97d7;">(</span>f: <span style="color: #4f97d7; font-weight: bold;">@escaping</span> <span style="color: #bc6ec5;">(</span><span style="color: #4f97d7;">String</span><span style="color: #bc6ec5;">)</span> -&gt; <span style="color: #4f97d7;">String</span><span style="color: #4f97d7;">)</span> -&gt; <span style="color: #4f97d7;">(</span>Dog<span style="color: #4f97d7;">)</span> -&gt; Dog <span style="color: #4f97d7;">{</span>
+    <span style="color: #bc6ec5;">{</span> dog <span style="color: #4f97d7; font-weight: bold;">in</span>
+        <span style="color: #bc6ec5; font-weight: bold;">Dog</span><span style="color: #2d9574;">(</span>age: dog.<span style="color: #4f97d7;">age</span>, name: <span style="color: #bc6ec5; font-weight: bold;">f</span><span style="color: #67b11d;">(</span>dog.<span style="color: #4f97d7;">name</span><span style="color: #67b11d;">)</span><span style="color: #2d9574;">)</span>
+    <span style="color: #bc6ec5;">}</span>
+<span style="color: #4f97d7;">}</span>
+</pre>
+</div>
+<p>
+Problems: Setters are a lot of boilerplate, and it doesn't scale well with many properties
+</p>
+<ol class="org-ol">
+<li></li>
+</ol>
+<div class="org-src-container">
+
+<pre class="src src-swift"><span style="color: #4f97d7; font-weight: bold;">struct</span> <span style="color: #bc6ec5; font-weight: bold;">Dog</span> <span style="color: #4f97d7;">{</span>
+    <span style="color: #4f97d7; font-weight: bold;">let</span> name: <span style="color: #4f97d7;">String</span>
+    <span style="color: #4f97d7; font-weight: bold;">let</span> location: Location
+<span style="color: #4f97d7;">}</span>
+
+<span style="color: #4f97d7; font-weight: bold;">struct</span> <span style="color: #bc6ec5; font-weight: bold;">Location</span> <span style="color: #4f97d7;">{</span>
+    <span style="color: #4f97d7; font-weight: bold;">let</span> name: <span style="color: #4f97d7;">String</span>
+<span style="color: #4f97d7;">}</span>
+
+<span style="color: #4f97d7; font-weight: bold;">func</span> <span style="color: #bc6ec5; font-weight: bold;">dogLocationName</span><span style="color: #4f97d7;">(</span>f: <span style="color: #4f97d7; font-weight: bold;">@escaping</span> <span style="color: #bc6ec5;">(</span><span style="color: #4f97d7;">String</span><span style="color: #bc6ec5;">)</span> -&gt; <span style="color: #4f97d7;">String</span><span style="color: #4f97d7;">)</span> -&gt; <span style="color: #4f97d7;">(</span>Dog<span style="color: #4f97d7;">)</span> -&gt; Dog <span style="color: #4f97d7;">{</span>
+    <span style="color: #bc6ec5;">{</span> dog <span style="color: #4f97d7; font-weight: bold;">in</span>
+        <span style="color: #bc6ec5; font-weight: bold;">Dog</span><span style="color: #2d9574;">(</span>name: <span style="color: #bc6ec5; font-weight: bold;">f</span><span style="color: #67b11d;">(</span>dog.<span style="color: #4f97d7;">name</span><span style="color: #67b11d;">)</span>, location: <span style="color: #bc6ec5; font-weight: bold;">Location</span><span style="color: #67b11d;">(</span>name: <span style="color: #bc6ec5; font-weight: bold;">f</span><span style="color: #b1951d;">(</span>dog.<span style="color: #7590db;">location</span>.<span style="color: #4f97d7;">name</span><span style="color: #b1951d;">)</span><span style="color: #67b11d;">)</span><span style="color: #2d9574;">)</span>
+    <span style="color: #bc6ec5;">}</span>
+<span style="color: #4f97d7;">}</span>
+
+<span style="color: #4f97d7; font-weight: bold;">func</span> <span style="color: #bc6ec5; font-weight: bold;">dogLocation</span><span style="color: #4f97d7;">(</span>f: <span style="color: #4f97d7; font-weight: bold;">@escaping</span> <span style="color: #bc6ec5;">(</span>Location<span style="color: #bc6ec5;">)</span> -&gt; Location<span style="color: #4f97d7;">)</span> -&gt; <span style="color: #4f97d7;">(</span>Dog<span style="color: #4f97d7;">)</span> -&gt; Dog <span style="color: #4f97d7;">{</span>
+    <span style="color: #bc6ec5;">{</span> dog <span style="color: #4f97d7; font-weight: bold;">in</span>
+        <span style="color: #bc6ec5; font-weight: bold;">Dog</span><span style="color: #2d9574;">(</span>name: dog.<span style="color: #4f97d7;">name</span>, location: <span style="color: #bc6ec5; font-weight: bold;">f</span><span style="color: #67b11d;">(</span>dog.<span style="color: #7590db;">location</span><span style="color: #67b11d;">)</span><span style="color: #2d9574;">)</span>
+    <span style="color: #bc6ec5;">}</span>
+<span style="color: #4f97d7;">}</span>
+
+<span style="color: #4f97d7; font-weight: bold;">func</span> <span style="color: #bc6ec5; font-weight: bold;">locationName</span><span style="color: #4f97d7;">(</span>f: <span style="color: #4f97d7; font-weight: bold;">@escaping</span> <span style="color: #bc6ec5;">(</span><span style="color: #4f97d7;">String</span><span style="color: #bc6ec5;">)</span> -&gt; <span style="color: #4f97d7;">String</span><span style="color: #4f97d7;">)</span> -&gt; <span style="color: #4f97d7;">(</span>Location<span style="color: #4f97d7;">)</span> -&gt; Location <span style="color: #4f97d7;">{</span>
+    <span style="color: #bc6ec5;">{</span> location <span style="color: #4f97d7; font-weight: bold;">in</span>
+        <span style="color: #bc6ec5; font-weight: bold;">Location</span><span style="color: #2d9574;">(</span>name: <span style="color: #bc6ec5; font-weight: bold;">f</span><span style="color: #67b11d;">(</span>location.<span style="color: #4f97d7;">name</span><span style="color: #67b11d;">)</span><span style="color: #2d9574;">)</span>
+    <span style="color: #bc6ec5;">}</span>
+<span style="color: #4f97d7;">}</span>
+
+<span style="color: #4f97d7; font-weight: bold;">let</span> snoopy = <span style="color: #bc6ec5; font-weight: bold;">Dog</span><span style="color: #4f97d7;">(</span>name: <span style="color: #2d9574;">"snoopy"</span>, location: <span style="color: #bc6ec5; font-weight: bold;">Location</span><span style="color: #bc6ec5;">(</span>name: <span style="color: #2d9574;">"central park"</span><span style="color: #bc6ec5;">)</span><span style="color: #4f97d7;">)</span>
+
+snoopy |&gt; dogLocationName <span style="color: #4f97d7;">{</span> $0 + <span style="color: #2d9574;">"!"</span> <span style="color: #4f97d7;">}</span>
+snoopy |&gt; <span style="color: #4f97d7;">(</span>locationName &gt;&gt;&gt; dogLocation<span style="color: #4f97d7;">)</span> <span style="color: #4f97d7;">{</span> $0 + <span style="color: #2d9574;">"!"</span> <span style="color: #4f97d7;">}</span>
+snoopy |&gt; <span style="color: #4f97d7;">(</span>dogLocation &lt;&lt;&lt; locationName<span style="color: #4f97d7;">)</span> <span style="color: #4f97d7;">{</span> $0 + <span style="color: #2d9574;">"!"</span> <span style="color: #4f97d7;">}</span>
+</pre>
+</div>
+<ol class="org-ol">
+<li>Yes we can, but for each tuple type you have to write these functions again.
+</li>
+<li>and 6.
+</li>
+</ol>
+<div class="org-src-container">
+
+<pre class="src src-swift"><span style="color: #4f97d7; font-weight: bold;">func</span> <span style="color: #bc6ec5; font-weight: bold;">setKey</span>&lt;K, V&gt;<span style="color: #4f97d7;">(</span>f: <span style="color: #4f97d7; font-weight: bold;">@escaping</span> <span style="color: #bc6ec5;">(</span>V?<span style="color: #bc6ec5;">)</span>-&gt;V?<span style="color: #4f97d7;">)</span> -&gt; <span style="color: #4f97d7;">(</span>K<span style="color: #4f97d7;">)</span> -&gt; <span style="color: #4f97d7;">(</span><span style="color: #4f97d7;">Dictionary</span>&lt;K, V&gt;<span style="color: #4f97d7;">)</span> -&gt; <span style="color: #4f97d7;">Dictionary</span>&lt;K, V&gt; <span style="color: #4f97d7;">{</span>
+<span style="color: #bc6ec5;">{</span>
+    key <span style="color: #4f97d7; font-weight: bold;">in</span>
+    <span style="color: #2d9574;">{</span> dict <span style="color: #4f97d7; font-weight: bold;">in</span> 
+        <span style="color: #4f97d7; font-weight: bold;">var</span> dict = dict
+        <span style="color: #4f97d7; font-weight: bold;">if</span> dict<span style="color: #67b11d;">[</span>key<span style="color: #67b11d;">]</span> !=  <span style="color: #a45bad;">nil</span> <span style="color: #67b11d;">{</span> <span style="color: #2aa1ae; background-color: #292e34;">// </span><span style="color: #2aa1ae; background-color: #292e34;">6.</span>
+            dict<span style="color: #b1951d;">[</span>key<span style="color: #b1951d;">]</span> = <span style="color: #bc6ec5; font-weight: bold;">f</span><span style="color: #b1951d;">(</span>dict<span style="color: #4f97d7;">[</span>key<span style="color: #4f97d7;">]</span><span style="color: #b1951d;">)</span>
+        <span style="color: #67b11d;">}</span>
+        <span style="color: #4f97d7; font-weight: bold;">return</span> dict
+    <span style="color: #2d9574;">}</span>
+<span style="color: #bc6ec5;">}</span>
+<span style="color: #4f97d7;">}</span>
+</pre>
+</div>
+<ol class="org-ol">
+<li>The former is the signature of a setter, with the transformation as first argument. The latter can not be a setter,
+because it does not allow for the passing of a transformation value.
+In other words: The first signature receives a transformation function \(A \rightarrow B\) whereas the second
+receives two values, one of type \(A\) and one of type \(B\).
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-7" class="outline-2">
+<h2 id="sec-7"><span class="section-number-2">7</span> Setters and key paths</h2>
+<div class="outline-text-2" id="text-7">
 <p>
 Key paths are generic over type they apply to, and the specific value, eg.
 </p>
@@ -536,9 +695,9 @@ Use prop to compose functions over key paths
 pointfree in one expression (without computed props/stateful funcs)..
 </p>
 </div>
-<div id="outline-container-sec-6-1" class="outline-3">
-<h3 id="sec-6-1"><span class="section-number-3">6.1</span> Exercises</h3>
-<div class="outline-text-3" id="text-6-1">
+<div id="outline-container-sec-7-1" class="outline-3">
+<h3 id="sec-7-1"><span class="section-number-3">7.1</span> Exercises</h3>
+<div class="outline-text-3" id="text-7-1">
 <ol class="org-ol">
 <li>Dictionary’s subscript key path.
 <div class="org-src-container">
@@ -640,6 +799,10 @@ correctAnswer:
 </ol>
 </div>
 </div>
+</div>
+
+<div id="outline-container-sec-8" class="outline-2">
+<h2 id="sec-8"><span class="section-number-2">8</span> Getters and key paths</h2>
 </div>
 </div></div></div>
 </body>

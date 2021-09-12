@@ -136,6 +136,116 @@ When they don’t work, we’re still using the concepts and building intuitions
      let arr = [[1, 2], [3, 4]]
      ((map >>> map) { $0 + 1 }) (arr) // [[2, 3], [4, 5]]
    #+END_SRC
+* Functional setters
+If you modify data structures (by returning a copy), you will end up repeating a lot of code for transforming just one value.
+Solution: Define generic functions for applying a function on a property.
+This reduces boilerplate especially when types are modified, because you need a new copy everytime the type changes.
+#+BEGIN_SRC swift
+pair
+  |> first(incr)
+  |> first(String.init)
+  |> second(zurry(flip(String.uppercased)))
+// ("43", "SWIFT")
+#+END_SRC
+To compose functions within setters, we need to take care that it is done in the correct order.
+E.g.
+#+BEGIN_SRC swift
+  let nested = ((1, true), "Swift")
+  nested
+  |> (second >>> first) { !$0 }
+// ((1, false), "Swift")
+#+END_SRC
+Setter composition /composes backwards/.
+Setters /lift/ a transformation on an individual value into a function operating
+on the surrounding datatype.
+** Exercises
+   1. optional setters
+   #+BEGIN_SRC swift
+     func map<A>(f: @escaping ((A)->A)) -> (A?) -> A? {
+         { optional in
+             optional.flatMap(f)
+         }
+     }
+     struct Dog {
+         let age: Int?
+         let name: String
+     }
+     
+     func propDogAge(f: @escaping (Int) -> Int) -> (Dog) -> Dog {
+         { dog in
+             Dog(age: map(f: f)(dog.age), name: dog.name)
+         }
+     }
+     
+     let snoopy = Dog(age: 1, name: "snoopy")
+     
+     snoopy |>
+       propDogAge(f: { n in n+1 })
+   #+END_SRC
+   2. For the ~Dog~ struct above:
+   #+BEGIN_SRC swift
+     func propDogName(f: @escaping (String) -> String) -> (Dog) -> Dog {
+         { dog in
+             Dog(age: dog.age, name: f(dog.name))
+         }
+     }
+   #+END_SRC
+   Problems: Setters are a lot of boilerplate, and it doesn't scale well with many properties
+   3.
+   #+BEGIN_SRC swift
+     struct Dog {
+         let name: String
+         let location: Location
+     }
+     
+     struct Location {
+         let name: String
+     }
+     
+     func dogLocationName(f: @escaping (String) -> String) -> (Dog) -> Dog {
+         { dog in
+             Dog(name: f(dog.name), location: Location(name: f(dog.location.name)))
+         }
+     }
+     
+     func dogLocation(f: @escaping (Location) -> Location) -> (Dog) -> Dog {
+         { dog in
+             Dog(name: dog.name, location: f(dog.location))
+         }
+     }
+     
+     func locationName(f: @escaping (String) -> String) -> (Location) -> Location {
+         { location in
+             Location(name: f(location.name))
+         }
+     }
+     
+     let snoopy = Dog(name: "snoopy", location: Location(name: "central park"))
+     
+     snoopy |> dogLocationName { $0 + "!" }
+     snoopy |> (locationName >>> dogLocation) { $0 + "!" }
+     snoopy |> (dogLocation <<< locationName) { $0 + "!" }
+   #+END_SRC
+   4. Yes we can, but for each tuple type you have to write these functions again.
+   5. and 6.
+   #+BEGIN_SRC swift
+     func setKey<K, V>(f: @escaping (V?)->V?) -> (K) -> (Dictionary<K, V>) -> Dictionary<K, V> {
+     {
+         key in
+         { dict in 
+             var dict = dict
+             if dict[key] !=  nil { // 6.
+                 dict[key] = f(dict[key])
+             }
+             return dict
+         }
+     }
+     }
+   #+END_SRC
+   7. The former is the signature of a setter, with the transformation as first argument. The latter can not be a setter,
+      because it does not allow for the passing of a transformation value.
+      In other words: The first signature receives a transformation function $A \rightarrow B$ whereas the second
+      receives two values, one of type $A$ and one of type $B$.
 * Setters and key paths
 Key paths are generic over type they apply to, and the specific value, eg.
 #+BEGIN_SRC swift
@@ -235,3 +345,6 @@ pointfree in one expression (without computed props/stateful funcs)..
              }
          }
        #+END_SRC
+
+* Getters and key paths
+ 

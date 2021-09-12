@@ -291,3 +291,169 @@ The most important ones are
      - Metavalue defined by Consistency on other values
      - consistency is sometimes more important than which values you pick
 * Sincerety or technique?
+- You can use techniques and be sincere
+- Sincerity is crutial to trust and relationships
+- What if you don't care sincerely?
+  + Serve the client without getting close (unfulfilling work, definitely not recommended)
+  + Keep serving and try to fake it (not recommended)
+    + You can not inward out (your sincerity affecting your actions),
+    but have to start acting as if you care. This can lead to your behaviour being
+    indistinguishable from genuine care, either to you or to your client
+    + Consistency is then key
+  + Pass on to other colleague (sometimes a very good option)
+  + Drop the client (reputation before revenue)
+    Before:
+    + Have you tried everything you know to relate to the client? 
+    + Put the issue in perspective
+    + If it's a tangible problem, raise it with the engagement manager
+- The trick is to avoid all tricks.
+- In relationships, there are no win-loose or loose win situations, only win-win or loose-loose.
+  If, it's a loose-loose, it's better for both to step away
+** Client or friend?
+   - Unprofessional not to show an interested in a client on a personal level
+   - Socializing is not necessary, but being sociable definitely is
+** Social media
+   - Neither good or bad for trust. The range of tools is just broader for building (but also diminishing) trust.
+   - A mechanistic view on social media ("networking" by spamming loosely personalized messages) is inherently insincere
+   - To earn trust, you must bet on the long term benefit of the relationship
+
+Takeaway: Focus on journey instead of destination
+* The structure of trust building
+Formal approach
+5 stage trust development process
+* The trust equation
+Four primary components of trustworthiness: words, actions, emotions and motives.
+_The trustworthiness equation_
+- $T$ - Trustworthiness 
+- $C$ - Credibility
+- $R$ - Reliability
+- $I$ - Intimacy
+- $S$ - Self-orientation
+
+$$T = \frac{C+R+I}{S}$$
+_Trust-realms_
+| Realm         |
+|---------------|
+| Words         | 
+| credibility   | 
+| truthfullness |
+| credentials   |
+
+- Key: Trust has multiple dimensions (you can trust expertise, but distrust your motives)
+- Winning trust demands that you do well on all four dimensions.
+- Address your weaknesses
+** Credibility
+- The one dimension of trust most often achieved
+- Content expertise + presence
+- Be credible, and illustrate (not assert) this
+- rational (accuracy, believability) and emotional (honesty, completeness) components
+*** comparison rational vs emotional credibility
+    |                 | rational                        | emotional                           |
+    |-----------------+---------------------------------+-------------------------------------|
+    | characteristics | accuracy                        | completeness                        |
+    | response        | believability, not telling lies | honesty, telling truths, completely |
+    | testimonial     | direct experience               | direct experience                   |
+    We tend to appeal directly to rationality, without enhancing the emotional side.
+    Excel at: Anticipating needs, and speaking about needs that are not commonly articulated.
+    _Final tips on enhancing credibility_
+    1. Figure out how to tell as much truth as possible without harming others
+    2. Don't tell lies or exaggerate, ever
+    3. Avoid saying things that can be construed as lies.
+    4. Speak with expression, not monotonically. Show your energy
+    5. Don't just cite references. You can also connect your clients if it's beneficial.
+    6. If you are unsure, admit it quickly and empathically.
+    7. Have them know your credentials. be careful with adjectives.
+    8. Relax. You know more than you think you do.
+    9. Make sure that you do your homework about the client.
+    10. Don't show off.
+    11. Love your topic - it will show.
+** Reliability
+   - Clients think you are dependable and behave consistently
+   - Improves the better you know the person
+   - Explicit action-orientation (as opposed to credibility)
+   - Emotional aspect: the extent to which we seem to anticipate the other persons habits, expectations, routines and quirks
+   - Repeated experiences of expectations fulfilled
+   - Make promises and deliver on them
+   - Consistency in terms of the client's preferences
+   - Aim at client based familiarity (e.g. sending meeting material beforehand, consistently)
+   Final thoughts
+   1. make specific commitments around small things
+   2. send meeting materials in advance
+   3. meetings should have clear goals, ensure they are met
+   4. Use clients look and feel around terminology, style, formats, hours etc.
+   5. Review agendas with your clients
+   6. Re-confirm scheduled events before they happen, inform of changes on time
+** Intimacy
+   - Biggest sources of differentiation in trustworthiness are intimacy and low self-orientation
+   - Know how to emphasize with someone, but also know how to communicate this
+   - not afraid to be vulnerable, not afraid to ask tough questions and take on emotional risk
+   - A safe haven for tough issues
+   - People can get very personal, intimate and irrational
+   - Intimacy is about emotional closeness /concerning the issue at hand/
+   - Mutually increasing
+   - More about /who we are/ than other aspects of trust.
+   Suggestions
+   1. Be not afraid. Intimacy requires courage for everyone involved.
+   2. Candor is not necessarily intimacy.
+   3. Show that you have a different angle, ask questions unheard of from other consultants.
+      Both parties will have fun and learn
+   4. Test if you are about to cross the line. Ask if the client would even want to discuss
+      an intimate issue with you, by putting yourself in their shoes.
+      Can the client exit the situation while saving face? Is it the correct time, topic and phrasing?
+   5. Practice phrasing of difficult questions, messages etc.
+   6. Don't overrate the downside risk. It is often overstated and sometimes, it is actually your personal risk.
+   7. You have to make the first step.
+** Self-orientation
+   No greater source of distrust, if we make the impression that we just care about ourselves.
+   Threats to client-focus, and temptations for self-orientation
+   1. selfishness
+   2. self-consciousness
+   3. need to appear on top of things
+   4. a desire to look intelligent
+   5. A to-do list on our mind that is a mile long
+   6. A desire to jump to the solution
+   7. A desire to win that exceeds the desire to help the client
+   8. a desire to be right
+   9. A desire to be seen to be right
+   10. A desire to be seen as adding value
+   11. Fears of various kinds
+   In short: Any kind of preoccupation with our own agenda.
+   _The client recognizes this through_ 
+   1. Tendency to relate a story to yourself
+   2. Finishing sentences for the other to quickly
+   3. Need to feel empty spaces in conversations
+   4. Need to feel witty, intelligent
+   5. Inability do answer directly to a direct question
+   6. Unwillingness to say "i don't know"
+   7. Name-dropping of other clients
+   8. A recitation of qualifications
+   9. A tendency to give answers too quickly
+   10. Tendency to want to have the last word
+   11. Closed-ended questions early on
+   12. Putting forward hypothesis before hearing the client's or problem statements
+   13. Passive listening
+   14. Watching the client as if they were a computer monitor: A source of data?
+   _How do we represent low self-orientation_
+   1. Letting the client fill in the empty spaces
+   2. Asking the client what's behind a certain issue
+   3. Using open ended questions
+   4. Not giving answers unless you have earned  the right to do so
+   5. Focus on defining the problem, not guessing the solution
+   6. Reflective listening (e.g. summarizing what we heard)
+   7. Saying you don't know, when you don't know
+   8. Acknowledge the feelings of the client with respect
+   9. Learn how to tell the clients story before we write our own
+   10. Listening without distractions
+   11. Resisting with confidence the clients invitation to provide a solution too early on.
+   12. Trusting the ability to add value after listening.
+   13. Taking most responsibility of failed communications.
+   Other:
+   - Make their concerns your concerns
+   - Listen 1 to 1
+   - Be honest with yourself about your level of interest
+** Trust and relationship economics
+   The trust equation can be used to evaluate a relationship.
+   The cost of building new clients is much higher,
+   because credibility, reliability and intimacy need time to build.
+   The strongest predictor of high trust factors is the intimacy factor.
+* The development of trust
