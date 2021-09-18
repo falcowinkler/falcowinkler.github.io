@@ -347,4 +347,78 @@ pointfree in one expression (without computed props/stateful funcs)..
        #+END_SRC
 
 * Getters and key paths
- 
+Use ~get~ wrapper to bridge between function and keypath world
+#+BEGIN_SRC swift
+func get<Root, Value>(_ kp: KeyPath<Root, Value>) -> (Root) -> Value {
+  return { root in
+    root[keyPath: kp]
+  }
+}
+#+END_SRC
+this is nice:
+#+BEGIN_SRC swift
+
+users
+  .filter(get(\.isStaff) >>> (!))
+#+END_SRC
+you can do operators as functions 💡.
+
+Generic getters can also be helpful for sorting, max etc. because there you need a compare function
+~A -> A -> Bool~.
+With ~their~, we can write
+#+BEGIN_SRC swift
+users
+  .max(by: their(get(\.email), <)) // we can also use Comparable instead of passing the compare fn.
+#+END_SRC
+
+We can also write a wrapper for combining elements in ~reduce~:
+#+BEGIN_SRC swift
+episodes.reduce(0, combining(get(\.viewCount), by: +))
+#+END_SRC
+We use get a lot, so you might consider using an operator ~^~ as prefix operator.
+
+** Exercises
+   1. Find three more standard library APIs that can be used with our get and ^ helpers:
+      - ~filter~ a list of items on a boolean property
+      - ~Dictionary<A, B>.init(grouping:, by:)~, grouping by an int property
+      - ~contains(where:)~
+      - other maps such as ~compact~ or ~flatMap~, ~mapValues~ etc.
+   2. A getter key-path for zero-argument functions wrapping a property...
+      cant think of others
+   3. I am not sure if this is what is meant:
+      #+BEGIN_SRC swift
+        func getFoodAttr<T>(f: KeyPath<Food, T>) -> (User) -> [T] {
+            { user in
+                map(f: get(f))(user.favoriteFoods)
+            }
+        }
+        getFoodAttr(f: \.name)(user) // Tacos, Nachos
+      #+END_SRC
+   4. Key paths support optional chaining
+      #+BEGIN_SRC swift
+        func getLocationAttr<T>(f: KeyPath<Location, T>) -> (User) -> T? {
+            { user in
+                map(f: get(f))(user.location)
+            }
+        }
+        getLocationAttr(f: \.name)(user)
+        let user2 = User(
+            favoriteFoods: [],
+            location: nil,
+            name: "Blob"
+        )
+        get(\User.location?.name)(user2)
+      #+END_SRC
+   5. Like this?
+      #+BEGIN_SRC swift
+        func pluck<V, E>(r: Result<V, E>) -> V? {
+            switch r {
+            case .success(let v):
+                return v
+            default: return nil
+            }
+        }
+        let res: Result<User, Error> = .success(user)
+        map(f: get(\User.name))(pluck(r: res))
+      #+END_SRC
+   TODO: i don't really understand what is meant with 6,7,8 exercises.

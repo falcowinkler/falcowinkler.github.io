@@ -457,3 +457,253 @@ _Trust-realms_
    because credibility, reliability and intimacy need time to build.
    The strongest predictor of high trust factors is the intimacy factor.
 * The development of trust
+Start of in depth investigation about buidling trust.
+Five distinct steps of building trust:
+1. Engage
+2. Listen
+3. Frame
+4. Envision
+5. Commit
+
+** Summary of the trust process
+   | Step     | Action taken                                          | What the client feels                                                        | What the advisor gains                                       |
+   |----------+-------------------------------------------------------+------------------------------------------------------------------------------+--------------------------------------------------------------|
+   | Engage   | Attention becomes focused                             | It may be worth talking to this person about                                 | Earns the right to tell and hear truths                      |
+   | Listen   | Ears bigger than mouth, acknoledge and affirm         | I am being both heard and understood                                        | Earns the right to suggest a problem statement or definition |
+   | Frame    | The root issue is stated clearly and openly           | Yes, that is exactly the problem here                                        | Coalesces issues to move forward                             |
+   | Envision | A vision of an alternate reality is sketched out      | Could we really accomplish that? That could be a really interesting outcome! | Concretises vision. Generates clarity of objective           |
+   | Commit   | Steps are agreed upon, sense of commitment is renewed | I Agree, i understand what needs to be done, i'm with you, let's do it       | Allows problem resolution to begin                    |
+*** Engage
+    /Uses language of interest and concern/
+    /Requires the skill of being credibly noticed/
+    The client feels
+    - There is an issue worth talking about
+    - It is worth talking to the consultant about the issue
+    Relevant for both new and existing relationships!
+*** Listen
+    /Uses language of understanding and empathy/
+    /Requires the ability to understand another human being/
+    Good listening is Active, incisive, conscious, involved and interactive.
+    Listen for what is unspoken.
+    Confirm and validate what we have heard.
+    Give the experience of having been listened to.
+*** Framing
+    /Uses language of perspective and candor/
+    /Requires creative insight and emotional courage/
+    - Formulating problem statements, hypothesis, and points of view,
+    built around what's important to the client.
+    - Significant for trust building
+    - Rarely an exclusively rational process, rather to reveal and organize
+    the client's issues
+*** Envision
+    /Uses language of possibility/
+    /Requires a spirit of colaboration and creativity/
+    1. What are we really aimimg for here?
+    2. What will it look like when we get there?
+    3. How will we know, we are there?
+    - /Manage expectations/, up or down
+    - Here the clients understands and defines their goals
+*** Commit
+    /Uses language of joint exploration/
+    /Requires the ability to generate enthusiasm, and sometimes/
+    /the ability to manage overenthusiasm/
+    -Help find the determination to do what is necessary.
+    -Here one has to have made sure expectations have been managed accurately.
+    - Help the client to understand what has to happen
+    - Outline risks
+* Engagement
+  - Nontrivial decision for the client
+  - Investment of time and energy, that is only given if some likelihood
+    of a positive outcome is perceived
+  - Be seen as visibly trying to customize activites to this specific client
+  - Invoke a sense of "Maybe these people aren't like all the others.."
+  - /Go first, illustrate and don't assert/.
+  - Show that you /understand/ their wants.
+*** Digital engagement
+    - Engagement is most affected by the digital revolution (out of the 5 steps)
+    - It's possible to start engaging digitally
+    - But it requires better communication skills and sharing critical insights early on
+*** Engaging with existing clients
+    - Do or say things that are still suffinciently new and intriguing
+    - Build on prior knowledge that you have built
+    For example, approaches that...
+    1. demonstrate concern about competetive developments
+    2. signal an understanding of career challenges facing a particular individual
+    3. might offer a solution to a specific, managerial issue
+    4. demonstrate continuity and development
+    It's about the right topic at the right time. Rules of thumb:
+    1. introduce the topics in an order that amounts to the time the client has available.
+       e.g. if the time is limited start with the urgent and end with the important.
+       With more time, start with important and leave 5 mins for the urgent
+    2. Don't hold back in raising a topic.
+*** Engaging with new client
+    Find out everything you can
+    - Do some second level investigations about the people involved,
+      topics you can talk to them about.
+    - Good and relevant issues/topics that might be a bit risky
+    Don't make the first interactions /transactional/, but similar to how you would talk to a new friend.
+* The art of listening
+  Why is being listened to so important?
+  Not only because of the need to rationally understand the issues,
+  but from a need of respect, empathy and involvement.
+  Ensure is that the self-esteem of the client is protected ("i understand... now help me to understand why...")
+  _Two common mistakes_
+  1. Listen only to the rational
+     emotional data is every bit as important as rational data
+  2. Listen only passively
+     send emotional colorings and nuances, not passive ~acks~
+** Listening to the sequence
+   ~30 to 60 seconds attention span
+   Speakers will create a story with background, setup and punchline.
+   Listen to the whole sequence and understand the connections.
+   Listen to stories, not only facts.
+*** Reflective listening, supportive listening and listening for possibility
+   - Reflective listening demonstrates clarity and communicates
+     that their message has been heard,
+     and that the impact, implications and emotions are also well understood
+   - Supportive listening demonstrates empathy, an understanding why the client feels a certain way
+   - Listening for possibility demonstrates insight,
+     and suggests a particular path or solution may help resolve the dilemma.
+* The agenda-setting discussion
+  An agenda
+  - is a pre-statement, as to how a meeting should be conducted and what should be discussed.
+  - , both in written and spoken form, is a formal tool for listening
+  - should always be discussed
+  - a powerful symbol for acting together jointly
+  the client is made to feel involved
+* What do good listeners do?
+  _Good listeners do:_
+  1. probe for clarification
+  2. listen for unvoiced communications
+  3. listen for the story
+  4. summarise well
+  5. emphasize
+  6. listen for what's differnen, not for what's familiar
+  7. take it all seriously
+  8. spot hidden assumptions
+  9. let the client get it out of their system
+  10. ask "how do you feel about that?"
+  11. keep the client talking "what else have you considered?"
+  12. keep asking for more detail that helps them understand
+  13. get rid of distractions
+  14. focus on hearing the clients version first
+  15. let the client tell their story their way
+  16. stand in the clients shoes
+  17. aks how they think you might be of help
+  18. aks what the client has thought of, before telling them what they have thought of.
+  19. look at (not stare at) the client as they speaks
+  20. look for (in-)congruity of what the client says and body language
+  21. Make it seem like the client is the only thing that matters, and they have all the time in the world
+  22. Encourage by nodding head or giving a slight smile
+  23. Are aware of and control their body movement.
+  _Good listeners don't:_
+  1. Interrupt
+  2. Respond too soon
+  3. Match the client points ("Well i had the same thing happen to me...")
+  4. Editorialize in mid-stream ("Well that option is a non-starter...")
+  5. Jump to conclusions, much less judgements
+  6. Ask closed end questions for no reason
+  7. Give you their ideas before hearing yours
+  8. Judge you
+  9. Try to solve the problem too quickly
+  10. Answer calls or text messages in the course of a client meeting
+* Framing the issue
+  The most challenging, rewarding and difficult phase of the 5.
+  Identifying the essence of the issue at hand.
+** Rational framing
+   Distilling a complex set of issues down to a few, critical variables.
+   We are considerably limited in the number of perspective we can keep in our head at the same time.
+   Use models, draw, visualize, sketch lists etc.
+** Emotional framing
+   If advisory relationships and conversations can get stuck in emotional backwater,
+   rational framing will not unblock it.
+   If you notice emptional pressure, switch to emotional level and address them immediately.
+   ⚠ we are framing the /clients/ emotions.
+   _Naming and claiming_
+   Speaking to what before has been unsayable.
+   Characterised by
+   1. An acknowledgement of the difficulty of raising the issue
+   2. An acceptance of responsibility for raising it
+   3. A direct statement of the issue itself
+   This is about taking risk, and courage.
+   _Framing and blaming_
+   Most initial framings (often from the clients) are full of blame.
+   Blame truly get's in the way of effectively advising, because it's a waste of energy.
+   The problem statement should ideally be blame-free.
+   _Implementing emotional framing_
+   An altitue of taking responsibility, instead of looking to blame others.
+   Responsibility taking caveats:
+   1. It's probably just me, but...
+   2. I must have been tuned out for a moment, i'm sorry, you were saying?
+   3. I'm sure you covered this before, but...
+   4. I'm sorry to interrupt, but i just can't get this out of my head about...
+   5. You probably thought of this already..
+   6. I wish i knew, but i just don't know how to handle this concern
+   7. I realize you have a strong preference about ...
+   8. I'm probably thinking about this all wrong, but
+   9. I'm not sure if this is on point but it occurs to me that...
+   10. I may not have understood this right, so bare with me...
+   11. I don't know exactly how to say this, so i hope you help me, when i wonder..
+   12. I hope i am not inapprobiate by bringing this up, but...
+   13. I hope you forgive my for not knowing quite how to say this, but...
+* Envisioning an alternate reality
+  /Jointly/ imagine what the end-result should look like,
+  and adressing questions such as
+  1. For what are we really aiming here?
+  2. What will it look like when we get there?
+  3. How will we know when we are there?
+  Free's up new perspective, encouraging freedom and creativiity.
+  Not absolutely necessary, but can often add the most value.
+  Energizing and comforting.
+  Focus on discriptive sentences, and concrete outcomes
+** Summary
+   - It's tempting to switch into action language after framing
+   - slow down the client if they switch
+* Commitment
+  Final stage of trust-building (not selling).
+  Client understands what is necessary to achieve the goals.
+  Commitment on emotional, trust-building level (not rational)
+  A conversation should contain some of these points
+  1. What's gonna get in the way of getting this done?
+  2. What do we intend to do about it??
+  3. Who needs to be brought in the loop?
+  4. Who should do what part?
+  5. What information do we need?
+  6. When should we check in?
+  7. What are the key deadlines?
+
+  Check back if both parties really understand the commitment.
+  E.g. by assuming the devils advocate role, and going through pitfalls.
+  Don't omit discussions of risks and uncertanties.
+  Clients commit because of two reasons:
+  - Feeling pain or energy around a topic (the usual case)
+  - They are captivated by something new, different and totally appearing
+** Managing expectations
+  To explore what will and will not happen is important also as a trust building block
+  To manage expectations well, we must
+  1. Clearly articulate what we will do, and won't do
+  2. Clearly articulate what the client will do, and won't do
+  3. Define the boundary of the analyses we will perform
+  4. Check with the client about any areas they don't want us to get involved in
+  5. Identify precise working arrangements
+  6. Agree on methods and frequency of communicating
+  7. Decide on who should get which reports
+  8. Decide how often a report should be delivered
+  9. Decide how any reports will be used
+  10. Decide what milestones and progress reviews are needed
+  11. Decide how success will be measured, both during and after the process.
+
+  Additional suggestions
+  1. Always tell the exact truths about what you can/can't do/deliver
+  2. Start the project before you've been engaged
+  3. Show enthusiasm
+  4. Ask the questions that are troubling you earlier than later
+** Resistance to commitment
+   Frequently, this is because the earlier stages have not been adequately dealt with
+   Other reasons are fear and complacency.
+   Fear: Facing it, by acknowledging it.
+   Complacency: Expand on trust capital.
+   Define commitment steps: What, who, when?
+** Joint commitment
+   Place the issue in context of the other work to be done for the client.
+   

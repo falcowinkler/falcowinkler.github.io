@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <title></title>
-<!-- 2021-09-12 Sun 20:34 -->
+<!-- 2021-09-14 Tue 20:58 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="generator" content="Org-mode">
@@ -244,7 +244,11 @@ MathJax.Hub.Config({
 <li><a href="#sec-7-1">7.1. Exercises</a></li>
 </ul>
 </li>
-<li><a href="#sec-8">8. Getters and key paths</a></li>
+<li><a href="#sec-8">8. Getters and key paths</a>
+<ul class="nav">
+<li><a href="#sec-8-1">8.1. Exercises</a></li>
+</ul>
+</li>
 </ul>
 </div>
 </nav>
@@ -803,6 +807,127 @@ correctAnswer:
 
 <div id="outline-container-sec-8" class="outline-2">
 <h2 id="sec-8"><span class="section-number-2">8</span> Getters and key paths</h2>
+<div class="outline-text-2" id="text-8">
+<p>
+Use <code>get</code> wrapper to bridge between function and keypath world
+</p>
+<div class="org-src-container">
+
+<pre class="src src-swift"><span style="color: #4f97d7; font-weight: bold;">func</span> <span style="color: #4f97d7; font-weight: bold;">get</span>&lt;Root, <span style="color: #4f97d7;">Value</span>&gt;<span style="color: #4f97d7;">(</span>_ kp: <span style="color: #4f97d7;">KeyPath</span>&lt;Root, <span style="color: #4f97d7;">Value</span>&gt;<span style="color: #4f97d7;">)</span> -&gt; <span style="color: #4f97d7;">(</span>Root<span style="color: #4f97d7;">)</span> -&gt; <span style="color: #4f97d7;">Value</span> <span style="color: #4f97d7;">{</span>
+  <span style="color: #4f97d7; font-weight: bold;">return</span> <span style="color: #bc6ec5;">{</span> root <span style="color: #4f97d7; font-weight: bold;">in</span>
+    root<span style="color: #2d9574;">[</span>keyPath: kp<span style="color: #2d9574;">]</span>
+  <span style="color: #bc6ec5;">}</span>
+<span style="color: #4f97d7;">}</span>
+</pre>
+</div>
+<p>
+this is nice:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-swift">users
+  .<span style="color: #4f97d7;">filter</span><span style="color: #4f97d7;">(</span><span style="color: #4f97d7; font-weight: bold;">get</span><span style="color: #bc6ec5;">(</span>\.<span style="color: #7590db;">isStaff</span><span style="color: #bc6ec5;">)</span> &gt;&gt;&gt; <span style="color: #bc6ec5;">(</span><span style="color: #a45bad;">!</span><span style="color: #bc6ec5;">)</span><span style="color: #4f97d7;">)</span>
+</pre>
+</div>
+<p>
+you can do operators as functions 💡.
+</p>
+
+<p>
+Generic getters can also be helpful for sorting, max etc. because there you need a compare function
+<code>A -&gt; A -&gt; Bool</code>.
+With <code>their</code>, we can write
+</p>
+<div class="org-src-container">
+
+<pre class="src src-swift">users
+  .<span style="color: #4f97d7;">max</span><span style="color: #4f97d7;">(</span>by: <span style="color: #bc6ec5; font-weight: bold;">their</span><span style="color: #bc6ec5;">(</span><span style="color: #4f97d7; font-weight: bold;">get</span><span style="color: #2d9574;">(</span>\.<span style="color: #7590db;">email</span><span style="color: #2d9574;">)</span>, &lt;<span style="color: #bc6ec5;">)</span><span style="color: #4f97d7;">)</span> <span style="color: #2aa1ae; background-color: #292e34;">// </span><span style="color: #2aa1ae; background-color: #292e34;">we can also use Comparable instead of passing the compare fn.</span>
+</pre>
+</div>
+
+<p>
+We can also write a wrapper for combining elements in <code>reduce</code>:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-swift">episodes.<span style="color: #4f97d7;">reduce</span><span style="color: #4f97d7;">(</span><span style="color: #a45bad;">0</span>, <span style="color: #bc6ec5; font-weight: bold;">combining</span><span style="color: #bc6ec5;">(</span><span style="color: #4f97d7; font-weight: bold;">get</span><span style="color: #2d9574;">(</span>\.<span style="color: #7590db;">viewCount</span><span style="color: #2d9574;">)</span>, by: +<span style="color: #bc6ec5;">)</span><span style="color: #4f97d7;">)</span>
+</pre>
+</div>
+<p>
+We use get a lot, so you might consider using an operator <code>^</code> as prefix operator.
+</p>
+</div>
+
+<div id="outline-container-sec-8-1" class="outline-3">
+<h3 id="sec-8-1"><span class="section-number-3">8.1</span> Exercises</h3>
+<div class="outline-text-3" id="text-8-1">
+<ol class="org-ol">
+<li>Find three more standard library APIs that can be used with our get and ^ helpers:
+<ul class="org-ul">
+<li><code>filter</code> a list of items on a boolean property
+</li>
+<li><code>Dictionary&lt;A, B&gt;.init(grouping:, by:)</code>, grouping by an int property
+</li>
+<li><code>contains(where:)</code>
+</li>
+<li>other maps such as <code>compact</code> or <code>flatMap</code>, <code>mapValues</code> etc.
+</li>
+</ul>
+</li>
+<li>A getter key-path for zero-argument functions wrapping a property&#x2026;
+cant think of others
+</li>
+<li>I am not sure if this is what is meant:
+<div class="org-src-container">
+
+<pre class="src src-swift"><span style="color: #4f97d7; font-weight: bold;">func</span> <span style="color: #bc6ec5; font-weight: bold;">getFoodAttr</span>&lt;T&gt;<span style="color: #4f97d7;">(</span>f: <span style="color: #4f97d7;">KeyPath</span>&lt;Food, T&gt;<span style="color: #4f97d7;">)</span> -&gt; <span style="color: #4f97d7;">(</span>User<span style="color: #4f97d7;">)</span> -&gt; <span style="color: #4f97d7;">[</span>T<span style="color: #4f97d7;">]</span> <span style="color: #4f97d7;">{</span>
+    <span style="color: #bc6ec5;">{</span> user <span style="color: #4f97d7; font-weight: bold;">in</span>
+        <span style="color: #bc6ec5; font-weight: bold;">map</span><span style="color: #2d9574;">(</span>f: <span style="color: #4f97d7; font-weight: bold;">get</span><span style="color: #67b11d;">(</span>f<span style="color: #67b11d;">)</span><span style="color: #2d9574;">)(</span>user.<span style="color: #7590db;">favoriteFoods</span><span style="color: #2d9574;">)</span>
+    <span style="color: #bc6ec5;">}</span>
+<span style="color: #4f97d7;">}</span>
+<span style="color: #bc6ec5; font-weight: bold;">getFoodAttr</span><span style="color: #4f97d7;">(</span>f: \.<span style="color: #4f97d7;">name</span><span style="color: #4f97d7;">)(</span>user<span style="color: #4f97d7;">)</span> <span style="color: #2aa1ae; background-color: #292e34;">// </span><span style="color: #2aa1ae; background-color: #292e34;">Tacos, Nachos</span>
+</pre>
+</div>
+</li>
+<li>Key paths support optional chaining
+<div class="org-src-container">
+
+<pre class="src src-swift"><span style="color: #4f97d7; font-weight: bold;">func</span> <span style="color: #bc6ec5; font-weight: bold;">getLocationAttr</span>&lt;T&gt;<span style="color: #4f97d7;">(</span>f: <span style="color: #4f97d7;">KeyPath</span>&lt;Location, T&gt;<span style="color: #4f97d7;">)</span> -&gt; <span style="color: #4f97d7;">(</span>User<span style="color: #4f97d7;">)</span> -&gt; T? <span style="color: #4f97d7;">{</span>
+    <span style="color: #bc6ec5;">{</span> user <span style="color: #4f97d7; font-weight: bold;">in</span>
+        <span style="color: #bc6ec5; font-weight: bold;">map</span><span style="color: #2d9574;">(</span>f: <span style="color: #4f97d7; font-weight: bold;">get</span><span style="color: #67b11d;">(</span>f<span style="color: #67b11d;">)</span><span style="color: #2d9574;">)(</span>user.<span style="color: #7590db;">location</span><span style="color: #2d9574;">)</span>
+    <span style="color: #bc6ec5;">}</span>
+<span style="color: #4f97d7;">}</span>
+<span style="color: #bc6ec5; font-weight: bold;">getLocationAttr</span><span style="color: #4f97d7;">(</span>f: \.<span style="color: #4f97d7;">name</span><span style="color: #4f97d7;">)(</span>user<span style="color: #4f97d7;">)</span>
+<span style="color: #4f97d7; font-weight: bold;">let</span> user2 = <span style="color: #bc6ec5; font-weight: bold;">User</span><span style="color: #4f97d7;">(</span>
+    favoriteFoods: <span style="color: #bc6ec5;">[]</span>,
+    location: <span style="color: #a45bad;">nil</span>,
+    name: <span style="color: #2d9574;">"Blob"</span>
+<span style="color: #4f97d7;">)</span>
+<span style="color: #4f97d7; font-weight: bold;">get</span><span style="color: #4f97d7;">(</span>\User.<span style="color: #7590db;">location</span>?.<span style="color: #4f97d7;">name</span><span style="color: #4f97d7;">)(</span>user2<span style="color: #4f97d7;">)</span>
+</pre>
+</div>
+</li>
+<li>Like this?
+<div class="org-src-container">
+
+<pre class="src src-swift"><span style="color: #4f97d7; font-weight: bold;">func</span> <span style="color: #bc6ec5; font-weight: bold;">pluck</span>&lt;V, E&gt;<span style="color: #4f97d7;">(</span>r: <span style="color: #4f97d7;">Result</span>&lt;V, E&gt;<span style="color: #4f97d7;">)</span> -&gt; V? <span style="color: #4f97d7;">{</span>
+    <span style="color: #4f97d7; font-weight: bold;">switch</span> r <span style="color: #bc6ec5;">{</span>
+    <span style="color: #4f97d7; font-weight: bold;">case</span> .<span style="color: #4f97d7;">success</span><span style="color: #2d9574;">(</span><span style="color: #4f97d7; font-weight: bold;">let</span> v<span style="color: #2d9574;">)</span>:
+        <span style="color: #4f97d7; font-weight: bold;">return</span> v
+    <span style="color: #4f97d7; font-weight: bold;">default</span>: <span style="color: #4f97d7; font-weight: bold;">return</span> <span style="color: #a45bad;">nil</span>
+    <span style="color: #bc6ec5;">}</span>
+<span style="color: #4f97d7;">}</span>
+<span style="color: #4f97d7; font-weight: bold;">let</span> res: <span style="color: #4f97d7;">Result</span>&lt;User, <span style="color: #4f97d7;">Error</span>&gt; = .<span style="color: #4f97d7;">success</span><span style="color: #4f97d7;">(</span>user<span style="color: #4f97d7;">)</span>
+<span style="color: #bc6ec5; font-weight: bold;">map</span><span style="color: #4f97d7;">(</span>f: <span style="color: #4f97d7; font-weight: bold;">get</span><span style="color: #bc6ec5;">(</span>\User.<span style="color: #4f97d7;">name</span><span style="color: #bc6ec5;">)</span><span style="color: #4f97d7;">)(</span><span style="color: #bc6ec5; font-weight: bold;">pluck</span><span style="color: #bc6ec5;">(</span>r: res<span style="color: #bc6ec5;">)</span><span style="color: #4f97d7;">)</span>
+</pre>
+</div>
+</li>
+</ol>
+<p>
+TODO: i don't really understand what is meant with 6,7,8 exercises.
+</p>
+</div>
+</div>
 </div>
 </div></div></div>
 </body>
