@@ -422,3 +422,129 @@ We use get a lot, so you might consider using an operator ~^~ as prefix operator
         map(f: get(\User.name))(pluck(r: res))
       #+END_SRC
    TODO: i don't really understand what is meant with 6,7,8 exercises.
+* Algebraic Data Types: Exponents
+As we learned in the exercises from "Algebraic Data Types",
+there are $B^A$ functions of type $A->B$.
+Since $a^b^c = a^(b*c)$, we can derive that
+~C->B->A = (B, C) -> A~.
+Shows that curry and uncurry are elemental operations.
+Since $a^1 = a$, we can derive zurry and unzurry.
+
+What happens with $a^0=1$?
+~Never -> A = Void~
+We can define absurd in swift!
+
+#+BEGIN_SRC swift
+func to<A>(_ f: (Never) -> A) -> Void {
+  return ()
+}
+#+END_SRC
+#+BEGIN_SRC swift
+func from<A>(_ x: Void) -> (Never) -> A {
+  return { never in
+    switch never {
+    }
+  }
+}
+#+END_SRC
+This can actually be useful, eg. in case of ~Result<Int, Never>~.
+
+Remember that ~inout A -> Void~ can be transformed to ~A->A~?
+This means that you can refactor ~(A,B) -> A~ into ~(inout A, B) -> Void~,
+~(A, inout B) -> C~ to ~(A, B) -> (C, B)~ and such.
+
+We can also see a correspondence between ~throws~ and ~Result<A, Error>~.
+
+There is also the power law $a^(b+c) = a^b * a ^ c$, equivalent to
+~Either<B, C> -> A = (B -> A, C -> A)~
+
+💡We can use exponent laws to understand which functions can't and can not be simplified.
+
+** Exercises
+   1. $1^a = 1$
+      ~Void <- a = Void~
+      ~a -> Void = Void~
+      #+BEGIN_SRC swift
+        func to<A>(a: A) -> (Void) -> Void {
+            { void in void }
+        }
+        
+        func from<A>(void: Void) -> (A) -> Void {
+            { a in void }
+        }
+      #+END_SRC
+   2. Case 1: $0^a = 0 | a != 0$
+      ~a -> Never = Never~
+      #+BEGIN_SRC swift
+        func from<A>(a: A) -> (Never) -> (Never) {
+            { never in
+                never
+            }
+        }
+        
+        func to<A>(never: Never) -> (A) -> (Never) {
+            { a in
+                never
+            }
+        }
+      #+END_SRC
+      Case 2: $0^a = undefined | a = 0$
+   3. We will know in the next "Algebraic data types" episode 😌
+   4. ~2^A = Set<A>~
+      ~A -> Bool = Set<A>~
+      So we can interpret a set as a function from A to Bool,
+      that returns true if the element is contained, and false otherwise.
+   5. 
+       #+BEGIN_SRC swift
+         func intersection<A>(a: @escaping ((A) -> Bool), b: @escaping (A) -> (Bool)) -> (A) -> Bool {
+             { e in
+                 return a(e) && b(e)
+             }
+         }
+        
+         func union<A>(a: @escaping ((A) -> Bool), b: @escaping (A) -> (Bool)) -> (A) -> Bool {
+             { e in
+                 return a(e) || b(e)
+             }
+         }
+       #+END_SRC
+   6. $(1+V)^K$
+      Because we map from the key space to the value space with one additional element ~nil~.
+   7. 
+       #+BEGIN_SRC swift
+         func to<A, B, C>(_ f: @escaping (Either<B, C>) -> A) -> ((B) -> A, (C) -> A) {
+             ( { b in f(.left(b)) }
+                 ,
+               { c in f(.right(c)) }
+             )
+         }
+        
+         func from<A, B, C>(_ f: ((B) -> A, (C) -> A)) -> (Either<B, C>) -> A {
+             let (bToA, cToA) = f
+             return { bc in
+                 switch bc {
+                 case .left(let b):
+                     return bToA(b)
+                 case .right(let c):
+                     return cToA(c)
+                 }
+             }
+         }
+       #+END_SRC
+   8.
+      #+BEGIN_SRC swift
+        func to<A, B, C>(_ f: @escaping (C) -> (A, B)) -> ((C) -> A, (C) -> B) {
+            ( { c in f(c).0 }
+                ,
+              { c in f(c).1 }
+            )
+        }
+        
+                func from<A, B, C>(_ f: ((C) -> A, (C) -> B)) -> (C) -> (A, B) {
+            let (cToA, cToB) = f
+            return { c in
+                (cToA(c), cToB(c))
+            }
+        }
+        
+      #+END_SRC

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <title></title>
-<!-- 2021-09-14 Tue 20:58 -->
+<!-- 2021-09-19 Sun 15:09 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="generator" content="Org-mode">
@@ -247,6 +247,11 @@ MathJax.Hub.Config({
 <li><a href="#sec-8">8. Getters and key paths</a>
 <ul class="nav">
 <li><a href="#sec-8-1">8.1. Exercises</a></li>
+</ul>
+</li>
+<li><a href="#sec-9">9. Algebraic Data Types: Exponents</a>
+<ul class="nav">
+<li><a href="#sec-9-1">9.1. Exercises</a></li>
 </ul>
 </li>
 </ul>
@@ -926,6 +931,177 @@ cant think of others
 <p>
 TODO: i don't really understand what is meant with 6,7,8 exercises.
 </p>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-9" class="outline-2">
+<h2 id="sec-9"><span class="section-number-2">9</span> Algebraic Data Types: Exponents</h2>
+<div class="outline-text-2" id="text-9">
+<p>
+As we learned in the exercises from "Algebraic Data Types",
+there are \(B^A\) functions of type \(A->B\).
+Since \(a^b^c = a^(b*c)\), we can derive that
+<code>C-&gt;B-&gt;A = (B, C) -&gt; A</code>.
+Shows that curry and uncurry are elemental operations.
+Since \(a^1 = a\), we can derive zurry and unzurry.
+</p>
+
+<p>
+What happens with \(a^0=1\)?
+<code>Never -&gt; A = Void</code>
+We can define absurd in swift!
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-swift"><span style="color: #4f97d7; font-weight: bold;">func</span> <span style="color: #bc6ec5; font-weight: bold;">to</span>&lt;A&gt;<span style="color: #4f97d7;">(</span>_ f: <span style="color: #bc6ec5;">(</span><span style="color: #4f97d7;">Never</span><span style="color: #bc6ec5;">)</span> -&gt; A<span style="color: #4f97d7;">)</span> -&gt; <span style="color: #4f97d7;">Void</span> <span style="color: #4f97d7;">{</span>
+  <span style="color: #4f97d7; font-weight: bold;">return</span> <span style="color: #bc6ec5;">()</span>
+<span style="color: #4f97d7;">}</span>
+</pre>
+</div>
+<div class="org-src-container">
+
+<pre class="src src-swift"><span style="color: #4f97d7; font-weight: bold;">func</span> <span style="color: #bc6ec5; font-weight: bold;">from</span>&lt;A&gt;<span style="color: #4f97d7;">(</span>_ x: <span style="color: #4f97d7;">Void</span><span style="color: #4f97d7;">)</span> -&gt; <span style="color: #4f97d7;">(</span><span style="color: #4f97d7;">Never</span><span style="color: #4f97d7;">)</span> -&gt; A <span style="color: #4f97d7;">{</span>
+  <span style="color: #4f97d7; font-weight: bold;">return</span> <span style="color: #bc6ec5;">{</span> never <span style="color: #4f97d7; font-weight: bold;">in</span>
+    <span style="color: #4f97d7; font-weight: bold;">switch</span> never <span style="color: #2d9574;">{</span>
+    <span style="color: #2d9574;">}</span>
+  <span style="color: #bc6ec5;">}</span>
+<span style="color: #4f97d7;">}</span>
+</pre>
+</div>
+<p>
+This can actually be useful, eg. in case of <code>Result&lt;Int, Never&gt;</code>.
+</p>
+
+<p>
+Remember that <code>inout A -&gt; Void</code> can be transformed to <code>A-&gt;A</code>?
+This means that you can refactor <code>(A,B) -&gt; A</code> into <code>(inout A, B) -&gt; Void</code>,
+<code>(A, inout B) -&gt; C</code> to <code>(A, B) -&gt; (C, B)</code> and such.
+</p>
+
+<p>
+We can also see a correspondence between <code>throws</code> and <code>Result&lt;A, Error&gt;</code>.
+</p>
+
+<p>
+There is also the power law \(a^(b+c) = a^b * a ^ c\), equivalent to
+<code>Either&lt;B, C&gt; -&gt; A = (B -&gt; A, C -&gt; A)</code>
+</p>
+
+<p>
+💡We can use exponent laws to understand which functions can't and can not be simplified.
+</p>
+</div>
+
+<div id="outline-container-sec-9-1" class="outline-3">
+<h3 id="sec-9-1"><span class="section-number-3">9.1</span> Exercises</h3>
+<div class="outline-text-3" id="text-9-1">
+<ol class="org-ol">
+<li>\(1^a = 1\)
+<code>Void &lt;- a = Void</code>
+<code>a -&gt; Void = Void</code>
+<div class="org-src-container">
+
+<pre class="src src-swift"><span style="color: #4f97d7; font-weight: bold;">func</span> <span style="color: #bc6ec5; font-weight: bold;">to</span>&lt;A&gt;<span style="color: #4f97d7;">(</span>a: A<span style="color: #4f97d7;">)</span> -&gt; <span style="color: #4f97d7;">(</span><span style="color: #4f97d7;">Void</span><span style="color: #4f97d7;">)</span> -&gt; <span style="color: #4f97d7;">Void</span> <span style="color: #4f97d7;">{</span>
+    <span style="color: #bc6ec5;">{</span> void <span style="color: #4f97d7; font-weight: bold;">in</span> void <span style="color: #bc6ec5;">}</span>
+<span style="color: #4f97d7;">}</span>
+
+<span style="color: #4f97d7; font-weight: bold;">func</span> <span style="color: #bc6ec5; font-weight: bold;">from</span>&lt;A&gt;<span style="color: #4f97d7;">(</span>void: <span style="color: #4f97d7;">Void</span><span style="color: #4f97d7;">)</span> -&gt; <span style="color: #4f97d7;">(</span>A<span style="color: #4f97d7;">)</span> -&gt; <span style="color: #4f97d7;">Void</span> <span style="color: #4f97d7;">{</span>
+    <span style="color: #bc6ec5;">{</span> a <span style="color: #4f97d7; font-weight: bold;">in</span> void <span style="color: #bc6ec5;">}</span>
+<span style="color: #4f97d7;">}</span>
+</pre>
+</div>
+</li>
+<li>Case 1: \(0^a = 0 | a != 0\)
+<code>a -&gt; Never = Never</code>
+<div class="org-src-container">
+
+<pre class="src src-swift"><span style="color: #4f97d7; font-weight: bold;">func</span> <span style="color: #bc6ec5; font-weight: bold;">from</span>&lt;A&gt;<span style="color: #4f97d7;">(</span>a: A<span style="color: #4f97d7;">)</span> -&gt; <span style="color: #4f97d7;">(</span><span style="color: #4f97d7;">Never</span><span style="color: #4f97d7;">)</span> -&gt; <span style="color: #4f97d7;">(</span><span style="color: #4f97d7;">Never</span><span style="color: #4f97d7;">)</span> <span style="color: #4f97d7;">{</span>
+    <span style="color: #bc6ec5;">{</span> never <span style="color: #4f97d7; font-weight: bold;">in</span>
+        never
+    <span style="color: #bc6ec5;">}</span>
+<span style="color: #4f97d7;">}</span>
+
+<span style="color: #4f97d7; font-weight: bold;">func</span> <span style="color: #bc6ec5; font-weight: bold;">to</span>&lt;A&gt;<span style="color: #4f97d7;">(</span>never: <span style="color: #4f97d7;">Never</span><span style="color: #4f97d7;">)</span> -&gt; <span style="color: #4f97d7;">(</span>A<span style="color: #4f97d7;">)</span> -&gt; <span style="color: #4f97d7;">(</span><span style="color: #4f97d7;">Never</span><span style="color: #4f97d7;">)</span> <span style="color: #4f97d7;">{</span>
+    <span style="color: #bc6ec5;">{</span> a <span style="color: #4f97d7; font-weight: bold;">in</span>
+        never
+    <span style="color: #bc6ec5;">}</span>
+<span style="color: #4f97d7;">}</span>
+</pre>
+</div>
+<p>
+Case 2: \(0^a = undefined | a = 0\)
+</p>
+</li>
+<li>We will know in the next "Algebraic data types" episode 😌
+</li>
+<li><code>2^A = Set&lt;A&gt;</code>
+<code>A -&gt; Bool = Set&lt;A&gt;</code>
+So we can interpret a set as a function from A to Bool,
+that returns true if the element is contained, and false otherwise.
+</li>
+<li><div class="org-src-container">
+
+<pre class="src src-swift"><span style="color: #4f97d7; font-weight: bold;">func</span> <span style="color: #bc6ec5; font-weight: bold;">intersection</span>&lt;A&gt;<span style="color: #4f97d7;">(</span>a: <span style="color: #4f97d7; font-weight: bold;">@escaping</span> <span style="color: #bc6ec5;">(</span><span style="color: #2d9574;">(</span>A<span style="color: #2d9574;">)</span> -&gt; <span style="color: #4f97d7;">Bool</span><span style="color: #bc6ec5;">)</span>, b: <span style="color: #4f97d7; font-weight: bold;">@escaping</span> <span style="color: #bc6ec5;">(</span>A<span style="color: #bc6ec5;">)</span> -&gt; <span style="color: #bc6ec5;">(</span><span style="color: #4f97d7;">Bool</span><span style="color: #bc6ec5;">)</span><span style="color: #4f97d7;">)</span> -&gt; <span style="color: #4f97d7;">(</span>A<span style="color: #4f97d7;">)</span> -&gt; <span style="color: #4f97d7;">Bool</span> <span style="color: #4f97d7;">{</span>
+    <span style="color: #bc6ec5;">{</span> e <span style="color: #4f97d7; font-weight: bold;">in</span>
+        <span style="color: #4f97d7; font-weight: bold;">return</span> <span style="color: #bc6ec5; font-weight: bold;">a</span><span style="color: #2d9574;">(</span>e<span style="color: #2d9574;">)</span> &amp;&amp; <span style="color: #bc6ec5; font-weight: bold;">b</span><span style="color: #2d9574;">(</span>e<span style="color: #2d9574;">)</span>
+    <span style="color: #bc6ec5;">}</span>
+<span style="color: #4f97d7;">}</span>
+
+<span style="color: #4f97d7; font-weight: bold;">func</span> <span style="color: #bc6ec5; font-weight: bold;">union</span>&lt;A&gt;<span style="color: #4f97d7;">(</span>a: <span style="color: #4f97d7; font-weight: bold;">@escaping</span> <span style="color: #bc6ec5;">(</span><span style="color: #2d9574;">(</span>A<span style="color: #2d9574;">)</span> -&gt; <span style="color: #4f97d7;">Bool</span><span style="color: #bc6ec5;">)</span>, b: <span style="color: #4f97d7; font-weight: bold;">@escaping</span> <span style="color: #bc6ec5;">(</span>A<span style="color: #bc6ec5;">)</span> -&gt; <span style="color: #bc6ec5;">(</span><span style="color: #4f97d7;">Bool</span><span style="color: #bc6ec5;">)</span><span style="color: #4f97d7;">)</span> -&gt; <span style="color: #4f97d7;">(</span>A<span style="color: #4f97d7;">)</span> -&gt; <span style="color: #4f97d7;">Bool</span> <span style="color: #4f97d7;">{</span>
+    <span style="color: #bc6ec5;">{</span> e <span style="color: #4f97d7; font-weight: bold;">in</span>
+        <span style="color: #4f97d7; font-weight: bold;">return</span> <span style="color: #bc6ec5; font-weight: bold;">a</span><span style="color: #2d9574;">(</span>e<span style="color: #2d9574;">)</span> || <span style="color: #bc6ec5; font-weight: bold;">b</span><span style="color: #2d9574;">(</span>e<span style="color: #2d9574;">)</span>
+    <span style="color: #bc6ec5;">}</span>
+<span style="color: #4f97d7;">}</span>
+</pre>
+</div>
+</li>
+<li>\((1+V)^K\)
+Because we map from the key space to the value space with one additional element <code>nil</code>.
+</li>
+<li><div class="org-src-container">
+
+<pre class="src src-swift"><span style="color: #4f97d7; font-weight: bold;">func</span> <span style="color: #bc6ec5; font-weight: bold;">to</span>&lt;A, B, C&gt;<span style="color: #4f97d7;">(</span>_ f: <span style="color: #4f97d7; font-weight: bold;">@escaping</span> <span style="color: #bc6ec5;">(</span>Either&lt;B, C&gt;<span style="color: #bc6ec5;">)</span> -&gt; A<span style="color: #4f97d7;">)</span> -&gt; <span style="color: #4f97d7;">(</span><span style="color: #bc6ec5;">(</span>B<span style="color: #bc6ec5;">)</span> -&gt; A, <span style="color: #bc6ec5;">(</span>C<span style="color: #bc6ec5;">)</span> -&gt; A<span style="color: #4f97d7;">)</span> <span style="color: #4f97d7;">{</span>
+    <span style="color: #bc6ec5;">(</span> <span style="color: #2d9574;">{</span> b <span style="color: #4f97d7; font-weight: bold;">in</span> <span style="color: #bc6ec5; font-weight: bold;">f</span><span style="color: #67b11d;">(</span>.<span style="color: #4f97d7; font-weight: bold;">left</span><span style="color: #b1951d;">(</span>b<span style="color: #b1951d;">)</span><span style="color: #67b11d;">)</span> <span style="color: #2d9574;">}</span>
+        ,
+      <span style="color: #2d9574;">{</span> c <span style="color: #4f97d7; font-weight: bold;">in</span> <span style="color: #bc6ec5; font-weight: bold;">f</span><span style="color: #67b11d;">(</span>.<span style="color: #4f97d7; font-weight: bold;">right</span><span style="color: #b1951d;">(</span>c<span style="color: #b1951d;">)</span><span style="color: #67b11d;">)</span> <span style="color: #2d9574;">}</span>
+    <span style="color: #bc6ec5;">)</span>
+<span style="color: #4f97d7;">}</span>
+
+<span style="color: #4f97d7; font-weight: bold;">func</span> <span style="color: #bc6ec5; font-weight: bold;">from</span>&lt;A, B, C&gt;<span style="color: #4f97d7;">(</span>_ f: <span style="color: #bc6ec5;">(</span><span style="color: #2d9574;">(</span>B<span style="color: #2d9574;">)</span> -&gt; A, <span style="color: #2d9574;">(</span>C<span style="color: #2d9574;">)</span> -&gt; A<span style="color: #bc6ec5;">)</span><span style="color: #4f97d7;">)</span> -&gt; <span style="color: #4f97d7;">(</span>Either&lt;B, C&gt;<span style="color: #4f97d7;">)</span> -&gt; A <span style="color: #4f97d7;">{</span>
+    <span style="color: #4f97d7; font-weight: bold;">let</span> <span style="color: #bc6ec5;">(</span>bToA, cToA<span style="color: #bc6ec5;">)</span> = f
+    <span style="color: #4f97d7; font-weight: bold;">return</span> <span style="color: #bc6ec5;">{</span> bc <span style="color: #4f97d7; font-weight: bold;">in</span>
+        <span style="color: #4f97d7; font-weight: bold;">switch</span> bc <span style="color: #2d9574;">{</span>
+        <span style="color: #4f97d7; font-weight: bold;">case</span> .<span style="color: #4f97d7; font-weight: bold;">left</span><span style="color: #67b11d;">(</span><span style="color: #4f97d7; font-weight: bold;">let</span> b<span style="color: #67b11d;">)</span>:
+            <span style="color: #4f97d7; font-weight: bold;">return</span> <span style="color: #bc6ec5; font-weight: bold;">bToA</span><span style="color: #67b11d;">(</span>b<span style="color: #67b11d;">)</span>
+        <span style="color: #4f97d7; font-weight: bold;">case</span> .<span style="color: #4f97d7; font-weight: bold;">right</span><span style="color: #67b11d;">(</span><span style="color: #4f97d7; font-weight: bold;">let</span> c<span style="color: #67b11d;">)</span>:
+            <span style="color: #4f97d7; font-weight: bold;">return</span> <span style="color: #bc6ec5; font-weight: bold;">cToA</span><span style="color: #67b11d;">(</span>c<span style="color: #67b11d;">)</span>
+        <span style="color: #2d9574;">}</span>
+    <span style="color: #bc6ec5;">}</span>
+<span style="color: #4f97d7;">}</span>
+</pre>
+</div>
+</li>
+<li><div class="org-src-container">
+
+<pre class="src src-swift"><span style="color: #4f97d7; font-weight: bold;">func</span> <span style="color: #bc6ec5; font-weight: bold;">to</span>&lt;A, B, C&gt;<span style="color: #4f97d7;">(</span>_ f: <span style="color: #4f97d7; font-weight: bold;">@escaping</span> <span style="color: #bc6ec5;">(</span>C<span style="color: #bc6ec5;">)</span> -&gt; <span style="color: #bc6ec5;">(</span>A, B<span style="color: #bc6ec5;">)</span><span style="color: #4f97d7;">)</span> -&gt; <span style="color: #4f97d7;">(</span><span style="color: #bc6ec5;">(</span>C<span style="color: #bc6ec5;">)</span> -&gt; A, <span style="color: #bc6ec5;">(</span>C<span style="color: #bc6ec5;">)</span> -&gt; B<span style="color: #4f97d7;">)</span> <span style="color: #4f97d7;">{</span>
+    <span style="color: #bc6ec5;">(</span> <span style="color: #2d9574;">{</span> c <span style="color: #4f97d7; font-weight: bold;">in</span> <span style="color: #bc6ec5; font-weight: bold;">f</span><span style="color: #67b11d;">(</span>c<span style="color: #67b11d;">)</span>.<span style="color: #a45bad;">0</span> <span style="color: #2d9574;">}</span>
+        ,
+      <span style="color: #2d9574;">{</span> c <span style="color: #4f97d7; font-weight: bold;">in</span> <span style="color: #bc6ec5; font-weight: bold;">f</span><span style="color: #67b11d;">(</span>c<span style="color: #67b11d;">)</span>.<span style="color: #a45bad;">1</span> <span style="color: #2d9574;">}</span>
+    <span style="color: #bc6ec5;">)</span>
+<span style="color: #4f97d7;">}</span>
+
+        <span style="color: #4f97d7; font-weight: bold;">func</span> <span style="color: #bc6ec5; font-weight: bold;">from</span>&lt;A, B, C&gt;<span style="color: #4f97d7;">(</span>_ f: <span style="color: #bc6ec5;">(</span><span style="color: #2d9574;">(</span>C<span style="color: #2d9574;">)</span> -&gt; A, <span style="color: #2d9574;">(</span>C<span style="color: #2d9574;">)</span> -&gt; B<span style="color: #bc6ec5;">)</span><span style="color: #4f97d7;">)</span> -&gt; <span style="color: #4f97d7;">(</span>C<span style="color: #4f97d7;">)</span> -&gt; <span style="color: #4f97d7;">(</span>A, B<span style="color: #4f97d7;">)</span> <span style="color: #4f97d7;">{</span>
+    <span style="color: #4f97d7; font-weight: bold;">let</span> <span style="color: #bc6ec5;">(</span>cToA, cToB<span style="color: #bc6ec5;">)</span> = f
+    <span style="color: #4f97d7; font-weight: bold;">return</span> <span style="color: #bc6ec5;">{</span> c <span style="color: #4f97d7; font-weight: bold;">in</span>
+        <span style="color: #2d9574;">(</span><span style="color: #bc6ec5; font-weight: bold;">cToA</span><span style="color: #67b11d;">(</span>c<span style="color: #67b11d;">)</span>, <span style="color: #bc6ec5; font-weight: bold;">cToB</span><span style="color: #67b11d;">(</span>c<span style="color: #67b11d;">)</span><span style="color: #2d9574;">)</span>
+    <span style="color: #bc6ec5;">}</span>
+<span style="color: #4f97d7;">}</span>
+
+</pre>
+</div>
+</li>
+</ol>
 </div>
 </div>
 </div>
