@@ -548,3 +548,97 @@ There is also the power law $a^(b+c) = a^b * a ^ c$, equivalent to
         }
         
       #+END_SRC
+
+* A tale of two flat maps
+  ~flatMap~ is the mondaic bind.
+  use ~compactMap~ to filter nil values.
+** Exercises
+   1. filtered:
+     #+BEGIN_SRC swift
+       func filtered<A>(_ lst: [A?]) -> [A] {
+           lst.compactMap { x in x }
+       }
+     #+END_SRC
+   2. 
+       #+BEGIN_SRC swift
+         func left<A, B>(_ either: Either<A, B>) -> A? {
+             switch either {
+             case .left(let l):
+                 return l
+             default:
+                 return nil
+             }
+         }
+        
+         func right<A, B>(_ either: Either<A, B>) -> B? {
+             switch either {
+             case .right(let r):
+                 return r
+             default:
+                 return nil
+             }
+         }
+        
+         func partitioned<A, B>(_ either: [Either<A,B>]) -> (left: [A], right: [B]) {
+             ( either.compactMap(left)
+                 ,
+               either.compactMap(right)
+             )
+         }
+        
+       #+END_SRC
+   3. 
+       #+BEGIN_SRC swift
+         func partitionMap<A, B, C>(
+             _ optional: Optional<A>,
+             _ f: @escaping ((A) -> Either<B, C>)) -> (Optional<B>, Optional<C>) {
+             ( optional.flatMap(f >>> left)
+                 ,
+               optional.flatMap(f >>> right)
+             )
+         }
+       #+END_SRC
+   4. 
+       #+BEGIN_SRC swift
+         func filterMapValues<K, V, R>(_ d: Dictionary<K, V>) -> ((V) -> R?) -> [R] { { f in
+             d.values.compactMap(f)
+         }
+         }
+       #+END_SRC
+   5. 
+       #+BEGIN_SRC swift
+         func partitionMapValues<K, V, A, B>(_ d: Dictionary<K, V>) -> ((V) -> Either<A, B>) -> (lefts: [A], rights: [B]) {
+             { f in
+                 Array(d.values).partitionMap(f)
+             }
+         }
+       #+END_SRC
+   6. 
+       #+BEGIN_SRC swift       
+         func optionalEither<A, B>(_ f: @escaping ((A) -> B?)) -> (A) -> Either<B, Void> {
+             { a in
+                 if let r = f(a) {
+                     return .left(r)
+                 } else {
+                     return .right(())
+                 }
+             }
+         }
+         
+         func filterMap<A, B>(_ f: @escaping ((A) -> B?), _ a: [A]) -> [B] {
+             a.partitionMap(optionalEither(f)).lefts
+         }
+         
+         func predicateOptional<A>(_ f: @escaping (A) -> Bool) -> (A) -> A? {
+             { a in
+                 f(a) ? a : nil
+             }
+         }
+         
+         func filter<A>(_ f: @escaping ((A) -> Bool), _ a: [A]) -> [A] {
+             a.partitionMap(optionalEither(predicateOptional(f))).lefts
+         }
+       #+END_SRC
+   7. Depends on what is allowed. You'd have to pass it two transformation functions for the left and the right case,
+      that have the same ~Either<A,B>~ return type. Then you can partition into ~(Optional<A>, Optional<B>)~.
+    

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <title></title>
-<!-- 2021-09-19 Sun 15:09 -->
+<!-- 2021-09-19 Sun 16:13 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="generator" content="Org-mode">
@@ -252,6 +252,11 @@ MathJax.Hub.Config({
 <li><a href="#sec-9">9. Algebraic Data Types: Exponents</a>
 <ul class="nav">
 <li><a href="#sec-9-1">9.1. Exercises</a></li>
+</ul>
+</li>
+<li><a href="#sec-10">10. A tale of two flat maps</a>
+<ul class="nav">
+<li><a href="#sec-10-1">10.1. Exercises</a></li>
 </ul>
 </li>
 </ul>
@@ -1100,6 +1105,125 @@ Because we map from the key space to the value space with one additional element
 
 </pre>
 </div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-10" class="outline-2">
+<h2 id="sec-10"><span class="section-number-2">10</span> A tale of two flat maps</h2>
+<div class="outline-text-2" id="text-10">
+<p>
+<code>flatMap</code> is the mondaic bind.
+use <code>compactMap</code> to filter nil values.
+</p>
+</div>
+<div id="outline-container-sec-10-1" class="outline-3">
+<h3 id="sec-10-1"><span class="section-number-3">10.1</span> Exercises</h3>
+<div class="outline-text-3" id="text-10-1">
+<ol class="org-ol">
+<li>filtered:
+<div class="org-src-container">
+
+<pre class="src src-swift"><span style="color: #4f97d7; font-weight: bold;">func</span> <span style="color: #bc6ec5; font-weight: bold;">filtered</span>&lt;A&gt;<span style="color: #4f97d7;">(</span>_ lst: <span style="color: #bc6ec5;">[</span>A?<span style="color: #bc6ec5;">]</span><span style="color: #4f97d7;">)</span> -&gt; <span style="color: #4f97d7;">[</span>A<span style="color: #4f97d7;">]</span> <span style="color: #4f97d7;">{</span>
+    lst.<span style="color: #4f97d7;">compactMap</span> <span style="color: #bc6ec5;">{</span> x <span style="color: #4f97d7; font-weight: bold;">in</span> x <span style="color: #bc6ec5;">}</span>
+<span style="color: #4f97d7;">}</span>
+</pre>
+</div>
+</li>
+<li><div class="org-src-container">
+
+<pre class="src src-swift"><span style="color: #4f97d7; font-weight: bold;">func</span> <span style="color: #4f97d7; font-weight: bold;">left</span>&lt;A, B&gt;<span style="color: #4f97d7;">(</span>_ either: Either&lt;A, B&gt;<span style="color: #4f97d7;">)</span> -&gt; A? <span style="color: #4f97d7;">{</span>
+    <span style="color: #4f97d7; font-weight: bold;">switch</span> either <span style="color: #bc6ec5;">{</span>
+    <span style="color: #4f97d7; font-weight: bold;">case</span> .<span style="color: #4f97d7; font-weight: bold;">left</span><span style="color: #2d9574;">(</span><span style="color: #4f97d7; font-weight: bold;">let</span> l<span style="color: #2d9574;">)</span>:
+        <span style="color: #4f97d7; font-weight: bold;">return</span> l
+    <span style="color: #4f97d7; font-weight: bold;">default</span>:
+        <span style="color: #4f97d7; font-weight: bold;">return</span> <span style="color: #a45bad;">nil</span>
+    <span style="color: #bc6ec5;">}</span>
+<span style="color: #4f97d7;">}</span>
+
+<span style="color: #4f97d7; font-weight: bold;">func</span> <span style="color: #4f97d7; font-weight: bold;">right</span>&lt;A, B&gt;<span style="color: #4f97d7;">(</span>_ either: Either&lt;A, B&gt;<span style="color: #4f97d7;">)</span> -&gt; B? <span style="color: #4f97d7;">{</span>
+    <span style="color: #4f97d7; font-weight: bold;">switch</span> either <span style="color: #bc6ec5;">{</span>
+    <span style="color: #4f97d7; font-weight: bold;">case</span> .<span style="color: #4f97d7; font-weight: bold;">right</span><span style="color: #2d9574;">(</span><span style="color: #4f97d7; font-weight: bold;">let</span> r<span style="color: #2d9574;">)</span>:
+        <span style="color: #4f97d7; font-weight: bold;">return</span> r
+    <span style="color: #4f97d7; font-weight: bold;">default</span>:
+        <span style="color: #4f97d7; font-weight: bold;">return</span> <span style="color: #a45bad;">nil</span>
+    <span style="color: #bc6ec5;">}</span>
+<span style="color: #4f97d7;">}</span>
+
+<span style="color: #4f97d7; font-weight: bold;">func</span> <span style="color: #bc6ec5; font-weight: bold;">partitioned</span>&lt;A, B&gt;<span style="color: #4f97d7;">(</span>_ either: <span style="color: #bc6ec5;">[</span>Either&lt;A,B&gt;<span style="color: #bc6ec5;">]</span><span style="color: #4f97d7;">)</span> -&gt; <span style="color: #4f97d7;">(</span><span style="color: #4f97d7; font-weight: bold;">left</span>: <span style="color: #bc6ec5;">[</span>A<span style="color: #bc6ec5;">]</span>, <span style="color: #4f97d7; font-weight: bold;">right</span>: <span style="color: #bc6ec5;">[</span>B<span style="color: #bc6ec5;">]</span><span style="color: #4f97d7;">)</span> <span style="color: #4f97d7;">{</span>
+    <span style="color: #bc6ec5;">(</span> either.<span style="color: #4f97d7;">compactMap</span><span style="color: #2d9574;">(</span><span style="color: #4f97d7; font-weight: bold;">left</span><span style="color: #2d9574;">)</span>
+        ,
+      either.<span style="color: #4f97d7;">compactMap</span><span style="color: #2d9574;">(</span><span style="color: #4f97d7; font-weight: bold;">right</span><span style="color: #2d9574;">)</span>
+    <span style="color: #bc6ec5;">)</span>
+<span style="color: #4f97d7;">}</span>
+
+</pre>
+</div>
+</li>
+<li><div class="org-src-container">
+
+<pre class="src src-swift"><span style="color: #4f97d7; font-weight: bold;">func</span> <span style="color: #bc6ec5; font-weight: bold;">partitionMap</span>&lt;A, B, C&gt;<span style="color: #4f97d7;">(</span>
+    _ <span style="color: #4f97d7; font-weight: bold;">optional</span>: <span style="color: #4f97d7;">Optional</span>&lt;A&gt;,
+    _ f: <span style="color: #4f97d7; font-weight: bold;">@escaping</span> <span style="color: #bc6ec5;">(</span><span style="color: #2d9574;">(</span>A<span style="color: #2d9574;">)</span> -&gt; Either&lt;B, C&gt;<span style="color: #bc6ec5;">)</span><span style="color: #4f97d7;">)</span> -&gt; <span style="color: #4f97d7;">(</span><span style="color: #4f97d7;">Optional</span>&lt;B&gt;, <span style="color: #4f97d7;">Optional</span>&lt;C&gt;<span style="color: #4f97d7;">)</span> <span style="color: #4f97d7;">{</span>
+    <span style="color: #bc6ec5;">(</span> <span style="color: #4f97d7; font-weight: bold;">optional</span>.<span style="color: #4f97d7;">flatMap</span><span style="color: #2d9574;">(</span>f &gt;&gt;&gt; <span style="color: #4f97d7; font-weight: bold;">left</span><span style="color: #2d9574;">)</span>
+        ,
+      <span style="color: #4f97d7; font-weight: bold;">optional</span>.<span style="color: #4f97d7;">flatMap</span><span style="color: #2d9574;">(</span>f &gt;&gt;&gt; <span style="color: #4f97d7; font-weight: bold;">right</span><span style="color: #2d9574;">)</span>
+    <span style="color: #bc6ec5;">)</span>
+<span style="color: #4f97d7;">}</span>
+</pre>
+</div>
+</li>
+<li><div class="org-src-container">
+
+<pre class="src src-swift"><span style="color: #4f97d7; font-weight: bold;">func</span> <span style="color: #bc6ec5; font-weight: bold;">filterMapValues</span>&lt;K, V, R&gt;<span style="color: #4f97d7;">(</span>_ d: <span style="color: #4f97d7;">Dictionary</span>&lt;K, V&gt;<span style="color: #4f97d7;">)</span> -&gt; <span style="color: #4f97d7;">(</span><span style="color: #bc6ec5;">(</span>V<span style="color: #bc6ec5;">)</span> -&gt; R?<span style="color: #4f97d7;">)</span> -&gt; <span style="color: #4f97d7;">[</span>R<span style="color: #4f97d7;">]</span> <span style="color: #4f97d7;">{</span> <span style="color: #bc6ec5;">{</span> f <span style="color: #4f97d7; font-weight: bold;">in</span>
+    d.<span style="color: #4f97d7;">values</span>.<span style="color: #4f97d7;">compactMap</span><span style="color: #2d9574;">(</span>f<span style="color: #2d9574;">)</span>
+<span style="color: #bc6ec5;">}</span>
+<span style="color: #4f97d7;">}</span>
+</pre>
+</div>
+</li>
+<li><div class="org-src-container">
+
+<pre class="src src-swift"><span style="color: #4f97d7; font-weight: bold;">func</span> <span style="color: #bc6ec5; font-weight: bold;">partitionMapValues</span>&lt;K, V, A, B&gt;<span style="color: #4f97d7;">(</span>_ d: <span style="color: #4f97d7;">Dictionary</span>&lt;K, V&gt;<span style="color: #4f97d7;">)</span> -&gt; <span style="color: #4f97d7;">(</span><span style="color: #bc6ec5;">(</span>V<span style="color: #bc6ec5;">)</span> -&gt; Either&lt;A, B&gt;<span style="color: #4f97d7;">)</span> -&gt; <span style="color: #4f97d7;">(</span>lefts: <span style="color: #bc6ec5;">[</span>A<span style="color: #bc6ec5;">]</span>, rights: <span style="color: #bc6ec5;">[</span>B<span style="color: #bc6ec5;">]</span><span style="color: #4f97d7;">)</span> <span style="color: #4f97d7;">{</span>
+    <span style="color: #bc6ec5;">{</span> f <span style="color: #4f97d7; font-weight: bold;">in</span>
+        <span style="color: #4f97d7;">Array</span><span style="color: #2d9574;">(</span>d.<span style="color: #4f97d7;">values</span><span style="color: #2d9574;">)</span>.<span style="color: #bc6ec5; font-weight: bold;">partitionMap</span><span style="color: #2d9574;">(</span>f<span style="color: #2d9574;">)</span>
+    <span style="color: #bc6ec5;">}</span>
+<span style="color: #4f97d7;">}</span>
+</pre>
+</div>
+</li>
+<li><div class="org-src-container">
+
+<pre class="src src-swift"><span style="color: #4f97d7; font-weight: bold;">func</span> <span style="color: #bc6ec5; font-weight: bold;">optionalEither</span>&lt;A, B&gt;<span style="color: #4f97d7;">(</span>_ f: <span style="color: #4f97d7; font-weight: bold;">@escaping</span> <span style="color: #bc6ec5;">(</span><span style="color: #2d9574;">(</span>A<span style="color: #2d9574;">)</span> -&gt; B?<span style="color: #bc6ec5;">)</span><span style="color: #4f97d7;">)</span> -&gt; <span style="color: #4f97d7;">(</span>A<span style="color: #4f97d7;">)</span> -&gt; Either&lt;B, <span style="color: #4f97d7;">Void</span>&gt; <span style="color: #4f97d7;">{</span>
+    <span style="color: #bc6ec5;">{</span> a <span style="color: #4f97d7; font-weight: bold;">in</span>
+        <span style="color: #4f97d7; font-weight: bold;">if</span> <span style="color: #4f97d7; font-weight: bold;">let</span> r = <span style="color: #bc6ec5; font-weight: bold;">f</span><span style="color: #2d9574;">(</span>a<span style="color: #2d9574;">)</span> <span style="color: #2d9574;">{</span>
+            <span style="color: #4f97d7; font-weight: bold;">return</span> .<span style="color: #4f97d7; font-weight: bold;">left</span><span style="color: #67b11d;">(</span>r<span style="color: #67b11d;">)</span>
+        <span style="color: #2d9574;">}</span> <span style="color: #4f97d7; font-weight: bold;">else</span> <span style="color: #2d9574;">{</span>
+            <span style="color: #4f97d7; font-weight: bold;">return</span> .<span style="color: #4f97d7; font-weight: bold;">right</span><span style="color: #67b11d;">(</span><span style="color: #b1951d;">()</span><span style="color: #67b11d;">)</span>
+        <span style="color: #2d9574;">}</span>
+    <span style="color: #bc6ec5;">}</span>
+<span style="color: #4f97d7;">}</span>
+
+<span style="color: #4f97d7; font-weight: bold;">func</span> <span style="color: #bc6ec5; font-weight: bold;">filterMap</span>&lt;A, B&gt;<span style="color: #4f97d7;">(</span>_ f: <span style="color: #4f97d7; font-weight: bold;">@escaping</span> <span style="color: #bc6ec5;">(</span><span style="color: #2d9574;">(</span>A<span style="color: #2d9574;">)</span> -&gt; B?<span style="color: #bc6ec5;">)</span>, _ a: <span style="color: #bc6ec5;">[</span>A<span style="color: #bc6ec5;">]</span><span style="color: #4f97d7;">)</span> -&gt; <span style="color: #4f97d7;">[</span>B<span style="color: #4f97d7;">]</span> <span style="color: #4f97d7;">{</span>
+    a.<span style="color: #bc6ec5; font-weight: bold;">partitionMap</span><span style="color: #bc6ec5;">(</span><span style="color: #bc6ec5; font-weight: bold;">optionalEither</span><span style="color: #2d9574;">(</span>f<span style="color: #2d9574;">)</span><span style="color: #bc6ec5;">)</span>.<span style="color: #7590db;">lefts</span>
+<span style="color: #4f97d7;">}</span>
+
+<span style="color: #4f97d7; font-weight: bold;">func</span> <span style="color: #bc6ec5; font-weight: bold;">predicateOptional</span>&lt;A&gt;<span style="color: #4f97d7;">(</span>_ f: <span style="color: #4f97d7; font-weight: bold;">@escaping</span> <span style="color: #bc6ec5;">(</span>A<span style="color: #bc6ec5;">)</span> -&gt; <span style="color: #4f97d7;">Bool</span><span style="color: #4f97d7;">)</span> -&gt; <span style="color: #4f97d7;">(</span>A<span style="color: #4f97d7;">)</span> -&gt; A? <span style="color: #4f97d7;">{</span>
+    <span style="color: #bc6ec5;">{</span> a <span style="color: #4f97d7; font-weight: bold;">in</span>
+        <span style="color: #bc6ec5; font-weight: bold;">f</span><span style="color: #2d9574;">(</span>a<span style="color: #2d9574;">)</span> ? a : <span style="color: #a45bad;">nil</span>
+    <span style="color: #bc6ec5;">}</span>
+<span style="color: #4f97d7;">}</span>
+
+<span style="color: #4f97d7; font-weight: bold;">func</span> <span style="color: #bc6ec5; font-weight: bold;">filter</span>&lt;A&gt;<span style="color: #4f97d7;">(</span>_ f: <span style="color: #4f97d7; font-weight: bold;">@escaping</span> <span style="color: #bc6ec5;">(</span><span style="color: #2d9574;">(</span>A<span style="color: #2d9574;">)</span> -&gt; <span style="color: #4f97d7;">Bool</span><span style="color: #bc6ec5;">)</span>, _ a: <span style="color: #bc6ec5;">[</span>A<span style="color: #bc6ec5;">]</span><span style="color: #4f97d7;">)</span> -&gt; <span style="color: #4f97d7;">[</span>A<span style="color: #4f97d7;">]</span> <span style="color: #4f97d7;">{</span>
+    a.<span style="color: #bc6ec5; font-weight: bold;">partitionMap</span><span style="color: #bc6ec5;">(</span><span style="color: #bc6ec5; font-weight: bold;">optionalEither</span><span style="color: #2d9574;">(</span><span style="color: #bc6ec5; font-weight: bold;">predicateOptional</span><span style="color: #67b11d;">(</span>f<span style="color: #67b11d;">)</span><span style="color: #2d9574;">)</span><span style="color: #bc6ec5;">)</span>.<span style="color: #7590db;">lefts</span>
+<span style="color: #4f97d7;">}</span>
+</pre>
+</div>
+</li>
+<li>Depends on what is allowed. You'd have to pass it two transformation functions for the left and the right case,
+that have the same <code>Either&lt;A,B&gt;</code> return type. Then you can partition into <code>(Optional&lt;A&gt;, Optional&lt;B&gt;)</code>.
 </li>
 </ol>
 </div>
