@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <title></title>
-<!-- 2021-09-19 Sun 16:13 -->
+<!-- 2021-09-25 Sat 09:29 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="generator" content="Org-mode">
@@ -259,6 +259,12 @@ MathJax.Hub.Config({
 <li><a href="#sec-10-1">10.1. Exercises</a></li>
 </ul>
 </li>
+<li><a href="#sec-11">11. Composition without operators</a>
+<ul class="nav">
+<li><a href="#sec-11-1">11.1. Exercises</a></li>
+</ul>
+</li>
+<li><a href="#sec-12">12. A Tour of the Composable Architecture: Part 1</a></li>
 </ul>
 </div>
 </nav>
@@ -1227,6 +1233,93 @@ that have the same <code>Either&lt;A,B&gt;</code> return type. Then you can part
 </li>
 </ol>
 </div>
+</div>
+</div>
+
+<div id="outline-container-sec-11" class="outline-2">
+<h2 id="sec-11"><span class="section-number-2">11</span> Composition without operators</h2>
+<div class="outline-text-2" id="text-11">
+<p>
+If operators are not the way to go, you can use named functions.
+The problem is that you need an overload for any number of arguments.
+This might change in the future for variadic generics.
+</p>
+</div>
+<div id="outline-container-sec-11-1" class="outline-3">
+<h3 id="sec-11-1"><span class="section-number-3">11.1</span> Exercises</h3>
+<div class="outline-text-3" id="text-11-1">
+<ol class="org-ol">
+<li><div class="org-src-container">
+
+<pre class="src src-swift"><span style="color: #4f97d7; font-weight: bold;">func</span> <span style="color: #bc6ec5; font-weight: bold;">concat</span>&lt;A: <span style="color: #4f97d7;">AnyObject</span>&gt;<span style="color: #4f97d7;">(</span>
+    _ fs: <span style="color: #bc6ec5;">(</span><span style="color: #2d9574;">(</span><span style="color: #4f97d7; font-weight: bold;">inout</span> A<span style="color: #2d9574;">)</span> -&gt; <span style="color: #4f97d7;">Void</span><span style="color: #bc6ec5;">)</span>...
+<span style="color: #4f97d7;">)</span>
+-&gt; <span style="color: #4f97d7;">(</span><span style="color: #4f97d7; font-weight: bold;">inout</span> A<span style="color: #4f97d7;">)</span> -&gt; <span style="color: #4f97d7;">Void</span> <span style="color: #4f97d7;">{</span>
+    <span style="color: #bc6ec5;">{</span> a <span style="color: #4f97d7; font-weight: bold;">in</span> fs.<span style="color: #4f97d7;">forEach</span> <span style="color: #2d9574;">{</span> $<span style="color: #bc6ec5; font-weight: bold;">0</span><span style="color: #67b11d;">(</span>&amp;a<span style="color: #67b11d;">)</span> <span style="color: #2d9574;">}</span> <span style="color: #bc6ec5;">}</span>
+<span style="color: #4f97d7;">}</span>
+</pre>
+</div>
+</li>
+<li><div class="org-src-container">
+
+<pre class="src src-swift"><span style="color: #4f97d7; font-weight: bold;">func</span> <span style="color: #bc6ec5; font-weight: bold;">concat</span>&lt;A: <span style="color: #4f97d7;">AnyObject</span>&gt;<span style="color: #4f97d7;">(</span>
+    _ fs: <span style="color: #bc6ec5;">(</span><span style="color: #2d9574;">(</span>A<span style="color: #2d9574;">)</span> -&gt; A<span style="color: #bc6ec5;">)</span>...
+<span style="color: #4f97d7;">)</span>
+-&gt; <span style="color: #4f97d7;">(</span>A<span style="color: #4f97d7;">)</span> -&gt; A <span style="color: #4f97d7;">{</span>
+    <span style="color: #bc6ec5;">{</span> x <span style="color: #4f97d7; font-weight: bold;">in</span>
+        <span style="color: #4f97d7; font-weight: bold;">return</span> <span style="color: #bc6ec5; font-weight: bold;">reduce</span><span style="color: #2d9574;">(</span>f: <span style="color: #67b11d;">{</span> a, f <span style="color: #4f97d7; font-weight: bold;">in</span> <span style="color: #bc6ec5; font-weight: bold;">f</span><span style="color: #b1951d;">(</span>a<span style="color: #b1951d;">)</span> <span style="color: #67b11d;">}</span><span style="color: #2d9574;">)(</span>fs<span style="color: #2d9574;">)(</span>x<span style="color: #2d9574;">)</span>
+    <span style="color: #bc6ec5;">}</span>
+<span style="color: #4f97d7;">}</span>
+</pre>
+</div>
+</li>
+<li><div class="org-src-container">
+
+<pre class="src src-swift"><span style="color: #4f97d7; font-weight: bold;">func</span> <span style="color: #bc6ec5; font-weight: bold;">compose</span>&lt;A, B, C&gt;<span style="color: #4f97d7;">(</span>_ f: <span style="color: #4f97d7; font-weight: bold;">@escaping</span> <span style="color: #bc6ec5;">(</span>B<span style="color: #bc6ec5;">)</span>-&gt;C, _ g: <span style="color: #4f97d7; font-weight: bold;">@escaping</span><span style="color: #bc6ec5;">(</span>A<span style="color: #bc6ec5;">)</span> -&gt; B<span style="color: #4f97d7;">)</span> -&gt; <span style="color: #4f97d7;">(</span><span style="color: #bc6ec5;">(</span>A<span style="color: #bc6ec5;">)</span> -&gt; C<span style="color: #4f97d7;">)</span> <span style="color: #4f97d7;">{</span>
+    <span style="color: #bc6ec5;">{</span> a <span style="color: #4f97d7; font-weight: bold;">in</span> <span style="color: #bc6ec5; font-weight: bold;">f</span><span style="color: #2d9574;">(</span><span style="color: #bc6ec5; font-weight: bold;">g</span><span style="color: #67b11d;">(</span>a<span style="color: #67b11d;">)</span><span style="color: #2d9574;">)</span> <span style="color: #bc6ec5;">}</span>
+<span style="color: #4f97d7;">}</span>
+
+<span style="color: #4f97d7; font-weight: bold;">struct</span> <span style="color: #bc6ec5; font-weight: bold;">Dog</span> <span style="color: #4f97d7;">{</span>
+    <span style="color: #4f97d7; font-weight: bold;">var</span> favoriteFood: DogFood
+<span style="color: #4f97d7;">}</span>
+
+<span style="color: #4f97d7; font-weight: bold;">struct</span> <span style="color: #bc6ec5; font-weight: bold;">DogFood</span> <span style="color: #4f97d7;">{</span>
+    <span style="color: #4f97d7; font-weight: bold;">var</span> name: <span style="color: #4f97d7;">String</span>
+    <span style="color: #4f97d7; font-weight: bold;">var</span> scrumptiousness: <span style="color: #4f97d7;">Int</span>
+<span style="color: #4f97d7;">}</span>
+
+<span style="color: #4f97d7; font-weight: bold;">let</span> doggieBoy: Dog = <span style="color: #bc6ec5; font-weight: bold;">compose</span><span style="color: #4f97d7;">(</span>
+  <span style="color: #bc6ec5; font-weight: bold;">prop</span><span style="color: #bc6ec5;">(</span>\Dog.<span style="color: #7590db;">favoriteFood</span><span style="color: #bc6ec5;">)</span>,
+   <span style="color: #bc6ec5; font-weight: bold;">prop</span><span style="color: #bc6ec5;">(</span>\DogFood.<span style="color: #7590db;">scrumptiousness</span><span style="color: #bc6ec5;">)</span><span style="color: #4f97d7;">)(</span><span style="color: #bc6ec5;">{</span>$0+<span style="color: #a45bad;">1</span><span style="color: #bc6ec5;">}</span><span style="color: #4f97d7;">)(</span>
+  <span style="color: #bc6ec5; font-weight: bold;">Dog</span><span style="color: #bc6ec5;">(</span>favoriteFood: <span style="color: #bc6ec5; font-weight: bold;">DogFood</span><span style="color: #2d9574;">(</span>name: <span style="color: #2d9574;">"nuggers"</span>, scrumptiousness: <span style="color: #a45bad;">1999</span><span style="color: #2d9574;">)</span>
+<span style="color: #bc6ec5;">)</span><span style="color: #4f97d7;">)</span>
+</pre>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-12" class="outline-2">
+<h2 id="sec-12"><span class="section-number-2">12</span> A Tour of the Composable Architecture: Part 1</h2>
+<div class="outline-text-2" id="text-12">
+<ul class="org-ul">
+<li>Cohesive package to solve some problems that Swift UI has
+</li>
+<li>Opinionated
+</li>
+<li>Focus on modularization and composability
+</li>
+<li>Very restrictive regarding side effects.
+</li>
+<li>Assertion helper to test the composable architecture, that forces you to deal with all effects
+</li>
+<li>Debugging capabilities
+</li>
+<li>Range of example projects
+</li>
+</ul>
 </div>
 </div>
 </div></div></div>

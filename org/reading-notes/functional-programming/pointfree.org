@@ -642,3 +642,59 @@ There is also the power law $a^(b+c) = a^b * a ^ c$, equivalent to
    7. Depends on what is allowed. You'd have to pass it two transformation functions for the left and the right case,
       that have the same ~Either<A,B>~ return type. Then you can partition into ~(Optional<A>, Optional<B>)~.
     
+* Composition without operators
+If operators are not the way to go, you can use named functions.
+The problem is that you need an overload for any number of arguments.
+This might change in the future for variadic generics.
+** Exercises
+   1.
+      #+BEGIN_SRC swift
+          func concat<A: AnyObject>(
+              _ fs: ((inout A) -> Void)...
+          )
+          -> (inout A) -> Void {
+              { a in fs.forEach { $0(&a) } }
+          }
+      #+END_SRC
+   2.
+      
+      #+BEGIN_SRC swift
+        func concat<A: AnyObject>(
+            _ fs: ((A) -> A)...
+        )
+        -> (A) -> A {
+            { x in
+                return reduce(f: { a, f in f(a) })(fs)(x)
+            }
+        }
+     #+END_SRC
+   3. 
+     #+BEGIN_SRC swift
+       func compose<A, B, C>(_ f: @escaping (B)->C, _ g: @escaping(A) -> B) -> ((A) -> C) {
+           { a in f(g(a)) }
+       }
+       
+       struct Dog {
+           var favoriteFood: DogFood
+       }
+       
+       struct DogFood {
+           var name: String
+           var scrumptiousness: Int
+       }
+       
+       let doggieBoy: Dog = compose(
+         prop(\Dog.favoriteFood),
+          prop(\DogFood.scrumptiousness))({$0+1})(
+         Dog(favoriteFood: DogFood(name: "nuggers", scrumptiousness: 1999)
+       ))
+   #+END_SRC
+
+* A Tour of the Composable Architecture: Part 1
+  - Cohesive package to solve some problems that Swift UI has
+  - Opinionated
+  - Focus on modularization and composability
+  - Very restrictive regarding side effects.
+  - Assertion helper to test the composable architecture, that forces you to deal with all effects
+  - Debugging capabilities
+  - Range of example projects
