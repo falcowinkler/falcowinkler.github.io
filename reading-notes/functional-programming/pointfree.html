@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <title></title>
-<!-- 2021-09-25 Sat 09:29 -->
+<!-- 2021-09-26 Sun 10:17 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="generator" content="Org-mode">
@@ -265,6 +265,9 @@ MathJax.Hub.Config({
 </ul>
 </li>
 <li><a href="#sec-12">12. A Tour of the Composable Architecture: Part 1</a></li>
+<li><a href="#sec-13">13. A Tour of the Composable Architecture: Part 2</a></li>
+<li><a href="#sec-14">14. A Tour of the Composable Architecture: Part 3</a></li>
+<li><a href="#sec-15">15. A Tour of the Composable Architecture: Part 4</a></li>
 </ul>
 </div>
 </nav>
@@ -1315,9 +1318,159 @@ This might change in the future for variadic generics.
 </li>
 <li>Assertion helper to test the composable architecture, that forces you to deal with all effects
 </li>
-<li>Debugging capabilities
+<li>Debugging capabilities (.debug to print all actions)
 </li>
 <li>Range of example projects
+</li>
+</ul>
+
+<p>
+<i>Why view store?</i>
+</p>
+<ul class="org-ul">
+<li>Hide state of sub-views so that the current view is only re-rendered when it's own state changes
+</li>
+<li>More flexibility binding different front-ends to the state (platform-specific)
+</li>
+</ul>
+
+<p>
+Equatable for duplicate filtering
+Bindings
+For a list of states, there is a lot of index juggling in bare-metal CA
+</p>
+</div>
+</div>
+<div id="outline-container-sec-13" class="outline-2">
+<h2 id="sec-13"><span class="section-number-2">13</span> A Tour of the Composable Architecture: Part 2</h2>
+<div class="outline-text-2" id="text-13">
+<p>
+We can get rid of index juggling with <code>ForEachStore</code>
+On the reducer side we need to call forEach that supplies
+</p>
+<ul class="org-ul">
+<li>Writable key path to a random access collection of subview-states
+</li>
+<li>Case path of an action that embeds an index and action into a subview-action
+(could write this yourself with <code>embed</code> and <code>extract</code>, but CasePaths supplies the backslash for this)
+</li>
+<li>Function to create the environment. Or key path
+</li>
+</ul>
+
+<p>
+Strong type level guarantees
+</p>
+
+<p>
+ForEachStore can be used with stores that only knows about the collection, and the indexed actions.
+This is done with <code>scope</code>, that extracts the list out of the state, and embeds an index action into the global actions.
+(<i>Extract global state into local, and embed local state into global</i>)
+</p>
+
+<p>
+Then extracting the subviews into their seperate views, the code becomes very short:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-swift"><span style="color: #bc6ec5; font-weight: bold;">ForEachStore</span><span style="color: #4f97d7;">(</span>
+              <span style="color: #4f97d7; font-weight: bold;">self</span>.<span style="color: #7590db;">store</span>.<span style="color: #bc6ec5; font-weight: bold;">scope</span><span style="color: #bc6ec5;">(</span>
+                  state: \.<span style="color: #7590db;">tiles</span>,
+                  action: MyActions.<span style="color: #7590db;">tileAction</span><span style="color: #bc6ec5;">)</span>,
+              content: TileView.<span style="color: #4f97d7; font-weight: bold;">init</span><span style="color: #4f97d7;">)</span>
+</pre>
+</div>
+<p>
+<code>combine</code> multiple stores, if the global store also needs to handle some logic, that is unrelated to the list of subviews.
+</p>
+</div>
+</div>
+<div id="outline-container-sec-14" class="outline-2">
+<h2 id="sec-14"><span class="section-number-2">14</span> A Tour of the Composable Architecture: Part 3</h2>
+<div class="outline-text-2" id="text-14">
+<p>
+Exhaustive tests with <code>TestStore</code>.
+<span class="underline">Basic workflow:</span>
+</p>
+<ol class="org-ol">
+<li>Create a TestStore
+<div class="org-src-container">
+
+<pre class="src src-swift"><span style="color: #4f97d7; font-weight: bold;">let</span> store = <span style="color: #bc6ec5; font-weight: bold;">TestStore</span><span style="color: #4f97d7;">(</span>
+  initialState: <span style="color: #bc6ec5; font-weight: bold;">AppState</span><span style="color: #bc6ec5;">(</span>
+    todos: <span style="color: #2d9574;">[</span>
+      <span style="color: #bc6ec5; font-weight: bold;">Todo</span><span style="color: #67b11d;">(</span>
+        description: <span style="color: #2d9574;">"Milk"</span>,
+        id: <span style="color: #4f97d7;">UUID</span><span style="color: #b1951d;">(</span>uuidString: <span style="color: #2d9574;">"00000000-0000-0000-0000-000000000000"</span><span style="color: #b1951d;">)</span>!,
+        isComplete: <span style="color: #a45bad;">false</span>
+      <span style="color: #67b11d;">)</span>
+    <span style="color: #2d9574;">]</span>
+  <span style="color: #bc6ec5;">)</span>,
+  reducer: appReducer,
+  environment: <span style="color: #bc6ec5; font-weight: bold;">AppEnvironment</span><span style="color: #bc6ec5;">()</span>
+<span style="color: #4f97d7;">)</span>
+</pre>
+</div>
+</li>
+<li>Create exhaustive assertions (effects that are not tested will throw an error)
+<div class="org-src-container">
+
+<pre class="src src-swift">store.<span style="color: #4f97d7;">assert</span><span style="color: #4f97d7;">(</span>
+.<span style="color: #4f97d7;">send</span><span style="color: #bc6ec5;">(</span>.<span style="color: #bc6ec5; font-weight: bold;">todo</span><span style="color: #2d9574;">(</span>index: <span style="color: #a45bad;">0</span>, action: .<span style="color: #7590db;">checkboxTapped</span><span style="color: #2d9574;">)</span><span style="color: #bc6ec5;">)</span> <span style="color: #bc6ec5;">{</span>
+  $0.<span style="color: #7590db;">todos</span> = <span style="color: #2d9574;">[</span>
+    <span style="color: #bc6ec5; font-weight: bold;">Todo</span><span style="color: #67b11d;">(</span>
+      description: <span style="color: #2d9574;">"Eggs"</span>,
+      id: <span style="color: #4f97d7;">UUID</span><span style="color: #b1951d;">(</span>uuidString: <span style="color: #2d9574;">"00000000-0000-0000-0000-000000000001"</span><span style="color: #b1951d;">)</span>!,
+      isComplete: <span style="color: #a45bad;">false</span>
+    <span style="color: #67b11d;">)</span>,
+    <span style="color: #bc6ec5; font-weight: bold;">Todo</span><span style="color: #67b11d;">(</span>
+      description: <span style="color: #2d9574;">"Milk"</span>,
+      id: <span style="color: #4f97d7;">UUID</span><span style="color: #b1951d;">(</span>uuidString: <span style="color: #2d9574;">"00000000-0000-0000-0000-000000000000"</span><span style="color: #b1951d;">)</span>!,
+      isComplete: <span style="color: #a45bad;">true</span>
+    <span style="color: #67b11d;">)</span>
+  <span style="color: #2d9574;">]</span>
+<span style="color: #bc6ec5;">}</span>
+<span style="color: #4f97d7;">)</span>
+</pre>
+</div>
+</li>
+</ol>
+<p>
+Some more wisdom:
+</p>
+<ul class="org-ul">
+<li>Inject dependencies via environment
+</li>
+<li>Be explicit in the assertions
+</li>
+<li>use an inline struct to define your cancellable id's:
+<div class="org-src-container">
+
+<pre class="src src-swift"><span style="color: #4f97d7; font-weight: bold;">case</span> .<span style="color: #bc6ec5; font-weight: bold;">todo</span><span style="color: #4f97d7;">(</span>index: _, action: .<span style="color: #7590db;">checkboxTapped</span><span style="color: #4f97d7;">)</span>:
+<span style="color: #4f97d7; font-weight: bold;">struct</span> <span style="color: #bc6ec5; font-weight: bold;">CancelDelayId</span>: <span style="color: #4f97d7;">Hashable</span> <span style="color: #4f97d7;">{}</span>
+
+<span style="color: #4f97d7; font-weight: bold;">return</span> <span style="color: #bc6ec5; font-weight: bold;">Effect</span><span style="color: #4f97d7;">(</span>value: .<span style="color: #7590db;">todoDelayCompleted</span><span style="color: #4f97d7;">)</span>
+  .<span style="color: #4f97d7;">delay</span><span style="color: #4f97d7;">(</span><span style="color: #4f97d7; font-weight: bold;">for</span>: <span style="color: #a45bad;">1</span>, scheduler: environment.<span style="color: #7590db;">mainQueue</span><span style="color: #4f97d7;">)</span>
+  .<span style="color: #bc6ec5; font-weight: bold;">eraseToEffect</span><span style="color: #4f97d7;">()</span>
+  .<span style="color: #bc6ec5; font-weight: bold;">cancellable</span><span style="color: #4f97d7;">(</span>id: <span style="color: #bc6ec5; font-weight: bold;">CancelDelayId</span><span style="color: #bc6ec5;">()</span>, cancelInFlight: <span style="color: #a45bad;">true</span><span style="color: #4f97d7;">)</span>
+</pre>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-sec-15" class="outline-2">
+<h2 id="sec-15"><span class="section-number-2">15</span> A Tour of the Composable Architecture: Part 4</h2>
+<div class="outline-text-2" id="text-15">
+<p>
+How to test async effects?
+Test helper will complain if some effects are still running.
+</p>
+<ul class="org-ul">
+<li>don't use <code>XCTWaiter</code> and the like
+</li>
+<li>Inject DispatchQueue using <code>AnySchedulerOf&lt;DispatchQueue&gt;</code> and use <code>TestScheduler</code> in the tests.
+You can then just <code>advance</code> your scheduler and don't have to wait.
 </li>
 </ul>
 </div>

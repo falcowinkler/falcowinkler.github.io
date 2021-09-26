@@ -696,5 +696,94 @@ This might change in the future for variadic generics.
   - Focus on modularization and composability
   - Very restrictive regarding side effects.
   - Assertion helper to test the composable architecture, that forces you to deal with all effects
-  - Debugging capabilities
+  - Debugging capabilities (.debug to print all actions)
   - Range of example projects
+
+  /Why view store?/
+  - Hide state of sub-views so that the current view is only re-rendered when it's own state changes
+  - More flexibility binding different front-ends to the state (platform-specific)
+
+  Equatable for duplicate filtering
+  Bindings
+  For a list of states, there is a lot of index juggling in bare-metal CA
+* A Tour of the Composable Architecture: Part 2
+  We can get rid of index juggling with ~ForEachStore~
+  On the reducer side we need to call forEach that supplies
+  - Writable key path to a random access collection of subview-states
+  - Case path of an action that embeds an index and action into a subview-action
+    (could write this yourself with ~embed~ and ~extract~, but CasePaths supplies the backslash for this)
+  - Function to create the environment. Or key path
+
+  Strong type level guarantees
+
+  ForEachStore can be used with stores that only knows about the collection, and the indexed actions.
+  This is done with ~scope~, that extracts the list out of the state, and embeds an index action into the global actions.
+  (/Extract global state into local, and embed local state into global/)
+
+  Then extracting the subviews into their seperate views, the code becomes very short:
+  #+BEGIN_SRC swift
+    ForEachStore(
+                  self.store.scope(
+                      state: \.tiles,
+                      action: MyActions.tileAction),
+                  content: TileView.init)
+  #+END_SRC
+  ~combine~ multiple stores, if the global store also needs to handle some logic, that is unrelated to the list of subviews.
+* A Tour of the Composable Architecture: Part 3
+  Exhaustive tests with ~TestStore~.
+  _Basic workflow:_
+  1. Create a TestStore
+     #+BEGIN_SRC swift
+       let store = TestStore(
+         initialState: AppState(
+           todos: [
+             Todo(
+               description: "Milk",
+               id: UUID(uuidString: "00000000-0000-0000-0000-000000000000")!,
+               isComplete: false
+             )
+           ]
+         ),
+         reducer: appReducer,
+         environment: AppEnvironment()
+       )
+     #+END_SRC
+  2. Create exhaustive assertions (effects that are not tested will throw an error)
+     #+BEGIN_SRC swift
+       store.assert(
+       .send(.todo(index: 0, action: .checkboxTapped)) {
+         $0.todos = [
+           Todo(
+             description: "Eggs",
+             id: UUID(uuidString: "00000000-0000-0000-0000-000000000001")!,
+             isComplete: false
+           ),
+           Todo(
+             description: "Milk",
+             id: UUID(uuidString: "00000000-0000-0000-0000-000000000000")!,
+             isComplete: true
+           )
+         ]
+       }
+       )
+     #+END_SRC
+  Some more wisdom:
+  - Inject dependencies via environment
+  - Be explicit in the assertions
+  - use an inline struct to define your cancellable id's:
+    #+BEGIN_SRC swift
+      case .todo(index: _, action: .checkboxTapped):
+      struct CancelDelayId: Hashable {}
+      
+      return Effect(value: .todoDelayCompleted)
+        .delay(for: 1, scheduler: environment.mainQueue)
+        .eraseToEffect()
+        .cancellable(id: CancelDelayId(), cancelInFlight: true)
+    #+END_SRC
+* A Tour of the Composable Architecture: Part 4
+  How to test async effects?
+  Test helper will complain if some effects are still running.
+  - don't use ~XCTWaiter~ and the like
+  - Inject DispatchQueue using ~AnySchedulerOf<DispatchQueue>~ and use ~TestScheduler~ in the tests.
+    You can then just ~advance~ your scheduler and don't have to wait.
+  
