@@ -706,4 +706,138 @@ Five distinct steps of building trust:
    Define commitment steps: What, who, when?
 ** Joint commitment
    Place the issue in context of the other work to be done for the client.
+* Putting trust to work
+  The 
+  - Explorations of the difficulties applying the concepts and techniques discussed so far
+  - How to deal with different clients and situations
+  - Trust building and practical tipps
+* What's so hard about all this?
+  1. This is all to personally risky
+     - It /is/ risky. Careful balance is the key: Awareness, focus & practice.
+     - Risk is the essence of creating intimacy       
+  2. It's not easy to stop worrying about yourself, and focus on others instead
+     - We get a lot better if we focus on others, it helps us find ourselves
+     - New ways of thinking have to be practiced
+     - Requires a dedication to stay grounded and centered, and retain perspective
+  3. Professional services firm teach you that content is all
+     - It's common thinking, but that doesn't guarentee that it's right
+     - Appealing because this approach is more quantifiable
+     - But: Without trust, expertise is meaningless
+  4. We can't overcome our fear of appearing stupid, or uninformed
+     - Pure assertiveness can sometimes appear even more stupid or uninformed
+     - Emotional intelligence: Recognize emotions in ourselfes and in others, and act upon that interpretation.
+  5. It's hard to listen first. We have a hard time re-wiring our habits
+     - deeply wired instincts
+     - Recognize them as ingrained habits
+     - Habit-breaking devices
+  6. It takes a lot of courage to speak about the unspeakable
+     - Realization that very often the alternative can be worse, helps
+     - Risk of taking is overrated, while the risk of not taking an action is underrated
+     - "The client's fear is your opportunity, whereas your fear is your enemy'
+  7. It comes to close to the line of invading the private
+     - If it's invading the private, it is too much!
+     - Naming and claiming, gentle phrasing and giving people an out are important here
+  8. This approach discounts too heavily the value of good expertise
+     - No trust, expertise doesn't get through
+  9. It all sounds too moralistic
+     - Ask yourself, if trust as a strategy works.
+  10. This process sounds slooow, my budget won't allow for this!
+      - False assumptions:
+        1. Clients won't pay for counceling 
+        2. Advising and trust-building not only about the current issue at hand does not lead to future revenue and opportunities
+  11. My client want's me to focus on the work at hand
+      - Ask to confirm this observation
+      - Listen closely to the answer, and prepare to deliver based upon it
+      - If it stays that way, you can focus on becoming a trusted advisor elsewhere
+  12. It's risky to take position, until im absolutely sure
+      - Not taking a position sacrifices an enormous range of options for helping a client
+      - Diminishes the possibility of brainstorming, stimulating conversation etc...
+      - Risk aversion surrenders many positives
+  13. I took a position and now im stuck with it. To change my view would destroy my credibility
+      - Our credibility is more at stake if we stick to an incorrect opinion.
+  14. It's hard to be this humble!
+      - Humility is not a weakness.
+  In summary: The risks are overrated.
+** Why we all rush to action too soon
+A mistake made more often than any others. Why?
+1. The human tendency to focus on ourselves
+2. The belief that we are only selling content
+3. The desire for tangibility
+4. The search for validation
+** Risk
+The #1 reason why we don't do this "trust stuff":
+/"Well, i wouldn't do that. It's just too risky."/
+Nearly every techique and concept so far is often perceived as risky and thus infeasible.
+Often /business risk/ is often, after close examination, /personal risk/.
+*** Reasons for perceived risk
+| Perceived Risk to | You can't                                                                             | Because the client wants                       |
+|-------------------+---------------------------------------------------------------------------------------+------------------------------------------------|
+| Credibility       | Hypothesise, say you don't know, focus on framing the problem                         | An anwswer, confidence, expertise              |
+|-------------------+---------------------------------------------------------------------------------------+------------------------------------------------|
+| Intimacy          | - Stay with listening too long, without moving to action,                             | Action, a professional relationship,           |
+|                   | get too personal, talk about emotions, go off agenda, talk about difficult situations | just the facts, progress, not to be embarassed |
+|-------------------+---------------------------------------------------------------------------------------+------------------------------------------------|
+A buying decision is highly emotional, almost always, from both sides.
+** Managing your own emotions
+The higher the stakes, the harder it is to take the simple small error-correction steps.
+Ego-fulfilling thoughts overrule the calm, cool reflective state.
+Self-centered fear is the primary reason for a focus on ourselves.
+Emotions and desires we must learn to control include
+1. Wanting to take credit for an idea
+2. Wanting to fill blank airtime with content
+3. Playing to our own insecurity by feeling we have to get all our credentials out there
+4. Wanting to put a cap on the problem, so we can solve it later, without the pressure
+5. wanting to hedge our answers in case we are wrong
+6. Wanting too soon to relate our own version of the client's story or problem
+* Differing client types
+Generalising clients is tempting, but dangerous and wrong.
+How can we regognize and deal with the various type of clients?
+
+1. Work in advance on what is different about this client, and what might be different about you in this situation.
+   Make sure that there is complete understanding on what you are supposed to do for a client, before walking into a meeting.
+2. As you look at the client, force yourself to ask three questions
+   - What is the client's prevailing personal motivation?
+   - What is their personality?
+   - How does the state of their organization affect their world view?
+3. When thinking about a clients pervailing personal motivation, which comes first?
+   - the need to excel
+   - the need to take action and achieve results
+   - The need to understand and analyse before deciding
+   - The need to drive consensus
+   Tailor your conversation to a specific outcome
+4. Figure out why you might truly like this client as a person
+5. Use the trust equation. Look at how the client weighs the factors.
+   Ask:  How highly does the client value...
+   - me for my objective unbiased clear opinions? (Credibility)
+   - me for my track record, for my integrity of doing what i said i'd do?
+   - the fact that they can talk to me just about anything without fear of embarassement
+   - the fact that i am on their side, that i am in this for them?
+   Rational <-> Emotional? 
+** Some difficult client types, and how to respond
+1. "Just the facts"
+   Don't be fooled: This is a plea to be understood. 
+   Speak in the clients language. 
+   Use clarifying and confirming statements.
+2. "I'll get back to you"
+   This is typically a client nervous about commitments on the spot, conservative, afraid of being wrong.
+   Make that process easier for them. Legitimize their desire for "soak time".
+3. "You're the expert, dummy"
+   They are giving in to their inclination to dominate you. Give back value in the form of a number of hypothesis.
+4. "Let me handle that"
+   The language of a client that doesn't trust you. Apply the trust process.
+   It can also be that the client doesn't trust anyone -> Naming and claiming.
+5. "Let's go through this again"
+   Frame via alternatives: Clients like this are most comfortable in the detail-oriented realm.
+   This might mask a desire to control things. The goal is to make the situation feel controllable.
+6. "You don't understand"
+   Might be a desire to feel special. Don't try to win the battle, acknowledge your differences and ask questions
+7. "The enemy's enemy is my friend"
+   These clients love politics. Speak their language. Don't debate the value of what they are saying.
+   Make politics a content issue and talk about it freely.
+8. "Just like, you know, come on. Make it happen"
+   Skills not in the verbal area, but often they have balancing strength. Help them, give them voice.
+   Write down, make lists, allow them to rank things etc.
+9. "Oh by the way... i probably should have..."
+   Are you consistently missing out? It could be a personal issue, or a label for you.
+   Ask for a private meeting, assume that you have a label. Use naming and claiming, ask to put them in your shoes.
    
