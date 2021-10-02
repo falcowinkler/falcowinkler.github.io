@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <title></title>
-<!-- 2021-09-26 Sun 10:17 -->
+<!-- 2021-10-02 Sat 20:44 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="generator" content="Org-mode">
@@ -264,10 +264,15 @@ MathJax.Hub.Config({
 <li><a href="#sec-11-1">11.1. Exercises</a></li>
 </ul>
 </li>
-<li><a href="#sec-12">12. A Tour of the Composable Architecture: Part 1</a></li>
-<li><a href="#sec-13">13. A Tour of the Composable Architecture: Part 2</a></li>
-<li><a href="#sec-14">14. A Tour of the Composable Architecture: Part 3</a></li>
-<li><a href="#sec-15">15. A Tour of the Composable Architecture: Part 4</a></li>
+<li><a href="#sec-12">12. Tagged</a>
+<ul class="nav">
+<li><a href="#sec-12-1">12.1. Exercises</a></li>
+</ul>
+</li>
+<li><a href="#sec-13">13. A Tour of the Composable Architecture: Part 1</a></li>
+<li><a href="#sec-14">14. A Tour of the Composable Architecture: Part 2</a></li>
+<li><a href="#sec-15">15. A Tour of the Composable Architecture: Part 3</a></li>
+<li><a href="#sec-16">16. A Tour of the Composable Architecture: Part 4</a></li>
 </ul>
 </div>
 </nav>
@@ -1305,8 +1310,125 @@ This might change in the future for variadic generics.
 </div>
 
 <div id="outline-container-sec-12" class="outline-2">
-<h2 id="sec-12"><span class="section-number-2">12</span> A Tour of the Composable Architecture: Part 1</h2>
+<h2 id="sec-12"><span class="section-number-2">12</span> Tagged</h2>
 <div class="outline-text-2" id="text-12">
+<p>
+We can use `Decodable` and `Encodable` to and from json.
+Sometimes it can be desirable to wrap your datatypes with a custom type,
+e.g. use an <code>Email</code> struct instead of just <code>String</code>.
+This can help avoid errors, because the compiler will complain if you pass other fields to
+e.g. a <code>sendEmail</code> function.
+</p>
+
+<p>
+Problem: If you have a custom struct, you need to adapt the json structure.
+Or implement your custom <code>Decodable</code> instance.
+Or use <code>RawRepresentable</code> which saves a lot of code.
+You will have to tag on an <code>Equatable</code> though:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-swift"><span style="color: #4f97d7; font-weight: bold;">struct</span> <span style="color: #bc6ec5; font-weight: bold;">Subscription</span>: <span style="color: #4f97d7;">Decodable</span> <span style="color: #4f97d7;">{</span>
+  <span style="color: #4f97d7; font-weight: bold;">struct</span> <span style="color: #bc6ec5; font-weight: bold;">Id</span>: <span style="color: #4f97d7;">Decodable</span>, <span style="color: #4f97d7;">RawRepresentable</span>, <span style="color: #4f97d7;">Equatable</span> <span style="color: #bc6ec5;">{</span> <span style="color: #4f97d7; font-weight: bold;">let</span> rawValue: <span style="color: #4f97d7;">Int</span> <span style="color: #bc6ec5;">}</span>
+
+  <span style="color: #4f97d7; font-weight: bold;">let</span> id: Id
+  <span style="color: #4f97d7; font-weight: bold;">let</span> ownerId: <span style="color: #4f97d7;">Int</span>
+<span style="color: #4f97d7;">}</span>
+</pre>
+</div>
+<p>
+This is really need, but you're gonna repeat the three protocols all over again.
+Akin to <code>newtype</code> in haskell we can use <code>Tagged&lt;Tag, Type&gt;</code>:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-swift"><span style="color: #4f97d7; font-weight: bold;">struct</span> <span style="color: #bc6ec5; font-weight: bold;">Subscription</span>: <span style="color: #4f97d7;">Decodable</span> <span style="color: #4f97d7;">{</span>
+  <span style="color: #4f97d7; font-weight: bold;">typealias</span> Id = Tagged&lt;Subscription, <span style="color: #4f97d7;">Int</span>&gt;
+
+  <span style="color: #4f97d7; font-weight: bold;">let</span> id: Id
+  <span style="color: #4f97d7; font-weight: bold;">let</span> ownerId: User.<span style="color: #7590db;">Id</span>
+<span style="color: #4f97d7;">}</span>
+</pre>
+</div>
+<p>
+Tagged uses <i>Conditional conformance</i> to implement <code>Equatable</code> and <code>Decodable</code>:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-swift"><span style="color: #4f97d7; font-weight: bold;">extension</span> <span style="color: #bc6ec5; font-weight: bold;">Tagged</span>: <span style="color: #4f97d7;">Equatable</span> <span style="color: #4f97d7; font-weight: bold;">where</span> <span style="color: #4f97d7;">RawValue</span>: <span style="color: #4f97d7;">Equatable</span> <span style="color: #4f97d7;">{</span>
+  <span style="color: #4f97d7; font-weight: bold;">static</span> <span style="color: #4f97d7; font-weight: bold;">func</span> == <span style="color: #bc6ec5;">(</span>lhs: Tagged, rhs: Tagged<span style="color: #bc6ec5;">)</span> -&gt; <span style="color: #4f97d7;">Bool</span> <span style="color: #bc6ec5;">{</span>
+    <span style="color: #4f97d7; font-weight: bold;">return</span> lhs.<span style="color: #4f97d7;">rawValue</span> == rhs.<span style="color: #4f97d7;">rawValue</span>
+  <span style="color: #bc6ec5;">}</span>
+<span style="color: #4f97d7;">}</span>
+</pre>
+</div>
+<p>
+If you have to instantiate <code>Tagged</code> fields yourself, it makes sense to use
+<code>ExpressibleBy...Literal</code> protocols.
+</p>
+</div>
+
+<div id="outline-container-sec-12-1" class="outline-3">
+<h3 id="sec-12-1"><span class="section-number-3">12.1</span> Exercises</h3>
+<div class="outline-text-3" id="text-12-1">
+<ol class="org-ol">
+<li>Expressible by string:
+<div class="org-src-container">
+
+<pre class="src src-swift"><span style="color: #4f97d7; font-weight: bold;">extension</span> <span style="color: #bc6ec5; font-weight: bold;">Tagged</span>: <span style="color: #4f97d7;">ExpressibleByUnicodeScalarLiteral</span> <span style="color: #4f97d7; font-weight: bold;">where</span> <span style="color: #4f97d7;">RawValue</span>: <span style="color: #4f97d7;">ExpressibleByStringLiteral</span> <span style="color: #4f97d7;">{</span>
+    <span style="color: #4f97d7; font-weight: bold;">typealias</span> <span style="color: #4f97d7;">UnicodeScalarLiteralType</span> = <span style="color: #4f97d7;">String</span>
+<span style="color: #4f97d7;">}</span>
+
+<span style="color: #4f97d7; font-weight: bold;">extension</span> <span style="color: #bc6ec5; font-weight: bold;">Tagged</span>: <span style="color: #4f97d7;">ExpressibleByExtendedGraphemeClusterLiteral</span> <span style="color: #4f97d7; font-weight: bold;">where</span> <span style="color: #4f97d7;">RawValue</span>: <span style="color: #4f97d7;">ExpressibleByStringLiteral</span> <span style="color: #4f97d7;">{</span>
+    <span style="color: #4f97d7; font-weight: bold;">init</span><span style="color: #bc6ec5;">(</span>extendedGraphemeClusterLiteral value: <span style="color: #4f97d7;">String</span><span style="color: #bc6ec5;">)</span> <span style="color: #bc6ec5;">{</span>
+        <span style="color: #4f97d7; font-weight: bold;">self</span>.<span style="color: #4f97d7; font-weight: bold;">init</span><span style="color: #2d9574;">(</span>stringLiteral: value <span style="color: #4f97d7; font-weight: bold;">as</span>! <span style="color: #4f97d7;">RawValue</span>.<span style="color: #4f97d7;">StringLiteralType</span><span style="color: #2d9574;">)</span>
+    <span style="color: #bc6ec5;">}</span>
+<span style="color: #4f97d7;">}</span>
+
+<span style="color: #4f97d7; font-weight: bold;">extension</span> <span style="color: #bc6ec5; font-weight: bold;">Tagged</span>: <span style="color: #4f97d7;">ExpressibleByStringLiteral</span> <span style="color: #4f97d7; font-weight: bold;">where</span> <span style="color: #4f97d7;">RawValue</span>: <span style="color: #4f97d7;">ExpressibleByStringLiteral</span> <span style="color: #4f97d7;">{</span>
+    <span style="color: #4f97d7; font-weight: bold;">init</span><span style="color: #bc6ec5;">(</span>stringLiteral value: <span style="color: #4f97d7;">RawValue</span>.<span style="color: #4f97d7;">StringLiteralType</span><span style="color: #bc6ec5;">)</span> <span style="color: #bc6ec5;">{</span>
+        <span style="color: #4f97d7; font-weight: bold;">self</span>.<span style="color: #4f97d7; font-weight: bold;">init</span><span style="color: #2d9574;">(</span>rawValue: <span style="color: #4f97d7;">RawValue</span><span style="color: #67b11d;">(</span>stringLiteral: value<span style="color: #67b11d;">)</span><span style="color: #2d9574;">)</span>
+    <span style="color: #bc6ec5;">}</span>
+<span style="color: #4f97d7;">}</span>
+</pre>
+</div>
+</li>
+<li><div class="org-src-container">
+
+<pre class="src src-swift"><span style="color: #4f97d7; font-weight: bold;">extension</span> <span style="color: #bc6ec5; font-weight: bold;">Tagged</span>: <span style="color: #4f97d7;">Comparable</span> <span style="color: #4f97d7; font-weight: bold;">where</span> <span style="color: #4f97d7;">RawValue</span>: <span style="color: #4f97d7;">Comparable</span> <span style="color: #4f97d7;">{</span>
+    <span style="color: #4f97d7; font-weight: bold;">static</span> <span style="color: #4f97d7; font-weight: bold;">func</span> &lt; <span style="color: #bc6ec5;">(</span>lhs: Tagged&lt;Tag, <span style="color: #4f97d7;">RawValue</span>&gt;, rhs: Tagged&lt;Tag, <span style="color: #4f97d7;">RawValue</span>&gt;<span style="color: #bc6ec5;">)</span> -&gt; <span style="color: #4f97d7;">Bool</span> <span style="color: #bc6ec5;">{</span>
+        <span style="color: #4f97d7; font-weight: bold;">return</span> lhs.<span style="color: #4f97d7;">rawValue</span> &lt; rhs.<span style="color: #4f97d7;">rawValue</span>
+    <span style="color: #bc6ec5;">}</span>
+<span style="color: #4f97d7;">}</span>
+<span style="color: #2aa1ae; background-color: #292e34;">// </span><span style="color: #2aa1ae; background-color: #292e34;">from swift-overture:</span>
+<span style="color: #4f97d7; font-weight: bold;">public</span> <span style="color: #4f97d7; font-weight: bold;">func</span> <span style="color: #bc6ec5; font-weight: bold;">their</span>&lt;Root, <span style="color: #4f97d7;">Value</span>: <span style="color: #4f97d7;">Comparable</span>&gt;<span style="color: #4f97d7;">(</span>
+    _ getter: <span style="color: #4f97d7; font-weight: bold;">@escaping</span> <span style="color: #bc6ec5;">(</span>Root<span style="color: #bc6ec5;">)</span> -&gt; <span style="color: #4f97d7;">Value</span>
+<span style="color: #4f97d7;">)</span>
+-&gt; <span style="color: #4f97d7;">(</span>Root, Root<span style="color: #4f97d7;">)</span> -&gt; <span style="color: #4f97d7;">Bool</span> <span style="color: #4f97d7;">{</span>
+    <span style="color: #4f97d7; font-weight: bold;">return</span> <span style="color: #bc6ec5; font-weight: bold;">their</span><span style="color: #bc6ec5;">(</span>getter, &lt;<span style="color: #bc6ec5;">)</span>
+<span style="color: #4f97d7;">}</span>
+
+
+users.<span style="color: #4f97d7;">sorted</span><span style="color: #4f97d7;">(</span>by: <span style="color: #bc6ec5; font-weight: bold;">their</span><span style="color: #bc6ec5;">(</span>\.<span style="color: #7590db;">id</span><span style="color: #bc6ec5;">)</span><span style="color: #4f97d7;">)</span>
+</pre>
+</div>
+</li>
+<li>hmmmmm
+<div class="org-src-container">
+
+<pre class="src src-swift"><span style="color: #4f97d7; font-weight: bold;">enum</span> <span style="color: #bc6ec5; font-weight: bold;">AgeTag</span> <span style="color: #4f97d7;">{}</span>
+<span style="color: #4f97d7; font-weight: bold;">typealias</span> Age = Tagged&lt;AgeTag, <span style="color: #4f97d7;">Int</span>&gt;
+</pre>
+</div>
+</li>
+<li></li>
+</ol>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-13" class="outline-2">
+<h2 id="sec-13"><span class="section-number-2">13</span> A Tour of the Composable Architecture: Part 1</h2>
+<div class="outline-text-2" id="text-13">
 <ul class="org-ul">
 <li>Cohesive package to solve some problems that Swift UI has
 </li>
@@ -1341,9 +1463,9 @@ For a list of states, there is a lot of index juggling in bare-metal CA
 </p>
 </div>
 </div>
-<div id="outline-container-sec-13" class="outline-2">
-<h2 id="sec-13"><span class="section-number-2">13</span> A Tour of the Composable Architecture: Part 2</h2>
-<div class="outline-text-2" id="text-13">
+<div id="outline-container-sec-14" class="outline-2">
+<h2 id="sec-14"><span class="section-number-2">14</span> A Tour of the Composable Architecture: Part 2</h2>
+<div class="outline-text-2" id="text-14">
 <p>
 We can get rid of index juggling with <code>ForEachStore</code>
 On the reducer side we need to call forEach that supplies
@@ -1385,9 +1507,9 @@ Then extracting the subviews into their seperate views, the code becomes very sh
 </p>
 </div>
 </div>
-<div id="outline-container-sec-14" class="outline-2">
-<h2 id="sec-14"><span class="section-number-2">14</span> A Tour of the Composable Architecture: Part 3</h2>
-<div class="outline-text-2" id="text-14">
+<div id="outline-container-sec-15" class="outline-2">
+<h2 id="sec-15"><span class="section-number-2">15</span> A Tour of the Composable Architecture: Part 3</h2>
+<div class="outline-text-2" id="text-15">
 <p>
 Exhaustive tests with <code>TestStore</code>.
 <span class="underline">Basic workflow:</span>
@@ -1459,9 +1581,9 @@ Some more wisdom:
 </ul>
 </div>
 </div>
-<div id="outline-container-sec-15" class="outline-2">
-<h2 id="sec-15"><span class="section-number-2">15</span> A Tour of the Composable Architecture: Part 4</h2>
-<div class="outline-text-2" id="text-15">
+<div id="outline-container-sec-16" class="outline-2">
+<h2 id="sec-16"><span class="section-number-2">16</span> A Tour of the Composable Architecture: Part 4</h2>
+<div class="outline-text-2" id="text-16">
 <p>
 How to test async effects?
 Test helper will complain if some effects are still running.

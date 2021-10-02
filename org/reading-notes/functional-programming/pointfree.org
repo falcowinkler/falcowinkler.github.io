@@ -690,6 +690,89 @@ This might change in the future for variadic generics.
        ))
    #+END_SRC
 
+* Tagged
+We can use `Decodable` and `Encodable` to and from json.
+Sometimes it can be desirable to wrap your datatypes with a custom type,
+e.g. use an ~Email~ struct instead of just ~String~.
+This can help avoid errors, because the compiler will complain if you pass other fields to
+e.g. a ~sendEmail~ function.
+
+Problem: If you have a custom struct, you need to adapt the json structure.
+Or implement your custom ~Decodable~ instance.
+Or use ~RawRepresentable~ which saves a lot of code.
+You will have to tag on an ~Equatable~ though:
+#+BEGIN_SRC swift
+struct Subscription: Decodable {
+  struct Id: Decodable, RawRepresentable, Equatable { let rawValue: Int }
+
+  let id: Id
+  let ownerId: Int
+}
+#+END_SRC
+This is really need, but you're gonna repeat the three protocols all over again.
+Akin to ~newtype~ in haskell we can use ~Tagged<Tag, Type>~:
+#+BEGIN_SRC swift
+struct Subscription: Decodable {
+  typealias Id = Tagged<Subscription, Int>
+
+  let id: Id
+  let ownerId: User.Id
+}
+#+END_SRC
+Tagged uses /Conditional conformance/ to implement ~Equatable~ and ~Decodable~:
+#+BEGIN_SRC swift
+extension Tagged: Equatable where RawValue: Equatable {
+  static func == (lhs: Tagged, rhs: Tagged) -> Bool {
+    return lhs.rawValue == rhs.rawValue
+  }
+}
+#+END_SRC
+If you have to instantiate ~Tagged~ fields yourself, it makes sense to use
+~ExpressibleBy...Literal~ protocols.
+
+** Exercises
+   1. Expressible by string:
+      #+BEGIN_SRC swift
+        extension Tagged: ExpressibleByUnicodeScalarLiteral where RawValue: ExpressibleByStringLiteral {
+            typealias UnicodeScalarLiteralType = String
+        }
+        
+        extension Tagged: ExpressibleByExtendedGraphemeClusterLiteral where RawValue: ExpressibleByStringLiteral {
+            init(extendedGraphemeClusterLiteral value: String) {
+                self.init(stringLiteral: value as! RawValue.StringLiteralType)
+            }
+        }
+        
+        extension Tagged: ExpressibleByStringLiteral where RawValue: ExpressibleByStringLiteral {
+            init(stringLiteral value: RawValue.StringLiteralType) {
+                self.init(rawValue: RawValue(stringLiteral: value))
+            }
+        }
+      #+END_SRC
+   2. 
+       #+BEGIN_SRC swift
+         extension Tagged: Comparable where RawValue: Comparable {
+             static func < (lhs: Tagged<Tag, RawValue>, rhs: Tagged<Tag, RawValue>) -> Bool {
+                 return lhs.rawValue < rhs.rawValue
+             }
+         }
+         // from swift-overture:
+         public func their<Root, Value: Comparable>(
+             _ getter: @escaping (Root) -> Value
+         )
+         -> (Root, Root) -> Bool {
+             return their(getter, <)
+         }
+        
+        
+         users.sorted(by: their(\.id))
+       #+END_SRC
+   3. hmmmmm
+      #+BEGIN_SRC swift
+         enum AgeTag {}
+         typealias Age = Tagged<AgeTag, Int>
+      #+END_SRC
+   4. 
 * A Tour of the Composable Architecture: Part 1
   - Cohesive package to solve some problems that Swift UI has
   - Opinionated
