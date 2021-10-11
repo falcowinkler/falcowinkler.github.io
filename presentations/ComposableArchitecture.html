@@ -1,0 +1,387 @@
+<!doctype html>
+<html lang="en">
+<head>
+<title>The composable architecture</title>
+<!-- 2021-10-10 Sun 20:37 -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="generator" content="Org-mode">
+
+<link  href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<style>
+/* org mode styles on top of twbs */
+
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    font-size: 18px;
+    margin-bottom: 105px;
+}
+
+footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 101px;
+    background-color: #f5f5f5;
+}
+
+footer > div {
+    padding: 10px;
+}
+
+footer p {
+    margin: 0 0 5px;
+    text-align: center;
+    font-size: 16px;
+}
+
+#table-of-contents {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+blockquote p {
+    font-size: 18px;
+}
+
+pre {
+    font-size: 16px;
+}
+
+.footpara {
+    display: inline-block;
+}
+
+figcaption {
+  font-size: 16px;
+  color: #666;
+  font-style: italic;
+  padding-bottom: 15px;
+}
+
+/* from twbs docs */
+
+.bs-docs-sidebar.affix {
+    position: static;
+}
+@media (min-width: 768px) {
+    .bs-docs-sidebar {
+        padding-left: 20px;
+    }
+}
+
+/* All levels of nav */
+.bs-docs-sidebar .nav > li > a {
+    display: block;
+    padding: 4px 20px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #999;
+}
+.bs-docs-sidebar .nav > li > a:hover,
+.bs-docs-sidebar .nav > li > a:focus {
+    padding-left: 19px;
+    color: #A1283B;
+    text-decoration: none;
+    background-color: transparent;
+    border-left: 1px solid #A1283B;
+}
+.bs-docs-sidebar .nav > .active > a,
+.bs-docs-sidebar .nav > .active:hover > a,
+.bs-docs-sidebar .nav > .active:focus > a {
+    padding-left: 18px;
+    font-weight: bold;
+    color: #A1283B;
+    background-color: transparent;
+    border-left: 2px solid #A1283B;
+}
+
+/* Nav: second level (shown on .active) */
+.bs-docs-sidebar .nav .nav {
+    display: none; /* Hide by default, but at >768px, show it */
+    padding-bottom: 10px;
+}
+.bs-docs-sidebar .nav .nav > li > a {
+    padding-top: 1px;
+    padding-bottom: 1px;
+    padding-left: 30px;
+    font-size: 12px;
+    font-weight: normal;
+}
+.bs-docs-sidebar .nav .nav > li > a:hover,
+.bs-docs-sidebar .nav .nav > li > a:focus {
+    padding-left: 29px;
+}
+.bs-docs-sidebar .nav .nav > .active > a,
+.bs-docs-sidebar .nav .nav > .active:hover > a,
+.bs-docs-sidebar .nav .nav > .active:focus > a {
+    padding-left: 28px;
+    font-weight: 500;
+}
+
+/* Nav: third level (shown on .active) */
+.bs-docs-sidebar .nav .nav .nav {
+    padding-bottom: 10px;
+}
+.bs-docs-sidebar .nav .nav .nav > li > a {
+    padding-top: 1px;
+    padding-bottom: 1px;
+    padding-left: 40px;
+    font-size: 12px;
+    font-weight: normal;
+}
+.bs-docs-sidebar .nav .nav .nav > li > a:hover,
+.bs-docs-sidebar .nav .nav .nav > li > a:focus {
+    padding-left: 39px;
+}
+.bs-docs-sidebar .nav .nav .nav > .active > a,
+.bs-docs-sidebar .nav .nav .nav > .active:hover > a,
+.bs-docs-sidebar .nav .nav .nav > .active:focus > a {
+    padding-left: 38px;
+    font-weight: 500;
+}
+
+/* Show and affix the side nav when space allows it */
+@media (min-width: 992px) {
+    .bs-docs-sidebar .nav > .active > ul {
+        display: block;
+    }
+    /* Widen the fixed sidebar */
+    .bs-docs-sidebar.affix,
+    .bs-docs-sidebar.affix-bottom {
+        width: 213px;
+    }
+    .bs-docs-sidebar.affix {
+        position: fixed; /* Undo the static from mobile first approach */
+        top: 20px;
+    }
+    .bs-docs-sidebar.affix-bottom {
+        position: absolute; /* Undo the static from mobile first approach */
+    }
+    .bs-docs-sidebar.affix .bs-docs-sidenav,.bs-docs-sidebar.affix-bottom .bs-docs-sidenav {
+        margin-top: 0;
+        margin-bottom: 0
+    }
+}
+@media (min-width: 1200px) {
+    /* Widen the fixed sidebar again */
+    .bs-docs-sidebar.affix-bottom,
+    .bs-docs-sidebar.affix {
+        width: 263px;
+    }
+}
+</style>
+<style>body { margin-bottom: 0px; }</style><script>
+$(function() {
+    'use strict';
+
+    $('.bs-docs-sidebar li').first().addClass('active');
+
+    $(document.body).scrollspy({target: '.bs-docs-sidebar'});
+
+    $('.bs-docs-sidebar').affix();
+});
+</script><link rel="stylesheet" type="text/css" href="css/python_course.css">
+</head>
+<body>
+<div id="content" class="container">
+<div class="row"><div class="col-md-12"><h1 class="title">The composable architecture</h1>
+
+<div id="outline-container-sec-" class="outline-2">
+<h2 id="sec-">Unidirectional Data Flow</h2>
+<div class="outline-text-2" id="text-">
+
+<figure>
+<p><img src="/images/presentations/composable-architecture/unidirectional-dataflow.svg" class="img-responsive" alt="unidirectional-dataflow.svg">
+</p>
+</figure>
+</div>
+</div>
+<div id="outline-container-sec-" class="outline-2">
+<h2 id="sec-">Pointfree</h2>
+<div class="outline-text-2" id="text-">
+<p>
+<a href="https://www.pointfree.co/g">https://www.pointfree.co/g</a>
+</p>
+</div>
+</div>
+<div id="outline-container-sec-" class="outline-2">
+<h2 id="sec-">Building blocks</h2>
+<div class="outline-text-2" id="text-">
+</div><div id="outline-container-sec-" class="outline-3">
+<h3 id="sec-">State, Action and Environment</h3>
+<div class="outline-text-3" id="text-">
+<div class="org-src-container">
+
+<pre class="src src-swift"><span style="color: #4f97d7; font-weight: bold;">struct</span> <span style="color: #4f97d7;">State</span> <span style="color: #4f97d7;">{</span>
+    <span style="color: #4f97d7; font-weight: bold;">var</span> currentText: <span style="color: #4f97d7;">String</span>
+    <span style="color: #4f97d7; font-weight: bold;">var</span> subviewStates: IdentifiedArray&lt;SubviewState&gt;
+    <span style="color: #4f97d7; font-weight: bold;">var</span> backendResponse: Response
+<span style="color: #4f97d7;">}</span>
+<span style="color: #4f97d7; font-weight: bold;">enum</span> <span style="color: #bc6ec5; font-weight: bold;">Action</span> <span style="color: #4f97d7;">{</span>
+    <span style="color: #4f97d7; font-weight: bold;">case</span> buttonTapped
+    <span style="color: #4f97d7; font-weight: bold;">case</span> <span style="color: #bc6ec5; font-weight: bold;">textUpdated</span><span style="color: #bc6ec5;">(</span><span style="color: #4f97d7;">String</span><span style="color: #bc6ec5;">)</span>
+    <span style="color: #4f97d7; font-weight: bold;">case</span> <span style="color: #bc6ec5; font-weight: bold;">subviewAction</span><span style="color: #bc6ec5;">(</span>id: Subview.<span style="color: #7590db;">ID</span>, action: SubviewAction<span style="color: #bc6ec5;">)</span>
+<span style="color: #4f97d7;">}</span>
+<span style="color: #4f97d7; font-weight: bold;">struct</span> <span style="color: #bc6ec5; font-weight: bold;">Environment</span> <span style="color: #4f97d7;">{</span>
+    <span style="color: #4f97d7; font-weight: bold;">let</span> dependency: Dependency
+    <span style="color: #4f97d7; font-weight: bold;">let</span> subviewEnvironment: SubviewEnvironment
+<span style="color: #4f97d7;">}</span>
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-" class="outline-3">
+<h3 id="sec-">Reducer</h3>
+<div class="outline-text-3" id="text-">
+<div class="org-src-container">
+
+<pre class="src src-swift"><span style="color: #4f97d7; font-weight: bold;">let</span> reducer = Reducer&lt;<span style="color: #4f97d7;">State</span>, Action, Environment&gt;<span style="color: #4f97d7;">()</span> <span style="color: #4f97d7;">{</span>
+    state, action, environment <span style="color: #4f97d7; font-weight: bold;">in</span>
+    <span style="color: #4f97d7; font-weight: bold;">switch</span> action <span style="color: #bc6ec5;">{</span>
+    <span style="color: #4f97d7; font-weight: bold;">case</span> .<span style="color: #bc6ec5; font-weight: bold;">textUpdated</span><span style="color: #2d9574;">(</span><span style="color: #4f97d7; font-weight: bold;">let</span> newText<span style="color: #2d9574;">)</span>:
+        state.<span style="color: #7590db;">currentText</span> = newText
+    <span style="color: #4f97d7; font-weight: bold;">case</span> .<span style="color: #7590db;">buttonTapped</span>:
+        <span style="color: #4f97d7; font-weight: bold;">return</span> environment.<span style="color: #7590db;">dependency</span>.<span style="color: #bc6ec5; font-weight: bold;">someBackgroundWork</span><span style="color: #2d9574;">()</span>
+    <span style="color: #4f97d7; font-weight: bold;">case</span> .<span style="color: #bc6ec5; font-weight: bold;">backgroundWorkFinished</span><span style="color: #2d9574;">(</span><span style="color: #4f97d7; font-weight: bold;">let</span> result<span style="color: #2d9574;">)</span>:
+        state.<span style="color: #7590db;">backendResponse</span> = result
+    <span style="color: #4f97d7; font-weight: bold;">case</span> .<span style="color: #bc6ec5; font-weight: bold;">subviewAction</span><span style="color: #2d9574;">(</span><span style="color: #4f97d7; font-weight: bold;">let</span> id, .<span style="color: #7590db;">someSubviewAction</span><span style="color: #2d9574;">)</span>:
+        <span style="color: #2aa1ae; background-color: #292e34;">// </span><span style="color: #2aa1ae; background-color: #292e34;">Do spmething with subview</span>
+        <span style="color: #4f97d7; font-weight: bold;">break</span>
+    <span style="color: #bc6ec5;">}</span>
+<span style="color: #4f97d7;">}</span>
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-" class="outline-3">
+<h3 id="sec-">View</h3>
+<div class="outline-text-3" id="text-">
+<div class="org-src-container">
+
+<pre class="src src-swift"><span style="color: #4f97d7; font-weight: bold;">struct</span> <span style="color: #bc6ec5; font-weight: bold;">MyView</span>: View <span style="color: #4f97d7;">{</span>
+    <span style="color: #4f97d7; font-weight: bold;">let</span> store: Store&lt;<span style="color: #4f97d7;">State</span>, Action&gt;
+    <span style="color: #4f97d7; font-weight: bold;">var</span> body: <span style="color: #4f97d7; font-weight: bold;">some</span> View <span style="color: #bc6ec5;">{</span>
+        <span style="color: #bc6ec5; font-weight: bold;">WithViewStore</span><span style="color: #2d9574;">(</span><span style="color: #4f97d7; font-weight: bold;">self</span>.<span style="color: #7590db;">store</span><span style="color: #2d9574;">)</span> <span style="color: #2d9574;">{</span> viewStore <span style="color: #4f97d7; font-weight: bold;">in</span>
+            <span style="color: #bc6ec5; font-weight: bold;">Button</span><span style="color: #67b11d;">(</span>viewStore.<span style="color: #4f97d7;">text</span><span style="color: #67b11d;">)</span> <span style="color: #67b11d;">{</span>
+                viewStore.<span style="color: #4f97d7;">send</span><span style="color: #b1951d;">(</span>.<span style="color: #7590db;">buttonTapped</span><span style="color: #b1951d;">)</span>
+            <span style="color: #67b11d;">}</span>
+        <span style="color: #2d9574;">}</span>
+    <span style="color: #bc6ec5;">}</span>
+<span style="color: #4f97d7;">}</span>
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-" class="outline-3">
+<h3 id="sec-">Combination</h3>
+<div class="outline-text-3" id="text-">
+<div class="org-src-container">
+
+<pre class="src src-swift"><span style="color: #4f97d7; font-weight: bold;">let</span> reducer = Reducer&lt;<span style="color: #4f97d7;">State</span>, Action, Environment&gt;.<span style="color: #4f97d7;">combine</span><span style="color: #4f97d7;">(</span>
+  Reducer <span style="color: #bc6ec5;">{</span>
+    state, action, environment <span style="color: #4f97d7; font-weight: bold;">in</span>
+    <span style="color: #4f97d7; font-weight: bold;">switch</span> action <span style="color: #2d9574;">{</span>
+    <span style="color: #4f97d7; font-weight: bold;">case</span> .<span style="color: #bc6ec5; font-weight: bold;">textUpdated</span><span style="color: #67b11d;">(</span><span style="color: #4f97d7; font-weight: bold;">let</span> newText<span style="color: #67b11d;">)</span>:
+        state.<span style="color: #7590db;">currentText</span> = newText
+    <span style="color: #2aa1ae; background-color: #292e34;">// </span><span style="color: #2aa1ae; background-color: #292e34;">...</span>
+    <span style="color: #2d9574;">}</span>,
+    subviewReducer.<span style="color: #bc6ec5; font-weight: bold;">pullback</span><span style="color: #2d9574;">(</span>
+          state: \.<span style="color: #7590db;">subviewState</span>,
+          action: /ViewAction.<span style="color: #7590db;">subviewAction</span>,
+          environment: \.<span style="color: #7590db;">subviewEnvironment</span>
+    <span style="color: #2d9574;">)</span>
+<span style="color: #bc6ec5;">}</span><span style="color: #4f97d7;">)</span>
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-" class="outline-2">
+<h2 id="sec-">Testing</h2>
+<div class="outline-text-2" id="text-">
+</div><div id="outline-container-sec-" class="outline-3">
+<h3 id="sec-">Exhaustive testing with TestStore</h3>
+<div class="outline-text-3" id="text-">
+<ul class="org-ul">
+<li>Use <code>TestStore.assert</code> to run through an event flow of your view
+</li>
+<li>CA forces you to assert every state change and effect
+</li>
+<li>Use <code>TestScheduler</code> to advance queues and test asynchronous code 
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-sec-" class="outline-3">
+<h3 id="sec-">Example</h3>
+<div class="outline-text-3" id="text-">
+<div class="org-src-container">
+
+<pre class="src src-swift">testStore.<span style="color: #4f97d7;">assert</span><span style="color: #4f97d7;">(</span>
+  .<span style="color: #4f97d7;">send</span><span style="color: #bc6ec5;">(</span>.<span style="color: #7590db;">buttonTapped</span><span style="color: #bc6ec5;">)</span> <span style="color: #bc6ec5;">{</span>
+      $0.<span style="color: #7590db;">isEditing</span> = <span style="color: #a45bad;">true</span>
+  <span style="color: #bc6ec5;">}</span>,
+  .<span style="color: #4f97d7;">receive</span><span style="color: #bc6ec5;">(</span>.<span style="color: #7590db;">updateContent</span><span style="color: #bc6ec5;">)</span>,
+  .<span style="color: #4f97d7; font-weight: bold;">do</span> <span style="color: #bc6ec5;">{</span>
+      testQueue.<span style="color: #bc6ec5; font-weight: bold;">advance</span><span style="color: #2d9574;">()</span>
+  <span style="color: #bc6ec5;">}</span>,
+  .<span style="color: #4f97d7;">receive</span><span style="color: #bc6ec5;">(</span>.<span style="color: #bc6ec5; font-weight: bold;">contentReceivedFromAPI</span><span style="color: #2d9574;">(</span><span style="color: #4f97d7; font-weight: bold;">let</span> newContent<span style="color: #2d9574;">)</span><span style="color: #bc6ec5;">)</span> <span style="color: #bc6ec5;">{</span>
+      $0.<span style="color: #7590db;">content</span> = newContent
+      $0.<span style="color: #4f97d7;">description</span> = <span style="color: #2d9574;">"up to date"</span>
+  <span style="color: #bc6ec5;">}</span>
+<span style="color: #4f97d7;">)</span>
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-" class="outline-2">
+<h2 id="sec-">Conclusion</h2>
+<div class="outline-text-2" id="text-">
+</div><div id="outline-container-sec-" class="outline-3">
+<h3 id="sec-">Merits</h3>
+<div class="outline-text-3" id="text-">
+<ul class="org-ul">
+<li>Boilerplate
+</li>
+<li>Very opinionated
+</li>
+<li>Requires a new and unusual style of designing dependencies and testing
+</li>
+<li>Learning curve, initial pitfalls
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-sec-" class="outline-3">
+<h3 id="sec-">Benefits</h3>
+<div class="outline-text-3" id="text-">
+<ul class="org-ul">
+<li>Forces you to
+<ul class="org-ul">
+<li>test extensively
+</li>
+<li>seperate view and logic
+</li>
+<li>seperate side effects from pure functions
+</li>
+</ul>
+</li>
+<li>Amazing composability
+</li>
+<li>Great potential for modularisation
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div></div></div>
+</body>
+</html>

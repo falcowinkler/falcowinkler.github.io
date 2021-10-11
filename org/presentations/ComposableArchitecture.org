@@ -1,0 +1,134 @@
+#+OPTIONS: num:nil toc:nil
+#+REVEAL_ROOT: https://cdn.jsdelivr.net/npm/reveal.js@3.6.0/
+#+REVEAL_TITLE_SLIDE: <h3>%t</h3>
+#+TITLE: The composable architecture
+#+AUTHOR:
+
+* Unidirectional Data Flow
+#+BEGIN_SRC dot :file unidirectional-dataflow.svg :cmdline -Kdot -Tsvg :export results
+  digraph {
+    graph [pad="0.5"; bgcolor="#ffffff00"];
+    node [ shape = rectangle, width = 0.7; fontname="Courier New" ];
+    edge [color=white]; 
+    { rank = same; A }
+    { rank = same; S; V }
+    A [label="Action";style=filled;fillcolor=darkgoldenrod1]
+    S [label="Store";shape=cylinder;style=filled;fillcolor=darkolivegreen3]
+    V [label="View";style=filled;fillcolor=turquoise]
+    R [label="Reducer";shape=oval;style=filled;fillcolor=deepskyblue]
+    R2 [label="Reducer";shape=oval;style=filled;fillcolor=deepskyblue]
+    S -> V [label="State";fontcolor=white;fontname="Courier New"]
+    V -> A
+    A -> S
+    S -> R
+    R -> S
+    R -> R2
+    R2 -> R
+  }
+#+END_SRC
+#+attr_html: :src /images/presentations/unidirectional-dataflow.svg
+#+RESULTS:
+[[file:unidirectional-dataflow.svg]]
+
+* Pointfree
+  https://www.pointfree.co/g
+* Building blocks
+** State, Action and Environment
+#+BEGIN_SRC swift
+  struct State {
+      var currentText: String
+      var subviewStates: IdentifiedArray<SubviewState>
+      var backendResponse: Response
+  }
+  enum Action {
+      case buttonTapped
+      case textUpdated(String)
+      case subviewAction(id: Subview.ID, action: SubviewAction)
+  }
+  struct Environment {
+      let dependency: Dependency
+      let subviewEnvironment: SubviewEnvironment
+  }
+#+END_SRC
+** Reducer
+#+BEGIN_SRC swift
+  let reducer = Reducer<State, Action, Environment>() {
+      state, action, environment in
+      switch action {
+      case .textUpdated(let newText):
+          state.currentText = newText
+      case .buttonTapped:
+          return environment.dependency.someBackgroundWork()
+      case .backgroundWorkFinished(let result):
+          state.backendResponse = result
+      case .subviewAction(let id, .someSubviewAction):
+          // Do spmething with subview
+          break
+      }
+  }
+#+END_SRC
+** View
+#+BEGIN_SRC swift
+  struct MyView: View {
+      let store: Store<State, Action>
+      var body: some View {
+          WithViewStore(self.store) { viewStore in
+              Button(viewStore.text) {
+                  viewStore.send(.buttonTapped)
+              }
+          }
+      }
+  }
+#+END_SRC
+** Combination
+#+BEGIN_SRC swift
+  let reducer = Reducer<State, Action, Environment>.combine(
+    Reducer {
+      state, action, environment in
+      switch action {
+      case .textUpdated(let newText):
+          state.currentText = newText
+      // ...
+      },
+      subviewReducer.pullback(
+            state: \.subviewState,
+            action: /ViewAction.subviewAction,
+            environment: \.subviewEnvironment
+      )
+  })
+#+END_SRC
+* Testing
+** Exhaustive testing with TestStore
+- Use ~TestStore.assert~ to run through an event flow of your view
+- CA forces you to assert every state change and effect
+- Use ~TestScheduler~ to advance queues and test asynchronous code 
+** Example
+#+BEGIN_SRC swift
+  testStore.assert(
+    .send(.buttonTapped) {
+        $0.isEditing = true
+    },
+    .receive(.updateContent),
+    .do {
+        testQueue.advance()
+    },
+    .receive(.contentReceivedFromAPI(let newContent)) {
+        $0.content = newContent
+        $0.description = "up to date"
+    }
+  )
+#+END_SRC
+* Conclusion
+** Merits
+- Boilerplate
+- Very opinionated
+- Requires a new and unusual style of designing dependencies and testing
+- Learning curve, initial pitfalls
+** Benefits
+- Forces you to
+  + test extensively
+  + seperate view and logic
+  + seperate side effects from pure functions
+- Amazing composability
+- Great potential for modularisation
+

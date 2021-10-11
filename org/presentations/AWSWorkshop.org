@@ -1,0 +1,82 @@
+#+LaTeX_HEADER: \usepackage{minted}
+#+OPTIONS: toc:nil
+* The management console
+- Your account does not have any rights, except switching to other roles
+- Use links in ~apps_links~ to switch to roles
+- Use R/O if possible
+- Do changes in code (IAC)
+* Cloud Watch
+** log insights
+- analyse raw logs
+- these will be forwarded to kibana
+- select log group and query, or use predefined query
+#+BEGIN_SRC sql
+  fields @timestamp, @message
+  | sort @timestamp desc
+  | filter not strcontains (@message, "REPORT")
+    and not strcontains (@message, "END RequestId")
+    and not strcontains(@message, "START RequestId")
+  | filter severity = "warn"
+  | limit 20
+#+END_SRC
+** Dashboards
+Inspect response times, status codes, load etc. on preconfigured Views
+** Alarms
+- view alarm history
+- view graphs of metrics
+* Lambda functions
+- You can try out lambda functions in the console
+  + under "Test", specify the json input event
+  + View logs upon completion
+* AWS XRay
+- See request flow through components (only api gateway and lambda)
+- see distributions of requests to paths
+- see which paths throw errors
+* AWS Dev Setup
+- AWS CLI: https://aws.amazon.com/cli/
+- run ~aws configure~ to create your ~~/.aws/credentials~ file.
+* AWS config file
+located at ~~/.aws/config~
+#+ATTR_LATEX: :options frame=single
+#+BEGIN_SRC
+[default]
+region = eu-central-1
+output = json
+
+[profile apps-develop-admin]
+source_profile = default
+region = eu-central-1
+mfa_serial = <your MFA serial from "My security credentials">
+role_arn = arn:aws:iam::792843965017:role/admin
+#+END_SRC
+The region has to be repeated, it is not inherited by source-profile...
+* Deploying flashdeals from the console
+- find the role that is used for deploying flashdeals via IAM
+- Copy the role ARN
+- create a profile
+#+BEGIN_SRC
+[profile apps-develop-deploy-flashdeals]
+source_profile = apps-develop-admin
+region = eu-central-1
+role_arn = <role ARN from IAM>
+#+END_SRC
+run
+#+BEGIN_SRC shell
+./gradlew assemble
+./cloudformation/scripts/deploy_service.sh develop
+#+END_SRC
+* Cloudformation
+- Dashboard, alarms, log groups etc.. everything is IAC
+- E.g. log group, so we can query it in cloudwatch:
+#+BEGIN_SRC yaml
+## LogGroup for lambda functions
+  
+LogGroup:
+  Type: "AWS::Logs::LogGroup"
+  Properties:
+    LogGroupName: !Sub "/aws/lambda/service-${ServiceName}"
+    RetentionInDays: !Ref LogRetentionInDays
+#+END_SRC
+- If you change something in the management console,
+  AWS will detect a drift
+- Cloudformation -> stack -> detect drift

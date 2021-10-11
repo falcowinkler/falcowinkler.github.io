@@ -1,4 +1,4 @@
-yyyyyOriginal source 
+Original source 
 (online-lecture): https://www.youtube.com/watch?v=I8LbkfSSR58&list=PLbgaMIhjbmEnaH_LTkxLI7FMa2HsnawM_&index=2&t=0s
 (book, exercises): https://bartoszmilewski.com/2014/10/28/category-theory-for-programmers-the-preface/
 

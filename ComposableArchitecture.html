@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title>The composable architecture</title>
+<style type="text/css">
+.underline { text-decoration: underline; }
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@3.6.0/css/reveal.css"/>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@3.6.0/css/theme/black.css" id="theme"/>
+
+<!-- If the query includes 'print-pdf', include the PDF print sheet -->
+<script>
+    if( window.location.search.match( /print-pdf/gi ) ) {
+        var link = document.createElement( 'link' );
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = 'https://cdn.jsdelivr.net/npm/reveal.js@3.6.0/css/print/pdf.css';
+        document.getElementsByTagName( 'head' )[0].appendChild( link );
+    }
+</script>
+</head>
+<body>
+<div class="reveal">
+<div class="slides">
+<section id="sec-title-slide">
+<h3>The composable architecture</h3>
+</section>
+
+<section>
+<section id="slide-org9afb9e3">
+<h2 id="org9afb9e3">Unidirectional Data Flow</h2>
+
+<div id="org5d53bea" class="figure">
+<p><object type="image/svg+xml" data="unidirectional-dataflow.svg" class="org-svg" src="/images/presentations/unidirectional-dataflow.svg">
+Sorry, your browser does not support SVG.</object>
+</p>
+</div>
+</section>
+</section>
+<section>
+<section id="slide-orgdcace40">
+<h2 id="orgdcace40">Pointfree</h2>
+<p>
+<a href="https://www.pointfree.co/g">https://www.pointfree.co/g</a>
+</p>
+</section>
+</section>
+<section>
+<section id="slide-org49d2428">
+<h2 id="org49d2428">Building blocks</h2>
+<div class="outline-text-2" id="text-org49d2428">
+</div>
+</section>
+<section id="slide-orgaae5b7a">
+<h3 id="orgaae5b7a">State, Action and Environment</h3>
+<div class="org-src-container">
+
+<pre class="src src-swift"><span style="color: #4f97d7; font-weight: bold;">struct</span> <span style="color: #4f97d7;">State</span> <span style="color: #4f97d7;">{</span>
+    <span style="color: #4f97d7; font-weight: bold;">var</span> currentText: <span style="color: #4f97d7;">String</span>
+    <span style="color: #4f97d7; font-weight: bold;">var</span> subviewStates: IdentifiedArray&lt;SubviewState&gt;
+    <span style="color: #4f97d7; font-weight: bold;">var</span> backendResponse: Response
+<span style="color: #4f97d7;">}</span>
+<span style="color: #4f97d7; font-weight: bold;">enum</span> <span style="color: #bc6ec5; font-weight: bold;">Action</span> <span style="color: #4f97d7;">{</span>
+    <span style="color: #4f97d7; font-weight: bold;">case</span> buttonTapped
+    <span style="color: #4f97d7; font-weight: bold;">case</span> <span style="color: #bc6ec5; font-weight: bold;">textUpdated</span><span style="color: #bc6ec5;">(</span><span style="color: #4f97d7;">String</span><span style="color: #bc6ec5;">)</span>
+    <span style="color: #4f97d7; font-weight: bold;">case</span> <span style="color: #bc6ec5; font-weight: bold;">subviewAction</span><span style="color: #bc6ec5;">(</span>id: Subview.<span style="color: #7590db;">ID</span>, action: SubviewAction<span style="color: #bc6ec5;">)</span>
+<span style="color: #4f97d7;">}</span>
+<span style="color: #4f97d7; font-weight: bold;">struct</span> <span style="color: #bc6ec5; font-weight: bold;">Environment</span> <span style="color: #4f97d7;">{</span>
+    <span style="color: #4f97d7; font-weight: bold;">let</span> dependency: Dependency
+    <span style="color: #4f97d7; font-weight: bold;">let</span> subviewEnvironment: SubviewEnvironment
+<span style="color: #4f97d7;">}</span>
+</pre>
+</div>
+</section>
+<section id="slide-org72e6256">
+<h3 id="org72e6256">Reducer</h3>
+<div class="org-src-container">
+
+<pre class="src src-swift"><span style="color: #4f97d7; font-weight: bold;">let</span> reducer = Reducer&lt;<span style="color: #4f97d7;">State</span>, Action, Environment&gt;<span style="color: #4f97d7;">()</span> <span style="color: #4f97d7;">{</span>
+    state, action, environment <span style="color: #4f97d7; font-weight: bold;">in</span>
+    <span style="color: #4f97d7; font-weight: bold;">switch</span> action <span style="color: #bc6ec5;">{</span>
+    <span style="color: #4f97d7; font-weight: bold;">case</span> .<span style="color: #bc6ec5; font-weight: bold;">textUpdated</span><span style="color: #2d9574;">(</span><span style="color: #4f97d7; font-weight: bold;">let</span> newText<span style="color: #2d9574;">)</span>:
+        state.<span style="color: #7590db;">currentText</span> = newText
+    <span style="color: #4f97d7; font-weight: bold;">case</span> .<span style="color: #7590db;">buttonTapped</span>:
+        <span style="color: #4f97d7; font-weight: bold;">return</span> environment.<span style="color: #7590db;">dependency</span>.<span style="color: #bc6ec5; font-weight: bold;">someBackgroundWork</span><span style="color: #2d9574;">()</span>
+    <span style="color: #4f97d7; font-weight: bold;">case</span> .<span style="color: #bc6ec5; font-weight: bold;">backgroundWorkFinished</span><span style="color: #2d9574;">(</span><span style="color: #4f97d7; font-weight: bold;">let</span> result<span style="color: #2d9574;">)</span>:
+        state.<span style="color: #7590db;">backendResponse</span> = result
+    <span style="color: #4f97d7; font-weight: bold;">case</span> .<span style="color: #bc6ec5; font-weight: bold;">subviewAction</span><span style="color: #2d9574;">(</span><span style="color: #4f97d7; font-weight: bold;">let</span> id, .<span style="color: #7590db;">someSubviewAction</span><span style="color: #2d9574;">)</span>:
+        <span style="color: #2aa1ae; background-color: #292e34;">// </span><span style="color: #2aa1ae; background-color: #292e34;">Do spmething with subview</span>
+        <span style="color: #4f97d7; font-weight: bold;">break</span>
+    <span style="color: #bc6ec5;">}</span>
+<span style="color: #4f97d7;">}</span>
+</pre>
+</div>
+</section>
+<section id="slide-orgc52736f">
+<h3 id="orgc52736f">View</h3>
+<div class="org-src-container">
+
+<pre class="src src-swift"><span style="color: #4f97d7; font-weight: bold;">struct</span> <span style="color: #bc6ec5; font-weight: bold;">MyView</span>: View <span style="color: #4f97d7;">{</span>
+    <span style="color: #4f97d7; font-weight: bold;">let</span> store: Store&lt;<span style="color: #4f97d7;">State</span>, Action&gt;
+    <span style="color: #4f97d7; font-weight: bold;">var</span> body: <span style="color: #4f97d7; font-weight: bold;">some</span> View <span style="color: #bc6ec5;">{</span>
+        <span style="color: #bc6ec5; font-weight: bold;">WithViewStore</span><span style="color: #2d9574;">(</span><span style="color: #4f97d7; font-weight: bold;">self</span>.<span style="color: #7590db;">store</span><span style="color: #2d9574;">)</span> <span style="color: #2d9574;">{</span> viewStore <span style="color: #4f97d7; font-weight: bold;">in</span>
+            <span style="color: #bc6ec5; font-weight: bold;">Button</span><span style="color: #67b11d;">(</span>viewStore.<span style="color: #4f97d7;">text</span><span style="color: #67b11d;">)</span> <span style="color: #67b11d;">{</span>
+                viewStore.<span style="color: #4f97d7;">send</span><span style="color: #b1951d;">(</span>.<span style="color: #7590db;">buttonTapped</span><span style="color: #b1951d;">)</span>
+            <span style="color: #67b11d;">}</span>
+        <span style="color: #2d9574;">}</span>
+    <span style="color: #bc6ec5;">}</span>
+<span style="color: #4f97d7;">}</span>
+</pre>
+</div>
+</section>
+<section id="slide-org85a2fba">
+<h3 id="org85a2fba">Combination</h3>
+<div class="org-src-container">
+
+<pre class="src src-swift"><span style="color: #4f97d7; font-weight: bold;">let</span> reducer = Reducer&lt;<span style="color: #4f97d7;">State</span>, Action, Environment&gt;.<span style="color: #4f97d7;">combine</span><span style="color: #4f97d7;">(</span>
+  Reducer <span style="color: #bc6ec5;">{</span>
+    state, action, environment <span style="color: #4f97d7; font-weight: bold;">in</span>
+    <span style="color: #4f97d7; font-weight: bold;">switch</span> action <span style="color: #2d9574;">{</span>
+    <span style="color: #4f97d7; font-weight: bold;">case</span> .<span style="color: #bc6ec5; font-weight: bold;">textUpdated</span><span style="color: #67b11d;">(</span><span style="color: #4f97d7; font-weight: bold;">let</span> newText<span style="color: #67b11d;">)</span>:
+        state.<span style="color: #7590db;">currentText</span> = newText
+    <span style="color: #2aa1ae; background-color: #292e34;">// </span><span style="color: #2aa1ae; background-color: #292e34;">...</span>
+    <span style="color: #2d9574;">}</span>,
+    subviewReducer.<span style="color: #bc6ec5; font-weight: bold;">pullback</span><span style="color: #2d9574;">(</span>
+          state: \.<span style="color: #7590db;">subviewState</span>,
+          action: /ViewAction.<span style="color: #7590db;">subviewAction</span>,
+          environment: \.<span style="color: #7590db;">subviewEnvironment</span>
+    <span style="color: #2d9574;">)</span>
+<span style="color: #bc6ec5;">}</span><span style="color: #4f97d7;">)</span>
+</pre>
+</div>
+</section>
+</section>
+<section>
+<section id="slide-org30f2f5f">
+<h2 id="org30f2f5f">Testing</h2>
+<div class="outline-text-2" id="text-org30f2f5f">
+</div>
+</section>
+<section id="slide-org5ec2928">
+<h3 id="org5ec2928">Exhaustive testing with TestStore</h3>
+<ul>
+<li>Use <code>TestStore.assert</code> to run through an event flow of your view</li>
+<li>CA forces you to assert every state change and effect</li>
+<li>Use <code>TestScheduler</code> to advance queues and test asynchronous code</li>
+
+</ul>
+</section>
+<section id="slide-orgf84e179">
+<h3 id="orgf84e179">Example</h3>
+<div class="org-src-container">
+
+<pre class="src src-swift">testStore.<span style="color: #4f97d7;">assert</span><span style="color: #4f97d7;">(</span>
+  .<span style="color: #4f97d7;">send</span><span style="color: #bc6ec5;">(</span>.<span style="color: #7590db;">buttonTapped</span><span style="color: #bc6ec5;">)</span> <span style="color: #bc6ec5;">{</span>
+      $0.<span style="color: #7590db;">isEditing</span> = <span style="color: #a45bad;">true</span>
+  <span style="color: #bc6ec5;">}</span>,
+  .<span style="color: #4f97d7;">receive</span><span style="color: #bc6ec5;">(</span>.<span style="color: #7590db;">updateContent</span><span style="color: #bc6ec5;">)</span>,
+  .<span style="color: #4f97d7; font-weight: bold;">do</span> <span style="color: #bc6ec5;">{</span>
+      testQueue.<span style="color: #bc6ec5; font-weight: bold;">advance</span><span style="color: #2d9574;">()</span>
+  <span style="color: #bc6ec5;">}</span>,
+  .<span style="color: #4f97d7;">receive</span><span style="color: #bc6ec5;">(</span>.<span style="color: #bc6ec5; font-weight: bold;">contentReceivedFromAPI</span><span style="color: #2d9574;">(</span><span style="color: #4f97d7; font-weight: bold;">let</span> newContent<span style="color: #2d9574;">)</span><span style="color: #bc6ec5;">)</span> <span style="color: #bc6ec5;">{</span>
+      $0.<span style="color: #7590db;">content</span> = newContent
+      $0.<span style="color: #4f97d7;">description</span> = <span style="color: #2d9574;">"up to date"</span>
+  <span style="color: #bc6ec5;">}</span>
+<span style="color: #4f97d7;">)</span>
+</pre>
+</div>
+</section>
+</section>
+<section>
+<section id="slide-org0e80069">
+<h2 id="org0e80069">Conclusion</h2>
+<div class="outline-text-2" id="text-org0e80069">
+</div>
+</section>
+<section id="slide-orgffaf12c">
+<h3 id="orgffaf12c">Merits</h3>
+<ul>
+<li>Boilerplate</li>
+<li>Very opinionated</li>
+<li>Requires a new and unusual style of designing dependencies and testing</li>
+<li>Learning curve, initial pitfalls</li>
+
+</ul>
+</section>
+<section id="slide-orgb02f6ed">
+<h3 id="orgb02f6ed">Benefits</h3>
+<ul>
+<li>Forces you to
+<ul>
+<li>test extensively</li>
+<li>seperate view and logic</li>
+<li>seperate side effects from pure functions</li>
+
+</ul></li>
+<li>Amazing composability</li>
+<li>Great potential for modularisation</li>
+
+</ul>
+</section>
+</section>
+</div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@3.6.0/lib/js/head.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@3.6.0/js/reveal.js"></script>
+<script>
+// Full list of configuration options available here:
+// https://github.com/hakimel/reveal.js#configuration
+Reveal.initialize({
+
+controls: true,
+progress: true,
+history: false,
+center: true,
+slideNumber: 'c',
+rollingLinks: false,
+keyboard: true,
+mouseWheel: false,
+fragmentInURL: false,
+hashOneBasedIndex: false,
+pdfSeparateFragments: true,
+overview: true,
+
+theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+transition: Reveal.getQueryHash().transition || 'convex', // see README of reveal.js for options
+transitionSpeed: 'default',
+
+// Optional libraries used to extend reveal.js
+dependencies: [
+ { src: 'https://cdn.jsdelivr.net/npm/reveal.js@3.6.0/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+ { src: 'https://cdn.jsdelivr.net/npm/reveal.js@3.6.0/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+ { src: 'https://cdn.jsdelivr.net/npm/reveal.js@3.6.0/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } },
+ { src: 'https://cdn.jsdelivr.net/npm/reveal.js@3.6.0/plugin/search/search.js', async: true, condition: function() { return !!document.body.classList; } },
+ { src: 'https://cdn.jsdelivr.net/npm/reveal.js@3.6.0/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } }]
+
+});
+</script>
+</body>
+</html>
