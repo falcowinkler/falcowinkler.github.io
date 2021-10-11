@@ -7,7 +7,7 @@ falco's website ヾ(＾-＾)ノ
 [[file:python-course/index.org][python for beginners]]
 * presentations
 ** [[https://nextconf.eu/person/falco-winkler/][The art of the deep fake (with Jeremy Abbett)]]
-** [[file:~/Desktop/falcowinkler.github.io/ComposableArchitecture.html][The composable architecture]]    
+** [[./ComposableArchitecture.html][The composable architecture]]
 * other
 *** [[file:reading-notes/index.org][reading notes]]
 
