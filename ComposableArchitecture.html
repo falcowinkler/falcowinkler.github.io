@@ -29,32 +29,33 @@
 </section>
 
 <section>
-<section id="slide-org9afb9e3">
-<h2 id="org9afb9e3">Unidirectional Data Flow</h2>
+<section id="slide-org38231d7">
+<h2 id="org38231d7">Unidirectional Data Flow</h2>
 
-<div id="org5d53bea" class="figure">
+<div id="org3f92e4f" class="figure">
 <p><object type="image/svg+xml" data="unidirectional-dataflow.svg" class="org-svg" src="/images/presentations/unidirectional-dataflow.svg">
 Sorry, your browser does not support SVG.</object>
 </p>
 </div>
+
 </section>
 </section>
 <section>
-<section id="slide-orgdcace40">
-<h2 id="orgdcace40">Pointfree</h2>
+<section id="slide-org095d5cf">
+<h2 id="org095d5cf">Pointfree</h2>
 <p>
-<a href="https://www.pointfree.co/g">https://www.pointfree.co/g</a>
+<a href="https://www.pointfree.co/">https://www.pointfree.co/</a>
 </p>
 </section>
 </section>
 <section>
-<section id="slide-org49d2428">
-<h2 id="org49d2428">Building blocks</h2>
-<div class="outline-text-2" id="text-org49d2428">
+<section id="slide-org927fd2b">
+<h2 id="org927fd2b">Building blocks</h2>
+<div class="outline-text-2" id="text-org927fd2b">
 </div>
 </section>
-<section id="slide-orgaae5b7a">
-<h3 id="orgaae5b7a">State, Action and Environment</h3>
+<section id="slide-org5436030">
+<h3 id="org5436030">State, Action and Environment</h3>
 <div class="org-src-container">
 
 <pre class="src src-swift"><span style="color: #4f97d7; font-weight: bold;">struct</span> <span style="color: #4f97d7;">State</span> <span style="color: #4f97d7;">{</span>
@@ -74,8 +75,8 @@ Sorry, your browser does not support SVG.</object>
 </pre>
 </div>
 </section>
-<section id="slide-org72e6256">
-<h3 id="org72e6256">Reducer</h3>
+<section id="slide-org3114cd7">
+<h3 id="org3114cd7">Reducer</h3>
 <div class="org-src-container">
 
 <pre class="src src-swift"><span style="color: #4f97d7; font-weight: bold;">let</span> reducer = Reducer&lt;<span style="color: #4f97d7;">State</span>, Action, Environment&gt;<span style="color: #4f97d7;">()</span> <span style="color: #4f97d7;">{</span>
@@ -95,8 +96,8 @@ Sorry, your browser does not support SVG.</object>
 </pre>
 </div>
 </section>
-<section id="slide-orgc52736f">
-<h3 id="orgc52736f">View</h3>
+<section id="slide-org7d41b1e">
+<h3 id="org7d41b1e">View</h3>
 <div class="org-src-container">
 
 <pre class="src src-swift"><span style="color: #4f97d7; font-weight: bold;">struct</span> <span style="color: #bc6ec5; font-weight: bold;">MyView</span>: View <span style="color: #4f97d7;">{</span>
@@ -112,8 +113,8 @@ Sorry, your browser does not support SVG.</object>
 </pre>
 </div>
 </section>
-<section id="slide-org85a2fba">
-<h3 id="org85a2fba">Combination</h3>
+<section id="slide-org622a8f4">
+<h3 id="org622a8f4">Combination</h3>
 <div class="org-src-container">
 
 <pre class="src src-swift"><span style="color: #4f97d7; font-weight: bold;">let</span> reducer = Reducer&lt;<span style="color: #4f97d7;">State</span>, Action, Environment&gt;.<span style="color: #4f97d7;">combine</span><span style="color: #4f97d7;">(</span>
@@ -135,13 +136,13 @@ Sorry, your browser does not support SVG.</object>
 </section>
 </section>
 <section>
-<section id="slide-org30f2f5f">
-<h2 id="org30f2f5f">Testing</h2>
-<div class="outline-text-2" id="text-org30f2f5f">
+<section id="slide-orgb399457">
+<h2 id="orgb399457">Testing</h2>
+<div class="outline-text-2" id="text-orgb399457">
 </div>
 </section>
-<section id="slide-org5ec2928">
-<h3 id="org5ec2928">Exhaustive testing with TestStore</h3>
+<section id="slide-org0bb734e">
+<h3 id="org0bb734e">Exhaustive testing with TestStore</h3>
 <ul>
 <li>Use <code>TestStore.assert</code> to run through an event flow of your view</li>
 <li>CA forces you to assert every state change and effect</li>
@@ -149,8 +150,8 @@ Sorry, your browser does not support SVG.</object>
 
 </ul>
 </section>
-<section id="slide-orgf84e179">
-<h3 id="orgf84e179">Example</h3>
+<section id="slide-orgd2c71a5">
+<h3 id="orgd2c71a5">Example</h3>
 <div class="org-src-container">
 
 <pre class="src src-swift">testStore.<span style="color: #4f97d7;">assert</span><span style="color: #4f97d7;">(</span>
@@ -171,13 +172,13 @@ Sorry, your browser does not support SVG.</object>
 </section>
 </section>
 <section>
-<section id="slide-org0e80069">
-<h2 id="org0e80069">Conclusion</h2>
-<div class="outline-text-2" id="text-org0e80069">
+<section id="slide-org0896e97">
+<h2 id="org0896e97">Conclusion</h2>
+<div class="outline-text-2" id="text-org0896e97">
 </div>
 </section>
-<section id="slide-orgffaf12c">
-<h3 id="orgffaf12c">Merits</h3>
+<section id="slide-orgbc3c286">
+<h3 id="orgbc3c286">Merits</h3>
 <ul>
 <li>Boilerplate</li>
 <li>Very opinionated</li>
@@ -186,8 +187,8 @@ Sorry, your browser does not support SVG.</object>
 
 </ul>
 </section>
-<section id="slide-orgb02f6ed">
-<h3 id="orgb02f6ed">Benefits</h3>
+<section id="slide-org03a376c">
+<h3 id="org03a376c">Benefits</h3>
 <ul>
 <li>Forces you to
 <ul>

@@ -31,7 +31,7 @@
 [[file:unidirectional-dataflow.svg]]
 
 * Pointfree
-  https://www.pointfree.co/g
+  https://www.pointfree.co/
 * Building blocks
 ** State, Action and Environment
 #+BEGIN_SRC swift

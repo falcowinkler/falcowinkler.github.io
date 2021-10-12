@@ -870,3 +870,10 @@ If you have to instantiate ~Tagged~ fields yourself, it makes sense to use
   - Inject DispatchQueue using ~AnySchedulerOf<DispatchQueue>~ and use ~TestScheduler~ in the tests.
     You can then just ~advance~ your scheduler and don't have to wait.
   
+
+* A Tour of Isowords: Part 1
+Describes the hyper-modularization, domain modelling and testing strategy for isowords.
+* A Tour of Isowords: Part 2
+Demonstrates how the composable architecture can be used
+to abstract away seperate features like app clips and app store videos
+on top of the existing game logic, without littering it with additional code.
