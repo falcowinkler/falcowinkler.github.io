@@ -644,7 +644,7 @@ Five distinct steps of building trust:
    9. I'm not sure if this is on point but it occurs to me that...
    10. I may not have understood this right, so bare with me...
    11. I don't know exactly how to say this, so i hope you help me, when i wonder..
-   12. I hope i am not inapprobiate by bringing this up, but...
+   12. I hope i am not inappropriate by bringing this up, but...
    13. I hope you forgive my for not knowing quite how to say this, but...
 * Envisioning an alternate reality
   /Jointly/ imagine what the end-result should look like,
@@ -841,7 +841,6 @@ How can we regognize and deal with the various type of clients?
    Are you consistently missing out? It could be a personal issue, or a label for you.
    Ask for a private meeting, assume that you have a label. Use naming and claiming, ask to put them in your shoes.
    
-
 * The role of trust in business development
 Many professionals are terrible negotiators,
 because selling has a negative connotation (or stereotype).
@@ -868,4 +867,112 @@ The goal is still to help the client. We must be willing to
 - Navigate the client's buying system
 - Invest extra time in developing a lead
 - View client lead streams strategically (quarterly, rather than weekly).
+- Digitalisation has driven sales to short-term transactionality.
+  This leads to: Clients are thirsty for interaction with high-trust business developers.
+** Integrating sales and services
+Usually seperated. Demonstrate (don't tell) relevant talent and connections.
+After all we want to help the client, also by opening relevant business opportunities.
+An altitude of toleration towards clients harms the sales perspective.
+Get over negative feelings about selling by making it synonymous with client service.
+** Service as selling
+Why can't our services speak for themselves?
+Because we need to get /hired/ for work first.
+Show what it feels like to work together.
+Use first (interview) time to get to work immediately.
+Dangerous misconception: Don't share your knowledge until the client pays.
+** Selling as service
+If something bad is happening at a client, it is our obligation to point it out.
+-> If there's an opportunity for improvement, it is the same.
+Not pointing out these possibilities would be unprofessional!
+It comes down to: /To be professional, have the best interest of the client at heart./
+** Digitalisation
+- Often leads to "canned" pitches for clients that seek specialised services.
+- Personalised aspect is lost.
+- But it can be used to the advantage, if we find out more information about the client beforehand, to personalise
+  pitches and first impressions
 
+* Building trust on the current assignment
+Factors that increase a clients perceived value of service and promote trust:
+1. Understanding
+2. Sense of control
+3. Sense of progress
+4. Access and availability
+5. Responsiveness
+6. Reliability
+7. Appreciation
+8. Sense of importance
+9. Respect
+Tactics to improve on these factors:
+1. Involve the client through
+   - Brainstorming
+   - Giving the client tasks to perform, and options to choose
+   - Keep the client informed on what is happening when and why
+2. Making reports and presentations more useful and easier to pass on by
+   - Asking about the format and structure
+   - Provide a summary
+   - Have the content reviewed
+3. Helping the client use what we deliver
+   - Coaching the client in dealing with others
+   - Empower the client with reasoning tactics
+   - Advising on tactics, and politics
+   - Writing progress summaries
+4. Making meetings more valuable
+   - Establish agenda
+   - Send information in advance
+   - Researching atendees
+   - Establishing next steps
+   - Create summaries of important meetings
+   - Check back if goals were met
+5. Being accessible and available
+   - Inform unavailability upfront
+   - Getting clients comfortable with other personell, so they can fall back to them
+
+The top 5 things that can /destroy/ trust at the client.
+1. Compromising the confidences (secrets) of an individual.
+2. Not picking up the sense that a client may have questions or unscertainties.
+3. Going around or behind the client to get something done, even if it is very important.
+4. Engaging in "I am sometimes wrong, but i am never in doubt." Behaviour.
+5. Blowing a deadline without warning that's important to the client.
+
+* Re-earning trust outside of a current assignment
+Emphasise the investment of the advisors non-reimbursed time to build the client releationship and learn about them.
+Draw up relationship plans instead of sales plans.
+** What clients want?
+Suggestions from clients:
+1. Make an impact on our business. Don't just be visible.
+2. Invest your time on preliminary work in new areas.
+3. Spend more time helping us think and develop strategies.
+4. Lead our thinking.
+5. Jump on any new pieces of information we have. Ask for data.
+6. Schedule some out-of-office meetings together. Join for brainstorming sessions.
+7. Make an extra effort to understand how our business works.
+8. Help us see how we compare to others.
+9. Tell us why our competitors are doing what they are doing.
+* The case of cross-selling
+"Selling within an organization that is already to some level, a client."
+Problematic: Trust is personal, not institutional, and hardly transferrable.
+** Types of cross-selling
+1. Expand:
+   New service is offered to a current client individual.
+   "Handing over the business card" scenario is problematic, since
+   it feels like the advisor is asking a favor and setting people up.
+   Extensive trust building and to demonstrate that one has the best interest
+   of all parties at heart, are key in this type.
+2. Broaden:
+   Existing service is offered to a new person in the client organization.
+   "I just need an intro" scenario is problematic if it seems like the client is taken for granted.
+   No risk is taken from the advisors side, and not much is said about the client side.
+   -> Share an honest view of how the interests of client and advisor are intertwined.
+   "What's in it for me" question must be answered for the client.
+3. Diversify:
+   New service to a new person.
+   Problematic since there are 4 relationships and 4 parties involved.
+   Start by talking to the internal expert. Then talk to the client and further define the problem.
+   The real meeting will be much less problematic if it's clear that
+   - all parties invested serious time
+   - the problem is well understood
+   - the expertise is real and known
+   - everyones interest is genuine
+   - everyone knows each other
+
+It helps to name and claim unspoken tricky emotions.

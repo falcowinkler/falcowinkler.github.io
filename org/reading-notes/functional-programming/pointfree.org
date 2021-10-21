@@ -690,7 +690,7 @@ This might change in the future for variadic generics.
        ))
    #+END_SRC
 
-* Tagged
+* TODO Tagged
 We can use `Decodable` and `Encodable` to and from json.
 Sometimes it can be desirable to wrap your datatypes with a custom type,
 e.g. use an ~Email~ struct instead of just ~String~.
@@ -773,6 +773,86 @@ If you have to instantiate ~Tagged~ fields yourself, it makes sense to use
          typealias Age = Tagged<AgeTag, Int>
       #+END_SRC
    4. 
+
+
+* TODO Dependency Injection made easy
+Protocol oriented programming for DI is the most common way in swift.
+They come with a lot of boilerplate.
+Another solution is to use staticly defined environments that you can swap out at test time:
+#+BEGIN_SRC swift
+struct Environment {
+  var analytics = Analytics()
+  var date: () -> Date = Date.init
+  var gitHub = GitHub()
+}
+
+var Current = Environment()
+#+END_SRC
+
+The test setup then looks somewhat like this:
+
+#+BEGIN_SRC swift
+  // Define mock dependencies statically
+  extension GitHub {
+    let static mock = GitHub(fetchRepos: { callback in
+      callback(.success([
+        GitHub.Repo(
+          archived: false,
+          description: "Blob's blog",
+          htmlUrl: URL("https://www.pointfree.co",
+          name: "Bloblog",
+          pushedAt: Date(timeIntervalSinceReferenceData: 547152021)
+        )
+      ])
+    })
+  }
+  
+  extension Environment {
+      static let mock = Environment(
+        analytics: .mock,
+        date: { Date(timeIntervalSinceReferenceDate: 557152051) },
+        gitHub: .mock
+      )
+  }
+Current = .mock
+// Do tests
+#+END_SRC
+Unfortunately no example of some clean test suite is provided.
+Downsides: it will keep you from parallelizing tests,
+and won't force you to overwrite dependencies with mocks during tests.
+** TODO Exercises
+
+
+* Dependency Injection Made Comfortable
+Nothing much new other than how to easily build mock structures with overture
+#+BEGIN_SRC swift
+  extension Array where Element == GitHub.Repo {
+    static let mock = [
+      GitHub.Repo.mock,
+      with(.mock, concat(
+        set(\.name, "Nomadic Blob"),
+        set(\.description, "Where in the world is Blob?"),
+        set(\GitHub.Repo.pushedAt, .mock - 60*60*24*2)
+      ))
+    ]
+    static func mocks(_ count: Int) -> Array {
+    return (1...count).map { n in
+      with(.mock, concat(
+        over(\.name) { "#\(n): \($0)" },
+        set(\GitHub.Repo.pushedAt, .mock - 60*60*24*TimeInterval(n))
+      ))
+    }
+  }
+  }
+#+END_SRC
+** Exercises
+   No exercises
+
+
+* Dependency Injection Made Composable
+
+
+  
 * A Tour of the Composable Architecture: Part 1
   - Cohesive package to solve some problems that Swift UI has
   - Opinionated
@@ -869,8 +949,8 @@ If you have to instantiate ~Tagged~ fields yourself, it makes sense to use
   - don't use ~XCTWaiter~ and the like
   - Inject DispatchQueue using ~AnySchedulerOf<DispatchQueue>~ and use ~TestScheduler~ in the tests.
     You can then just ~advance~ your scheduler and don't have to wait.
-  
 
+ 
 * A Tour of Isowords: Part 1
 Describes the hyper-modularization, domain modelling and testing strategy for isowords.
 * A Tour of Isowords: Part 2

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <title></title>
-<!-- 2021-10-12 Tue 18:25 -->
+<!-- 2021-10-21 Thu 17:57 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="generator" content="Org-mode">
@@ -269,12 +269,23 @@ MathJax.Hub.Config({
 <li><a href="#sec-12-1">12.1. Exercises</a></li>
 </ul>
 </li>
-<li><a href="#sec-13">13. A Tour of the Composable Architecture: Part 1</a></li>
-<li><a href="#sec-14">14. A Tour of the Composable Architecture: Part 2</a></li>
-<li><a href="#sec-15">15. A Tour of the Composable Architecture: Part 3</a></li>
-<li><a href="#sec-16">16. A Tour of the Composable Architecture: Part 4</a></li>
-<li><a href="#sec-17">17. A Tour of Isowords: Part 1</a></li>
-<li><a href="#sec-18">18. A Tour of Isowords: Part 2</a></li>
+<li><a href="#sec-13">13. Dependency Injection made easy</a>
+<ul class="nav">
+<li><a href="#sec-13-1">13.1. Exercises</a></li>
+</ul>
+</li>
+<li><a href="#sec-14">14. Dependency Injection Made Comfortable</a>
+<ul class="nav">
+<li><a href="#sec-14-1">14.1. Exercises</a></li>
+</ul>
+</li>
+<li><a href="#sec-15">15. Dependency Injection Made Composable</a></li>
+<li><a href="#sec-16">16. A Tour of the Composable Architecture: Part 1</a></li>
+<li><a href="#sec-17">17. A Tour of the Composable Architecture: Part 2</a></li>
+<li><a href="#sec-18">18. A Tour of the Composable Architecture: Part 3</a></li>
+<li><a href="#sec-19">19. A Tour of the Composable Architecture: Part 4</a></li>
+<li><a href="#sec-20">20. A Tour of Isowords: Part 1</a></li>
+<li><a href="#sec-21">21. A Tour of Isowords: Part 2</a></li>
 </ul>
 </div>
 </nav>
@@ -1312,7 +1323,7 @@ This might change in the future for variadic generics.
 </div>
 
 <div id="outline-container-sec-12" class="outline-2">
-<h2 id="sec-12"><span class="section-number-2">12</span> Tagged</h2>
+<h2 id="sec-12"><span class="section-number-2">12</span> <span class="label label-primary TODO">TODO</span> Tagged</h2>
 <div class="outline-text-2" id="text-12">
 <p>
 We can use `Decodable` and `Encodable` to and from json.
@@ -1428,9 +1439,121 @@ users.<span style="color: #4f97d7;">sorted</span><span style="color: #4f97d7;">(
 </div>
 </div>
 </div>
+
+
 <div id="outline-container-sec-13" class="outline-2">
-<h2 id="sec-13"><span class="section-number-2">13</span> A Tour of the Composable Architecture: Part 1</h2>
+<h2 id="sec-13"><span class="section-number-2">13</span> <span class="label label-primary TODO">TODO</span> Dependency Injection made easy</h2>
 <div class="outline-text-2" id="text-13">
+<p>
+Protocol oriented programming for DI is the most common way in swift.
+They come with a lot of boilerplate.
+Another solution is to use staticly defined environments that you can swap out at test time:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-swift"><span style="color: #4f97d7; font-weight: bold;">struct</span> <span style="color: #bc6ec5; font-weight: bold;">Environment</span> <span style="color: #4f97d7;">{</span>
+  <span style="color: #4f97d7; font-weight: bold;">var</span> analytics = <span style="color: #bc6ec5; font-weight: bold;">Analytics</span><span style="color: #bc6ec5;">()</span>
+  <span style="color: #4f97d7; font-weight: bold;">var</span> date: <span style="color: #bc6ec5;">()</span> -&gt; <span style="color: #4f97d7;">Date</span> = <span style="color: #4f97d7;">Date</span>.<span style="color: #4f97d7; font-weight: bold;">init</span>
+  <span style="color: #4f97d7; font-weight: bold;">var</span> gitHub = <span style="color: #bc6ec5; font-weight: bold;">GitHub</span><span style="color: #bc6ec5;">()</span>
+<span style="color: #4f97d7;">}</span>
+
+<span style="color: #4f97d7; font-weight: bold;">var</span> Current = <span style="color: #bc6ec5; font-weight: bold;">Environment</span><span style="color: #4f97d7;">()</span>
+</pre>
+</div>
+
+<p>
+The test setup then looks somewhat like this:
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-swift">  <span style="color: #2aa1ae; background-color: #292e34;">// </span><span style="color: #2aa1ae; background-color: #292e34;">Define mock dependencies statically</span>
+  <span style="color: #4f97d7; font-weight: bold;">extension</span> <span style="color: #bc6ec5; font-weight: bold;">GitHub</span> <span style="color: #4f97d7;">{</span>
+    <span style="color: #4f97d7; font-weight: bold;">let</span> <span style="color: #4f97d7; font-weight: bold;">static</span> mock = <span style="color: #bc6ec5; font-weight: bold;">GitHub</span><span style="color: #bc6ec5;">(</span>fetchRepos: <span style="color: #2d9574;">{</span> callback <span style="color: #4f97d7; font-weight: bold;">in</span>
+      <span style="color: #bc6ec5; font-weight: bold;">callback</span><span style="color: #67b11d;">(</span>.<span style="color: #4f97d7;">success</span><span style="color: #b1951d;">(</span><span style="color: #4f97d7;">[</span>
+        GitHub.<span style="color: #bc6ec5; font-weight: bold;">Repo</span><span style="color: #bc6ec5;">(</span>
+          archived: <span style="color: #a45bad;">false</span>,
+          description: <span style="color: #2d9574;">"Blob's blog"</span>,
+          htmlUrl: <span style="color: #4f97d7;">URL</span><span style="color: #2d9574;">(</span><span style="color: #2d9574;">"https://www.pointfree.co"</span>,
+          name: <span style="color: #2d9574;">"Bloblog"</span>,
+          pushedAt: <span style="color: #4f97d7;">Date</span><span style="color: #9cb6ad;">(</span>timeIntervalSinceReferenceData: <span style="color: #a45bad;">547152021</span><span style="color: #9cb6ad;">)</span>
+        <span style="color: #2d9574;">)</span>
+      <span style="color: #e0211d; text-decoration: overline;">])</span>
+    <span style="color: #e0211d; text-decoration: overline;">}</span><span style="color: #67b11d;">)</span>
+  <span style="color: #2d9574;">}</span>
+
+  <span style="color: #4f97d7; font-weight: bold;">extension</span> <span style="color: #bc6ec5; font-weight: bold;">Environment</span> <span style="color: #2d9574;">{</span>
+      <span style="color: #4f97d7; font-weight: bold;">static</span> <span style="color: #4f97d7; font-weight: bold;">let</span> mock = <span style="color: #bc6ec5; font-weight: bold;">Environment</span><span style="color: #67b11d;">(</span>
+        analytics: .<span style="color: #7590db;">mock</span>,
+        date: <span style="color: #b1951d;">{</span> <span style="color: #4f97d7;">Date</span><span style="color: #4f97d7;">(</span>timeIntervalSinceReferenceDate: <span style="color: #a45bad;">557152051</span><span style="color: #4f97d7;">)</span> <span style="color: #b1951d;">}</span>,
+        gitHub: .<span style="color: #7590db;">mock</span>
+      <span style="color: #67b11d;">)</span>
+  <span style="color: #2d9574;">}</span>
+Current = .<span style="color: #7590db;">mock</span>
+<span style="color: #2aa1ae; background-color: #292e34;">// </span><span style="color: #2aa1ae; background-color: #292e34;">Do tests</span>
+</pre>
+</div>
+<p>
+Unfortunately no example of some clean test suite is provided.
+Downsides: it will keep you from parallelizing tests,
+and won't force you to overwrite dependencies with mocks during tests.
+</p>
+</div>
+<div id="outline-container-sec-13-1" class="outline-3">
+<h3 id="sec-13-1"><span class="section-number-3">13.1</span> <span class="label label-primary TODO">TODO</span> Exercises</h3>
+</div>
+</div>
+
+
+<div id="outline-container-sec-14" class="outline-2">
+<h2 id="sec-14"><span class="section-number-2">14</span> Dependency Injection Made Comfortable</h2>
+<div class="outline-text-2" id="text-14">
+<p>
+Nothing much new other than how to easily build mock structures with overture
+</p>
+<div class="org-src-container">
+
+<pre class="src src-swift"><span style="color: #4f97d7; font-weight: bold;">extension</span> <span style="color: #4f97d7;">Array</span> <span style="color: #4f97d7; font-weight: bold;">where</span> <span style="color: #4f97d7;">Element</span> == GitHub.<span style="color: #7590db;">Repo</span> <span style="color: #4f97d7;">{</span>
+  <span style="color: #4f97d7; font-weight: bold;">static</span> <span style="color: #4f97d7; font-weight: bold;">let</span> mock = <span style="color: #bc6ec5;">[</span>
+    GitHub.<span style="color: #7590db;">Repo</span>.<span style="color: #7590db;">mock</span>,
+    <span style="color: #bc6ec5; font-weight: bold;">with</span><span style="color: #2d9574;">(</span>.<span style="color: #7590db;">mock</span>, <span style="color: #bc6ec5; font-weight: bold;">concat</span><span style="color: #67b11d;">(</span>
+      <span style="color: #4f97d7; font-weight: bold;">set</span><span style="color: #b1951d;">(</span>\.<span style="color: #4f97d7;">name</span>, <span style="color: #2d9574;">"Nomadic Blob"</span><span style="color: #b1951d;">)</span>,
+      <span style="color: #4f97d7; font-weight: bold;">set</span><span style="color: #b1951d;">(</span>\.<span style="color: #4f97d7;">description</span>, <span style="color: #2d9574;">"Where in the world is Blob?"</span><span style="color: #b1951d;">)</span>,
+      <span style="color: #4f97d7; font-weight: bold;">set</span><span style="color: #b1951d;">(</span>\GitHub.<span style="color: #7590db;">Repo</span>.<span style="color: #7590db;">pushedAt</span>, .<span style="color: #7590db;">mock</span> - <span style="color: #a45bad;">60</span>*<span style="color: #a45bad;">60</span>*<span style="color: #a45bad;">24</span>*<span style="color: #a45bad;">2</span><span style="color: #b1951d;">)</span>
+    <span style="color: #67b11d;">)</span><span style="color: #2d9574;">)</span>
+  <span style="color: #bc6ec5;">]</span>
+  <span style="color: #4f97d7; font-weight: bold;">static</span> <span style="color: #4f97d7; font-weight: bold;">func</span> <span style="color: #bc6ec5; font-weight: bold;">mocks</span><span style="color: #bc6ec5;">(</span>_ count: <span style="color: #4f97d7;">Int</span><span style="color: #bc6ec5;">)</span> -&gt; <span style="color: #4f97d7;">Array</span> <span style="color: #bc6ec5;">{</span>
+  <span style="color: #4f97d7; font-weight: bold;">return</span> <span style="color: #2d9574;">(</span><span style="color: #a45bad;">1</span>...<span style="color: #4f97d7;">count</span><span style="color: #2d9574;">)</span>.<span style="color: #4f97d7;">map</span> <span style="color: #2d9574;">{</span> n <span style="color: #4f97d7; font-weight: bold;">in</span>
+    <span style="color: #bc6ec5; font-weight: bold;">with</span><span style="color: #67b11d;">(</span>.<span style="color: #7590db;">mock</span>, <span style="color: #bc6ec5; font-weight: bold;">concat</span><span style="color: #b1951d;">(</span>
+      <span style="color: #bc6ec5; font-weight: bold;">over</span><span style="color: #4f97d7;">(</span>\.<span style="color: #4f97d7;">name</span><span style="color: #4f97d7;">)</span> <span style="color: #4f97d7;">{</span> <span style="color: #2d9574;">"#\(</span>n<span style="color: #2d9574;">): \(</span>$0<span style="color: #2d9574;">)"</span> <span style="color: #4f97d7;">}</span>,
+      <span style="color: #4f97d7; font-weight: bold;">set</span><span style="color: #4f97d7;">(</span>\GitHub.<span style="color: #7590db;">Repo</span>.<span style="color: #7590db;">pushedAt</span>, .<span style="color: #7590db;">mock</span> - <span style="color: #a45bad;">60</span>*<span style="color: #a45bad;">60</span>*<span style="color: #a45bad;">24</span>*<span style="color: #4f97d7;">TimeInterval</span><span style="color: #bc6ec5;">(</span>n<span style="color: #bc6ec5;">)</span><span style="color: #4f97d7;">)</span>
+    <span style="color: #b1951d;">)</span><span style="color: #67b11d;">)</span>
+  <span style="color: #2d9574;">}</span>
+<span style="color: #bc6ec5;">}</span>
+<span style="color: #4f97d7;">}</span>
+</pre>
+</div>
+</div>
+<div id="outline-container-sec-14-1" class="outline-3">
+<h3 id="sec-14-1"><span class="section-number-3">14.1</span> Exercises</h3>
+<div class="outline-text-3" id="text-14-1">
+<p>
+No exercises
+</p>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-sec-15" class="outline-2">
+<h2 id="sec-15"><span class="section-number-2">15</span> Dependency Injection Made Composable</h2>
+</div>
+
+
+
+<div id="outline-container-sec-16" class="outline-2">
+<h2 id="sec-16"><span class="section-number-2">16</span> A Tour of the Composable Architecture: Part 1</h2>
+<div class="outline-text-2" id="text-16">
 <ul class="org-ul">
 <li>Cohesive package to solve some problems that Swift UI has
 </li>
@@ -1465,9 +1588,9 @@ For a list of states, there is a lot of index juggling in bare-metal CA
 </p>
 </div>
 </div>
-<div id="outline-container-sec-14" class="outline-2">
-<h2 id="sec-14"><span class="section-number-2">14</span> A Tour of the Composable Architecture: Part 2</h2>
-<div class="outline-text-2" id="text-14">
+<div id="outline-container-sec-17" class="outline-2">
+<h2 id="sec-17"><span class="section-number-2">17</span> A Tour of the Composable Architecture: Part 2</h2>
+<div class="outline-text-2" id="text-17">
 <p>
 We can get rid of index juggling with <code>ForEachStore</code>
 On the reducer side we need to call forEach that supplies
@@ -1509,9 +1632,9 @@ Then extracting the subviews into their seperate views, the code becomes very sh
 </p>
 </div>
 </div>
-<div id="outline-container-sec-15" class="outline-2">
-<h2 id="sec-15"><span class="section-number-2">15</span> A Tour of the Composable Architecture: Part 3</h2>
-<div class="outline-text-2" id="text-15">
+<div id="outline-container-sec-18" class="outline-2">
+<h2 id="sec-18"><span class="section-number-2">18</span> A Tour of the Composable Architecture: Part 3</h2>
+<div class="outline-text-2" id="text-18">
 <p>
 Exhaustive tests with <code>TestStore</code>.
 <span class="underline">Basic workflow:</span>
@@ -1583,9 +1706,9 @@ Some more wisdom:
 </ul>
 </div>
 </div>
-<div id="outline-container-sec-16" class="outline-2">
-<h2 id="sec-16"><span class="section-number-2">16</span> A Tour of the Composable Architecture: Part 4</h2>
-<div class="outline-text-2" id="text-16">
+<div id="outline-container-sec-19" class="outline-2">
+<h2 id="sec-19"><span class="section-number-2">19</span> A Tour of the Composable Architecture: Part 4</h2>
+<div class="outline-text-2" id="text-19">
 <p>
 How to test async effects?
 Test helper will complain if some effects are still running.
@@ -1601,17 +1724,17 @@ You can then just <code>advance</code> your scheduler and don't have to wait.
 </div>
 
 
-<div id="outline-container-sec-17" class="outline-2">
-<h2 id="sec-17"><span class="section-number-2">17</span> A Tour of Isowords: Part 1</h2>
-<div class="outline-text-2" id="text-17">
+<div id="outline-container-sec-20" class="outline-2">
+<h2 id="sec-20"><span class="section-number-2">20</span> A Tour of Isowords: Part 1</h2>
+<div class="outline-text-2" id="text-20">
 <p>
 Describes the hyper-modularization, domain modelling and testing strategy for isowords.
 </p>
 </div>
 </div>
-<div id="outline-container-sec-18" class="outline-2">
-<h2 id="sec-18"><span class="section-number-2">18</span> A Tour of Isowords: Part 2</h2>
-<div class="outline-text-2" id="text-18">
+<div id="outline-container-sec-21" class="outline-2">
+<h2 id="sec-21"><span class="section-number-2">21</span> A Tour of Isowords: Part 2</h2>
+<div class="outline-text-2" id="text-21">
 <p>
 Demonstrates how the composable architecture can be used
 to abstract away seperate features like app clips and app store videos
