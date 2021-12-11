@@ -950,7 +950,129 @@ Nothing much new other than how to easily build mock structures with overture
   - Inject DispatchQueue using ~AnySchedulerOf<DispatchQueue>~ and use ~TestScheduler~ in the tests.
     You can then just ~advance~ your scheduler and don't have to wait.
 
- 
+
+* Designing Dependenciecs: The problem
+This episode introduces the already common approach of abstracting away dependencies
+via a protocol. It then builds the case for scrapping the protocol.
+(No exercises)
+* Designing Dependencies: Modularization
+Dependencies can now easily split into modules, and we can even seperate implementation and interface if needed.
+(No exercises)
+* Designing Dependencies: Reachability
+Discusses how to modularise and style a wrapper library around a system API (~NWPathMonitor~).
+(No exercises)
+* Designing Dependencies: Core Location
+Interesting showcase with a more complicated dependency including delegates and ~NSObject~ inheritance.
+Keeping a reference to the delegate after the initializer function exits is done via ~receiveEvents~
+
+#+BEGIN_SRC swift
+var delegate: Delegate? = Delegate(subject: subject)
+locationManager.delegate = delegate
+return Self(
+  delegate: delegate
+    .handleEvents(receiveCancel: { delegate = nil }
+    .eraseToAnyPublisher()
+  ...
+)
+#+END_SRC
+* Designing Dependencies: The point
+This episode demonstrates how freely you can now play with your dependencies.
+With this approach you can
+- write tests with strong guarantees, e.g. that certain
+API's are not called.
+- Create transformations/setters on dependencies
+- Create decorations on dependencies, such as "every effect is delayed by 1 second"
+- Create a mix of dependencies, such as a live core location client that
+  only has the final location result hardcoded
+- Write a debug screen that arbitrarily taps into your environment
+
+* Redacted SwiftUI: The problem
+The problem is that it's hard to seperate concerns in vanilla swiftui.
+When you redact a view you don't want any interaction to happen,
+hence you basically want to swap out your business logic with no-ops.
+In a traditional swiftui setup, you'd have to sprinkle your code all over with early exits to achieve that.
+* Redacted SwiftUI: The Composable Architecture
+The idea is simple: In CA, Just swap in a Store that has some placeholder data, no reducer and no environment while loading.
+You can use the ~.empty~ extension of Reducer for a reducer that doesn't care about any actions.
+And a ~void~ env because that's not gonna be used anyway.
+* The Point of Redacted SwiftUI: Part 1
+- If you have a subview that you ~unredact~ within your bigger view,
+you can selectively add back some logic into your empty reducer
+- You cann call out to another reducer like this
+#+BEGIN_SRC swift
+appReducer.run(&state, &action, &environment)
+#+END_SRC
+** Exercises
+   1. My solution:
+#+BEGIN_SRC swift
+    func applying<T: View, I: View>(view: I, @ViewBuilder block: (I) -> T) -> T {
+        block(view)
+    }
+#+END_SRC
+      The reference solution uses an extension:
+#+BEGIN_SRC swift
+extension View {
+  func applying<V: View>(
+    @ViewBuilder _ builder: @escaping (Self) -> V
+  ) -> some View {
+    builder(self)
+  }
+}
+#+END_SRC
+   2. 
+
+
+* Better Test Dependencies: Exhaustivity
+- Make those functions/dependencies fail that are not used in the test,
+e.g. by providing an unimplemented helper. For example
+#+BEGIN_SRC swift
+extension UUID {
+  static let unimplemented: () -> UUID = { fatalError() }
+}
+#+END_SRC
+This will assert which dependencies are not used, strengthening your tests.
+Also if you add more usage of the dependencies later, the tests will tell you exactly where to update.
+- Record function arguments by passing closures like so:
+#+BEGIN_SRC swift
+extension AnalyticsClient {
+  static func test(onEvent: @escaping (Event) -> Void) -> Self {
+    Self(
+      track: { event in
+        .fireAndForget {
+          onEvent(event)
+        }
+      }
+    )
+  }
+}
+#+END_SRC
+** Exercises
+1. An assertion helper that asserts the events and removes all of them
+#+BEGIN_SRC swift
+  func assertTracked(events: inout [AnalyticsClient.Event]) {
+    XCTAssertEqual(events, self.events)
+    events.removeAll()
+  }
+#+END_SRC  
+(But why not re-initialise the captured data every time?)
+* Better Test Dependencies: Failability
+- use ~XCTDynamicTestOverlay~
+- create a failing dependency "constructor'
+#+BEGIN_SRC swift
+static let failing = Self(
+        execute: { language in
+            XCTFail("MyService.execute(\(language)) not implemented")
+            return SomeDummyData()
+        }
+    )
+#+END_SRC
+it will not crash the testsuite. CA can also better point out where the error is.
+There is a neat failing `Effect` in CA:
+~Effect.failing(prefix: String)~
+
+
+
+
 * A Tour of Isowords: Part 1
 Describes the hyper-modularization, domain modelling and testing strategy for isowords.
 * A Tour of Isowords: Part 2
