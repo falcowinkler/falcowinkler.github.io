@@ -1,4 +1,7 @@
 # Trusted Advisor
+
+[[https://g.co/kgs/zNAxxa][The trusted advisor]]
+
 * The book
    - "trusted advisor" Well known term that was already widely used
    - First book 20 years before this, but very different because of profound impact of digitalization

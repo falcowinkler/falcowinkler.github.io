@@ -1,0 +1,14 @@
+#+OPTIONS: num:nil
+#+TITLE: Reading List
+
+* Reccomendations
+** [[https://g.co/kgs/vmJ7gF][Scale: The Universal Laws of Life and Death in Organisms, Cities and Companies]]
+** [[https://g.co/kgs/3ZgY7X][Sapiens: A brief history of Humankind]]
+** [[https://tante.cc/2021/12/17/the-third-web/][The third web]]
+** [[https://g.co/kgs/6RnRe9][Man's search for meaning]]
+* On my list
+** Daring greatly, by Brene brown
+** Breath by James Nestor
+** The uninhabitable Earth
+* Other good reads
+** [[file:~/Desktop/falcowinkler.github.io/org/reading-notes/consulting/the-trusted-advisor.org][The Trusted Advisor]]

@@ -10,5 +10,5 @@ falco's website ヾ(＾-＾)ノ
 ** [[./ComposableArchitecture.html][The composable architecture]]
 * other
 *** [[file:reading-notes/index.org][reading notes]]
-
+*** [[file:reading-list/index.org][reading list]]
 

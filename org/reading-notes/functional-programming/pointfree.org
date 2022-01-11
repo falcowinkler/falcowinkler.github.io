@@ -1019,9 +1019,29 @@ extension View {
   }
 }
 #+END_SRC
-   2. 
+   2, 3 & 4:
+   For this we need to migrate the onboarding view to the composable architecture as well.
+   we can then react on actions happening in the "subview" (the app):
+   #+BEGIN_SRC swift
+     case .placeholderAction(.todo(let id, action: .checkBoxToggled)):
+         guard state.step == .todos else { return .none }
+         state.placeholderState.todos[id: id]?.isComplete.toggle()
+         return .none
+   #+END_SRC
+   Learning from next episode: you can do it more elegant with ~case let where~, and run the original app reducer:
+   #+BEGIN_SRC swift
+case let .placeholderAction(action) where state.step == .todos:
+    switch action {
+    case .todo(id: _, action: .checkBoxToggled),
+         .sortCompletedTodos:
+        return appReducer
+          .run(&state.placeholderState, action, environment)
+   #+END_SRC
 
+#+begin_src
 
+#+end_src
+   
 * Better Test Dependencies: Exhaustivity
 - Make those functions/dependencies fail that are not used in the test,
 e.g. by providing an unimplemented helper. For example

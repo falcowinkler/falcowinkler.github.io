@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <title></title>
-<!-- 2021-12-11 Sat 10:37 -->
+<!-- 2022-01-11 Tue 19:20 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="generator" content="Org-mode">
@@ -1889,13 +1889,39 @@ The reference solution uses an extension:
 <span style="color: #4f97d7;">}</span>
 </pre>
 </div>
-<ol class="org-ol">
-<li></li>
-</ol>
+<p>
+2, 3 &amp; 4:
+For this we need to migrate the onboarding view to the composable architecture as well.
+we can then react on actions happening in the "subview" (the app):
+</p>
+<div class="org-src-container">
+
+<pre class="src src-swift"><span style="color: #4f97d7; font-weight: bold;">case</span> .<span style="color: #bc6ec5; font-weight: bold;">placeholderAction</span><span style="color: #4f97d7;">(</span>.<span style="color: #bc6ec5; font-weight: bold;">todo</span><span style="color: #bc6ec5;">(</span><span style="color: #4f97d7; font-weight: bold;">let</span> id, action: .<span style="color: #7590db;">checkBoxToggled</span><span style="color: #bc6ec5;">)</span><span style="color: #4f97d7;">)</span>:
+    <span style="color: #4f97d7; font-weight: bold;">guard</span> state.<span style="color: #7590db;">step</span> == .<span style="color: #7590db;">todos</span> <span style="color: #4f97d7; font-weight: bold;">else</span> <span style="color: #4f97d7;">{</span> <span style="color: #4f97d7; font-weight: bold;">return</span> .<span style="color: #4f97d7; font-weight: bold;">none</span> <span style="color: #4f97d7;">}</span>
+    state.<span style="color: #7590db;">placeholderState</span>.<span style="color: #7590db;">todos</span><span style="color: #4f97d7;">[</span>id: id<span style="color: #4f97d7;">]</span>?.<span style="color: #7590db;">isComplete</span>.<span style="color: #4f97d7;">toggle</span><span style="color: #4f97d7;">()</span>
+    <span style="color: #4f97d7; font-weight: bold;">return</span> .<span style="color: #4f97d7; font-weight: bold;">none</span>
+</pre>
 </div>
-</div>
+<p>
+Learning from next episode: you can do it more elegant with <code>case let where</code>, and run the original app reducer:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-swift"><span style="color: #4f97d7; font-weight: bold;">case</span> <span style="color: #4f97d7; font-weight: bold;">let</span> .<span style="color: #bc6ec5; font-weight: bold;">placeholderAction</span><span style="color: #4f97d7;">(</span>action<span style="color: #4f97d7;">)</span> <span style="color: #4f97d7; font-weight: bold;">where</span> state.<span style="color: #7590db;">step</span> == .<span style="color: #7590db;">todos</span>:
+    <span style="color: #4f97d7; font-weight: bold;">switch</span> action <span style="color: #4f97d7;">{</span>
+    <span style="color: #4f97d7; font-weight: bold;">case</span> .<span style="color: #bc6ec5; font-weight: bold;">todo</span><span style="color: #bc6ec5;">(</span>id: _, action: .<span style="color: #7590db;">checkBoxToggled</span><span style="color: #bc6ec5;">)</span>,
+         .<span style="color: #7590db;">sortCompletedTodos</span>:
+        <span style="color: #4f97d7; font-weight: bold;">return</span> appReducer
+          .<span style="color: #4f97d7;">run</span><span style="color: #bc6ec5;">(</span>&amp;state.<span style="color: #7590db;">placeholderState</span>, action, environment<span style="color: #bc6ec5;">)</span>
+</pre>
 </div>
 
+<pre class="example">
+
+</pre>
+</div>
+</div>
+</div>
 
 <div id="outline-container-sec-28" class="outline-2">
 <h2 id="sec-28"><span class="section-number-2">28</span> Better Test Dependencies: Exhaustivity</h2>
