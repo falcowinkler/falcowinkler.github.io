@@ -10,5 +10,8 @@
 ** Daring greatly, by Brene brown
 ** Breath by James Nestor
 ** The uninhabitable Earth
+** Alignment Problem
+** Superintelligence
+
 * Other good reads
 ** [[file:~/Desktop/falcowinkler.github.io/org/reading-notes/consulting/the-trusted-advisor.org][The Trusted Advisor]]

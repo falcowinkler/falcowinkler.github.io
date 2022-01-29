@@ -1028,7 +1028,9 @@ extension View {
          state.placeholderState.todos[id: id]?.isComplete.toggle()
          return .none
    #+END_SRC
-   Learning from next episode: you can do it more elegant with ~case let where~, and run the original app reducer:
+   
+* The Point of Redacted SwiftUI: Part 2
+   This shows the reference solutions of part 1: You can do it more elegant with ~case let where~, and run the original app reducer:
    #+BEGIN_SRC swift
 case let .placeholderAction(action) where state.step == .todos:
     switch action {
@@ -1036,12 +1038,126 @@ case let .placeholderAction(action) where state.step == .todos:
          .sortCompletedTodos:
         return appReducer
           .run(&state.placeholderState, action, environment)
+          .map(OnboardingAction.placeholderAction)
    #+END_SRC
 
-#+begin_src
+* Concise Forms: SwiftUI
+- SwiftUI ~Form~ arrangement is a great way to build simple forms
+- Split sections with ~Section~
+- State handling and side effects quickly become messy with vanilla SwiftUI
+  (guess who saves the day, the composable architecture of course)
+* Concise Forms: Composable Architecture
+This episode mainly showcases basic TCA stuff, and how it makes state mutations in forms more readable and testable,
+albeit being a bit more verbose.
+** Exercises
+1. Simple test, just a state change. We can also make sure to error in any dependencies now unused (registerPush for example).
+#+BEGIN_SRC swift
+store.assert(
+            .send(.notificationSettingsResponse(UserNotificationsClient.Settings.init(authorizationStatus: .denied))) {
+                $0.sendNotifications = false
+                $0.alert = .init(title: "You need to enable permissions from iOS settings")
+            }
+        )
+#+END_SRC
+(The reference solution tested a different user flow rather than the individual ~Action~ of a denied response).
+2. 
+#+BEGIN_SRC swift
+store.assert(
+            .send(.sendNotificationsChanged(true)),
+            .receive(.notificationSettingsResponse(.init(authorizationStatus: .denied))) {
+                $0.sendNotifications = false
+                $0.alert = .init(title: "You need to enable permissions from iOS settings")
+            }
+        )
+#+END_SRC
+Reference tests dismissing the alert as well.
+* Concise Forms: Bye Bye Boilerplate
+Forms can be incredibly simpler than the "naive" TCA approach.
+1. Wrap form actions (getters and setters of key paths) in a generic struct
+#+BEGIN_SRC swift
+struct FormAction<Root>: Equatable {
+  let keyPath: PartialKeyPath<Root>
+  let value: AnyEquatable
+  let setter: (inout Root) -> Void
 
-#+end_src
-   
+  init<Value>(
+    _ keyPath: WritableKeyPath<Root, Value>,
+    _ value: Value
+  ) where Value: Equatable {
+    self.keyPath = keyPath
+    self.value = AnyEquatable(value)
+    self.setter = { $0[keyPath: keyPath] = value }
+  }
+
+  // Note this is just an alias for init, for better readability
+  static func set<Value>(
+    _ keyPath: WritableKeyPath<Root, Value>,
+    _ value: Value
+  ) -> Self where Value: Equatable {
+    self.init(keyPath, value)
+  }
+
+  static func == (lhs: FormAction<Root>, rhs: FormAction<Root>) -> Bool {
+    lhs.keyPath == rhs.keyPath && lhs.value == rhs.value
+  }
+}
+#+END_SRC
+2. Use a single action for all state changes by form interactions:
+#+BEGIN_SRC swift
+case form(FormAction<SettingsState>)
+#+END_SRC
+3. use viewStore.binding with key store to hook the action into the form
+   (⚠ This method seems deprecated, more info in Safer, Conciser Forms: Part 1&2)
+#+BEGIN_SRC swift
+
+extension ViewStore {
+  func binding<Value>(
+    keyPath: WritableKeyPath<State, Value>,
+    send action: @escaping (FormAction<State>) -> Action
+  ) -> Binding<Value> where Value: Hashable {
+    self.binding(
+      get: { $0[keyPath: keyPath] },
+      send: { action(.init(keyPath, $0)) }
+    )
+  }
+}
+
+// And then:
+Picker(
+              "Top posts digest",
+              selection: viewStore.binding(
+                keyPath: \.digest,
+                send: ConciseSettingsAction.form
+              )
+...
+#+END_SRC
+4. Reduce even more boiler plate by allowing switches on the form action on first level:
+#+BEGIN_SRC swift
+func ~= <Root, Value> (
+  keyPath: WritableKeyPath<Root, Value>,
+  formAction: FormAction<Root>
+) -> Bool {
+  formAction.keyPath == keyPath
+}
+#+END_SRC
+neat!
+** Exercises:
+1. AnyEquatable
+#+BEGIN_SRC swift
+struct AnyEquatable: Equatable {
+    let value: Any
+    let equals: ((Any) -> Bool)!
+    init<E>(_ base: E) where E : Equatable {
+        self.value = base
+        self.equals = { $0 as? E == base }
+    }
+}
+
+func == (lhs: AnyEquatable, rhs: AnyEquatable) -> Bool {
+    lhs.equals(rhs.value)
+}
+#+END_SRC
+(almost equal to reference solution).
 * Better Test Dependencies: Exhaustivity
 - Make those functions/dependencies fail that are not used in the test,
 e.g. by providing an unimplemented helper. For example
