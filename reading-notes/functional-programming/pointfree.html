@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <title></title>
-<!-- 2022-01-29 Sat 08:29 -->
+<!-- 2022-01-29 Sat 15:55 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="generator" content="Org-mode">
@@ -308,14 +308,17 @@ MathJax.Hub.Config({
 <li><a href="#sec-31-1">31.1. Exercises:</a></li>
 </ul>
 </li>
-<li><a href="#sec-32">32. Better Test Dependencies: Exhaustivity</a>
+<li><a href="#sec-32">32. Concise Forms: The Point</a></li>
+<li><a href="#sec-33">33. Better Test Dependencies: Exhaustivity</a>
 <ul class="nav">
-<li><a href="#sec-32-1">32.1. Exercises</a></li>
+<li><a href="#sec-33-1">33.1. Exercises</a></li>
 </ul>
 </li>
-<li><a href="#sec-33">33. Better Test Dependencies: Failability</a></li>
-<li><a href="#sec-34">34. A Tour of Isowords: Part 1</a></li>
-<li><a href="#sec-35">35. A Tour of Isowords: Part 2</a></li>
+<li><a href="#sec-34">34. Better Test Dependencies: Failability</a></li>
+<li><a href="#sec-35">35. A Tour of Isowords: Part 1</a></li>
+<li><a href="#sec-36">36. A Tour of Isowords: Part 2</a></li>
+<li><a href="#sec-37">37. Safer, Conciser Forms: Part 1</a></li>
+<li><a href="#sec-38">38. Safer, Conciser Forms: Part 2</a></li>
 </ul>
 </div>
 </nav>
@@ -2126,8 +2129,18 @@ neat!
 </div>
 </div>
 <div id="outline-container-sec-32" class="outline-2">
-<h2 id="sec-32"><span class="section-number-2">32</span> Better Test Dependencies: Exhaustivity</h2>
+<h2 id="sec-32"><span class="section-number-2">32</span> Concise Forms: The Point</h2>
 <div class="outline-text-2" id="text-32">
+<p>
+This presents concise forms in action within isowords.
+⚠ In the current version of TCA, the action and higher level reducer have been renamed more generally to
+<code>BindingAction&lt;T&gt;</code> and <code>.binding()</code>.
+</p>
+</div>
+</div>
+<div id="outline-container-sec-33" class="outline-2">
+<h2 id="sec-33"><span class="section-number-2">33</span> Better Test Dependencies: Exhaustivity</h2>
+<div class="outline-text-2" id="text-33">
 <ul class="org-ul">
 <li>Make those functions/dependencies fail that are not used in the test,
 </li>
@@ -2166,9 +2179,9 @@ Also if you add more usage of the dependencies later, the tests will tell you ex
 </pre>
 </div>
 </div>
-<div id="outline-container-sec-32-1" class="outline-3">
-<h3 id="sec-32-1"><span class="section-number-3">32.1</span> Exercises</h3>
-<div class="outline-text-3" id="text-32-1">
+<div id="outline-container-sec-33-1" class="outline-3">
+<h3 id="sec-33-1"><span class="section-number-3">33.1</span> Exercises</h3>
+<div class="outline-text-3" id="text-33-1">
 <ol class="org-ol">
 <li>An assertion helper that asserts the events and removes all of them
 </li>
@@ -2187,9 +2200,9 @@ Also if you add more usage of the dependencies later, the tests will tell you ex
 </div>
 </div>
 </div>
-<div id="outline-container-sec-33" class="outline-2">
-<h2 id="sec-33"><span class="section-number-2">33</span> Better Test Dependencies: Failability</h2>
-<div class="outline-text-2" id="text-33">
+<div id="outline-container-sec-34" class="outline-2">
+<h2 id="sec-34"><span class="section-number-2">34</span> Better Test Dependencies: Failability</h2>
+<div class="outline-text-2" id="text-34">
 <ul class="org-ul">
 <li>use <code>XCTDynamicTestOverlay</code>
 </li>
@@ -2217,22 +2230,89 @@ There is a neat failing `Effect` in CA:
 
 
 
-<div id="outline-container-sec-34" class="outline-2">
-<h2 id="sec-34"><span class="section-number-2">34</span> A Tour of Isowords: Part 1</h2>
-<div class="outline-text-2" id="text-34">
+<div id="outline-container-sec-35" class="outline-2">
+<h2 id="sec-35"><span class="section-number-2">35</span> A Tour of Isowords: Part 1</h2>
+<div class="outline-text-2" id="text-35">
 <p>
 Describes the hyper-modularization, domain modelling and testing strategy for isowords.
 </p>
 </div>
 </div>
-<div id="outline-container-sec-35" class="outline-2">
-<h2 id="sec-35"><span class="section-number-2">35</span> A Tour of Isowords: Part 2</h2>
-<div class="outline-text-2" id="text-35">
+<div id="outline-container-sec-36" class="outline-2">
+<h2 id="sec-36"><span class="section-number-2">36</span> A Tour of Isowords: Part 2</h2>
+<div class="outline-text-2" id="text-36">
 <p>
 Demonstrates how the composable architecture can be used
 to abstract away seperate features like app clips and app store videos
 on top of the existing game logic, without littering it with additional code.
 </p>
+</div>
+</div>
+
+<div id="outline-container-sec-37" class="outline-2">
+<h2 id="sec-37"><span class="section-number-2">37</span> Safer, Conciser Forms: Part 1</h2>
+<div class="outline-text-2" id="text-37">
+<ul class="org-ul">
+<li>use <code>@BindableState</code> in your TCA state property to opt-in to make it bindable
+</li>
+<li>This makes the domain logic safer because the view cannot arbitrarily mutate the state
+</li>
+<li>use <code>case binding(BindingAction&lt;SpellingChallengeState&gt;)</code> to handle binding actions
+</li>
+</ul>
+
+<p>
+some swift learnings:
+</p>
+<ul class="org-ul">
+<li>Implement <code>projectedValue</code> to expose the wrapping type when writing your own property wrapper.
+</li>
+</ul>
+<p>
+Then access the wrapping type with a <code>$</code> prefix. By default, the wrapping type is just exposed
+privately and accessed by a <code>_</code> prefix.
+</p>
+<ul class="org-ul">
+<li>Implement getter and setters within <code>projectedValue</code> to derive writable key paths.
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-sec-38" class="outline-2">
+<h2 id="sec-38"><span class="section-number-2">38</span> Safer, Conciser Forms: Part 2</h2>
+<div class="outline-text-2" id="text-38">
+<p>
+We can omit stating the binding action case when we derive bindings from bindable state,
+or when we chain the higher level <code>.binding(Action)</code> reducer.
+Swift enums can conform to protocols with cases, like so:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-swift"><span style="color: #4f97d7; font-weight: bold;">protocol</span> <span style="color: #bc6ec5; font-weight: bold;">BindableAction</span> <span style="color: #4f97d7;">{</span>
+  <span style="color: #4f97d7; font-weight: bold;">associatedtype</span> <span style="color: #4f97d7;">State</span>
+  <span style="color: #4f97d7; font-weight: bold;">static</span> <span style="color: #4f97d7; font-weight: bold;">func</span> <span style="color: #bc6ec5; font-weight: bold;">binding</span><span style="color: #bc6ec5;">(</span>_: BindingAction&lt;<span style="color: #4f97d7;">State</span>&gt;<span style="color: #bc6ec5;">)</span> -&gt; <span style="color: #4f97d7; font-weight: bold;">Self</span>
+<span style="color: #4f97d7;">}</span>
+</pre>
+</div>
+<p>
+You could even simplify creating bindings by implementing a <a href="https://www.hackingwithswift.com/articles/55/how-to-use-dynamic-member-lookup-in-swift">dynamic member lookup</a> for the view store.
+This has been deprecated in TCA though, because it causes some problems in the reducer.
+If we did't care about the type safety (Only Bindable states can be bound to) we theoretically could use 
+this new syntax that allows bindings to be passed to closures:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-swift"><span style="color: #4f97d7; font-weight: bold;">struct</span> <span style="color: #bc6ec5; font-weight: bold;">MyView</span>: View <span style="color: #4f97d7;">{</span>
+  <span style="color: #4f97d7; font-weight: bold;">@State</span> <span style="color: #4f97d7; font-weight: bold;">var</span> array = <span style="color: #bc6ec5;">[</span><span style="color: #a45bad;">1</span>, <span style="color: #a45bad;">2</span>, <span style="color: #a45bad;">3</span><span style="color: #bc6ec5;">]</span>
+  <span style="color: #4f97d7; font-weight: bold;">var</span> body: <span style="color: #4f97d7; font-weight: bold;">some</span> View <span style="color: #bc6ec5;">{</span>
+    <span style="color: #bc6ec5; font-weight: bold;">ForEach</span><span style="color: #2d9574;">(</span><span style="color: #4f97d7; font-weight: bold;">self</span>.$array, id: \.<span style="color: #4f97d7; font-weight: bold;">self</span><span style="color: #2d9574;">)</span> <span style="color: #2d9574;">{</span> $number <span style="color: #4f97d7; font-weight: bold;">in</span>
+      <span style="color: #4f97d7; font-weight: bold;">let</span> _ = $number <span style="color: #4f97d7; font-weight: bold;">as</span> Binding&lt;<span style="color: #4f97d7;">Int</span>&gt;
+      <span style="color: #4f97d7; font-weight: bold;">let</span> _ = number <span style="color: #4f97d7; font-weight: bold;">as</span> <span style="color: #4f97d7;">Int</span>
+    <span style="color: #2d9574;">}</span>
+  <span style="color: #bc6ec5;">}</span>
+<span style="color: #4f97d7;">}</span> 
+</pre>
+</div>
 </div>
 </div>
 </div></div></div>

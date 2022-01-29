@@ -1158,6 +1158,10 @@ func == (lhs: AnyEquatable, rhs: AnyEquatable) -> Bool {
 }
 #+END_SRC
 (almost equal to reference solution).
+* Concise Forms: The Point
+This presents concise forms in action within isowords.
+⚠ In the current version of TCA, the action and higher level reducer have been renamed more generally to
+~BindingAction<T>~ and ~.binding()~.
 * Better Test Dependencies: Exhaustivity
 - Make those functions/dependencies fail that are not used in the test,
 e.g. by providing an unimplemented helper. For example
@@ -1215,3 +1219,39 @@ Describes the hyper-modularization, domain modelling and testing strategy for is
 Demonstrates how the composable architecture can be used
 to abstract away seperate features like app clips and app store videos
 on top of the existing game logic, without littering it with additional code.
+
+* Safer, Conciser Forms: Part 1
+- use ~@BindableState~ in your TCA state property to opt-in to make it bindable
+- This makes the domain logic safer because the view cannot arbitrarily mutate the state
+- use ~case binding(BindingAction<SpellingChallengeState>)~ to handle binding actions
+
+some swift learnings:
+- Implement ~projectedValue~ to expose the wrapping type when writing your own property wrapper.
+Then access the wrapping type with a ~$~ prefix. By default, the wrapping type is just exposed
+privately and accessed by a ~_~ prefix.
+- Implement getter and setters within ~projectedValue~ to derive writable key paths.
+* Safer, Conciser Forms: Part 2
+We can omit stating the binding action case when we derive bindings from bindable state,
+or when we chain the higher level ~.binding(Action)~ reducer.
+Swift enums can conform to protocols with cases, like so:
+#+BEGIN_SRC swift
+protocol BindableAction {
+  associatedtype State
+  static func binding(_: BindingAction<State>) -> Self
+}
+#+END_SRC
+You could even simplify creating bindings by implementing a [[https://www.hackingwithswift.com/articles/55/how-to-use-dynamic-member-lookup-in-swift][dynamic member lookup]] for the view store.
+This has been deprecated in TCA though, because it causes some problems in the reducer.
+If we did't care about the type safety (Only Bindable states can be bound to) we theoretically could use 
+this new syntax that allows bindings to be passed to closures:
+#+BEGIN_SRC swift
+struct MyView: View {
+  @State var array = [1, 2, 3]
+  var body: some View {
+    ForEach(self.$array, id: \.self) { $number in
+      let _ = $number as Binding<Int>
+      let _ = number as Int
+    }
+  }
+} 
+#+END_SRC
