@@ -37,7 +37,6 @@ forward composition for monadic functions.
 We can avoid having inputs from side effects with currying.
 ~<>~ is then defined as function composition for functions that return the input type.
 (In haskell this is more generally defined on semigroups, namely: ~(<>) :: Semigroup a => a -> a -> a~.
-* TODO UIKit styling with functions
 * Algebraic data types
 Composite types can also be called /algebraic data types/, because we can do algebra with them.
 E.g. if an enum has cases for type A and B we can construct $A + B$ values from it, where in this notation,
@@ -849,6 +848,20 @@ Nothing much new other than how to easily build mock structures with overture
    No exercises
 
 
+* Playground Driven Development
+When developing in UIKit, you can build something similar with playgrounds.
+This requires you to modularize your app, or put the whole app in one framework/package.
+
+#+BEGIN_SRC swift
+import PointFreeFramework
+import PlaygroundSupport
+
+let vc = EpisodeListViewController()
+PlaygroundPage.current.liveView = vc
+#+END_SRC
+
+You can open a playground alongside a project with ~xed .~ (And probably with a xcworkspace as well?)
+
 * Dependency Injection Made Composable
 
 
@@ -1219,6 +1232,161 @@ Describes the hyper-modularization, domain modelling and testing strategy for is
 Demonstrates how the composable architecture can be used
 to abstract away seperate features like app clips and app store videos
 on top of the existing game logic, without littering it with additional code.
+
+
+* Async Refreshable: SwiftUI
+You can use ~.refreshable { <async closure> }~ to implement a simple pull to refresh.
+We could use for example the new async URLSession to perform the data refresh,
+since refreshable gives us an async context.
+#+BEGIN_SRC swift
+let (data, _) = try await URLSession.shared.data(...)
+#+END_SRC
+If we want to be able to cancle such asnychronous work, it needs to be wrapped in a task:
+#+BEGIN_SRC swift
+let task = Task {
+  //...perform work
+}
+task.cancel()
+#+END_SRC
+If this task is part of your ~ObservableObject~ view model and you want to display state based
+on weather the task is running or not, you had to mark it as ~@Published~, so that
+SwiftUI can recompute the view when the State of ~Task~ execution changes.
+
+When performing ~async~ things that then modify some state on completion, it can make sense
+to use ~@MainAction~ method annotation, to make sure work is resumed on the main thread, after finishing 
+the async workload.
+
+The episode then goes to explain that e.g. displaying loading state and cancelling requests when doing ~async~ tasks
+is hard to test. For example, it seems you have to work with ~TaskSleep~ and artificial delays to hook into the state of the view model
+where the request is currently executing.
+
+* Async Refreshable: ComposableArchitecture
+When the ~refreshable~ closure is called, the loading spinner is shown as long as an async task is running
+in the asynchronous context of it. This is a problem with the composable architecture: While you of course can make changes
+to the store from an async context, the call to make these changes returns immediately.
+
+Solution: Use a boolean to reflect weather an async process is running
+#+BEGIN_SRC swift
+func send(
+  _ action: Action,
+  `while` isInFlight: @escaping (State) -> Bool
+) async {
+    self.send(action)
+    await withUnsafeContinuation { continuation in
+        var cancellable: Cancellable?
+        cancellable = self.publisher
+          .filter { !isInFlight($0) }
+          .prefix(1)
+          .sink { _ in
+              continuation.resume(returning: ())
+              _ = cancellable
+          }
+    }
+}
+#+END_SRC
+** Exercises
+1. My solution, probably with some race conditions:
+#+BEGIN_SRC swift
+
+extension ViewStore {
+  func send(
+    _ action: Action,
+    while predicate: @escaping (State) -> Bool
+  ) async {
+    self.send(action)
+      var cancellable: Cancellable?
+      let onCancel = { cancellable = nil }
+      await withTaskCancellationHandler(operation: {
+          await withUnsafeContinuation { (continuation: UnsafeContinuation<Void, Never>) in
+              cancellable = self.publisher
+                  .filter { !predicate($0) }
+                  .prefix(1)
+                  .sink { _ in
+                      continuation.resume()
+                      _ = cancellable
+                  }
+          }
+      }, onCancel: { onCancel() })
+  }
+}
+
+#+END_SRC
+Reference solution:
+#+BEGIN_SRC swift
+extension ViewStore {
+  func send(
+    _ action: Action,
+    `while` isInFlight: @escaping (State) -> Bool
+  ) async {
+    self.send(action)
+
+    var cancellable: Cancellable?
+    try? await withTaskCancellationHandler(
+      handler: { [cancellable] in cancellable?.cancel() },
+      operation: {
+        try Task.checkCancellation()
+        try await withUnsafeThrowingContinuation { (continuation: UnsafeContinuation<Void, Error>) in
+          guard !Task.isCancelled else {
+            continuation.resume(throwing: CancellationError())
+            return
+          }
+          cancellable = self.publisher
+            .filter { !predicate($0) }
+            .prefix(1)
+            .sink { _ in
+              continuation.resume()
+              _ = cancellable
+            }
+        }
+      }
+    )
+  }
+}
+#+END_SRC
+(In my solution i don't check for cancellation)
+Also i'm not sure how the capture list works. Won't it capture always ~nil~, so the cancelable will actually never be cancelled?
+2. I don't think we can write it in terms of the previous function, because we cannot ~await~ in ~withAnimation~ block.
+My monke brain solution would be to copy the previous function and wrap the ~store.send~ inside a ~withAnimation(animation){}~.
+Reference solution: Extract the code after ~store.send~ and use it in both functions.
+3. From what we learned so far, this should be quite easy:
+#+BEGIN_SRC swift
+extension ViewStore {
+    var stream: AsyncStream<State> {
+        return AsyncStream { continuation in
+            var cancellable: Cancellable?
+            cancellable = self.publisher
+                .sink { newState in
+                    continuation.yield(newState)
+                }
+            continuation.onTermination = {  @Sendable [cancellable] _ in
+                cancellable?.cancel()
+            }
+        }
+    }
+}
+#+END_SRC
+The reference solution doesn't mind about the ~onTermination~, and handles completions by calling ~continuation.finish()~.
+4. This is much shorter now with ~stream~:
+#+BEGIN_SRC swift
+extension ViewStore {
+    func suspend(while predicate: @escaping (State) -> Bool) async {
+        let stream = self.stream
+        .filter { !predicate($0) }
+        .prefix(1)
+        for try await _ in stream { }
+    }
+}
+#+END_SRC
+It can be more elegant without the weird for loop:
+#+BEGIN_SRC swift
+extension ViewStore {
+  func suspend(while predicate: @escaping (State) -> Bool) async {
+    _ = await self.stream
+      .filter { !predicate($0) }
+      .first(where: { _ in true })
+  }
+}
+#+END_SRC
 
 * Safer, Conciser Forms: Part 1
 - use ~@BindableState~ in your TCA state property to opt-in to make it bindable

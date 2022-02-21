@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <title></title>
-<!-- 2022-01-29 Sat 15:55 -->
+<!-- 2022-02-21 Mon 20:00 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="generator" content="Org-mode">
@@ -223,62 +223,62 @@ MathJax.Hub.Config({
 <ul class="nav">
 <li><a href="#sec-1">1. Functions</a></li>
 <li><a href="#sec-2">2. Side effects</a></li>
-<li><a href="#sec-3">3. UIKit styling with functions</a></li>
-<li><a href="#sec-4">4. Algebraic data types</a>
+<li><a href="#sec-3">3. Algebraic data types</a>
+<ul class="nav">
+<li><a href="#sec-3-1">3.1. Exercises</a></li>
+</ul>
+</li>
+<li><a href="#sec-4">4. Higher order functions</a>
 <ul class="nav">
 <li><a href="#sec-4-1">4.1. Exercises</a></li>
 </ul>
 </li>
-<li><a href="#sec-5">5. Higher order functions</a>
+<li><a href="#sec-5">5. Functional setters</a>
 <ul class="nav">
 <li><a href="#sec-5-1">5.1. Exercises</a></li>
 </ul>
 </li>
-<li><a href="#sec-6">6. Functional setters</a>
+<li><a href="#sec-6">6. Setters and key paths</a>
 <ul class="nav">
 <li><a href="#sec-6-1">6.1. Exercises</a></li>
 </ul>
 </li>
-<li><a href="#sec-7">7. Setters and key paths</a>
+<li><a href="#sec-7">7. Getters and key paths</a>
 <ul class="nav">
 <li><a href="#sec-7-1">7.1. Exercises</a></li>
 </ul>
 </li>
-<li><a href="#sec-8">8. Getters and key paths</a>
+<li><a href="#sec-8">8. Algebraic Data Types: Exponents</a>
 <ul class="nav">
 <li><a href="#sec-8-1">8.1. Exercises</a></li>
 </ul>
 </li>
-<li><a href="#sec-9">9. Algebraic Data Types: Exponents</a>
+<li><a href="#sec-9">9. A tale of two flat maps</a>
 <ul class="nav">
 <li><a href="#sec-9-1">9.1. Exercises</a></li>
 </ul>
 </li>
-<li><a href="#sec-10">10. A tale of two flat maps</a>
+<li><a href="#sec-10">10. Composition without operators</a>
 <ul class="nav">
 <li><a href="#sec-10-1">10.1. Exercises</a></li>
 </ul>
 </li>
-<li><a href="#sec-11">11. Composition without operators</a>
+<li><a href="#sec-11">11. Tagged</a>
 <ul class="nav">
 <li><a href="#sec-11-1">11.1. Exercises</a></li>
 </ul>
 </li>
-<li><a href="#sec-12">12. Tagged</a>
+<li><a href="#sec-12">12. Dependency Injection made easy</a>
 <ul class="nav">
 <li><a href="#sec-12-1">12.1. Exercises</a></li>
 </ul>
 </li>
-<li><a href="#sec-13">13. Dependency Injection made easy</a>
+<li><a href="#sec-13">13. Dependency Injection Made Comfortable</a>
 <ul class="nav">
 <li><a href="#sec-13-1">13.1. Exercises</a></li>
 </ul>
 </li>
-<li><a href="#sec-14">14. Dependency Injection Made Comfortable</a>
-<ul class="nav">
-<li><a href="#sec-14-1">14.1. Exercises</a></li>
-</ul>
-</li>
+<li><a href="#sec-14">14. Playground Driven Development</a></li>
 <li><a href="#sec-15">15. Dependency Injection Made Composable</a></li>
 <li><a href="#sec-16">16. A Tour of the Composable Architecture: Part 1</a></li>
 <li><a href="#sec-17">17. A Tour of the Composable Architecture: Part 2</a></li>
@@ -317,8 +317,14 @@ MathJax.Hub.Config({
 <li><a href="#sec-34">34. Better Test Dependencies: Failability</a></li>
 <li><a href="#sec-35">35. A Tour of Isowords: Part 1</a></li>
 <li><a href="#sec-36">36. A Tour of Isowords: Part 2</a></li>
-<li><a href="#sec-37">37. Safer, Conciser Forms: Part 1</a></li>
-<li><a href="#sec-38">38. Safer, Conciser Forms: Part 2</a></li>
+<li><a href="#sec-37">37. Async Refreshable: SwiftUI</a></li>
+<li><a href="#sec-38">38. Async Refreshable: ComposableArchitecture</a>
+<ul class="nav">
+<li><a href="#sec-38-1">38.1. Exercises</a></li>
+</ul>
+</li>
+<li><a href="#sec-39">39. Safer, Conciser Forms: Part 1</a></li>
+<li><a href="#sec-40">40. Safer, Conciser Forms: Part 2</a></li>
 </ul>
 </div>
 </nav>
@@ -395,11 +401,8 @@ We can avoid having inputs from side effects with currying.
 </div>
 </div>
 <div id="outline-container-sec-3" class="outline-2">
-<h2 id="sec-3"><span class="section-number-2">3</span> <span class="label label-primary TODO">TODO</span> UIKit styling with functions</h2>
-</div>
-<div id="outline-container-sec-4" class="outline-2">
-<h2 id="sec-4"><span class="section-number-2">4</span> Algebraic data types</h2>
-<div class="outline-text-2" id="text-4">
+<h2 id="sec-3"><span class="section-number-2">3</span> Algebraic data types</h2>
+<div class="outline-text-2" id="text-3">
 <p>
 Composite types can also be called <i>algebraic data types</i>, because we can do algebra with them.
 E.g. if an enum has cases for type A and B we can construct \(A + B\) values from it, where in this notation,
@@ -407,9 +410,9 @@ E.g. if an enum has cases for type A and B we can construct \(A + B\) values fro
 <code>Void</code> has 1 value and <code>Never</code> 0.
 </p>
 </div>
-<div id="outline-container-sec-4-1" class="outline-3">
-<h3 id="sec-4-1"><span class="section-number-3">4.1</span> Exercises</h3>
-<div class="outline-text-3" id="text-4-1">
+<div id="outline-container-sec-3-1" class="outline-3">
+<h3 id="sec-3-1"><span class="section-number-3">3.1</span> Exercises</h3>
+<div class="outline-text-3" id="text-3-1">
 <ol class="org-ol">
 <li>Exponential. So for \(A->B\), it has \(B^A\) types. Because we choose a value from set \(B\) \(A\) times.
 </li>
@@ -438,9 +441,9 @@ In the second type there is <code>Left nil</code> and <code>Right nil</code> whe
 </div>
 </div>
 </div>
-<div id="outline-container-sec-5" class="outline-2">
-<h2 id="sec-5"><span class="section-number-2">5</span> Higher order functions</h2>
-<div class="outline-text-2" id="text-5">
+<div id="outline-container-sec-4" class="outline-2">
+<h2 id="sec-4"><span class="section-number-2">4</span> Higher order functions</h2>
+<div class="outline-text-2" id="text-4">
 <p>
 How can we fit functions that we work with every day into our composition?
 We can define functions that manipulate functions such as <code>curry</code> and <code>flip</code> (equivalent to haskell).
@@ -477,9 +480,9 @@ What's the point? "When they work, they work really well, saving us a lot of boi
 When they don’t work, we’re still using the concepts and building intuitions for them."
 </p>
 </div>
-<div id="outline-container-sec-5-1" class="outline-3">
-<h3 id="sec-5-1"><span class="section-number-3">5.1</span> Exercises</h3>
-<div class="outline-text-3" id="text-5-1">
+<div id="outline-container-sec-4-1" class="outline-3">
+<h3 id="sec-4-1"><span class="section-number-3">4.1</span> Exercises</h3>
+<div class="outline-text-3" id="text-4-1">
 <ol class="org-ol">
 <li>3 argument curry
 </li>
@@ -569,9 +572,9 @@ When they don’t work, we’re still using the concepts and building intuitions
 </div>
 </div>
 </div>
-<div id="outline-container-sec-6" class="outline-2">
-<h2 id="sec-6"><span class="section-number-2">6</span> Functional setters</h2>
-<div class="outline-text-2" id="text-6">
+<div id="outline-container-sec-5" class="outline-2">
+<h2 id="sec-5"><span class="section-number-2">5</span> Functional setters</h2>
+<div class="outline-text-2" id="text-5">
 <p>
 If you modify data structures (by returning a copy), you will end up repeating a lot of code for transforming just one value.
 Solution: Define generic functions for applying a function on a property.
@@ -604,9 +607,9 @@ Setters <i>lift</i> a transformation on an individual value into a function oper
 on the surrounding datatype.
 </p>
 </div>
-<div id="outline-container-sec-6-1" class="outline-3">
-<h3 id="sec-6-1"><span class="section-number-3">6.1</span> Exercises</h3>
-<div class="outline-text-3" id="text-6-1">
+<div id="outline-container-sec-5-1" class="outline-3">
+<h3 id="sec-5-1"><span class="section-number-3">5.1</span> Exercises</h3>
+<div class="outline-text-3" id="text-5-1">
 <ol class="org-ol">
 <li>optional setters
 </li>
@@ -722,9 +725,9 @@ receives two values, one of type \(A\) and one of type \(B\).
 </div>
 </div>
 </div>
-<div id="outline-container-sec-7" class="outline-2">
-<h2 id="sec-7"><span class="section-number-2">7</span> Setters and key paths</h2>
-<div class="outline-text-2" id="text-7">
+<div id="outline-container-sec-6" class="outline-2">
+<h2 id="sec-6"><span class="section-number-2">6</span> Setters and key paths</h2>
+<div class="outline-text-2" id="text-6">
 <p>
 Key paths are generic over type they apply to, and the specific value, eg.
 </p>
@@ -769,9 +772,9 @@ Use prop to compose functions over key paths
 pointfree in one expression (without computed props/stateful funcs)..
 </p>
 </div>
-<div id="outline-container-sec-7-1" class="outline-3">
-<h3 id="sec-7-1"><span class="section-number-3">7.1</span> Exercises</h3>
-<div class="outline-text-3" id="text-7-1">
+<div id="outline-container-sec-6-1" class="outline-3">
+<h3 id="sec-6-1"><span class="section-number-3">6.1</span> Exercises</h3>
+<div class="outline-text-3" id="text-6-1">
 <ol class="org-ol">
 <li>Dictionary’s subscript key path.
 <div class="org-src-container">
@@ -875,9 +878,9 @@ correctAnswer:
 </div>
 </div>
 
-<div id="outline-container-sec-8" class="outline-2">
-<h2 id="sec-8"><span class="section-number-2">8</span> Getters and key paths</h2>
-<div class="outline-text-2" id="text-8">
+<div id="outline-container-sec-7" class="outline-2">
+<h2 id="sec-7"><span class="section-number-2">7</span> Getters and key paths</h2>
+<div class="outline-text-2" id="text-7">
 <p>
 Use <code>get</code> wrapper to bridge between function and keypath world
 </p>
@@ -928,9 +931,9 @@ We use get a lot, so you might consider using an operator <code>^</code> as pref
 </p>
 </div>
 
-<div id="outline-container-sec-8-1" class="outline-3">
-<h3 id="sec-8-1"><span class="section-number-3">8.1</span> Exercises</h3>
-<div class="outline-text-3" id="text-8-1">
+<div id="outline-container-sec-7-1" class="outline-3">
+<h3 id="sec-7-1"><span class="section-number-3">7.1</span> Exercises</h3>
+<div class="outline-text-3" id="text-7-1">
 <ol class="org-ol">
 <li>Find three more standard library APIs that can be used with our get and ^ helpers:
 <ul class="org-ul">
@@ -999,9 +1002,9 @@ TODO: i don't really understand what is meant with 6,7,8 exercises.
 </div>
 </div>
 </div>
-<div id="outline-container-sec-9" class="outline-2">
-<h2 id="sec-9"><span class="section-number-2">9</span> Algebraic Data Types: Exponents</h2>
-<div class="outline-text-2" id="text-9">
+<div id="outline-container-sec-8" class="outline-2">
+<h2 id="sec-8"><span class="section-number-2">8</span> Algebraic Data Types: Exponents</h2>
+<div class="outline-text-2" id="text-8">
 <p>
 As we learned in the exercises from "Algebraic Data Types",
 there are \(B^A\) functions of type \(A->B\).
@@ -1058,9 +1061,9 @@ There is also the power law \(a^(b+c) = a^b * a ^ c\), equivalent to
 </p>
 </div>
 
-<div id="outline-container-sec-9-1" class="outline-3">
-<h3 id="sec-9-1"><span class="section-number-3">9.1</span> Exercises</h3>
-<div class="outline-text-3" id="text-9-1">
+<div id="outline-container-sec-8-1" class="outline-3">
+<h3 id="sec-8-1"><span class="section-number-3">8.1</span> Exercises</h3>
+<div class="outline-text-3" id="text-8-1">
 <ol class="org-ol">
 <li>\(1^a = 1\)
 <code>Void &lt;- a = Void</code>
@@ -1171,17 +1174,17 @@ Because we map from the key space to the value space with one additional element
 </div>
 </div>
 
-<div id="outline-container-sec-10" class="outline-2">
-<h2 id="sec-10"><span class="section-number-2">10</span> A tale of two flat maps</h2>
-<div class="outline-text-2" id="text-10">
+<div id="outline-container-sec-9" class="outline-2">
+<h2 id="sec-9"><span class="section-number-2">9</span> A tale of two flat maps</h2>
+<div class="outline-text-2" id="text-9">
 <p>
 <code>flatMap</code> is the mondaic bind.
 use <code>compactMap</code> to filter nil values.
 </p>
 </div>
-<div id="outline-container-sec-10-1" class="outline-3">
-<h3 id="sec-10-1"><span class="section-number-3">10.1</span> Exercises</h3>
-<div class="outline-text-3" id="text-10-1">
+<div id="outline-container-sec-9-1" class="outline-3">
+<h3 id="sec-9-1"><span class="section-number-3">9.1</span> Exercises</h3>
+<div class="outline-text-3" id="text-9-1">
 <ol class="org-ol">
 <li>filtered:
 <div class="org-src-container">
@@ -1290,18 +1293,18 @@ that have the same <code>Either&lt;A,B&gt;</code> return type. Then you can part
 </div>
 </div>
 
-<div id="outline-container-sec-11" class="outline-2">
-<h2 id="sec-11"><span class="section-number-2">11</span> Composition without operators</h2>
-<div class="outline-text-2" id="text-11">
+<div id="outline-container-sec-10" class="outline-2">
+<h2 id="sec-10"><span class="section-number-2">10</span> Composition without operators</h2>
+<div class="outline-text-2" id="text-10">
 <p>
 If operators are not the way to go, you can use named functions.
 The problem is that you need an overload for any number of arguments.
 This might change in the future for variadic generics.
 </p>
 </div>
-<div id="outline-container-sec-11-1" class="outline-3">
-<h3 id="sec-11-1"><span class="section-number-3">11.1</span> Exercises</h3>
-<div class="outline-text-3" id="text-11-1">
+<div id="outline-container-sec-10-1" class="outline-3">
+<h3 id="sec-10-1"><span class="section-number-3">10.1</span> Exercises</h3>
+<div class="outline-text-3" id="text-10-1">
 <ol class="org-ol">
 <li><div class="org-src-container">
 
@@ -1355,9 +1358,9 @@ This might change in the future for variadic generics.
 </div>
 </div>
 
-<div id="outline-container-sec-12" class="outline-2">
-<h2 id="sec-12"><span class="section-number-2">12</span> <span class="label label-primary TODO">TODO</span> Tagged</h2>
-<div class="outline-text-2" id="text-12">
+<div id="outline-container-sec-11" class="outline-2">
+<h2 id="sec-11"><span class="section-number-2">11</span> <span class="label label-primary TODO">TODO</span> Tagged</h2>
+<div class="outline-text-2" id="text-11">
 <p>
 We can use `Decodable` and `Encodable` to and from json.
 Sometimes it can be desirable to wrap your datatypes with a custom type,
@@ -1414,9 +1417,9 @@ If you have to instantiate <code>Tagged</code> fields yourself, it makes sense t
 </p>
 </div>
 
-<div id="outline-container-sec-12-1" class="outline-3">
-<h3 id="sec-12-1"><span class="section-number-3">12.1</span> Exercises</h3>
-<div class="outline-text-3" id="text-12-1">
+<div id="outline-container-sec-11-1" class="outline-3">
+<h3 id="sec-11-1"><span class="section-number-3">11.1</span> Exercises</h3>
+<div class="outline-text-3" id="text-11-1">
 <ol class="org-ol">
 <li>Expressible by string:
 <div class="org-src-container">
@@ -1474,9 +1477,9 @@ If you have to instantiate <code>Tagged</code> fields yourself, it makes sense t
 </div>
 
 
-<div id="outline-container-sec-13" class="outline-2">
-<h2 id="sec-13"><span class="section-number-2">13</span> <span class="label label-primary TODO">TODO</span> Dependency Injection made easy</h2>
-<div class="outline-text-2" id="text-13">
+<div id="outline-container-sec-12" class="outline-2">
+<h2 id="sec-12"><span class="section-number-2">12</span> <span class="label label-primary TODO">TODO</span> Dependency Injection made easy</h2>
+<div class="outline-text-2" id="text-12">
 <p>
 Protocol oriented programming for DI is the most common way in swift.
 They come with a lot of boilerplate.
@@ -1532,15 +1535,15 @@ Downsides: it will keep you from parallelizing tests,
 and won't force you to overwrite dependencies with mocks during tests.
 </p>
 </div>
-<div id="outline-container-sec-13-1" class="outline-3">
-<h3 id="sec-13-1"><span class="section-number-3">13.1</span> <span class="label label-primary TODO">TODO</span> Exercises</h3>
+<div id="outline-container-sec-12-1" class="outline-3">
+<h3 id="sec-12-1"><span class="section-number-3">12.1</span> <span class="label label-primary TODO">TODO</span> Exercises</h3>
 </div>
 </div>
 
 
-<div id="outline-container-sec-14" class="outline-2">
-<h2 id="sec-14"><span class="section-number-2">14</span> Dependency Injection Made Comfortable</h2>
-<div class="outline-text-2" id="text-14">
+<div id="outline-container-sec-13" class="outline-2">
+<h2 id="sec-13"><span class="section-number-2">13</span> Dependency Injection Made Comfortable</h2>
+<div class="outline-text-2" id="text-13">
 <p>
 Nothing much new other than how to easily build mock structures with overture
 </p>
@@ -1567,9 +1570,9 @@ Nothing much new other than how to easily build mock structures with overture
 </pre>
 </div>
 </div>
-<div id="outline-container-sec-14-1" class="outline-3">
-<h3 id="sec-14-1"><span class="section-number-3">14.1</span> Exercises</h3>
-<div class="outline-text-3" id="text-14-1">
+<div id="outline-container-sec-13-1" class="outline-3">
+<h3 id="sec-13-1"><span class="section-number-3">13.1</span> Exercises</h3>
+<div class="outline-text-3" id="text-13-1">
 <p>
 No exercises
 </p>
@@ -1577,6 +1580,30 @@ No exercises
 </div>
 </div>
 
+
+<div id="outline-container-sec-14" class="outline-2">
+<h2 id="sec-14"><span class="section-number-2">14</span> Playground Driven Development</h2>
+<div class="outline-text-2" id="text-14">
+<p>
+When developing in UIKit, you can build something similar with playgrounds.
+This requires you to modularize your app, or put the whole app in one framework/package.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-swift"><span style="color: #4f97d7; font-weight: bold;">import</span> PointFreeFramework
+<span style="color: #4f97d7; font-weight: bold;">import</span> PlaygroundSupport
+
+<span style="color: #4f97d7; font-weight: bold;">let</span> vc = <span style="color: #bc6ec5; font-weight: bold;">EpisodeListViewController</span><span style="color: #4f97d7;">()</span>
+PlaygroundPage.<span style="color: #4f97d7;">current</span>.<span style="color: #7590db;">liveView</span> = vc
+</pre>
+</div>
+
+<p>
+You can open a playground alongside a project with <code>xed .</code> (And probably with a xcworkspace as well?)
+</p>
+</div>
+</div>
 
 <div id="outline-container-sec-15" class="outline-2">
 <h2 id="sec-15"><span class="section-number-2">15</span> Dependency Injection Made Composable</h2>
@@ -2249,9 +2276,227 @@ on top of the existing game logic, without littering it with additional code.
 </div>
 </div>
 
+
 <div id="outline-container-sec-37" class="outline-2">
-<h2 id="sec-37"><span class="section-number-2">37</span> Safer, Conciser Forms: Part 1</h2>
+<h2 id="sec-37"><span class="section-number-2">37</span> Async Refreshable: SwiftUI</h2>
 <div class="outline-text-2" id="text-37">
+<p>
+You can use <code>.refreshable { &lt;async closure&gt; }</code> to implement a simple pull to refresh.
+We could use for example the new async URLSession to perform the data refresh,
+since refreshable gives us an async context.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-swift"><span style="color: #4f97d7; font-weight: bold;">let</span> <span style="color: #4f97d7;">(</span>data, _<span style="color: #4f97d7;">)</span> = <span style="color: #4f97d7; font-weight: bold;">try</span> <span style="color: #4f97d7; font-weight: bold;">await</span> <span style="color: #4f97d7;">URLSession</span>.<span style="color: #4f97d7;">shared</span>.<span style="color: #4f97d7;">data</span><span style="color: #4f97d7;">(</span>...<span style="color: #4f97d7;">)</span>
+</pre>
+</div>
+<p>
+If we want to be able to cancle such asnychronous work, it needs to be wrapped in a task:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-swift"><span style="color: #4f97d7; font-weight: bold;">let</span> task = Task <span style="color: #4f97d7;">{</span>
+  <span style="color: #2aa1ae; background-color: #292e34;">//</span><span style="color: #2aa1ae; background-color: #292e34;">...perform work</span>
+<span style="color: #4f97d7;">}</span>
+task.<span style="color: #4f97d7;">cancel</span><span style="color: #4f97d7;">()</span>
+</pre>
+</div>
+<p>
+If this task is part of your <code>ObservableObject</code> view model and you want to display state based
+on weather the task is running or not, you had to mark it as <code>@Published</code>, so that
+SwiftUI can recompute the view when the State of <code>Task</code> execution changes.
+</p>
+
+<p>
+When performing <code>async</code> things that then modify some state on completion, it can make sense
+to use <code>@MainAction</code> method annotation, to make sure work is resumed on the main thread, after finishing 
+the async workload.
+</p>
+
+<p>
+The episode then goes to explain that e.g. displaying loading state and cancelling requests when doing <code>async</code> tasks
+is hard to test. For example, it seems you have to work with <code>TaskSleep</code> and artificial delays to hook into the state of the view model
+where the request is currently executing.
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-38" class="outline-2">
+<h2 id="sec-38"><span class="section-number-2">38</span> Async Refreshable: ComposableArchitecture</h2>
+<div class="outline-text-2" id="text-38">
+<p>
+When the <code>refreshable</code> closure is called, the loading spinner is shown as long as an async task is running
+in the asynchronous context of it. This is a problem with the composable architecture: While you of course can make changes
+to the store from an async context, the call to make these changes returns immediately.
+</p>
+
+<p>
+Solution: Use a boolean to reflect weather an async process is running
+</p>
+<div class="org-src-container">
+
+<pre class="src src-swift"><span style="color: #4f97d7; font-weight: bold;">func</span> <span style="color: #bc6ec5; font-weight: bold;">send</span><span style="color: #4f97d7;">(</span>
+  _ action: Action,
+  <span style="color: #2d9574;">`while`</span> isInFlight: <span style="color: #4f97d7; font-weight: bold;">@escaping</span> <span style="color: #bc6ec5;">(</span><span style="color: #4f97d7;">State</span><span style="color: #bc6ec5;">)</span> -&gt; <span style="color: #4f97d7;">Bool</span>
+<span style="color: #4f97d7;">)</span> <span style="color: #4f97d7; font-weight: bold;">async</span> <span style="color: #4f97d7;">{</span>
+    <span style="color: #4f97d7; font-weight: bold;">self</span>.<span style="color: #4f97d7;">send</span><span style="color: #bc6ec5;">(</span>action<span style="color: #bc6ec5;">)</span>
+    <span style="color: #4f97d7; font-weight: bold;">await</span> withUnsafeContinuation <span style="color: #bc6ec5;">{</span> continuation <span style="color: #4f97d7; font-weight: bold;">in</span>
+        <span style="color: #4f97d7; font-weight: bold;">var</span> cancellable: Cancellable?
+        cancellable = <span style="color: #4f97d7; font-weight: bold;">self</span>.<span style="color: #4f97d7;">publisher</span>
+          .<span style="color: #4f97d7;">filter</span> <span style="color: #2d9574;">{</span> <span style="color: #a45bad;">!</span><span style="color: #bc6ec5; font-weight: bold;">isInFlight</span><span style="color: #67b11d;">(</span>$0<span style="color: #67b11d;">)</span> <span style="color: #2d9574;">}</span>
+          .<span style="color: #4f97d7; font-weight: bold;">prefix</span><span style="color: #2d9574;">(</span><span style="color: #a45bad;">1</span><span style="color: #2d9574;">)</span>
+          .<span style="color: #4f97d7;">sink</span> <span style="color: #2d9574;">{</span> _ <span style="color: #4f97d7; font-weight: bold;">in</span>
+              continuation.<span style="color: #4f97d7;">resume</span><span style="color: #67b11d;">(</span>returning: <span style="color: #b1951d;">()</span><span style="color: #67b11d;">)</span>
+              _ = cancellable
+          <span style="color: #2d9574;">}</span>
+    <span style="color: #bc6ec5;">}</span>
+<span style="color: #4f97d7;">}</span>
+</pre>
+</div>
+</div>
+<div id="outline-container-sec-38-1" class="outline-3">
+<h3 id="sec-38-1"><span class="section-number-3">38.1</span> Exercises</h3>
+<div class="outline-text-3" id="text-38-1">
+<ol class="org-ol">
+<li>My solution, probably with some race conditions:
+</li>
+</ol>
+<div class="org-src-container">
+
+<pre class="src src-swift"><span style="color: #4f97d7; font-weight: bold;">extension</span> <span style="color: #bc6ec5; font-weight: bold;">ViewStore</span> <span style="color: #4f97d7;">{</span>
+  <span style="color: #4f97d7; font-weight: bold;">func</span> <span style="color: #bc6ec5; font-weight: bold;">send</span><span style="color: #bc6ec5;">(</span>
+    _ action: Action,
+    <span style="color: #4f97d7; font-weight: bold;">while</span> predicate: <span style="color: #4f97d7; font-weight: bold;">@escaping</span> <span style="color: #2d9574;">(</span><span style="color: #4f97d7;">State</span><span style="color: #2d9574;">)</span> -&gt; <span style="color: #4f97d7;">Bool</span>
+  <span style="color: #bc6ec5;">)</span> <span style="color: #4f97d7; font-weight: bold;">async</span> <span style="color: #bc6ec5;">{</span>
+    <span style="color: #4f97d7; font-weight: bold;">self</span>.<span style="color: #4f97d7;">send</span><span style="color: #2d9574;">(</span>action<span style="color: #2d9574;">)</span>
+      <span style="color: #4f97d7; font-weight: bold;">var</span> cancellable: Cancellable?
+      <span style="color: #4f97d7; font-weight: bold;">let</span> onCancel = <span style="color: #2d9574;">{</span> cancellable = <span style="color: #a45bad;">nil</span> <span style="color: #2d9574;">}</span>
+      <span style="color: #4f97d7; font-weight: bold;">await</span> <span style="color: #bc6ec5; font-weight: bold;">withTaskCancellationHandler</span><span style="color: #2d9574;">(</span>operation: <span style="color: #67b11d;">{</span>
+          <span style="color: #4f97d7; font-weight: bold;">await</span> withUnsafeContinuation <span style="color: #b1951d;">{</span> <span style="color: #4f97d7;">(</span>continuation: UnsafeContinuation&lt;<span style="color: #4f97d7;">Void</span>, <span style="color: #4f97d7;">Never</span>&gt;<span style="color: #4f97d7;">)</span> <span style="color: #4f97d7; font-weight: bold;">in</span>
+              cancellable = <span style="color: #4f97d7; font-weight: bold;">self</span>.<span style="color: #4f97d7;">publisher</span>
+                  .<span style="color: #4f97d7;">filter</span> <span style="color: #4f97d7;">{</span> <span style="color: #a45bad;">!</span><span style="color: #bc6ec5; font-weight: bold;">predicate</span><span style="color: #bc6ec5;">(</span>$0<span style="color: #bc6ec5;">)</span> <span style="color: #4f97d7;">}</span>
+                  .<span style="color: #4f97d7; font-weight: bold;">prefix</span><span style="color: #4f97d7;">(</span><span style="color: #a45bad;">1</span><span style="color: #4f97d7;">)</span>
+                  .<span style="color: #4f97d7;">sink</span> <span style="color: #4f97d7;">{</span> _ <span style="color: #4f97d7; font-weight: bold;">in</span>
+                      continuation.<span style="color: #4f97d7;">resume</span><span style="color: #bc6ec5;">()</span>
+                      _ = cancellable
+                  <span style="color: #4f97d7;">}</span>
+          <span style="color: #b1951d;">}</span>
+      <span style="color: #67b11d;">}</span>, onCancel: <span style="color: #67b11d;">{</span> <span style="color: #bc6ec5; font-weight: bold;">onCancel</span><span style="color: #b1951d;">()</span> <span style="color: #67b11d;">}</span><span style="color: #2d9574;">)</span>
+  <span style="color: #bc6ec5;">}</span>
+<span style="color: #4f97d7;">}</span>
+
+</pre>
+</div>
+<p>
+Reference solution:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-swift"><span style="color: #4f97d7; font-weight: bold;">extension</span> <span style="color: #bc6ec5; font-weight: bold;">ViewStore</span> <span style="color: #4f97d7;">{</span>
+  <span style="color: #4f97d7; font-weight: bold;">func</span> <span style="color: #bc6ec5; font-weight: bold;">send</span><span style="color: #bc6ec5;">(</span>
+    _ action: Action,
+    <span style="color: #2d9574;">`while`</span> isInFlight: <span style="color: #4f97d7; font-weight: bold;">@escaping</span> <span style="color: #2d9574;">(</span><span style="color: #4f97d7;">State</span><span style="color: #2d9574;">)</span> -&gt; <span style="color: #4f97d7;">Bool</span>
+  <span style="color: #bc6ec5;">)</span> <span style="color: #4f97d7; font-weight: bold;">async</span> <span style="color: #bc6ec5;">{</span>
+    <span style="color: #4f97d7; font-weight: bold;">self</span>.<span style="color: #4f97d7;">send</span><span style="color: #2d9574;">(</span>action<span style="color: #2d9574;">)</span>
+
+    <span style="color: #4f97d7; font-weight: bold;">var</span> cancellable: Cancellable?
+    <span style="color: #4f97d7; font-weight: bold;">try</span>? <span style="color: #4f97d7; font-weight: bold;">await</span> <span style="color: #bc6ec5; font-weight: bold;">withTaskCancellationHandler</span><span style="color: #2d9574;">(</span>
+      handler: <span style="color: #67b11d;">{</span> <span style="color: #b1951d;">[</span>cancellable<span style="color: #b1951d;">]</span> <span style="color: #4f97d7; font-weight: bold;">in</span> cancellable?.<span style="color: #4f97d7;">cancel</span><span style="color: #b1951d;">()</span> <span style="color: #67b11d;">}</span>,
+      operation: <span style="color: #67b11d;">{</span>
+        <span style="color: #4f97d7; font-weight: bold;">try</span> Task.<span style="color: #bc6ec5; font-weight: bold;">checkCancellation</span><span style="color: #b1951d;">()</span>
+        <span style="color: #4f97d7; font-weight: bold;">try</span> <span style="color: #4f97d7; font-weight: bold;">await</span> withUnsafeThrowingContinuation <span style="color: #b1951d;">{</span> <span style="color: #4f97d7;">(</span>continuation: UnsafeContinuation&lt;<span style="color: #4f97d7;">Void</span>, <span style="color: #4f97d7;">Error</span>&gt;<span style="color: #4f97d7;">)</span> <span style="color: #4f97d7; font-weight: bold;">in</span>
+          <span style="color: #4f97d7; font-weight: bold;">guard</span> <span style="color: #a45bad;">!</span>Task.<span style="color: #4f97d7;">isCancelled</span> <span style="color: #4f97d7; font-weight: bold;">else</span> <span style="color: #4f97d7;">{</span>
+            continuation.<span style="color: #4f97d7;">resume</span><span style="color: #bc6ec5;">(</span>throwing: <span style="color: #bc6ec5; font-weight: bold;">CancellationError</span><span style="color: #2d9574;">()</span><span style="color: #bc6ec5;">)</span>
+            <span style="color: #4f97d7; font-weight: bold;">return</span>
+          <span style="color: #4f97d7;">}</span>
+          cancellable = <span style="color: #4f97d7; font-weight: bold;">self</span>.<span style="color: #4f97d7;">publisher</span>
+            .<span style="color: #4f97d7;">filter</span> <span style="color: #4f97d7;">{</span> <span style="color: #a45bad;">!</span><span style="color: #bc6ec5; font-weight: bold;">predicate</span><span style="color: #bc6ec5;">(</span>$0<span style="color: #bc6ec5;">)</span> <span style="color: #4f97d7;">}</span>
+            .<span style="color: #4f97d7; font-weight: bold;">prefix</span><span style="color: #4f97d7;">(</span><span style="color: #a45bad;">1</span><span style="color: #4f97d7;">)</span>
+            .<span style="color: #4f97d7;">sink</span> <span style="color: #4f97d7;">{</span> _ <span style="color: #4f97d7; font-weight: bold;">in</span>
+              continuation.<span style="color: #4f97d7;">resume</span><span style="color: #bc6ec5;">()</span>
+              _ = cancellable
+            <span style="color: #4f97d7;">}</span>
+        <span style="color: #b1951d;">}</span>
+      <span style="color: #67b11d;">}</span>
+    <span style="color: #2d9574;">)</span>
+  <span style="color: #bc6ec5;">}</span>
+<span style="color: #4f97d7;">}</span>
+</pre>
+</div>
+<p>
+(In my solution i don't check for cancellation)
+Also i'm not sure how the capture list works. Won't it capture always <code>nil</code>, so the cancelable will actually never be cancelled?
+</p>
+<ol class="org-ol">
+<li>I don't think we can write it in terms of the previous function, because we cannot <code>await</code> in <code>withAnimation</code> block.
+</li>
+</ol>
+<p>
+My monke brain solution would be to copy the previous function and wrap the <code>store.send</code> inside a <code>withAnimation(animation){}</code>.
+Reference solution: Extract the code after <code>store.send</code> and use it in both functions.
+</p>
+<ol class="org-ol">
+<li>From what we learned so far, this should be quite easy:
+</li>
+</ol>
+<div class="org-src-container">
+
+<pre class="src src-swift"><span style="color: #4f97d7; font-weight: bold;">extension</span> <span style="color: #bc6ec5; font-weight: bold;">ViewStore</span> <span style="color: #4f97d7;">{</span>
+    <span style="color: #4f97d7; font-weight: bold;">var</span> stream: AsyncStream&lt;<span style="color: #4f97d7;">State</span>&gt; <span style="color: #bc6ec5;">{</span>
+        <span style="color: #4f97d7; font-weight: bold;">return</span> AsyncStream <span style="color: #2d9574;">{</span> continuation <span style="color: #4f97d7; font-weight: bold;">in</span>
+            <span style="color: #4f97d7; font-weight: bold;">var</span> cancellable: Cancellable?
+            cancellable = <span style="color: #4f97d7; font-weight: bold;">self</span>.<span style="color: #4f97d7;">publisher</span>
+                .<span style="color: #4f97d7;">sink</span> <span style="color: #67b11d;">{</span> newState <span style="color: #4f97d7; font-weight: bold;">in</span>
+                    continuation.<span style="color: #bc6ec5; font-weight: bold;">yield</span><span style="color: #b1951d;">(</span>newState<span style="color: #b1951d;">)</span>
+                <span style="color: #67b11d;">}</span>
+            continuation.<span style="color: #7590db;">onTermination</span> = <span style="color: #67b11d;">{</span>  <span style="color: #4f97d7; font-weight: bold;">@Sendable</span> <span style="color: #b1951d;">[</span>cancellable<span style="color: #b1951d;">]</span> _ <span style="color: #4f97d7; font-weight: bold;">in</span>
+                cancellable?.<span style="color: #4f97d7;">cancel</span><span style="color: #b1951d;">()</span>
+            <span style="color: #67b11d;">}</span>
+        <span style="color: #2d9574;">}</span>
+    <span style="color: #bc6ec5;">}</span>
+<span style="color: #4f97d7;">}</span>
+</pre>
+</div>
+<p>
+The reference solution doesn't mind about the <code>onTermination</code>, and handles completions by calling <code>continuation.finish()</code>.
+</p>
+<ol class="org-ol">
+<li>This is much shorter now with <code>stream</code>:
+</li>
+</ol>
+<div class="org-src-container">
+
+<pre class="src src-swift"><span style="color: #4f97d7; font-weight: bold;">extension</span> <span style="color: #bc6ec5; font-weight: bold;">ViewStore</span> <span style="color: #4f97d7;">{</span>
+    <span style="color: #4f97d7; font-weight: bold;">func</span> <span style="color: #bc6ec5; font-weight: bold;">suspend</span><span style="color: #bc6ec5;">(</span><span style="color: #4f97d7; font-weight: bold;">while</span> predicate: <span style="color: #4f97d7; font-weight: bold;">@escaping</span> <span style="color: #2d9574;">(</span><span style="color: #4f97d7;">State</span><span style="color: #2d9574;">)</span> -&gt; <span style="color: #4f97d7;">Bool</span><span style="color: #bc6ec5;">)</span> <span style="color: #4f97d7; font-weight: bold;">async</span> <span style="color: #bc6ec5;">{</span>
+        <span style="color: #4f97d7; font-weight: bold;">let</span> stream = <span style="color: #4f97d7; font-weight: bold;">self</span>.<span style="color: #7590db;">stream</span>
+        .<span style="color: #4f97d7;">filter</span> <span style="color: #2d9574;">{</span> <span style="color: #a45bad;">!</span><span style="color: #bc6ec5; font-weight: bold;">predicate</span><span style="color: #67b11d;">(</span>$0<span style="color: #67b11d;">)</span> <span style="color: #2d9574;">}</span>
+        .<span style="color: #4f97d7; font-weight: bold;">prefix</span><span style="color: #2d9574;">(</span><span style="color: #a45bad;">1</span><span style="color: #2d9574;">)</span>
+        <span style="color: #4f97d7; font-weight: bold;">for</span> <span style="color: #4f97d7; font-weight: bold;">try</span> <span style="color: #4f97d7; font-weight: bold;">await</span> _ <span style="color: #4f97d7; font-weight: bold;">in</span> stream <span style="color: #2d9574;">{</span> <span style="color: #2d9574;">}</span>
+    <span style="color: #bc6ec5;">}</span>
+<span style="color: #4f97d7;">}</span>
+</pre>
+</div>
+<p>
+It can be more elegant without the weird for loop:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-swift"><span style="color: #4f97d7; font-weight: bold;">extension</span> <span style="color: #bc6ec5; font-weight: bold;">ViewStore</span> <span style="color: #4f97d7;">{</span>
+  <span style="color: #4f97d7; font-weight: bold;">func</span> <span style="color: #bc6ec5; font-weight: bold;">suspend</span><span style="color: #bc6ec5;">(</span><span style="color: #4f97d7; font-weight: bold;">while</span> predicate: <span style="color: #4f97d7; font-weight: bold;">@escaping</span> <span style="color: #2d9574;">(</span><span style="color: #4f97d7;">State</span><span style="color: #2d9574;">)</span> -&gt; <span style="color: #4f97d7;">Bool</span><span style="color: #bc6ec5;">)</span> <span style="color: #4f97d7; font-weight: bold;">async</span> <span style="color: #bc6ec5;">{</span>
+    _ = <span style="color: #4f97d7; font-weight: bold;">await</span> <span style="color: #4f97d7; font-weight: bold;">self</span>.<span style="color: #7590db;">stream</span>
+      .<span style="color: #4f97d7;">filter</span> <span style="color: #2d9574;">{</span> <span style="color: #a45bad;">!</span><span style="color: #bc6ec5; font-weight: bold;">predicate</span><span style="color: #67b11d;">(</span>$0<span style="color: #67b11d;">)</span> <span style="color: #2d9574;">}</span>
+      .<span style="color: #4f97d7;">first</span><span style="color: #2d9574;">(</span><span style="color: #4f97d7; font-weight: bold;">where</span>: <span style="color: #67b11d;">{</span> _ <span style="color: #4f97d7; font-weight: bold;">in</span> <span style="color: #a45bad;">true</span> <span style="color: #67b11d;">}</span><span style="color: #2d9574;">)</span>
+  <span style="color: #bc6ec5;">}</span>
+<span style="color: #4f97d7;">}</span>
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-39" class="outline-2">
+<h2 id="sec-39"><span class="section-number-2">39</span> Safer, Conciser Forms: Part 1</h2>
+<div class="outline-text-2" id="text-39">
 <ul class="org-ul">
 <li>use <code>@BindableState</code> in your TCA state property to opt-in to make it bindable
 </li>
@@ -2278,9 +2523,9 @@ privately and accessed by a <code>_</code> prefix.
 </ul>
 </div>
 </div>
-<div id="outline-container-sec-38" class="outline-2">
-<h2 id="sec-38"><span class="section-number-2">38</span> Safer, Conciser Forms: Part 2</h2>
-<div class="outline-text-2" id="text-38">
+<div id="outline-container-sec-40" class="outline-2">
+<h2 id="sec-40"><span class="section-number-2">40</span> Safer, Conciser Forms: Part 2</h2>
+<div class="outline-text-2" id="text-40">
 <p>
 We can omit stating the binding action case when we derive bindings from bindable state,
 or when we chain the higher level <code>.binding(Action)</code> reducer.
