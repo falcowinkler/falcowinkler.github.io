@@ -849,7 +849,7 @@ Nothing much new other than how to easily build mock structures with overture
 
 
 * Playground Driven Development
-When developing in UIKit, you can build something similar with playgrounds.
+When developing in UIKit, you can build something similar to previews with playgrounds.
 This requires you to modularize your app, or put the whole app in one framework/package.
 
 #+BEGIN_SRC swift
@@ -859,8 +859,6 @@ import PlaygroundSupport
 let vc = EpisodeListViewController()
 PlaygroundPage.current.liveView = vc
 #+END_SRC
-
-You can open a playground alongside a project with ~xed .~ (And probably with a xcworkspace as well?)
 
 * Dependency Injection Made Composable
 
