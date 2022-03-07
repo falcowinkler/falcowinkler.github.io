@@ -1173,6 +1173,59 @@ func == (lhs: AnyEquatable, rhs: AnyEquatable) -> Bool {
 This presents concise forms in action within isowords.
 ⚠ In the current version of TCA, the action and higher level reducer have been renamed more generally to
 ~BindingAction<T>~ and ~.binding()~.
+* SwiftUI Animation: The Basics
+Implicit animations (~.animation(_,value:)~) vs explicit animations (~withAnimation {}~).
+Implicit animations can give great results with very little work but are unsuitable
+for fine-grained control, because they animate everything in the view hirarchy.
+And the semantics of overriding animations is not clear.
+E.g. if/else branches rather than ternary operator can mess up your animation semantics.
+
+~withAnimation~ is a special case of a /continuation/: ~(A -> R) -> R~ (where ~A~ is ~Void~ in this case).
+Animate bindings with ~binding.animation()~ instead of ~withAnimation~.
+** Exercises
+1. (Might be an ugly solution, don't know the best practices)
+   We can create the work on the dispatch queue as ~WorkItem~'s and cancel them later.
+#+BEGIN_SRC swift
+@State private var animationStack: [DispatchWorkItem] = []
+// ...
+
+   Button("Cycle colors") {
+        [Color.red, .blue, .green, .purple, .black]
+          .enumerated()
+          .forEach { offset, color in
+              let work = DispatchWorkItem(block: {
+                  withAnimation(.linear) {
+                      self.viewModel.circleColor = color
+                  }
+              })
+              self.animationStack.append(work)
+              DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(offset), execute: work)
+          }
+ // ...
+      Button("Reset") {
+          for work in self.animationStack {
+              work.cancel()
+          }
+          animationStack.removeAll()
+          // ...
+      }
+#+END_SRC
+2. Easy!
+#+BEGIN_SRC swift
+class ViewModel: ObservableObject {
+    @Published var circleCenter = CGPoint.zero
+    @Published var circleColor = Color.black
+    @Published var isCircleScaled = false
+    @Published var isResetting = false
+}
+...
+
+struct ContentView: View {
+    @StateObject var viewModel: ViewModel
+    /// Then change all usages of self.someState to self.viewModel.someState
+}
+#+END_SRC
+
 * Better Test Dependencies: Exhaustivity
 - Make those functions/dependencies fail that are not used in the test,
 e.g. by providing an unimplemented helper. For example
