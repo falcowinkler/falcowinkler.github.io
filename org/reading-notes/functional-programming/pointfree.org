@@ -1009,7 +1009,7 @@ And a ~void~ env because that's not gonna be used anyway.
 * The Point of Redacted SwiftUI: Part 1
 - If you have a subview that you ~unredact~ within your bigger view,
 you can selectively add back some logic into your empty reducer
-- You cann call out to another reducer like this
+- You cann call out to another reducer like this:
 #+BEGIN_SRC swift
 appReducer.run(&state, &action, &environment)
 #+END_SRC
