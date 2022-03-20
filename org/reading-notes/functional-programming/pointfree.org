@@ -998,7 +998,7 @@ API's are not called.
 - Write a debug screen that arbitrarily taps into your environment
 
 * Redacted SwiftUI: The problem
-The problem is that it's hard to seperate concerns in vanilla swiftui.
+The problem is that it's hard to seperate concerns in vanilla SwiftUI.
 When you redact a view you don't want any interaction to happen,
 hence you basically want to swap out your business logic with no-ops.
 In a traditional swiftui setup, you'd have to sprinkle your code all over with early exits to achieve that.
