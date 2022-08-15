@@ -863,7 +863,12 @@ PlaygroundPage.current.liveView = vc
 * Dependency Injection Made Composable
 
 
-  
+* TODO Dependency Injection Made modular
+Introduces the ~Environment~ generic parameter to the reducer for dependency injection.
+Describes how to model _environment as tuples_.
+The approach of modelling the environment as tuple is not really scaleable in a TCA project,
+since this is giving up exporting noop/failing dependencies etcs.
+
 * A Tour of the Composable Architecture: Part 1
   - Cohesive package to solve some problems that Swift UI has
   - Opinionated
@@ -1475,3 +1480,87 @@ struct MyView: View {
   }
 } 
 #+END_SRC
+
+* SwiftUI Navigation: Tabs & Alerts, Part 1
+- Introduces the basics of vanilla SwiftUI, not much new beyond basics of SwiftUI API's.
+- Hints at the idea to model all navigation states of the app as a single data structure (a tree).
+* SwiftUI Navigation: Tabs & Alerts, Part 2
+Problematic about the vanilla way to model an optional alert is that it introduces _invalid states_.
+For example, the boolean might be set to true (meaning an alert will be shown), without any actual data to show.
+- Better use the ~alert(Binding<Item>, Item -> View)~ overload 😉.
+- use IdentifiedArrayOf<T> for items where you later need access to indices (e.g. to delete items).
+- ~@State~ bad because hard to test, use view models instead. 
+
+Some of the nice overloads have been deprectated. Use these wrappers instead for sheets and alerts.
+
+#+BEGIN_SRC swift
+extension View {
+  func alert<A: View, M: View, T>(
+    title: (T) -> Text,
+    presenting data: Binding<T?>,
+    @ViewBuilder actions: @escaping (T) -> A,
+    @ViewBuilder message: @escaping (T) -> M
+  ) -> some View {
+    self.alert(
+      data.wrappedValue.map(title) ?? Text(""),
+      isPresented: .init(
+        get: { data.wrappedValue != nil },
+        set: { if !$0 { data.wrappedValue = nil } }
+      ),
+      presenting: data.wrappedValue,
+      actions: actions,
+      message: message
+    )
+  }
+}
+
+extension View {
+  func confirmationDialog<A: View, M: View, T>(
+    title: (T) -> Text,
+    titleVisibility: Visibility = .automatic,
+    presenting data: Binding<T?>,
+    @ViewBuilder actions: @escaping (T) -> A,
+    @ViewBuilder message: @escaping (T) -> M
+  ) -> some View {
+    self.confirmationDialog(
+      data.wrappedValue.map(title) ?? Text(""),
+      isPresented: .init(
+        get: { data.wrappedValue != nil },
+        set: { if !$0 { data.wrappedValue = nil } }
+      ),
+      titleVisibility: titleVisibility,
+      presenting: data.wrappedValue,
+      actions: actions,
+      message: message
+    )
+  }
+}
+#+END_SRC
+
+* Async Composable Architecture in Practice
+TCA introduces /structured concurrency tools/.
+~try~ effect opens an async context in which the ~send~ parameter can be used to send actions
+back into the system.
+
+To fully make use of this with SwiftUI's new concurrency tools, make sure to add this to SwiftUI's import.
+#+BEGIN_SRC swift
+@preconcurrency import SwiftUI
+#+END_SRC
+
+** Test changes
+1) TestSuite needs to be ~@MainActor~
+2) Mark each test function as ~async~
+3) store.send etc. needs to be ~await~'ed.
+
+** Dependencies
+- You don't need the effect type anymore for dependencies. Don't need to compile TCA for just a library
+- Effects that return a single value can be async (throwing) functions
+- Effects that return many effects can be ~AsyncStream~ or ~AsyncThrowingStream~
+- Replace ~.failing~ effects with ~XCTUnimplemented~, use ~placeholder~ where a return value is needed.
+- ~.finished~ can be used to define ~AsyncStreams~ that finish immediately.
+- ~future~ is replaced with ~await withUnsafeContinuation~
+** Reducer
+- Use ~TaskResult~ instead of ~Result~
+- Use ~.run~ to create async effects, ~catch~ trailing closure to handle errrors
+- ~await withThrowingTaskGroup~ for parallel work
+- ~withCancellation~ can be used to make only part of a task group cancellable.
